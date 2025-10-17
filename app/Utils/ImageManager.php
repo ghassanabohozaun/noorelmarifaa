@@ -50,12 +50,9 @@ class ImageManager
 
     public function removeImageFromLocal($image, $disk)
     {
+        Storage::disk($disk)->delete($image);
         // $public_path =
         //  public_path('uploads\\' . $disk . '\\' . $image);
-
-          Storage::disk($disk)->delete($image);
-
-
         // if (File::exists($public_path)) {
         //     File::delete($public_path);
         // }

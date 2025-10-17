@@ -8,7 +8,7 @@ font-size: 12px;
 font-size: 0.775rem;
 }
 .btn{
-font-size: 0.875rem;
+font-size: 0.775rem;
 letter-spacing: 0.07rem;
 }
 
@@ -21,3 +21,30 @@ h4, .h4, .h4 {
     font-size: 1.2rem;
     line-height: 1.375;
 }
+
+
+/* Style the entire scrollbar */
+::-webkit-scrollbar {
+width: 5px; /* Set width for vertical scrollbar */
+height: 12px; /* Set height for horizontal scrollbar */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 1px;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+background: #888;
+border-radius: 1px;
+}
+
+/* Style the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+
+
+

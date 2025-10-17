@@ -9,6 +9,11 @@
             @csrf
             @method('PUT')
 
+            <div id="loading-spinner" style="display: none;">
+                <!-- You can use an image, a CSS-based spinner, or a library like Font Awesome -->
+                <i class="fas fa-spinner fa-spin"></i> Loading...
+            </div>
+
             <div class="content-wrapper">
                 <!-- begin: content header -->
                 <div class="content-header row">
@@ -558,6 +563,11 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                beforeSend: function() {
+                    // $('#loading').addClass('loading');
+                    // $('#loading-content').addClass('loading-content');
+
+                },
                 success: function(data) {
 
                     if (data.status == true) {
@@ -594,6 +604,10 @@
                         $('#' + key).css('border-color', '#F64E60');
                     });
                 }, //end error
+                complete: function() {
+                    // $('#loading').removeClass('loading');
+                    // $('#loading-content').removeClass('loading-content');
+                }
             }); //end ajax
 
         }); // end submit

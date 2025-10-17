@@ -7,8 +7,8 @@
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
-<h4 class="text-info mt-3"> {!! __('children.child_family') !!}</h4>
-<hr>
+<h4 class="text-info mt-3 mb-2"> {!! __('children.child_family') !!}</h4>
+
 
 <!-- begin: number_of_people_including_mother , male_number , female_number -->
 <div class="row">
@@ -70,10 +70,7 @@
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
-<h4 class="text-info"> {!! __('children.child_father') !!}</h4>
-<hr>
-
-
+<h4 class="text-info mb-2"> {!! __('children.child_father') !!}</h4>
 <!-- begin: father_full_name_ar,,father_full_name_en  -->
 <div class="row">
     <!-- begin: input -->
@@ -116,7 +113,7 @@
 <div class="row">
 
     <!-- begin: input -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="father_personal_id">{!! __('children.father_personal_id') !!}</label>
             <input type="text" wire:model.live="father_personal_id" class="form-control" autocomplete="off"
@@ -131,7 +128,7 @@
     <!-- end: input -->
 
     <!-- begin: input -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="father_date_of_death">{!! __('children.father_date_of_death') !!}</label>
             <input type="date" wire:model.live="father_date_of_death" class="form-control" autocomplete="off"
@@ -146,7 +143,7 @@
     <!-- end: input -->
 
     <!-- begin: input -->
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group">
             <label for="father_respon_of_death">{!! __('children.father_respon_of_death') !!}</label>
             <select wire:model.live="father_respon_of_death" class="form-control">
@@ -170,9 +167,7 @@
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
-<h4 class="text-info"> {!! __('children.child_mother') !!}</h4>
-<hr>
-
+<h4 class="text-info mb-2"> {!! __('children.child_mother') !!}</h4>
 
 <!-- begin: mother_full_name_ar,mother_full_name_en  -->
 <div class="row">

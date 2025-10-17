@@ -4,6 +4,7 @@
 
 <head>
     @include('layouts.dashboard.app-parts._head')
+
     @stack('style')
     {{-- @livewireStyles --}}
 </head>
@@ -12,8 +13,15 @@
     data-menu="vertical-menu-modern" data-col="2-columns" style="font-family: 'Tajawal', sans-serif;">
 
 
+
+    {{-- <section id="loading">
+        <div id="loading-content"></div>
+    </section> --}}
+
+
     @include('layouts.dashboard.app-parts._header')
     @include('layouts.dashboard.app-parts._sidebar')
+
 
     @yield('content')
 

@@ -5,15 +5,11 @@
 @endsection
 @section('content')
     <section>
-        <div class="mt-6">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-sm-12">
-                        <div class="card ">
-                            <div class="card-body">
-                                @livewire('dashboard.child.create-child', compact('governorates', 'cities'))
-                            </div>
-                        </div>
+        <div class="container mt-6">
+            <div class="row">
+                <div class="card z-index-0  col-xl-12 col-lg-12  col-sm-12 " style="margin: 0 auto;">
+                    <div class="card-body">
+                        @livewire('dashboard.child.create-child', compact('governorates', 'cities'))
                     </div>
                 </div>
             </div>

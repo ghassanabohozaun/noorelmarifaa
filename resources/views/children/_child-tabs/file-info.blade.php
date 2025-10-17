@@ -4,7 +4,7 @@
     <div class="row">
 
         <div class="col-lg-3">
-            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
                     <p> {!! __('children.picture_of_the_orphan_child') !!}:
                 </strong>&nbsp;
                 </p>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-lg-3">
-            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
                     <p> {!! __('children.orphan_child_birth_certificate') !!}:
                 </strong>&nbsp;
                 </p>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="col-lg-3">
-            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
                     <p> {!! __('children.father_death_certificate') !!}:
                 </strong>&nbsp;
                 </p>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="col-lg-3">
-            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
                     <p> {!! __('children.guardian_personal_id_photo') !!}:
                 </strong>&nbsp;
                 </p>

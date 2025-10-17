@@ -16,7 +16,6 @@
     <!-- Font Awesome Icons -->
     <link href="{!! asset('assets/children') !!}/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-
     <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
     <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style.css" rel="stylesheet" />
 
@@ -69,7 +68,7 @@
 
                                 @if (!child()->check())
                                     <li class="nav-item">
-                                        <a class="nav-link me-2" href="{!! route('child.get.register') !!}">
+                                        <a class="nav-link me-2 active" href="{!! route('child.get.register') !!}">
                                             <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
                                             {!! __('children.new_register') !!}
                                         </a>
@@ -77,7 +76,7 @@
 
 
                                     <li class="nav-item">
-                                        <a class="nav-link me-2" href="{!! route('child.get.login') !!}">
+                                        <a class="nav-link me-2 active" href="{!! route('child.get.login') !!}">
                                             <i class="fas fa-key opacity-6 text-dark me-1"></i>
                                             {!! __('children.previous_register') !!}
                                         </a>
@@ -86,14 +85,14 @@
 
 
                                 @if (child()->check())
-                                    <li class="nav-item active">
+                                    <li class="nav-item">
                                         <a class="nav-link me-2 active" href="{!! route('child.children.show', child()->user()->id) !!}">
                                             <i class="fa fa-user opacity-6 text-dark me-1"></i>
                                             {!! __('children.show_child') !!}
                                         </a>
                                     </li>
 
-                                    <li class="nav-item active">
+                                    <li class="nav-item">
                                         <a class="nav-link me-2 active" href="{!! route('child.children.edit', child()->user()->id) !!}">
                                             <i class="fa fa-user opacity-6 text-dark me-1"></i>
                                             {!! __('children.update_child') !!}
@@ -108,7 +107,7 @@
                                     </form> --}}
 
                                     <li class="nav-item">
-                                        <a class="nav-link me-2" href="{!! route('child.logout') !!}">
+                                        <a class="nav-link me-2 active" href="{!! route('child.logout') !!}">
                                             <i class="fas fa-key opacity-6 text-dark me-1"></i>
                                             {!! __('auth.logout') !!}
                                         </a>
