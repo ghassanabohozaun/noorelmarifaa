@@ -28,5 +28,3 @@
         <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/child-wizard.css') !!}" rel="stylesheet">
     @endif
 @endpush
-
-{{-- z-index-0 mt-2 col-xl-12 col-lg-12 col-sm-12 mt-6 --}}
