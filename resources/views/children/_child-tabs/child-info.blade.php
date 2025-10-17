@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-6">
-        <hr class="horizontal gray-light my-4">
+        <hr class="horizontal gray-light my-2">
         <ul class="list-group">
 
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong

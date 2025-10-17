@@ -1,71 +1,97 @@
-<ul class="list-group">
-    <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <!-------------------------------------------------------- Family ----------------------------------------------------------------------------------------->
-    <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
+<div class="row mt-2">
+    <div class="col-md-4">
+        <ul class="list-group">
+            <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------- Family ----------------------------------------------------------------------------------------->
+            <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-    <h5 class="text-info"> {!! __('children.child_family') !!}</h5>
+            <h5 class="text-info"> {!! __('children.child_family') !!}</h5>
 
-    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.number_of_people_including_mother') !!}:</strong>
-        &nbsp;
-        {!! $child->childFamily->number_of_people_including_mother !!}
-    </li>
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                    class="text-dark">{!! __('children.number_of_people_including_mother') !!}:</strong>
+                &nbsp;
+                {!! $child->childFamily->number_of_people_including_mother !!}
+            </li>
 
+            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.male_number') !!}:</strong>
+                &nbsp;{!! $child->childFamily->male_number !!}
+            </li>
 
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.male_number') !!}:</strong>
-        &nbsp;{!! $child->childFamily->male_number !!}
-    </li>
+            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.female_number') !!}:</strong>
+                &nbsp;{!! $child->childFamily->female_number !!}
+            </li>
 
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.female_number') !!}:</strong>
-        &nbsp;{!! $child->childFamily->female_number !!}
-    </li>
+        </ul>
 
-
-    <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <!-------------------------------------------------------- Father ----------------------------------------------------------------------------------------->
-    <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-    <h5 class="text-info mt-2"> {!! __('children.child_father') !!}</h5>
-
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.father_full_name') !!}:</strong>
-        &nbsp;{!! $child->childFather->father_full_name !!}
-    </li>
+    </div>
 
 
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.father_personal_id') !!}:</strong>
-        &nbsp;{!! $child->childFather->father_personal_id !!}
-    </li>
+    <div class="col-md-4">
+        <ul class="list-group">
 
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.father_date_of_death') !!}:</strong>
-        &nbsp;{!! $child->childFather->father_date_of_death !!}
-    </li>
+            <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------- Father ----------------------------------------------------------------------------------------->
+            <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.father_respon_of_death') !!}:</strong>
-        &nbsp;{!! $child->childFather->childFatherResponOfDeath() !!}
-    </li>
+            <h5 class="text-info mt-2"> {!! __('children.child_father') !!}</h5>
+
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.father_full_name') !!}:</strong>
+                &nbsp;{!! $child->childFather->father_full_name !!}
+            </li>
 
 
-    <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <!-------------------------------------------------------- Mother ----------------------------------------------------------------------------------------->
-    <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.father_personal_id') !!}:</strong>
+                &nbsp;{!! $child->childFather->father_personal_id !!}
+            </li>
 
-    <h5 class="text-info mt-2"> {!! __('children.child_mother') !!}</h5>
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.father_date_of_death') !!}:</strong>
+                &nbsp;{!! $child->childFather->father_date_of_death !!}
+            </li>
 
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.mother_full_name') !!}:</strong>
-        &nbsp;{!! $child->childMother->mother_full_name !!}
-    </li>
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.father_respon_of_death') !!}:</strong>
+                &nbsp;{!! $child->childFather->childFatherResponOfDeath() !!}
+            </li>
 
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.mother_personal_id') !!}:</strong>
-        &nbsp;{!! $child->childMother->mother_personal_id !!}
-    </li>
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.mother_date_of_death') !!}:</strong>
-        &nbsp;{!! $child->childMother->mother_date_of_death !!}
-    </li>
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.is_mother_alive') !!}:</strong>
-        &nbsp;{!! $child->childMother->is_mother_alive == 0 ? __('children.no') : __('children.yes') !!}
-    </li>
-    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">{!! __('children.is_mother_the_guardian') !!}:</strong>
-        &nbsp;{!! $child->childMother->is_mother_the_guardian == 0 ? __('children.no') : __('children.yes') !!}
-    </li>
+        </ul>
 
-</ul>
+    </div>
+
+
+    <div class="col-md-4">
+        <ul class="list-group">
+            <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------- Mother ----------------------------------------------------------------------------------------->
+            <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+            <h5 class="text-info mt-2"> {!! __('children.child_mother') !!}</h5>
+
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.mother_full_name') !!}:</strong>
+                &nbsp;{!! $child->childMother->mother_full_name !!}
+            </li>
+
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.mother_personal_id') !!}:</strong>
+                &nbsp;{!! $child->childMother->mother_personal_id !!}
+            </li>
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.mother_date_of_death') !!}:</strong>
+                &nbsp;{!! $child->childMother->mother_date_of_death !!}
+            </li>
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.is_mother_alive') !!}:</strong>
+                &nbsp;{!! $child->childMother->is_mother_alive == 0 ? __('children.no') : __('children.yes') !!}
+            </li>
+            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                    class="text-dark">{!! __('children.is_mother_the_guardian') !!}:</strong>
+                &nbsp;{!! $child->childMother->is_mother_the_guardian == 0 ? __('children.no') : __('children.yes') !!}
+            </li>
+
+        </ul>
+
+    </div>
+</div>
