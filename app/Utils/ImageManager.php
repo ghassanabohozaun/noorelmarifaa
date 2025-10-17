@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Utils;
-use Illuminate\Support\Str;
 use File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ImageManager
 {
@@ -49,10 +50,14 @@ class ImageManager
 
     public function removeImageFromLocal($image, $disk)
     {
-        $public_path = public_path('uploads\\' . $disk . '\\' . $image);
+        // $public_path =
+        //  public_path('uploads\\' . $disk . '\\' . $image);
 
-        if (File::exists($public_path)) {
-            File::delete($public_path);
-        }
+          Storage::disk($disk)->delete($image);
+
+
+        // if (File::exists($public_path)) {
+        //     File::delete($public_path);
+        // }
     }
 }
