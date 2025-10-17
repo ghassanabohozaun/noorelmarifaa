@@ -1,5 +1,9 @@
+<h4>{!! __('children.child_info') !!}</h4>
+<hr>
+
 <!-- begin: full name  ar-->
-<div class="row">
+<div class="row mt-3">
+
     <!-- begin: input -->
     <div class="col-md-3">
         <div class="form-group">

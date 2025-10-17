@@ -85,49 +85,49 @@ class ViewServiceProvider extends ServiceProvider
         // });
 
         // get share settings in scope dashbaord and website
-        $settings = $this->firstOrCreateSettings();
-        view()->share([
-            'settings' => $settings,
-        ]);
+        // $settings = $this->firstOrCreateSettings();
+        // view()->share([
+        //     'settings' => $settings,
+        // ]);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public function firstOrCreateSettings()
-    {
-        $settings = Setting::firstOr(function () {
-            return Setting::create([
-                'site_name' => [
-                    'en' => 'Noor Orphans',
-                    'ar' => 'أيتام نور المعرفة',
-                ],
-                'address' => [
-                    'en' => '',
-                    'ar' => '',
-                ],
-                'description' => [
-                    'en' => '',
-                    'ar' => '',
-                ],
-                'keywords' => [
-                    'en' => '',
-                    'ar' => '',
-                ],
-                'phone' => '',
-                'mobile' => '',
-                'whatsapp' => '',
-                'email' => '',
-                'email_support' => '',
-                'facebook' => '',
-                'twitter' => '',
-                'instegram' => '',
-                'youtube' => '',
-                'logo' => '',
-                'favicon' => '',
-                'promation_video_url' => '',
-            ]);
-        });
+    // public function firstOrCreateSettings()
+    // {
+    //     $settings = Setting::firstOr(function () {
+    //         return Setting::create([
+    //             'site_name' => [
+    //                 'en' => 'Noor Orphans',
+    //                 'ar' => 'أيتام نور المعرفة',
+    //             ],
+    //             'address' => [
+    //                 'en' => '',
+    //                 'ar' => '',
+    //             ],
+    //             'description' => [
+    //                 'en' => '',
+    //                 'ar' => '',
+    //             ],
+    //             'keywords' => [
+    //                 'en' => '',
+    //                 'ar' => '',
+    //             ],
+    //             'phone' => '',
+    //             'mobile' => '',
+    //             'whatsapp' => '',
+    //             'email' => '',
+    //             'email_support' => '',
+    //             'facebook' => '',
+    //             'twitter' => '',
+    //             'instegram' => '',
+    //             'youtube' => '',
+    //             'logo' => '',
+    //             'favicon' => '',
+    //             'promation_video_url' => '',
+    //         ]);
+    //     });
 
-        return $settings;
-    }
+    //     return $settings;
+    // }
 }

@@ -7,7 +7,6 @@
     <section>
         <div class="page-header min-vh-90">
             <div class="container">
-
                 <div class="row">
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="card z-index-0  col-xl-5 col-lg-6  col-sm-12 mt-2">

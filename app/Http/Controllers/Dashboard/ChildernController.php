@@ -74,7 +74,7 @@ class ChildernController extends Controller
             flash()->error(__('general.no_record_found'));
             return redirect()->route('dashboard.children.index');
         }
-        $title = __('children.create_new_child');
+        $title = __('children.update_child');
         $governoates = $this->governorateService->getAllGovernoratesWithoutRelations();
         $cities = $this->cityService->getAllCitiesWithoutRelation();
         $ChildID = $id;

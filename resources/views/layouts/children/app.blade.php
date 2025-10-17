@@ -20,6 +20,17 @@
     <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
     <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style.css" rel="stylesheet" />
 
+    @if (Lang() == 'ar')
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+        <style>
+            body,
+            html {
+                font-family: "Poppins", "Tajawal", sans-serif;
+                font-weight: normal;
+                font-style: normal;
+            }
+        </style>
+    @endif
 
     @stack('style')
 </head>
@@ -30,7 +41,7 @@
             <div class="col-12">
                 <!-- Navbar -->
                 <nav
-                    class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute py-1 start-0 end-0 mx-4">
+                    class="navbar navbar-expand-lg blur top-0 z-index-3 shadow position-absolute py-1 start-0 end-0 mx-4">
                     <div class="container-fluid">
                         <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{!! route('child.welcome') !!}">
                             {!! setting()->site_name !!}
@@ -134,33 +145,8 @@
     <!-- End main -->
 
     <!--   Core JS Files   -->
-    <script src="{!! asset('assets/children') !!}/assets/js/core/popper.min.js"></script>
     <script src="{!! asset('assets/children') !!}/assets/js/core/bootstrap.min.js"></script>
-    <script src="{!! asset('assets/children') !!}/assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="{!! asset('assets/children') !!}/assets/js/plugins/smooth-scrollbar.min.js"></script>
-
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
-
-
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
-
-    <script src="{!! asset('assets/children') !!}/assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    @include('layouts.dashboard.app-parts._scripts')
 
     @stack('script')
 

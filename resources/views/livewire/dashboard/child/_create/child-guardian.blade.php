@@ -1,5 +1,8 @@
+<h4>{!! __('children.guardian_info') !!}</h4>
+<hr>
+
 <!-- begin: guardian_full_name_ar,,guardian_full_name_en,guardian_personal_id  -->
-<div class="row">
+<div class="row mt-3">
     <!-- begin: input -->
     <div class="col-md-4">
         <div class="form-group">

@@ -15,7 +15,6 @@ class EditChild extends Component
 {
     use WithFileUploads;
     public $currentStep = 1;
-    public $activeTab = 'child_info_tab';
     public $ChildID;
     public $first_name_ar, $father_name_ar, $grand_father_name_ar, $family_name_ar;
     public $first_name_en, $father_name_en, $grand_father_name_en, $family_name_en;
@@ -114,11 +113,7 @@ class EditChild extends Component
         $this->guardian_personal_id_photo = $this->child->childFile->guardian_personal_id_photo;
     }
 
-    // set active tab
-    public function setActiveTab($tab)
-    {
-        $this->activeTab = $tab;
-    }
+
     // first step
     public function firstStepSubmit()
     {
@@ -288,10 +283,7 @@ class EditChild extends Component
         }
     }
 
-    // public function clickPicture()
-    // {
-    //     $this->picture_of_the_orphan_child = '';
-    // }
+
 
     public function render()
     {

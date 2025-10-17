@@ -1,5 +1,7 @@
+<h4>{!! __('children.files') !!}</h4>
+<hr>
 <!-- begin: picture_of_the_orphan_child ,orphan_child_birth_certificate, father_death_certificate,guardian_personal_id_photo-->
-<div class="row">
+<div class="row mt-3">
 
 
     <!-- begin: input -->

@@ -5,12 +5,11 @@
 @endsection
 @section('content')
     <section>
-        <div class="page-header min-vh-90">
+        <div class="mt-6">
             <div class="container">
-
                 <div class="row">
-                    <div class="">
-                        <div class="card  z-index-0 mt-2 col-xl-12 col-lg-12 col-sm-12 mt-6">
+                    <div class="col-xl-12 col-lg-12 col-sm-12">
+                        <div class="card ">
                             <div class="card-body">
                                 @livewire('dashboard.child.edit-child', compact('ChildID', 'child', 'governoates', 'cities'))
                             </div>
@@ -29,3 +28,5 @@
         <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/child-wizard.css') !!}" rel="stylesheet">
     @endif
 @endpush
+
+{{-- z-index-0 mt-2 col-xl-12 col-lg-12 col-sm-12 mt-6 --}}

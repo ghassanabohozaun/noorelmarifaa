@@ -11,3 +11,13 @@ font-size: 0.775rem;
 font-size: 0.875rem;
 letter-spacing: 0.07rem;
 }
+
+
+h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .h6 {
+    font-weight: 500;
+}
+
+h4, .h4, .h4 {
+    font-size: 1.2rem;
+    line-height: 1.375;
+}

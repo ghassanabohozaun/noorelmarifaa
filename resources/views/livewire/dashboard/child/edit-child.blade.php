@@ -17,23 +17,23 @@
                     <ul class="step-wizard-list">
                         <li class="step-wizard-item  {!! $currentStep == 1 ? 'current-item' : '' !!}">
                             <span class="progress-count">1</span>
-                            <span class="progress-label">{!! __('children.child_info') !!}</span>
+                            {{-- <span class="progress-label">{!! __('children.child_info') !!}</span> --}}
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 2 ? 'current-item' : '' !!}">
                             <span class="progress-count">2</span>
-                            <span class="progress-label">{!! __('children.parents_info') !!}</span>
+                            {{-- <span class="progress-label">{!! __('children.parents_info') !!}</span> --}}
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 3 ? 'current-item' : '' !!}">
                             <span class="progress-count">3</span>
-                            <span class="progress-label">{!! __('children.guardian_info') !!}</span>
+                            {{-- <span class="progress-label">{!! __('children.guardian_info') !!}</span> --}}
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 4 ? 'current-item' : '' !!}">
                             <span class="progress-count">4</span>
-                            <span class="progress-label">{!! __('children.files') !!}</span>
+                            {{-- <span class="progress-label">{!! __('children.files') !!}</span> --}}
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 5 ? 'current-item' : '' !!}">
                             <span class="progress-count">5</span>
-                            <span class="progress-label">{!! __('children.confirmations') !!}</span>
+                            {{-- <span class="progress-label">{!! __('children.confirmations') !!}</span> --}}
                         </li>
                     </ul>
                 </div>

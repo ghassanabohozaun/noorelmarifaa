@@ -3,6 +3,15 @@
     {!! $title !!}
 @endsection
 
+@push('style')
+    @if (Lang() == 'ar')
+        <link rel="stylesheet" href="{!! asset('assets/dashbaord/css-rtl/child-wizard.css') !!}" rel="stylesheet">
+    @else
+        <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/child-wizard.css') !!}" rel="stylesheet">
+    @endif
+@endpush
+
+
 @section('content')
     <div class="app-content content">
 
@@ -47,9 +56,9 @@
                             <div class="card">
                                 <!-- begin: card header -->
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-colored-form-control">
+                                    {{-- <h4 class="card-title" id="basic-layout-colored-form-control">
                                         {!! __('children.create_new_child') !!}
-                                    </h4>
+                                    </h4> --}}
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -79,13 +88,6 @@
     </div><!-- end: content app  -->
 @endsection
 
-@push('style')
-    @if (Lang() == 'ar')
-        <link rel="stylesheet" href="{!! asset('assets/dashbaord/css-rtl/child-wizard.css') !!}" rel="stylesheet">
-    @else
-        <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/child-wizard.css') !!}" rel="stylesheet">
-    @endif
-@endpush
 
 
 {{-- @push('scripts')
