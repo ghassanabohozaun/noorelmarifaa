@@ -49,9 +49,12 @@ transform: translateX(-50%);
 z-index: -10;
 }
 
+
 .progress-count {
+content: "";
 height: 40px;
 width: 40px;
+background: #21d4fd;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -60,8 +63,11 @@ font-weight: 600;
 margin: 0 auto;
 position: relative;
 z-index: 10;
-color: transparent;
+color:#2C303B;
 }
+
+
+
 
 .progress-count:after {
 content: "";
@@ -76,10 +82,13 @@ border-radius: 50%;
 z-index: -10;
 }
 
+
+
 .progress-count:before {
 content: "";
 height: 10px;
 width: 20px;
+background: #21d4fd;
 border-left: 3px solid #fff;
 border-bottom: 3px solid #fff;
 position: absolute;
@@ -87,7 +96,9 @@ left: 50%;
 top: 50%;
 transform: translate(-50%, -60%) rotate(-45deg);
 transform-origin: center center;
+z-index: 10;
 }
+
 
 .progress-label {
 font-size: 14px;
