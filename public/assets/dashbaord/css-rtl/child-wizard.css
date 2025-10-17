@@ -49,6 +49,7 @@ z-index: -10;
 }
 
 
+
 .progress-count {
 content: "";
 height: 40px;
@@ -65,6 +66,9 @@ z-index: 10;
 color:#2C303B;
 }
 
+
+
+
 .progress-count:after {
 content: "";
 height: 40px;
@@ -77,6 +81,8 @@ transform: translate(-50%, -50%);
 border-radius: 50%;
 z-index: -10;
 }
+
+
 
 .progress-count:before {
 content: "";
