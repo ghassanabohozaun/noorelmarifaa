@@ -194,7 +194,7 @@ return [
 
     // portal
     'new_register' => 'New Orphan Registering',
-    'previous_register' => 'Pervious Orphan Logining',
+    'previous_register' => 'Orphan Logining',
 
     // form
     'sponsorship_program_form' => 'Sponsorship Program Form',

@@ -188,8 +188,8 @@ return [
     'no_children_found' => 'لا يوجد أطفال ايتام حالياً !',
 
     // portal
-    'new_register' => 'تسجيل الأطفال الأيتام الجدد',
-    'previous_register' => 'تسجيل دخول  الأيتام السابقين',
+    'new_register' => 'تسجيل يتيم جديد',
+    'previous_register' => 'تسجيل دخول اليتيم ',
 
     // form
     'sponsorship_program_form' => 'استمارة برنامج كفالة الأيتام',
