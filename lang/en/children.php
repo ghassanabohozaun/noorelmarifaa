@@ -167,7 +167,7 @@ return [
     'guardian_full_name_ar' => 'Arabic Guardian Full Name',
     'guardian_full_name_en' => 'English Guardian Full Name',
     'guardian_personal_id' => 'Guardian Personal ID',
-    'guardian_birthday' => 'Guardian Birthdaty',
+    'guardian_birthday' => 'Guardian Birthday',
     'why_not_the_mother_is_guardian' => 'Why Not Mother Is Guardian',
     'guardian_relationship_with_the_child' => 'Guardian Relationship Wih the Child',
 
@@ -175,7 +175,7 @@ return [
     'enter_guardian_full_name_ar' => 'Enter Arabic Guardian Full Name',
     'enter_guardian_full_name_en' => 'Enter English Guardian Full Name',
     'enter_guardian_personal_id' => 'Enter Guardian Personal ID',
-    'enter_guardian_birthday' => 'Enter Guardian Birthdaty',
+    'enter_guardian_birthday' => 'Enter Guardian Birthday',
     'enter_why_not_the_mother_is_guardian' => 'Enter Why Not Mother Is Guardian',
     'enter_guardian_relationship_with_the_child' => 'Enter Guardian Relationship Wih the Child',
 
@@ -195,7 +195,7 @@ return [
 
     // portal
     'new_register' => 'New Orphan Registering',
-    'previous_register' => 'Orphan Logining',
+    'orphan_login' => 'Orphan Logining',
 
     // form
     'sponsorship_program_form' => 'Sponsorship Program Form',

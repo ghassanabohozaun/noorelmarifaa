@@ -190,7 +190,7 @@ return [
 
     // portal
     'new_register' => 'تسجيل يتيم جديد',
-    'previous_register' => 'تسجيل دخول اليتيم ',
+    'orphan_login' => 'تسجيل دخول اليتيم ',
 
     // form
     'sponsorship_program_form' => 'استمارة برنامج كفالة الأيتام',

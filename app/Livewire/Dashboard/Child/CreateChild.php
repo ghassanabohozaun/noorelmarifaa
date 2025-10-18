@@ -137,6 +137,8 @@ class CreateChild extends Component
             $this->guardian_full_name_en = $this->mother_full_name_en;
             $this->guardian_personal_id = $this->mother_personal_id;
             $this->guardian_relationship_with_the_child = 'mother';
+            $this->guardian_birthday = null;
+            $this->why_not_the_mother_is_guardian = null;
         } else {
             $this->guardian_full_name_ar = null;
             $this->guardian_full_name_en = null;
@@ -235,7 +237,7 @@ class CreateChild extends Component
             'guardian_full_name' => ['ar' => $this->guardian_full_name_ar, 'en' => $this->guardian_full_name_en],
             'guardian_personal_id' => $this->guardian_personal_id,
             'guardian_birthday' => $this->guardian_birthday,
-            'why_not_the_mother_is_guardian' => $this->why_not_the_mother_is_guardian,
+            'why_not_the_mother_is_guardian' => $this->is_mother_the_guardian == 1 ? null : $this->why_not_the_mother_is_guardian,
             'guardian_relationship_with_the_child' => $this->guardian_relationship_with_the_child,
         ];
 
@@ -278,7 +280,7 @@ class CreateChild extends Component
         }
     }
 
-      // change is mother alive
+    // change is mother alive
     public function changeIsMotherAlive($value)
     {
         if ($value == 1) {
@@ -294,6 +296,9 @@ class CreateChild extends Component
             $this->guardian_full_name_en = $this->mother_full_name_en;
             $this->guardian_personal_id = $this->mother_personal_id;
             $this->guardian_relationship_with_the_child = 'mother';
+            $this->guardian_birthday = null;
+            $this->why_not_the_mother_is_guardian = null;
+            $this->is_mother_alive = 1;
         } else {
             $this->guardian_full_name_ar = null;
             $this->guardian_full_name_en = null;
@@ -301,6 +306,7 @@ class CreateChild extends Component
             $this->guardian_relationship_with_the_child = null;
             $this->guardian_birthday = null;
             $this->why_not_the_mother_is_guardian = null;
+            $this->is_mother_alive = null;
         }
     }
     // render

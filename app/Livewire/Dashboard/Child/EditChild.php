@@ -197,7 +197,7 @@ class EditChild extends Component
             $this->guardian_personal_id = $this->mother_personal_id;
             $this->guardian_relationship_with_the_child = 'mother';
             $this->why_not_the_mother_is_guardian = null;
-            $this->guardian_birthday = null;
+            $this->guardian_birthday = $this->child->childGuardian->guardian_birthday;
         } else {
             $this->guardian_full_name_ar = $this->child->childGuardian->getTranslation('guardian_full_name', 'ar');
             $this->guardian_full_name_en = $this->child->childGuardian->getTranslation('guardian_full_name', 'en');
@@ -357,7 +357,8 @@ class EditChild extends Component
             $this->guardian_personal_id = $this->mother_personal_id;
             $this->guardian_relationship_with_the_child = 'mother';
             $this->why_not_the_mother_is_guardian = null;
-            $this->guardian_birthday = null;
+            $this->guardian_birthday = $this->child->childGuardian->guardian_birthday;
+            $this->is_mother_alive = 1;
         } else {
             $this->guardian_full_name_ar = $this->child->childGuardian->getTranslation('guardian_full_name', 'ar');
             $this->guardian_full_name_en = $this->child->childGuardian->getTranslation('guardian_full_name', 'en');
@@ -365,6 +366,7 @@ class EditChild extends Component
             $this->guardian_birthday = $this->child->childGuardian->guardian_birthday;
             $this->why_not_the_mother_is_guardian = $this->child->childGuardian->why_not_the_mother_is_guardian;
             $this->guardian_relationship_with_the_child = $this->child->childGuardian->guardian_relationship_with_the_child;
+            $this->is_mother_alive = null;
         }
     }
 

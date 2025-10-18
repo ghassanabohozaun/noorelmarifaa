@@ -55,7 +55,7 @@ class ChildrenController extends Controller
         }
 
         $title = __('children.show_child');
-        return view('children.show', compact('title', 'child'));
+        return view('children.show', compact('title', 'child','ChildID'));
     }
 
     // edit

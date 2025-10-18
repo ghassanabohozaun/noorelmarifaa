@@ -239,10 +239,11 @@
 
 
     <!-- begin: input -->
+
     <div class="col-md-3">
         <div class="form-group">
             <label for="is_mother_alive">{!! __('children.is_mother_alive') !!}</label>
-            <select wire:model.live="is_mother_alive" class="form-control"
+            <select wire:model.live="is_mother_alive" class="form-control" {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!}
                 wire:change="changeIsMotherAlive($event.target.value)">
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="0">{!! __('children.no') !!}</option>
@@ -255,6 +256,7 @@
             @enderror
         </div>
     </div>
+
     <!-- end: input -->
 
     <!-- begin: input -->

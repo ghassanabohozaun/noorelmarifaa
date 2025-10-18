@@ -4,49 +4,44 @@
     {!! $title !!}
 @endsection
 @section('content')
-    <section>
-        <div class="page-header min-vh-90">
-            <div class="container">
-                <div class="row">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="card z-index-0  col-xl-5 col-lg-6  col-sm-12 mt-2">
-
-                            <div class="card-header pb-0 text-left bg-transparent mt-4 mb-2">
-
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <img src="{!! asset('assets/children/assets/img/logo.png') !!}" style="width: 200px"
-                                        class="img-fluid img-thumbnail round">
-                                </div>
+    <section id="card-header-options">
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-md-4 col-md-6 col-sm-12 mb-2 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">{!! __('children.welcome') !!}
+                            </h4>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 220px" class="img-fluid  round">
                             </div>
-                            <div class="card-body mb-3">
 
-                                <div class="container ">
-                                    <!-- begin: row -->
-                                    <div class="row mt-4">
+                            <div class="container">
 
-                                        <div class="col-6">
-                                            <a href="{!! route('child.get.register') !!}"
-                                                class="btn btn-info  mb-1 font-weight-bolder">{!! __('children.new_register') !!}
-                                            </a>
-                                        </div>
+                                <!-- begin: row -->
+                                <div class="row mt-5 mb-2">
 
-                                        <div class="col-6">
-                                            <a href="{!! route('child.get.login') !!}"
-                                                class="btn btn-info  mb-1 font-weight-bolder">{!! __('children.previous_register') !!}
-                                            </a>
-                                        </div>
-
+                                    <div class="col-12">
+                                        <a href="{!! route('child.get.register') !!}"
+                                            class="btn btn-info btn-block  mb-1 font-weight-bolder">{!! __('children.new_register') !!}
+                                        </a>
                                     </div>
-                                    <!-- end: row -->
+
+                                    <div class="col-12">
+                                        <a href="{!! route('child.get.login') !!}"
+                                            class="btn btn-primary btn-block  mb-1 font-weight-bolder">{!! __('children.orphan_login') !!}
+                                        </a>
+                                    </div>
+
                                 </div>
-
-
+                                <!-- end: row -->
                             </div>
 
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection

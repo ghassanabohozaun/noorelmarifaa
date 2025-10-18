@@ -308,7 +308,7 @@ return [
         'guardian_full_name_ar' => 'Arabic Guardian Full Name',
         'guardian_full_name_en' => 'English Guardian Full Name',
         'guardian_personal_id' => 'Guardian Personal ID',
-        'guardian_birthday' => 'Guardian Birthdaty',
+        'guardian_birthday' => 'Guardian Birthday',
         'why_not_the_mother_is_guardian' => 'Why Not Mother Is Guardian',
         'guardian_relationship_with_the_child' => 'Guardian Relationship Wih the Child',
         'picture_of_the_orphan_child' => 'Picture Of The Orphan Child',

@@ -248,7 +248,7 @@
         <div class="form-group">
             <label for="is_mother_alive">{!! __('children.is_mother_alive') !!}</label>
             <select wire:model.live="is_mother_alive" class="form-control"
-                wire:change="changeIsMotherAlive($event.target.value)">
+                wire:change="changeIsMotherAlive($event.target.value)" {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!}>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="0">{!! __('children.no') !!}</option>
                 <option value="1">{!! __('children.yes') !!}</option>
