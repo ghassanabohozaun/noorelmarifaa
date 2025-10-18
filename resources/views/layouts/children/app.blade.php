@@ -18,12 +18,16 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 
-    @if (Lang() == 'ar')
-        <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+    {{-- @if (Lang() == 'ar')
         <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style-rtl.css" rel="stylesheet" />
     @else
         <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style-ltr.css" rel="stylesheet" />
-    @endif
+    @endif --}}
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
+
+    <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style-ltr.css" rel="stylesheet" />
+
     @stack('style')
 </head>
 
