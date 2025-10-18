@@ -22,7 +22,7 @@ class ChildrenController extends Controller
     // welcome
     public function welcome()
     {
-        $title = 'welcome';
+        $title = __('children.welcome');
         return view('children.welcome', compact('title'));
     }
 

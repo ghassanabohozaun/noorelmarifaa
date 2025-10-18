@@ -14,6 +14,8 @@ return [
     'select' => 'Select page size',
     'select_from_list' => 'Selection From List',
     'save' => 'Save',
+    'saveing' => 'Saveing ...',
+
     'add' => 'Add',
     'delete' => 'Delete',
     'update' => 'Update',
@@ -42,7 +44,7 @@ return [
     'english_langauge_enabled_all_the_times' => 'English Langauge enabled all the times',
     'send' => 'Send',
     'write_here' => 'Write Here ...',
-    'filters'=>'Filters',
+    'filters' => 'Filters',
 
     'not_found' => 'Not Found',
     'example' => 'Example',

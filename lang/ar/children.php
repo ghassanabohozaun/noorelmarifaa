@@ -5,6 +5,7 @@ return [
     'children' => 'الأطفال الايتام',
     'show_all_children' => 'عرض جميع الأطفال',
     'show_child' => 'عرض الطفل',
+    'welcome'=>'مرحباً ',
 
     'orphan_child' => 'بيانات الطفل',
     'child_family' => 'بيانات  عائلة الطفل',

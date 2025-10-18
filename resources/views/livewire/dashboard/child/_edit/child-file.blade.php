@@ -160,7 +160,7 @@
             {!! __('children.back') !!}
         </button>
         <button type="button" wire:click="forthStep" class="btn btn-primary btn-glow">
-            {!! __('children.next') !!}
+            {!! __('children.next') !!} <span wire:loading>{!! __('general.saveing') !!}</span>
         </button>
     </div>
 </div>

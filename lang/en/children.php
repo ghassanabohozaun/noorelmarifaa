@@ -12,6 +12,7 @@ return [
     'child_file' => 'Child File',
     'child_parents' => 'Child Parents',
     'show_child' => 'Show Child',
+    'welcome' => 'Welcome',
 
     'child_info' => 'Child Informations',
     'family_info' => 'Family Informations',
