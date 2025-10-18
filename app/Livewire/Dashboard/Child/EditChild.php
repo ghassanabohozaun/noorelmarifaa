@@ -113,11 +113,27 @@ class EditChild extends Component
         $this->guardian_personal_id_photo = $this->child->childFile->guardian_personal_id_photo;
     }
 
+    protected function rules()
+    {
+        return [
+            'personal_id' => ['required', 'numeric', 'digits:9', Rule::unique('children')->ignore($this->child)],
+            'father_personal_id' => ['required', 'numeric', 'digits:9'],
+            'mother_personal_id' => ['required', 'numeric', 'digits:9'],
+            'guardian_personal_id' => ['required', 'numeric', 'digits:9'],
+        ];
+    }
+
+    // updated hock
+    public function updated()
+    {
+        $this->validate();
+        //$this->validateOnly('personal_id'); // use when you need to validate specific input
+    }
 
     // first step
     public function firstStepSubmit()
     {
-        $this->validate([
+        $data = [
             'first_name_ar' => ['required', 'string', 'min:3'],
             'father_name_ar' => ['required', 'string', 'min:3'],
             'grand_father_name_ar' => ['required', 'string', 'min:3'],
@@ -127,42 +143,69 @@ class EditChild extends Component
             'grand_father_name_en' => ['required', 'string', 'min:3'],
             'family_name_en' => ['required', 'string', 'min:3'],
             'password_confirm' => ['same:password'],
-            'personal_id' => ['required', 'string', Rule::unique('children')->ignore($this->ChildID)],
+            'personal_id' => ['required', 'numeric', 'digits:9', Rule::unique('children')->ignore($this->child)],
             'birthday' => ['required', 'date'],
             'classification' => ['required'],
             'gender' => ['required'],
             'class' => ['required'],
             'health_status' => ['required'],
-            'disease_clarification' => ['required', 'string', 'min:5'],
             'governoate_id' => ['required', 'exists:governorates,id'],
             'city_id' => ['required', 'exists:cities,id'],
             'address_details' => ['required', 'string', 'min:5'],
             'authorized_contact_number' => ['required', 'string', 'min:5'],
             'backup_contact_number' => ['required', 'string', 'min:5'],
             'whatsApp_number' => ['required', 'string', 'min:5'],
-        ]);
+        ];
+
+        if ($this->health_status == 'sick') {
+            $data['disease_clarification'] = ['required', 'string', 'min:5'];
+        }
+
+        $this->validate($data);
+
         $this->currentStep = 2;
     }
 
     // second step
     public function secondStepSubmit()
     {
-        $this->validate([
+        $data = [
             'number_of_people_including_mother' => ['required'],
             'male_number' => ['required', 'numeric'],
             'female_number' => ['required', 'numeric'],
             'father_full_name_ar' => ['required', 'string'],
             'father_full_name_en' => ['required', 'string'],
-            'father_personal_id' => ['required', 'string'],
+            'father_personal_id' => ['required', 'numeric', 'digits:9'],
             'father_date_of_death' => ['required', 'date'],
             'father_respon_of_death' => ['required', 'in:illness,martyr'],
             'mother_full_name_ar' => ['required', 'string'],
             'mother_full_name_en' => ['required', 'string'],
-            'mother_personal_id' => ['required', 'string'],
-            'mother_date_of_death' => ['required', 'date'],
+            'mother_personal_id' => ['required', 'numeric', 'digits:9'],
             'is_mother_alive' => ['required', 'in:0,1'],
             'is_mother_the_guardian' => ['required', 'in:0,1'],
-        ]);
+        ];
+
+        if ($this->is_mother_alive == '0') {
+            $data['mother_date_of_death'] = ['required', 'date'];
+        }
+
+        $this->validate($data);
+
+        if ($this->is_mother_the_guardian == 1) {
+            $this->guardian_full_name_ar = $this->mother_full_name_ar;
+            $this->guardian_full_name_en = $this->mother_full_name_en;
+            $this->guardian_personal_id = $this->mother_personal_id;
+            $this->guardian_relationship_with_the_child = 'mother';
+            $this->why_not_the_mother_is_guardian = null;
+            $this->guardian_birthday = null;
+        } else {
+            $this->guardian_full_name_ar = $this->child->childGuardian->getTranslation('guardian_full_name', 'ar');
+            $this->guardian_full_name_en = $this->child->childGuardian->getTranslation('guardian_full_name', 'en');
+            $this->guardian_personal_id = $this->child->childGuardian->guardian_personal_id;
+            $this->guardian_birthday = $this->child->childGuardian->guardian_birthday;
+            $this->why_not_the_mother_is_guardian = $this->child->childGuardian->why_not_the_mother_is_guardian;
+            $this->guardian_relationship_with_the_child = $this->child->childGuardian->guardian_relationship_with_the_child;
+        }
 
         $this->currentStep = 3;
     }
@@ -170,14 +213,20 @@ class EditChild extends Component
     // third step
     public function thirdStepSubmit()
     {
-        $this->validate([
+        $data = [
             'guardian_full_name_ar' => ['required', 'string'],
             'guardian_full_name_en' => ['required', 'string'],
-            'guardian_personal_id' => ['required', 'string'],
+            'guardian_personal_id' => ['required', 'numeric', 'digits:9'],
             'guardian_birthday' => ['required', 'date'],
-            'why_not_the_mother_is_guardian' => ['required', 'in:divorced,abandoned,sick,etc'],
             'guardian_relationship_with_the_child' => ['required', 'in:mother,uncle,aunt,grandfather,grandmother,brother,sister,uncle2,aunt2'],
-        ]);
+        ];
+
+        if ($this->is_mother_the_guardian == 0) {
+            $data['why_not_the_mother_is_guardian'] = ['required', 'in:divorced,abandoned,sick,etc'];
+        }
+
+        $this->validate($data);
+
         $this->currentStep = 4;
     }
 
@@ -213,7 +262,7 @@ class EditChild extends Component
             'gender' => $this->gender,
             'class' => $this->class,
             'health_status' => $this->health_status,
-            'disease_clarification' => $this->disease_clarification,
+            'disease_clarification' => $this->health_status == 'sick' ? $this->disease_clarification : null,
             'governoate_id' => $this->governoate_id,
             'city_id' => $this->city_id,
             'address_details' => $this->address_details,
@@ -238,17 +287,17 @@ class EditChild extends Component
         $childMotherData = [
             'mother_full_name' => ['ar' => $this->mother_full_name_ar, 'en' => $this->mother_full_name_en],
             'mother_personal_id' => $this->mother_personal_id,
-            'mother_date_of_death' => $this->mother_date_of_death,
-            'is_mother_alive' => $this->is_mother_alive,
             'is_mother_the_guardian' => $this->is_mother_the_guardian,
+            'is_mother_alive' => $this->is_mother_alive,
+            'mother_date_of_death' => $this->is_mother_alive == 1 ? null : $this->mother_date_of_death,
         ];
 
         $childGuaridanData = [
             'guardian_full_name' => ['ar' => $this->guardian_full_name_ar, 'en' => $this->guardian_full_name_en],
             'guardian_personal_id' => $this->guardian_personal_id,
             'guardian_birthday' => $this->guardian_birthday,
-            'why_not_the_mother_is_guardian' => $this->why_not_the_mother_is_guardian,
             'guardian_relationship_with_the_child' => $this->guardian_relationship_with_the_child,
+            'why_not_the_mother_is_guardian' => $this->is_mother_the_guardian == 1 ? null : $this->why_not_the_mother_is_guardian,
         ];
 
         $childFileData = [
@@ -283,7 +332,41 @@ class EditChild extends Component
         }
     }
 
+    //  change health status
+    public function changeHealthStatus($value)
+    {
+        if ($value == 'good') {
+            $this->disease_clarification = null;
+        }
+    }
 
+    // change is mother alive
+    public function changeIsMotherAlive($value)
+    {
+        if ($value == 1) {
+            $this->mother_date_of_death = null;
+        }
+    }
+
+    // change is mother the guardian
+    public function changeIsMotherTheGuardain($value)
+    {
+        if ($value == 1) {
+            $this->guardian_full_name_ar = $this->mother_full_name_ar;
+            $this->guardian_full_name_en = $this->mother_full_name_en;
+            $this->guardian_personal_id = $this->mother_personal_id;
+            $this->guardian_relationship_with_the_child = 'mother';
+            $this->why_not_the_mother_is_guardian = null;
+            $this->guardian_birthday = null;
+        } else {
+            $this->guardian_full_name_ar = $this->child->childGuardian->getTranslation('guardian_full_name', 'ar');
+            $this->guardian_full_name_en = $this->child->childGuardian->getTranslation('guardian_full_name', 'en');
+            $this->guardian_personal_id = $this->child->childGuardian->guardian_personal_id;
+            $this->guardian_birthday = $this->child->childGuardian->guardian_birthday;
+            $this->why_not_the_mother_is_guardian = $this->child->childGuardian->why_not_the_mother_is_guardian;
+            $this->guardian_relationship_with_the_child = $this->child->childGuardian->guardian_relationship_with_the_child;
+        }
+    }
 
     public function render()
     {

@@ -223,13 +223,18 @@
         </div>
     </div>
     <!-- end: input -->
+
     <!-- begin: input -->
     <div class="col-md-3">
         <div class="form-group">
-            <label for="mother_date_of_death">{!! __('children.mother_date_of_death') !!}</label>
-            <input type="date" wire:model.live="mother_date_of_death" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_mother_date_of_death') !!}">
-            @error('mother_date_of_death')
+            <label for="is_mother_the_guardian">{!! __('children.is_mother_the_guardian') !!}</label>
+            <select wire:model.live="is_mother_the_guardian" class="form-control"
+                wire:change="changeIsMotherTheGuardain($event.target.value)">
+                <option value="" selected>{!! __('children.select_from_list') !!}</option>
+                <option value="0">{!! __('children.no') !!}</option>
+                <option value="1">{!! __('children.yes') !!}</option>
+            </select>
+            @error('is_mother_the_guardian')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
                 </span>
@@ -242,7 +247,8 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="is_mother_alive">{!! __('children.is_mother_alive') !!}</label>
-            <select wire:model.live="is_mother_alive" class="form-control">
+            <select wire:model.live="is_mother_alive" class="form-control"
+                wire:change="changeIsMotherAlive($event.target.value)">
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="0">{!! __('children.no') !!}</option>
                 <option value="1">{!! __('children.yes') !!}</option>
@@ -257,22 +263,22 @@
     <!-- end: input -->
 
     <!-- begin: input -->
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="is_mother_the_guardian">{!! __('children.is_mother_the_guardian') !!}</label>
-            <select wire:model.live="is_mother_the_guardian" class="form-control">
-                <option value="" selected>{!! __('children.select_from_list') !!}</option>
-                <option value="0">{!! __('children.no') !!}</option>
-                <option value="1">{!! __('children.yes') !!}</option>
-            </select>
-            @error('is_mother_the_guardian')
-                <span class="text text-danger">
-                    <strong>{!! $message !!}</strong>
-                </span>
-            @enderror
+    @if ($is_mother_alive == '0')
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="mother_date_of_death">{!! __('children.mother_date_of_death') !!}</label>
+                <input type="date" wire:model.live="mother_date_of_death" class="form-control" autocomplete="off"
+                    placeholder="{!! __('children.enter_mother_date_of_death') !!}">
+                @error('mother_date_of_death')
+                    <span class="text text-danger">
+                        <strong>{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
-    </div>
+    @endif
     <!-- end: input -->
+
 </div>
 <!-- end: mother_personal_id, mother_date_of_death , father_respon_of_death ,is_mother_the_guardian-->
 
@@ -286,7 +292,7 @@
         </button>
         <button type="button" wire:click="secondStepSubmit" class="btn btn-primary btn-glow">
             {!! __('children.next') !!}
-            <span wire:loading>
+            <span wire:loading wire:target="secondStepSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

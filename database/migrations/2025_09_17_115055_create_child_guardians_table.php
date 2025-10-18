@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('guardian_full_name');
             $table->string('guardian_personal_id');
             $table->date('guardian_birthday');
-            $table->enum('why_not_the_mother_is_guardian', ['divorced ', 'abandoned', 'sick', 'etc']);
+            $table->enum('why_not_the_mother_is_guardian', ['divorced ', 'abandoned', 'sick', 'etc'])->nullable();
             $table->string('guardian_relationship_with_the_child');
             $table->foreignId('child_id')->constrained('children')->cascadeOnDelete();
             $table->softDeletes();

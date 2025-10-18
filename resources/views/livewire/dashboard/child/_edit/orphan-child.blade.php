@@ -275,7 +275,8 @@
     <div class="col-md-2">
         <div class="form-group">
             <label for="gender">{!! __('children.health_status') !!}</label>
-            <select wire:model.live="health_status" class="form-control">
+            <select wire:model.live="health_status" wire:change="changeHealthStatus($event.target.value)"
+                class="form-control">
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="good">{!! __('children.good') !!}</option>
                 <option value="sick">{!! __('children.sick') !!}</option>
@@ -291,18 +292,20 @@
 
 
     <!-- begin: input -->
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="disease_clarification">{!! __('children.disease_clarification') !!}</label>
-            <input type="text" wire:model.live="disease_clarification" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_disease_clarification') !!}">
-            @error('disease_clarification')
-                <span class="text text-danger">
-                    <strong>{!! $message !!}</strong>
-                </span>
-            @enderror
+    @if ($this->health_status == 'sick')
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="disease_clarification">{!! __('children.disease_clarification') !!}</label>
+                <input type="text" wire:model.live="disease_clarification" class="form-control"
+                    autocomplete="off" placeholder="{!! __('children.enter_disease_clarification') !!}">
+                @error('disease_clarification')
+                    <span class="text text-danger">
+                        <strong>{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
-    </div>
+    @endif
     <!-- end: input -->
 
 
@@ -385,48 +388,59 @@
 
     <!-- begin: input -->
     <div class="col-md-4">
-        <div class="form-group">
-            <label for="authorized_contact_number">{!! __('children.authorized_contact_number') !!}</label>
+        <label for="authorized_contact_number">{!! __('children.authorized_contact_number') !!}</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3" style="color: rgb(119, 131, 10);font-size: 14px">
+                    <i class="la la-mobile" style="font-size: 24px;"></i> 05 </span>
+            </div>
             <input type="text" wire:model.live="authorized_contact_number" class="form-control"
-                autocomplete="off" placeholder="{!! __('children.enter_authorized_contact_number') !!}">
-            @error('authorized_contact_number')
-                <span class="text text-danger">
-                    <strong>{!! $message !!}</strong>
-                </span>
-            @enderror
+                autocomplete="off" placeholder="{!! __('children.enter_authorized_contact_number') !!}" aria-describedby="basic-addon3">
         </div>
+        @error('authorized_contact_number')
+            <span class="text text-danger">
+                <strong>{!! $message !!}</strong>
+            </span>
+        @enderror
     </div>
     <!-- end: input -->
 
-
     <!-- begin: input -->
     <div class="col-md-4">
-        <div class="form-group">
-            <label for="backup_contact_number">{!! __('children.backup_contact_number') !!}</label>
+        <label for="backup_contact_number">{!! __('children.backup_contact_number') !!}</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3" style="color: rgb(119, 131, 10);font-size: 14px">
+                    <i class="la la-mobile" style="font-size: 24px;"></i> 05 </span>
+            </div>
             <input type="text" wire:model.live="backup_contact_number" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_backup_contact_number') !!}">
-            @error('backup_contact_number')
-                <span class="text text-danger">
-                    <strong>{!! $message !!}</strong>
-                </span>
-            @enderror
+                placeholder="{!! __('children.enter_backup_contact_number') !!}" aria-describedby="basic-addon3">
         </div>
+        @error('backup_contact_number')
+            <span class="text text-danger">
+                <strong>{!! $message !!}</strong>
+            </span>
+        @enderror
     </div>
     <!-- end: input -->
 
 
     <!-- begin: input -->
     <div class="col-md-4">
-        <div class="form-group">
-            <label for="whatsApp_number">{!! __('children.whatsApp_number') !!}</label>
+        <label for="whatsApp_number">{!! __('children.whatsApp_number') !!}</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3" style="color: green;font-size: 14px">
+                    <i class="la la-whatsapp" style="font-size: 24px;"></i> 0097 </span>
+            </div>
             <input type="text" wire:model.live="whatsApp_number" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_whatsApp_number') !!}">
-            @error('whatsApp_number')
-                <span class="text text-danger">
-                    <strong>{!! $message !!}</strong>
-                </span>
-            @enderror
+                placeholder="{!! __('children.enter_whatsApp_number') !!}" aria-describedby="basic-addon3">
         </div>
+        @error('whatsApp_number')
+            <span class="text text-danger">
+                <strong>{!! $message !!}</strong>
+            </span>
+        @enderror
     </div>
     <!-- end: input -->
 
@@ -436,12 +450,12 @@
 
 
 <!-- begin: button -->
-<div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!}">
+<div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!} mt-2">
     <div class="col-md-12">
 
         <button type="button" wire:click ="firstStepSubmit" class="btn btn-primary  btn-glow  ">
             {!! __('children.next') !!}
-            <span wire:loading>
+            <span wire:loading wire:target="firstStepSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

@@ -48,7 +48,7 @@
         </button>
         <button type="button" wire:click ="submitForm" class="btn btn-primary  btn-glow">
             {!! __('children.save') !!}
-            <span wire:loading>
+            <span wire:loading wire:target="submitForm">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

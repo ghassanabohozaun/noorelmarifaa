@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('mother_full_name');
             $table->string('mother_personal_id');
             $table->boolean('is_mother_alive')->default(0);
-            $table->string('mother_date_of_death');
+            $table->string('mother_date_of_death')->nullable();
             $table->boolean('is_mother_the_guardian')->default(0);
             $table->foreignId('child_id')->constrained('children')->cascadeOnDelete();
             $table->softDeletes();

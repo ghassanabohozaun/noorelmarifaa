@@ -163,7 +163,7 @@
         </button>
         <button type="button" wire:click="forthStep" class="btn btn-primary btn-glow">
             {!! __('children.next') !!}
-            <span wire:loading>
+            <span wire:loading wire:target="forthStep">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

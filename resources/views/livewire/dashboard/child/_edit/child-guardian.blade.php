@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="guardian_full_name_ar">{!! __('children.guardian_full_name_ar') !!}</label>
             <input type="text" wire:model.live="guardian_full_name_ar" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_guardian_full_name_ar') !!}">
+                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_full_name_ar') !!}">
             @error('guardian_full_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="guardian_full_name_en">{!! __('children.guardian_full_name_en') !!}</label>
             <input type="text" wire:model.live="guardian_full_name_en" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_guardian_full_name_en') !!}">
+                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_full_name_en') !!}">
             @error('guardian_full_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -39,7 +39,7 @@
         <div class="form-group">
             <label for="guardian_personal_id">{!! __('children.guardian_personal_id') !!}</label>
             <input type="text" wire:model.live="guardian_personal_id" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_guardian_personal_id') !!}">
+                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_personal_id') !!}">
             @error('guardian_personal_id')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -73,28 +73,9 @@
     <!-- begin: input -->
     <div class="col-md-4">
         <div class="form-group">
-            <label for="why_not_the_mother_is_guardian">{!! __('children.why_not_the_mother_is_guardian') !!}</label>
-            <select wire:model.live="why_not_the_mother_is_guardian" class="form-control">
-                <option value="" selected>{!! __('children.select_from_list') !!}</option>
-                <option value="divorced">{!! __('children.divorced') !!}</option>
-                <option value="abandoned">{!! __('children.abandoned') !!}</option>
-                <option value="sick">{!! __('children.sick') !!}</option>
-                <option value="etc">{!! __('children.etc') !!}</option>
-            </select>
-            @error('why_not_the_mother_is_guardian')
-                <span class="text text-danger">
-                    <strong>{!! $message !!}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-    <!-- end: input -->
-
-    <!-- begin: input -->
-    <div class="col-md-4">
-        <div class="form-group">
             <label for="guardian_relationship_with_the_child">{!! __('children.guardian_relationship_with_the_child') !!}</label>
-            <select wire:model.live="guardian_relationship_with_the_child" class="form-control">
+            <select wire:model.live="guardian_relationship_with_the_child" class="form-control"
+                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!}>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="mother">{!! __('children.mother') !!}</option>
                 <option value="uncle">{!! __('children.uncle') !!}</option>
@@ -115,6 +96,27 @@
     </div>
     <!-- end: input -->
 
+    <!-- begin: input -->
+    @if ($is_mother_the_guardian == 0)
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="why_not_the_mother_is_guardian">{!! __('children.why_not_the_mother_is_guardian') !!}</label>
+                <select wire:model.live="why_not_the_mother_is_guardian" class="form-control">
+                    <option value="" selected>{!! __('children.select_from_list') !!}</option>
+                    <option value="divorced">{!! __('children.divorced') !!}</option>
+                    <option value="abandoned">{!! __('children.abandoned') !!}</option>
+                    <option value="sick">{!! __('children.sick') !!}</option>
+                    <option value="etc">{!! __('children.etc') !!}</option>
+                </select>
+                @error('why_not_the_mother_is_guardian')
+                    <span class="text text-danger">
+                        <strong>{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+    @endif
+    <!-- end: input -->
 
 </div>
 <!-- end:  father_date_of_death , why_not_the_mother_is_guardian ,guardian_relationship_with_the_child -->
@@ -127,7 +129,7 @@
         </button>
         <button type="button" wire:click="thirdStepSubmit" class="btn btn-primary btn-glow">
             {!! __('children.next') !!}
-            <span wire:loading>
+            <span wire:loading wire:target="thirdStepSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>
