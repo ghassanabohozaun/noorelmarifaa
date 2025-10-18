@@ -392,7 +392,7 @@
         <label for="authorized_contact_number">{!! __('children.authorized_contact_number') !!}</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3" style="color: rgb(119, 131, 10);font-size: 14px">
+                <span class="input-group-text" id="basic-addon3" style="color: rgb(119, 131, 10);font-size:12px">
                     <i class="la la-mobile" style="font-size: 24px;"></i> 05 </span>
             </div>
             <input type="text" wire:model.live="authorized_contact_number" class="form-control"
@@ -411,7 +411,7 @@
         <label for="backup_contact_number">{!! __('children.backup_contact_number') !!}</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3" style="color: rgb(119, 131, 10);font-size: 14px">
+                <span class="input-group-text" id="basic-addon3" style="color: rgb(119, 131, 10);font-size: 12px">
                     <i class="la la-mobile" style="font-size: 24px;"></i> 05 </span>
             </div>
             <input type="text" wire:model.live="backup_contact_number" class="form-control" autocomplete="off"
@@ -431,7 +431,7 @@
         <label for="whatsApp_number">{!! __('children.whatsApp_number') !!}</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3" style="color: green;font-size: 14px">
+                <span class="input-group-text" id="basic-addon3" style="color: green;font-size: 12px">
                     <i class="la la-whatsapp" style="font-size: 24px;"></i> 0097 </span>
             </div>
             <input type="text" wire:model.live="whatsApp_number" class="form-control" autocomplete="off"
