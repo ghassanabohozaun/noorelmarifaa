@@ -68,7 +68,7 @@ background: #555;
 
 
 
-/* .input-group {
+.input-group {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -86,12 +86,12 @@ background: #555;
 
 
 .input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text, .input-group > .input-group-append:not(:last-child) > .btn, .input-group > .input-group-append:not(:last-child) > .input-group-text, .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius:0.5rem;
+      border-left: 2px solid #d2d6da;
 }
 .input-group-text {
-    display: flex
-;
+    display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
     margin-bottom: 0;
@@ -102,6 +102,6 @@ background: #555;
     text-align: center;
     white-space: nowrap;
     background-color: #F9FAFD;
-    border: 1px solid #BABFC7;
+
     border-radius: 0.25rem;
-} */
+}

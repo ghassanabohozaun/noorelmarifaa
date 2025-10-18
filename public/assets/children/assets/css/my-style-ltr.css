@@ -61,7 +61,7 @@ background: #555;
 
 
 
-/* .input-group {
+.input-group {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -69,10 +69,6 @@ background: #555;
     width: 100%;
 }
 
-.input-group .input-group-text {
-     border-right: 1px solid #17181a;
-
-}
 
 .input-group-prepend {
     margin-right: -1px;
@@ -82,11 +78,22 @@ background: #555;
     display: flex;
 }
 
+/* .input-group .input-group-text {
+    border-right: 1px solid #555 !important;
+} */
 
 .input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text, .input-group > .input-group-append:not(:last-child) > .btn, .input-group > .input-group-append:not(:last-child) > .input-group-text, .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    /* border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem; */
+    border-right: 3px solid #d2d6da;
+
 }
+
+.input-group .form-control:not(:first-child) {
+    border-left: 0;
+    padding-left: 0.75rem
+}
+
 .input-group-text {
     display: flex;
     align-items: center;
@@ -101,4 +108,4 @@ background: #555;
     background-color: #F9FAFD;
     border: 1px solid #BABFC7;
     border-radius: 0.25rem;
-} */
+}
