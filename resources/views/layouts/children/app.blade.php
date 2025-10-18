@@ -59,7 +59,7 @@
         }
 
         .form-control {
-            font-size: 0.775rem;
+            font-size: 0.92rem;
         }
     </style>
     @stack('style')
