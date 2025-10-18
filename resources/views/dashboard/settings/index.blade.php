@@ -47,6 +47,8 @@
                             <button class="btn btn-info  btn-glow px-2" type="submit">
                                 <i class="la la-save"></i>
                                 {!! __('general.save') !!}
+                                <i class="la la-refresh spinner spinner_loading d-none">
+                                </i>
                             </button>
 
                         </div>
@@ -564,9 +566,7 @@
                 cache: false,
                 processData: false,
                 beforeSend: function() {
-                    // $('#loading').addClass('loading');
-                    // $('#loading-content').addClass('loading-content');
-
+                    $('#spinner_loading').removeClass('d-none');
                 },
                 success: function(data) {
 
@@ -605,8 +605,7 @@
                     });
                 }, //end error
                 complete: function() {
-                    // $('#loading').removeClass('loading');
-                    // $('#loading-content').removeClass('loading-content');
+                    $('#spinner_loading').removeClass('d-none');
                 }
             }); //end ajax
 
