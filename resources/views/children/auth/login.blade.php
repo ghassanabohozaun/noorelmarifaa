@@ -9,10 +9,6 @@
             <div class="row">
                 <div class="col-md-4 col-md-6 col-sm-12 mb-2 mx-auto">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">{!! __('children.orphan_login') !!}
-                            </h4>
-                        </div>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 180px" class="img-fluid   round">
                         </div>
