@@ -31,10 +31,3 @@
             </div>
     </section>
 @endsection
-@push('style')
-    @if (Lang() == 'ar')
-        <link rel="stylesheet" href="{!! asset('assets/dashbaord/css-rtl/child-wizard.css') !!}" rel="stylesheet">
-    @else
-        <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/child-wizard.css') !!}" rel="stylesheet">
-    @endif
-@endpush
