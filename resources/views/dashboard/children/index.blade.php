@@ -121,14 +121,7 @@
                         governoate_id: governoate_id,
                         city_id: city_id
                     },
-                    beforeSend: function() {
-                        // Here, manually add the loading message.
-                        $('#my_mawhobs_data_table > tbody').html(
-                            '<tr class="odd">' +
-                            '<td valign="top" colspan="6" class="dataTables_empty"></td>' +
-                            '</tr>'
-                        );
-                    }
+                    beforeSend: function() {}
                 },
 
                 columns: [{
@@ -248,7 +241,6 @@
             });
         }
 
-
         // search
         $('body').on('click', '#children_search_btn', function(e) {
             e.preventDefault();
@@ -274,6 +266,30 @@
             $('#city_id').val('');
 
             loadData();
+        });
+
+        // address dependency
+        $('#governoate_id').on('change', function() {
+            var id = $(this).val();
+            if (id) {
+                $.ajax({
+                    url: '{!! route('dashboard.children.get.cities', ':id') !!}'.replace(':id', id),
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#city_id').empty().append(
+                            '<option value="">Select City</option>');
+                        $.each(data, function(key, value) {
+                            $('#city_id').append('<option value="' + key +
+                                '">' + value + '</option>');
+                        });
+                        $('#city_id').prop('disabled', false);
+                    }
+                });
+            } else {
+                $('#city_id').empty().append('<option value="">Select City</option>').prop(
+                    'disabled', true);
+            }
         });
 
         // delete

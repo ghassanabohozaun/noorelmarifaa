@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\City;
 use App\Services\Dashboard\ChildService;
 use App\Services\Dashboard\CityService;
 use App\Services\Dashboard\GovernorateService;
 use Illuminate\Http\Request;
 use PDF;
+
 class ChildernController extends Controller
 {
     protected $childService, $governorateService, $cityService;
@@ -123,5 +125,12 @@ class ChildernController extends Controller
 
         return $pdf->stream($child->childFullName() . '.pdf');
         //  return $pdf->stream($child->childFullName().'.pdf');
+    }
+
+      // get cities
+    public function getCities($governorate_id)
+    {
+        $cities = City::where('governorate_id', $governorate_id)->pluck('name', 'id');
+        return response()->json($cities);
     }
 }

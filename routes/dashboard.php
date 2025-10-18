@@ -84,6 +84,7 @@ Route::group(
                 Route::get('/children-all', [ChildernController::class, 'getAll'])->name('children.get.all');
                 Route::post('/childrem/change-status', [ChildernController::class, 'changeStatus'])->name('children.change.status');
                 Route::get('download-pdf/{id?}', [ChildernController::class, 'downloadPDF'])->name('children.download.pdf');
+                Route::get('/children/get-cities/{id?}', [ChildernController::class, 'getCities'])->name('children.get.cities');
             });
 
             ########################################### addresses routes  ######################################################################

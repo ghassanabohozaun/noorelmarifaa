@@ -17,20 +17,13 @@
     <link href="{!! asset('assets/children') !!}/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
-    <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style.css" rel="stylesheet" />
 
     @if (Lang() == 'ar')
         <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
-        <style>
-            body,
-            html {
-                font-family: "Poppins", "Tajawal", sans-serif;
-                font-weight: normal;
-                font-style: normal;
-            }
-        </style>
+        <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style-rtl.css" rel="stylesheet" />
+    @else
+        <link id="pagestyle" href="{!! asset('assets/children') !!}/assets/css/my-style-ltr.css" rel="stylesheet" />
     @endif
-
     @stack('style')
 </head>
 
@@ -56,16 +49,6 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navigation">
                             <ul class="navbar-nav mx-auto">
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center me-2 active" aria-current="page"
-                                        href="../pages/dashboard.html">
-                                        <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
-                                        Dashboard
-                                    </a>
-                                </li> --}}
-
-
-
                                 @if (!child()->check())
                                     <li class="nav-item">
                                         <a class="nav-link me-2 active" href="{!! route('child.get.register') !!}">
@@ -73,7 +56,6 @@
                                             {!! __('children.new_register') !!}
                                         </a>
                                     </li>
-
 
                                     <li class="nav-item">
                                         <a class="nav-link me-2 active" href="{!! route('child.get.login') !!}">
@@ -98,13 +80,6 @@
                                             {!! __('children.update_child') !!}
                                         </a>
                                     </li>
-                                    {{-- <form action="{!! route('child.logout') !!}" method="post"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <button type="submit" class="nav-link me-2" style="cursor: pointer">
-                                            <i class="ft-power"></i> {!! __('auth.logout') !!}
-                                        </button>
-                                    </form> --}}
 
                                     <li class="nav-item">
                                         <a class="nav-link me-2 active" href="{!! route('child.logout') !!}">
@@ -146,9 +121,7 @@
     <!--   Core JS Files   -->
     <script src="{!! asset('assets/children') !!}/assets/js/core/bootstrap.min.js"></script>
     @include('layouts.dashboard.app-parts._scripts')
-
     @stack('script')
-
 </body>
 
 </html>

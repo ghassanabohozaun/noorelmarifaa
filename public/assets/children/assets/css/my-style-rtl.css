@@ -1,0 +1,70 @@
+body,
+html {
+font-family: "Poppins", "Tajawal", sans-serif;
+font-weight: normal;
+font-style: normal;
+}
+
+select {
+appearance: none;
+/* Hide default browser styling */
+-webkit-appearance: none;
+-moz-appearance: none;
+background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: left 0.75rem center;
+background-size: 1rem;
+padding-left: 2rem;
+/* Ensure space for the arrow */
+}
+
+.text-danger {
+font-size: 12px;
+}
+body{
+font-size: 12px;
+}
+.form-control{
+font-size: 0.775rem;
+}
+.btn{
+font-size: 0.775rem;
+letter-spacing: 0.07rem;
+}
+
+
+h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .h6 {
+    font-weight: 500;
+}
+
+h4, .h4, .h4 {
+    font-size: 1.2rem;
+    line-height: 1.375;
+}
+
+
+/* Style the entire scrollbar */
+::-webkit-scrollbar {
+width: 5px; /* Set width for vertical scrollbar */
+height: 12px; /* Set height for horizontal scrollbar */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 1px;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+background: #888;
+border-radius: 1px;
+}
+
+/* Style the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+
+
+

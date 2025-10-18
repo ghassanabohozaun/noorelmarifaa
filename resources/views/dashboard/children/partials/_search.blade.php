@@ -66,10 +66,32 @@
                         </div>
                         <!-- end: input -->
 
+                        <!-- begin: input -->
+                        <div class="form-group col-md-2">
+                            <label class="sr-only" for="governorate_id">{!! __('users.governorate_id') !!}</label>
+                            <select type="text" id="governoate_id" class="form-control">
+                                <option value="" selected>
+                                    {!! __('users.select') !!} {!! __('users.governorate_id') !!}
+                                </option>
+                                @foreach ($governorates as $key => $governorate)
+                                    <option value="{!! $governorate->id !!}">{!! $governorate->name !!}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!-- end: input -->
+
+                        <!-- begin: input -->
+                        <div class="form-group col-md-2">
+                            <label class="sr-only" for="governorate_id">{!! __('users.governorate_id') !!}</label>
+                            <select type="text" id="city_id" class="form-control" disabled>
+                                <option value="">
+                                    {!! __('users.select') !!} {!! __('users.city_id') !!}
+                                </option>
+                            </select>
+                        </div>
+                        <!-- end: input -->
+
                     </div>
-
-
-                    @livewire('general.address-drop-dwon-list', compact('governorates', 'cities'))
 
                 </div>
                 <div class="form-actions">

@@ -140,7 +140,7 @@
 <!-- end: personal_id , birthday , classification , gender ,password,password_confirm -->
 <div class="row">
     <!-- begin: input -->
-    <div class="col-md-2">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="personal_id">{!! __('children.personal_id') !!}</label>
             <input type="text" wire:model.live="personal_id" class="form-control" autocomplete="off"
@@ -156,7 +156,7 @@
 
 
     <!-- begin: input -->
-    <div class="col-md-2">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="birthday">{!! __('children.birthday') !!}</label>
             <input type="date" wire:model.live="birthday" class="form-control" autocomplete="off"
@@ -170,23 +170,6 @@
     </div>
     <!-- end: input -->
 
-    <!-- begin: input -->
-    <div class="col-md-2">
-        <div class="form-group">
-            <label for="classification">{!! __('children.classification') !!}</label>
-            <select wire:model.live="classification" class="form-control">
-                <option value="" selected>{!! __('children.select_from_list') !!}</option>
-                <option value="fatherless">{!! __('children.fatherless') !!}</option>
-                <option value="parentless">{!! __('children.parentless') !!}</option>
-            </select>
-            @error('classification')
-                <span class="text text-danger">
-                    <strong>{!! $message !!}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-    <!-- end: input -->
 
 
     <!-- begin: input -->
@@ -246,7 +229,26 @@
 <div class="row">
 
     <!-- begin: input -->
-    <div class="col-md-3">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="classification">{!! __('children.classification') !!}</label>
+            <select wire:model.live="classification" class="form-control">
+                <option value="" selected>{!! __('children.select_from_list') !!}</option>
+                <option value="fatherless">{!! __('children.fatherless') !!}</option>
+                <option value="parentless">{!! __('children.parentless') !!}</option>
+            </select>
+            @error('classification')
+                <span class="text text-danger">
+                    <strong>{!! $message !!}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
+    <!-- end: input -->
+
+
+    <!-- begin: input -->
+    <div class="col-md-2">
         <div class="form-group">
             <label for="class">{!! __('children.class') !!}</label>
             <select wire:model.live="class" class="form-control">
@@ -271,7 +273,7 @@
 
 
     <!-- begin: input -->
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
             <label for="gender">{!! __('children.health_status') !!}</label>
             <select wire:model.live="health_status" class="form-control">
