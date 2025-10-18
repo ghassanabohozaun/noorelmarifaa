@@ -267,7 +267,7 @@
                                          <img src="{{ asset('assets/dashbaord/media/svg/flags/' . $properties['native'] . '.svg') }}"
                                              alt="" />
                                      </i>
-                                     <span style="padding: 10px ;font-size: 12px">
+                                     <span style="padding: 10px">
                                          {{ $properties['native'] }}
                                      </span>
                                  </a>

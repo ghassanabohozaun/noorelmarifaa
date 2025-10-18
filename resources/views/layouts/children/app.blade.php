@@ -96,7 +96,7 @@
                                             hreflang="{{ $localeCode }}"
                                             href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                             @if ($localeCode != Lang())
-                                                <span style="padding: 10px ;font-size: 12px">
+                                                <span style="padding: 10px">
                                                     {{ $properties['native'] }}
                                                 </span>
                                             @endif
