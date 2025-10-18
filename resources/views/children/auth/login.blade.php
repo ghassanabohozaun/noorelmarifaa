@@ -35,7 +35,7 @@
 
                             <label>{!! __('auth.password') !!}</label>
                             <div class="mb-3">
-                                <input type="text" class="form-control" name="password" id='password'
+                                <input type="password" class="form-control" name="password" id='password'
                                     placeholder="{!! __('auth.enter_password') !!}" aria-label="password"
                                     aria-describedby="password-addon">
                                 @error('password')
