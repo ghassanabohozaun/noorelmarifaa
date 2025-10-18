@@ -5,9 +5,9 @@
 @endsection
 @section('content')
     <section id="card-header-options">
-        <div class="container mt-2">
-            <div class="row">
-                <div class="col-md-4 col-md-6 col-sm-12 mb-2 mx-auto">
+        <div class="container mt-2" style="display: table; height: 80vh; width: 100%;">
+            <div class="row" style="display: table-cell;vertical-align: middle;">
+                <div class="col-md-4 col-md-5 col-sm-12 mb-2 mx-auto">
                     <div class="card">
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 180px" class="img-fluid   round">
