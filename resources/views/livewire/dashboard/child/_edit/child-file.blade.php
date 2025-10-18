@@ -13,7 +13,7 @@
                     <i class="la la-check" style="color: #3d9464 ;font-weight:bolder"></i>
                 @endif --}}
             </label>
-            <input type="file" class="form-control" wire:model.live="new_picture_of_the_orphan_child">
+            <input type="file" class="form-control" wire:model.live="new_picture_of_the_orphan_child" accept="image/*">
             <div wire:loading wire:target="new_picture_of_the_orphan_child">{!! __('children.uploading') !!}</div>
 
 
@@ -51,7 +51,8 @@
                     <i class="la la-check" style="color: #3d9464 ;font-weight:bolder"></i>
                 @endif --}}
             </label>
-            <input type="file" class="form-control" wire:model.live="new_orphan_child_birth_certificate">
+            <input type="file" class="form-control" wire:model.live="new_orphan_child_birth_certificate"
+                accept="image/*">
             <div wire:loading wire:target="new_orphan_child_birth_certificate">{!! __('children.uploading') !!}</div>
 
             {{-- old --}}
@@ -86,7 +87,7 @@
                     <i class="la la-check" style="color: #3d9464 ;font-weight:bolder"></i>
                 @endif --}}
             </label>
-            <input type="file" class="form-control" wire:model.live="new_father_death_certificate">
+            <input type="file" class="form-control" wire:model.live="new_father_death_certificate" accept="image/*">
             <div wire:loading wire:target="new_father_death_certificate">{!! __('children.uploading') !!}</div>
 
             {{-- old --}}
@@ -121,7 +122,8 @@
                     <i class="la la-check" style="color: #3d9464 ;font-weight:bolder"></i>
                 @endif --}}
             </label>
-            <input type="file" class="form-control" wire:model.live="new_guardian_personal_id_photo">
+            <input type="file" class="form-control" wire:model.live="new_guardian_personal_id_photo"
+                accept="image/*">
             <div wire:loading wire:target="new_guardian_personal_id_photo">{!! __('children.uploading') !!}</div>
 
             {{-- old --}}
@@ -160,8 +162,13 @@
             {!! __('children.back') !!}
         </button>
         <button type="button" wire:click="forthStep" class="btn btn-primary btn-glow">
-            {!! __('children.next') !!} <span wire:loading>{!! __('general.saveing') !!}</span>
+            {!! __('children.next') !!}
+            <span wire:loading>
+                <i class="la la-refresh spinner">
+                </i>
+            </span>
         </button>
+
     </div>
 </div>
 <div class="clearfix"></div>

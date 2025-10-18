@@ -286,6 +286,10 @@
         </button>
         <button type="button" wire:click="secondStepSubmit" class="btn btn-primary btn-glow">
             {!! __('children.next') !!}
+            <span wire:loading>
+                <i class="la la-refresh spinner">
+                </i>
+            </span>
         </button>
     </div>
 </div>
