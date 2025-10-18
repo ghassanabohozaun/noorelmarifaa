@@ -61,6 +61,11 @@
         .form-control {
             font-size: 0.85rem;
         }
+
+        html body a {
+            color: #0b0a66;
+            font-weight: bolder
+        }
     </style>
     @stack('style')
 </head>
