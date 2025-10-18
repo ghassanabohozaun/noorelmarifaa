@@ -566,7 +566,7 @@
                 cache: false,
                 processData: false,
                 beforeSend: function() {
-                    $('#spinner_loading').removeClass('d-none');
+                    $('.spinner_loading').removeClass('d-none');
                 },
                 success: function(data) {
 
@@ -605,7 +605,7 @@
                     });
                 }, //end error
                 complete: function() {
-                    $('#spinner_loading').removeClass('d-none');
+                    $('.spinner_loading').addClass('d-none');
                 }
             }); //end ajax
 
