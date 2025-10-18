@@ -9,11 +9,6 @@
             @csrf
             @method('PUT')
 
-            <div id="loading-spinner" style="display: none;">
-                <!-- You can use an image, a CSS-based spinner, or a library like Font Awesome -->
-                <i class="fas fa-spinner fa-spin"></i> Loading...
-            </div>
-
             <div class="content-wrapper">
                 <!-- begin: content header -->
                 <div class="content-header row">

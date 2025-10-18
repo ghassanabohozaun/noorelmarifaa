@@ -96,13 +96,13 @@
                                                     @forelse ($admins as $key=>$admin)
                                                         <tr id="row{{ $admin->id }}">
                                                             <th class="col-lg-1 ">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-2 text-center">{!! $admin->name !!}</td>
+                                                            <td class="col-lg-3 text-center">{!! $admin->name !!}</td>
                                                             <td class="col-lg-2 text-center">{!! $admin->email !!}</td>
                                                             <td class="col-lg-2 text-center">{!! $admin->role->role !!}</td>
                                                             <td class="col-lg-1 text-center">
                                                                 @include('dashboard.admins.parts.status')</td>
                                                             <td class="col-lg-2 text-center">{!! $admin->created_at->format('Y-m-d H:i A') !!}</td>
-                                                            <td class="col-lg-2 text-center">
+                                                            <td class="col-lg-1 text-center">
                                                                 @include('dashboard.admins.parts.actions')
                                                             </td>
                                                         </tr>
