@@ -449,7 +449,7 @@
                                                         <div class="form-group">
                                                             <label for="logo">{!! __('settings.logo') !!}</label>
                                                             <input type="file" name="logo" id="settings_logo"
-                                                                class="form-control"
+                                                                class="form-control" accept="image/*"
                                                                 placeholder="{!! __('settings.enter_logo') !!}">
                                                             <span class="text text-danger">
                                                                 <strong id="logo_error"></strong>
@@ -463,7 +463,7 @@
                                                         <div class="form-group">
                                                             <label for="favicon">{!! __('settings.favicon') !!}</label>
                                                             <input type="file" id="settings_favicon" name="favicon"
-                                                                class="form-control"
+                                                                class="form-control" accept="image/*"
                                                                 placeholder="{!! __('settings.enter_favicon') !!}">
                                                             <span class="text text-danger">
                                                                 <strong id="favicon_error"></strong>
