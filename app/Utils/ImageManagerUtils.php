@@ -5,7 +5,10 @@ use File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class ImageManager
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+class ImageManagerUtils
 {
     /**
      * Create a new class instance.
@@ -56,5 +59,24 @@ class ImageManager
         // if (File::exists($public_path)) {
         //     File::delete($public_path);
         // }
+    }
+
+    public function saveResizeImage($image,$disk, $width, $height)
+    {
+
+        $file_name = $this->generateImageName($image);
+
+        // Create an image manager instance
+        $manager = new ImageManager(new Driver());
+
+        // Read the image and perform manipulations
+        $img = $manager->read($image->getRealPath());
+        $img->resize($width, $height);
+
+        $encodedImage = $img->encode();
+
+        Storage::disk($disk)->put($file_name, $encodedImage);
+
+        return $file_name;
     }
 }

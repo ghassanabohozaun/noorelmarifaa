@@ -12,6 +12,8 @@
         "codezero/laravel-unique-translation": "^4.3",
         "cviebrock/eloquent-sluggable": "^11.0",
         "ichtrojan/laravel-otp": "^2.0",
+        "intervention/image": "^3.11",
+        "intervention/image-laravel": "^1.5",
         "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",

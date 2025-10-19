@@ -4,20 +4,20 @@ namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\ChildRepository;
 use Illuminate\Support\Facades\Cache;
-use App\Utils\ImageManager;
+use App\Utils\ImageManagerUtils;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
 class ChildService
 {
-    protected $childRepository, $imageManager;
+    protected $childRepository, $imageManagerUtils;
 
     // __construct
-    public function __construct(ChildRepository $childRepository, ImageManager $imageManager)
+    public function __construct(ChildRepository $childRepository, ImageManagerUtils $imageManagerUtils)
     {
         $this->childRepository = $childRepository;
-        $this->imageManager = $imageManager;
+        $this->imageManagerUtils = $imageManagerUtils;
     }
 
     // get child
@@ -129,22 +129,22 @@ class ChildService
 
             // child files
             // if (array_key_exists('picture_of_the_orphan_child', $childFileData) && $childFileData['picture_of_the_orphan_child'] != null) {
-            //     $file_name = $this->imageManager->uploadSingleImage('/', $childFileData['picture_of_the_orphan_child'], 'children');
+            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['picture_of_the_orphan_child'], 'children');
             //     $childFileData['picture_of_the_orphan_child'] = $file_name;
             // }
 
             // if (array_key_exists('orphan_child_birth_certificate', $childFileData) && $childFileData['orphan_child_birth_certificate'] != null) {
-            //     $file_name = $this->imageManager->uploadSingleImage('/', $childFileData['orphan_child_birth_certificate'], 'children');
+            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['orphan_child_birth_certificate'], 'children');
             //     $childFileData['orphan_child_birth_certificate'] = $file_name;
             // }
 
             // if (array_key_exists('father_death_certificate', $childFileData) && $childFileData['father_death_certificate'] != null) {
-            //     $file_name = $this->imageManager->uploadSingleImage('/', $childFileData['father_death_certificate'], 'children');
+            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['father_death_certificate'], 'children');
             //     $childFileData['father_death_certificate'] = $file_name;
             // }
 
             // if (array_key_exists('guardian_personal_id_photo', $childFileData) && $childFileData['guardian_personal_id_photo'] != null) {
-            //     $file_name = $this->imageManager->uploadSingleImage('/', $childFileData['guardian_personal_id_photo'], 'children');
+            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['guardian_personal_id_photo'], 'children');
             //     $childFileData['guardian_personal_id_photo'] = $file_name;
             // }
 
@@ -271,7 +271,9 @@ class ChildService
         // child files
         if (array_key_exists($file, $childFileData) && $childFileData[$file] != null) {
             // upload new photo
-            $file_name = $this->imageManager->uploadSingleImage('/', $childFileData[$file], 'children');
+
+            $file_name = $this->imageManagerUtils->saveResizeImage($childFileData[$file], 'children', 1000, 800);
+
             return $file_name;
         }
     }
@@ -282,9 +284,10 @@ class ChildService
         // child files
         if (array_key_exists($file, $childFileData) && $childFileData[$file] != null) {
             // remove old photo
-            $this->imageManager->removeImageFromLocal($myChild->childFile->$file, 'children');
+            $this->imageManagerUtils->removeImageFromLocal($myChild->childFile->$file, 'children');
             // upload new photo
-            $file_name = $this->imageManager->uploadSingleImage('/', $childFileData[$file], 'children');
+            $file_name = $this->imageManagerUtils->saveResizeImage($childFileData[$file], 'children', 1000, 800);
+
             return $file_name;
         } else {
             $file_name = $myChild->childFile->$file;
