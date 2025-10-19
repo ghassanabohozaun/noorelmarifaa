@@ -66,14 +66,14 @@
                 <!--begin::modal footer-->
                 <div class="modal-footer">
                     <button type="submit" id="create_governorate_btn" class="btn btn-info font-weight-bold ">
-                        {{ trans('general.save') }}
+                        {{ __('general.save') }}
                         <i class="la la-refresh spinner spinner_loading d-none">
                         </i>
                     </button>
 
                     <button type="button" id="cancel_governorate_btn" class="btn btn-light-dark font-weight-bold"
                         data-dismiss="modal">
-                        {{ trans('general.cancel') }}
+                        {{ __('general.cancel') }}
                     </button>
                 </div>
                 <!--end::modal footer-->

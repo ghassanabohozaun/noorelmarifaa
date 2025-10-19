@@ -1,7 +1,7 @@
 <div class="modal fade" id="updateAdminModal" tabindex="-1" role="dialog" aria-labelledby="updateAdminModalLabel"
     aria-hidden="true">
 
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <form class="form" action="" method="POST" enctype="multipart/form-data" id='update_admin_form'>
             @csrf
             @method('PUT')

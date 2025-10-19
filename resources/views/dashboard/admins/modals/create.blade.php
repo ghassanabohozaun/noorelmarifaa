@@ -1,7 +1,7 @@
 <div class="modal fade" id="createAdminModal" tabindex="-1" role="dialog" aria-labelledby="createAdminModalLabel"
     aria-hidden="true">
 
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <form class="form" action="{!! route('dashboard.admins.store') !!}" method="POST" enctype="multipart/form-data"
             id='create_admin_form'>
             @csrf
