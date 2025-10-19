@@ -391,8 +391,8 @@
         <label for="authorized_contact_number">{!! __('children.authorized_contact_number') !!}</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3" style="color: rgb(8, 10, 87);font-size: 10px">
-                    <i class="la la-mobile" style="font-size: 24px;"></i> 05 </span>
+                <span class="input-group-text" id="basic-addon3" style="color: rgb(8, 10, 87);font-size: 15px">
+                    <i class="la la-mobile"></i> 05 </span>
             </div>
             <input type="text" wire:model.live="authorized_contact_number" class="form-control"
                 autocomplete="off" placeholder="{!! __('children.enter_authorized_contact_number') !!}" aria-describedby="basic-addon3">
@@ -410,8 +410,8 @@
         <label for="backup_contact_number">{!! __('children.backup_contact_number') !!}</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3" style="color: rgb(8, 10, 87);font-size: 10px">
-                    <i class="la la-mobile" style="font-size: 24px;"></i> 05 </span>
+                <span class="input-group-text" id="basic-addon3" style="color: rgb(8, 10, 87);font-size: 15px">
+                    <i class="la la-mobile"></i> 05 </span>
             </div>
             <input type="text" wire:model.live="backup_contact_number" class="form-control" autocomplete="off"
                 placeholder="{!! __('children.enter_backup_contact_number') !!}" aria-describedby="basic-addon3">
@@ -430,8 +430,8 @@
         <label for="whatsApp_number">{!! __('children.whatsApp_number') !!}</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3" style="color: green;font-size: 10px">
-                    <i class="la la-whatsapp" style="font-size: 24px;"></i> 0097 </span>
+                <span class="input-group-text" id="basic-addon3" style="color: green;font-size: 15px">
+                    <i class="la la-whatsapp"></i> 0097 </span>
             </div>
             <input type="text" wire:model.live="whatsApp_number" class="form-control" autocomplete="off"
                 placeholder="{!! __('children.enter_whatsApp_number') !!}" aria-describedby="basic-addon3">
