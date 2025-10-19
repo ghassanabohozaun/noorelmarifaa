@@ -5,9 +5,9 @@
 @endsection
 @section('content')
     <section id="card-header-options">
-        <div class="container mt-2">
+        <div class="container-fluid mt-2">
             <div class="row">
-                <div class="col-md-12 col-sm-12 mb-2 mx-auto">
+                <div class="col-md-10 col-sm-10 mb-2 mx-auto">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{!! __('children.create_new_child') !!}
