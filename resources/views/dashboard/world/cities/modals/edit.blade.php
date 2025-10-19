@@ -35,8 +35,6 @@
                             </div>
                             <!-- end: row -->
 
-
-
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
@@ -105,12 +103,14 @@
                 <!--begin::modal footer-->
                 <div class="modal-footer">
                     <button type="submit" id="create_city_btn" class="btn btn-info font-weight-bold ">
-                        {{ trans('general.save') }}
+                        {{ __('general.save') }}
+                        <i class="la la-refresh spinner spinner_loading d-none">
+                        </i>
                     </button>
 
                     <button type="button" id="cancel_city_btn" class="btn btn-light-dark font-weight-bold"
                         data-dismiss="modal">
-                        {{ trans('general.cancel') }}
+                        {{ __('general.cancel') }}
                     </button>
                 </div>
                 <!--end::modal footer-->
@@ -130,12 +130,10 @@
             var city_name_en = $(this).attr('city-name-en');
             var governorate_id = $(this).attr('governorate-id');
 
-
             $('#id_edit').val(city_id);
             $('#name_ar_edit').val(city_name_ar);
             $('#name_en_edit').val(city_name_en);
             $('#governorate_id_edit').val(governorate_id);
-
 
             $('#updateCityModal').modal('show');
         })
@@ -149,7 +147,6 @@
             $('#name_ar_error_edit').text('');
             $('#name_en_error_edit').text('');
             $('#governorate_id_error_edit').text('');
-
         }
 
         // cancel
@@ -187,6 +184,9 @@
                 cache: false,
                 processData: false,
                 contentType: false,
+                beforeSend: function() {
+                    $('.spinner_loading').removeClass('d-none');
+                },
                 success: function(data) {
                     if (data.status == true) {
                         console.log(data);
@@ -211,6 +211,9 @@
                         $('#' + key + '_edit').css('border-color', '#F64E60');
                     });
                 }, //end error
+                complete: function() {
+                    $('.spinner_loading').addClass('d-none');
+                }
             });
 
         });

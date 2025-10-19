@@ -4,17 +4,7 @@
         <h4 class="card-title" id="basic-layout-colored-form-control">
             {!! __('general.filters') !!}
         </h4>
-        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-        <div class="heading-elements">
-            <ul class="list-inline mb-0">
-                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="ft-rotate-cw"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="ft-maximize"></i></a></li>
-                {{-- <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-        <li><a data-action="expand"><i class="ft-maximize"></i></a></li> --}}
-                <li><a data-action="close"><i class="ft-x"></i></a></li>
-            </ul>
-        </div>
+        <a class="heading-elements" data-action="collapse"><i class="ft-minus"></i></a>
     </div>
     <!-- end: card header -->
 

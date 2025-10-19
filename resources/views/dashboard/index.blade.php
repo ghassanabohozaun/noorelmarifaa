@@ -38,7 +38,7 @@
                                         <i class="icon-user info font-large-2 float-left"></i>
                                     </div>
                                     <div class="media-body text-right">
-                                        {{-- <h3>{!! $admins_count !!}</h3> --}}
+                                        <h3>{!! adminCount() !!}</h3>
                                         <span>{!! __('children.admins_count') !!}</span>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         <i class="icon-user-following warning font-large-2 float-left"></i>
                                     </div>
                                     <div class="media-body text-right">
-                                        {{-- <h3>{!! $children_count !!}</h3> --}}
+                                        <h3>{!! childCount() !!}</h3>
                                         <span>{!! __('children.children_count') !!}</span>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                         <i class="icon-pointer success font-large-2 float-left"></i>
                                     </div>
                                     <div class="media-body text-right">
-                                        {{-- <h3>{!! $governorates_count !!}</h3> --}}
+                                        <h3>{!! governorateCount() !!}</h3>
                                         <span>{!! __('children.governorates_count') !!}</span>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                         <i class="icon-pointer danger font-large-2 float-left"></i>
                                     </div>
                                     <div class="media-body text-right">
-                                        {{-- <h3>{!! $cities_count !!}</h3> --}}
+                                        <h3>{!! cityCount() !!}</h3>
                                         <span>{!! __('children.cities_count') !!}</span>
                                     </div>
                                 </div>

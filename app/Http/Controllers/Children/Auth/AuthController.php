@@ -58,7 +58,7 @@ class AuthController extends Controller implements HasMiddleware
                 return redirect()->back();
             }
             flash()->success(__('general.login_success'));
-            return redirect()->intended(route('child.children.show',child()->user()->id));
+            return redirect()->route('child.children.show',child()->user()->id);
         }
     }
 

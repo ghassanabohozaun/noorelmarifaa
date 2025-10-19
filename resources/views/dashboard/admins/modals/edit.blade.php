@@ -24,11 +24,11 @@
                         <div class="col-lg-12">
 
                             <!-- begin: row -->
-                            <div class="row">
+                            <div class="row d-none">
                                 <!-- begin: input -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" id="id_edit" name="id" class="form-control">
+                                        <input type="hidden" id="id_edit" name="id" class="form-control">
                                     </div>
                                 </div>
                                 <!-- end: input -->
@@ -39,7 +39,7 @@
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name_ar">{!! __('admins.name_ar') !!}</label>
                                         <input type="text" id="name_ar_edit" name="name[ar]" class="form-control"
@@ -50,15 +50,9 @@
                                     </div>
                                 </div>
                                 <!-- end: input -->
-                            </div>
-                            <!-- end: row -->
 
-
-
-                            <!-- begin: row -->
-                            <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name_en">{!! __('admins.name_en') !!}</label>
                                         <input type="text" id="name_en_edit" name="name[en]" class="form-control"
@@ -71,6 +65,9 @@
                                 <!-- end: input -->
                             </div>
                             <!-- end: row -->
+
+
+
 
 
                             <!-- begin: row -->
@@ -93,7 +90,7 @@
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">{!! __('admins.password') !!}</label>
                                         <input type="text" id="password_edit" name="password" class="form-control"
@@ -104,13 +101,9 @@
                                     </div>
                                 </div>
                                 <!-- end: input -->
-                            </div>
-                            <!-- end: row -->
 
-                            <!-- begin: row -->
-                            <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password_confirm">{!! __('admins.password_confirm') !!}</label>
                                         <input type="text" id="password_confirm_edit" name="password_confirm"
@@ -122,9 +115,9 @@
                                     </div>
                                 </div>
                                 <!-- end: input -->
+
                             </div>
                             <!-- end: row -->
-
 
                             <!-- begin: row -->
                             <div class="row">

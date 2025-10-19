@@ -14,11 +14,6 @@
 
 
 
-    {{-- <section id="loading">
-        <div id="loading-content"></div>
-    </section> --}}
-
-
     @include('layouts.dashboard.app-parts._header')
     @include('layouts.dashboard.app-parts._sidebar')
 

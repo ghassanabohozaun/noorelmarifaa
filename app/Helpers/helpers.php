@@ -1,6 +1,9 @@
 <?php
 
-use App\Models\AttributeValue;
+use App\Models\Admin;
+use App\Models\Child;
+use App\Models\City;
+use App\Models\Governorate;
 use Illuminate\Support\Facades\Config;
 use App\Models\Setting;
 
@@ -37,7 +40,6 @@ if (!function_exists('web')) {
     }
 }
 
-
 //  get student Helper Function
 if (!function_exists('child')) {
     function child()
@@ -45,8 +47,6 @@ if (!function_exists('child')) {
         return auth()->guard('child');
     }
 }
-
-
 
 if (!function_exists('slug')) {
     function slug($string)
@@ -61,5 +61,37 @@ if (!function_exists('replaceHyphensWithSpaces')) {
     function replaceHyphensWithSpaces($string)
     {
         return $string = str_replace('-', ' ', $string); // Replaces all hyphens with spaces.
+    }
+
+    //  get child count Helper Function
+    if (!function_exists('childCount')) {
+        function childCount()
+        {
+            return Child::count();
+        }
+    }
+
+    //  get admin count Helper Function
+    if (!function_exists('adminCount')) {
+        function adminCount()
+        {
+            return Admin::count();
+        }
+    }
+
+    //  get governorate count Helper Function
+    if (!function_exists('governorateCount')) {
+        function governorateCount()
+        {
+            return Governorate::count();
+        }
+    }
+
+    //  get city count Helper Function
+    if (!function_exists('cityCount')) {
+        function cityCount()
+        {
+            return City::count();
+        }
     }
 }

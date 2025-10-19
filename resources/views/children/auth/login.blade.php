@@ -9,10 +9,12 @@
             <div class="row" style="display: table-cell;vertical-align: middle;">
                 <div class="col-md-4 col-md-5 col-sm-12 mb-2 mx-auto">
                     <div class="card">
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 180px" class="img-fluid   round">
-                        </div>
-                        <div class="card-content collapse show">
+                        @if (setting()->logo != null)
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 180px" class="img-fluid   round">
+                            </div>
+                        @endif
+                        <div class="card-content collapse show mt-4">
                             <div class="card-body">
                                 <form action="{!! route('child.post.login') !!}" method="post" class="form-horizontal"
                                     enctype="multipart/form-data" role="form">

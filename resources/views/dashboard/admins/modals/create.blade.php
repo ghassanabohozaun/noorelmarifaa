@@ -27,7 +27,7 @@
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name_ar">{!! __('admins.name_ar') !!}</label>
                                         <input type="text" id="name_ar" name="name[ar]" class="form-control"
@@ -38,13 +38,8 @@
                                     </div>
                                 </div>
                                 <!-- end: input -->
-                            </div>
-                            <!-- end: row -->
-
-                            <!-- begin: row -->
-                            <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name_en">{!! __('admins.name_en') !!}</label>
                                         <input type="text" id="name_en" name="name[en]" class="form-control"
@@ -57,6 +52,8 @@
                                 <!-- end: input -->
                             </div>
                             <!-- end: row -->
+
+
 
 
                             <!-- begin: row -->
@@ -79,7 +76,7 @@
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">{!! __('admins.password') !!}</label>
                                         <input type="text" id="password" name="password" class="form-control"
@@ -90,13 +87,8 @@
                                     </div>
                                 </div>
                                 <!-- end: input -->
-                            </div>
-                            <!-- end: row -->
-
-                            <!-- begin: row -->
-                            <div class="row">
                                 <!-- begin: input -->
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password_confirm">{!! __('admins.password_confirm') !!}</label>
                                         <input type="text" id="password_confirm" name="password_confirm"
@@ -110,6 +102,8 @@
                                 <!-- end: input -->
                             </div>
                             <!-- end: row -->
+
+
 
 
                             <!-- begin: row -->

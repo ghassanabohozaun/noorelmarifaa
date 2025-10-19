@@ -81,12 +81,14 @@
                 <!--begin::modal footer-->
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info font-weight-bold ">
-                        {{ trans('general.save') }}
+                        {{ __('general.save') }}
+                        <i class="la la-refresh spinner spinner_loading d-none">
+                        </i>
                     </button>
 
                     <button type="button" id="cancel_organization_btn_edit" class="btn btn-light-dark font-weight-bold"
                         data-dismiss="modal">
-                        {{ trans('general.cancel') }}
+                        {{ __('general.cancel') }}
                     </button>
                 </div>
                 <!--end::modal footer-->
@@ -156,6 +158,9 @@
                 cache: false,
                 processData: false,
                 contentType: false,
+                beforeSend: function() {
+                    $('.spinner_loading').removeClass('d-none');
+                },
                 success: function(data) {
                     if (data.status == true) {
                         console.log(data);
@@ -180,6 +185,9 @@
                         $('#' + key + '_edit').css('border-color', '#F64E60');
                     });
                 }, //end error
+                complete: function() {
+                    $('.spinner_loading').addClass('d-none');
+                }
             });
 
         });

@@ -1,12 +1,18 @@
+ body,
+         html {
+             font-family: "Poppins", "Tajawal", sans-serif;
+             font-weight: normal;
+             font-style: normal;
+         }
 
- select {
+         select {
              appearance: none;
              /* Hide default browser styling */
              -webkit-appearance: none;
              -moz-appearance: none;
              background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
              background-repeat: no-repeat;
-             background-position: right 0.75rem center;
+             background-position: left 0.75rem center;
              background-size: 1rem;
              padding-right: 2rem;
              /* Ensure space for the arrow */
@@ -14,16 +20,15 @@
 
          table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before,
          table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before {
-             margin-right: .5em;
+             margin-left: .02em;
              display: inline-block;
              box-sizing: border-box;
              content: "";
              border-top: 5px solid transparent;
-             border-left: 10px solid rgba(0, 0, 0, 0.5);
+             border-right: 10px solid rgba(0, 0, 0, 0.5);
              border-bottom: 5px solid transparent;
-             border-right: 0px solid transparent;
+             border-left: 0px solid transparent;
          }
-
 input[type="checkbox"] {
 width: 1.0em;
 height: 1.0em;
@@ -145,8 +150,8 @@ font-size: 0.95rem;
 .main-menu.menu-dark .navigation li a {
 color: #dcdcdc;
 transition: all 0.2s ease;
-font-size: 0.90rem;
-font-weight: 400;
+font-size: 0.94rem;
+font-weight: 300;
 }
 
 html body .la {

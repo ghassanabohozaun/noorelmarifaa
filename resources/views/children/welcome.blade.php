@@ -16,10 +16,12 @@
                             <h4 class="card-title">{!! __('children.welcome') !!}
                             </h4>
                         </div>
-                        <div class="card-content collapse show">
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 220px" class="img-fluid  round">
-                            </div>
+                        <div class="card-content collapse show mt-2">
+                            @if (setting()->logo != null)
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 220px" class="img-fluid  round">
+                                </div>
+                            @endif
 
                             <div class="container">
 
