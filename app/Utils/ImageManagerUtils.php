@@ -4,7 +4,6 @@ namespace App\Utils;
 use File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -51,6 +50,7 @@ class ImageManagerUtils
         $image->storeAs($path, $file_name, ['disk' => $disk]);
     }
 
+    // remove image from local
     public function removeImageFromLocal($image, $disk)
     {
         Storage::disk($disk)->delete($image);
@@ -61,6 +61,7 @@ class ImageManagerUtils
         // }
     }
 
+    // save resize image
     public function saveResizeImage($image,$disk, $width, $height)
     {
 

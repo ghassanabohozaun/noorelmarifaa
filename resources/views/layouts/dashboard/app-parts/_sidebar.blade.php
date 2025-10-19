@@ -3,7 +3,7 @@
 
             <!-- begin: Dashboard -->
             <ul class="navigation navigation-main mt-1">
-                <li class=" nav-item">
+                <li class=" nav-item @if (Request::is('*welcome*')) active @endif">
                     <a href="{!! route('dashboard.index') !!}">
                         <i class="icon-home"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">{!! __('dashboard.dashboard') !!}</span>

@@ -37,7 +37,8 @@ Route::group(
         ########################################### protected routes  #####################################################################
         Route::group(['middleware' => 'auth:admin'], function () {
             ########################################### welcome  ##########################################################################
-            Route::get('/', [DashboardController::class, 'index'])->name('index');
+            Route::get('/welcome', [DashboardController::class, 'index'])->name('index');
+
             ########################################### roles routes ######################################################################
             Route::group(['middleware' => 'can:roles'], function () {
                 Route::resource('roles', RolesController::class);
