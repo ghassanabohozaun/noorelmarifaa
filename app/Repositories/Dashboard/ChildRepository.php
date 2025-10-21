@@ -63,6 +63,13 @@ class ChildRepository
             ->get();
     }
 
+        // get children
+    public function getChildrenWithRelations()
+    {
+        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])
+            ->latest()
+            ->paginate(1);
+    }
     // create child
     public function createChild($data)
     {

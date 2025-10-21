@@ -48,6 +48,13 @@ class ChildService
         return $children;
     }
 
+  // get children
+    public function getChildrenWithRelations()
+    {
+        $children = $this->childRepository->getChildrenWithRelations();
+        return $children;
+    }
+
     // get all
     public function getAll($request)
     {

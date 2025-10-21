@@ -187,6 +187,9 @@
 
                                                         </tbody>
                                                     </table>
+                                                    <div class="float-right">
+                                                        {!! $children->links() !!}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

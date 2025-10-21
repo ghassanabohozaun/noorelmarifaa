@@ -19,7 +19,7 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        $children = $this->childService->getChildren();
+        $children = $this->childService->getChildrenWithRelations();
         $title = __('dashboard.dashboard');
         return view('dashboard.index', compact('children', 'title'));
     }
