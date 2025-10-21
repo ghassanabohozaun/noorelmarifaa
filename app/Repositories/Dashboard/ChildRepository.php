@@ -60,7 +60,6 @@ class ChildRepository
                 $query->where('city_id', request()->city_id);
             })
             ->latest()
-            ->limit(10)
             ->get();
     }
 
