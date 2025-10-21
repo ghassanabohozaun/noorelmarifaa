@@ -108,13 +108,13 @@
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.sponsership_status_id') !!}:
                 </strong>
                 &nbsp;
-                {!! $child->sponsershipStatus->name !!}
+                {!! $child->sponsership_status_id ? $child->sponsershipStatus->name : '' !!}
             </li>
 
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.sponsership_type_id') !!}:
                 </strong>
                 &nbsp;
-                {!! $child->sponsershipType->name !!}
+                {!! $child->sponsership_type_id ? $child->sponsershipType->name : '' !!}
             </li>
 
             </li>
@@ -122,7 +122,7 @@
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.sponsership_organization_id') !!}:
                 </strong>
                 &nbsp;
-                {!! $child->sponsershipOrganization->name !!}
+                {!! $child->sponsership_organization_id ? $child->sponsershipOrganization->name : '' !!}
             </li>
 
         </ul>
