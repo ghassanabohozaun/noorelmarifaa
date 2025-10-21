@@ -68,7 +68,7 @@ class ChildRepository
     {
         return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])
             ->latest()
-            ->paginate(1);
+            ->paginate(10);
     }
     // create child
     public function createChild($data)
