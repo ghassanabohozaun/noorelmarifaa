@@ -30,6 +30,12 @@ class SponsershipOrganizationService
         return $this->sponsershipOrganizationRepository->getAll();
     }
 
+    // get active
+    public function getActive()
+    {
+        return $this->sponsershipOrganizationRepository->getActive();
+    }
+
     // create
     public function create($data)
     {
@@ -59,9 +65,12 @@ class SponsershipOrganizationService
     public function destroy($id)
     {
         $organization = self::getOne($id);
-        if (!$organization) {
+
+
+         if ($organization->children()->count() > 0 || !$organization) {
             return false;
         }
+
         $organization = $this->sponsershipOrganizationRepository->destroy($organization);
         if (!$organization) {
             return false;

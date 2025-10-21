@@ -18,6 +18,12 @@ class SponsershipTypeRepository
         return SponsershipType::orderByDesc('created_at')->select('id', 'name', 'status')->paginate(10);
     }
 
+    // get active
+    public function getActive()
+    {
+        return SponsershipType::orderByDesc('created_at')->select('id', 'name', 'status')->active()->get();
+    }
+
     // create
     public function create($data)
     {

@@ -10,6 +10,9 @@ use Illuminate\Validation\Rule;
 use Laravel\Prompts\FormBuilder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Services\Dashboard\SponsershipOrganizationService;
+use App\Services\Dashboard\SponsershipStatusService;
+use App\Services\Dashboard\SponsershipTypeService;
 
 class EditChild extends Component
 {
@@ -20,6 +23,7 @@ class EditChild extends Component
     public $first_name_en, $father_name_en, $grand_father_name_en, $family_name_en;
     public $password, $password_confirm, $personal_id, $birthday, $classification, $gender, $class, $health_status, $disease_clarification, $governoate_id, $city_id, $address_details;
     public $authorized_contact_number, $backup_contact_number, $whatsApp_number;
+    public $sponsership_status_id, $sponsership_organization_id, $sponsership_type_id;
     public $number_of_people_including_mother, $male_number, $female_number;
     public $governorates, $cities;
     public $father_full_name_ar, $father_full_name_en, $father_personal_id, $father_date_of_death, $father_respon_of_death;
@@ -27,18 +31,26 @@ class EditChild extends Component
     public $guardian_full_name_ar, $guardian_full_name_en, $guardian_personal_id, $guardian_birthday, $why_not_the_mother_is_guardian, $guardian_relationship_with_the_child;
     public $picture_of_the_orphan_child, $orphan_child_birth_certificate, $father_death_certificate, $guardian_personal_id_photo;
     public $new_picture_of_the_orphan_child, $new_orphan_child_birth_certificate, $new_father_death_certificate, $new_guardian_personal_id_photo;
+    public $sponsership_organizations, $sponsership_statuses, $sponsership_types;
 
     public ?Child $child;
 
     protected ChildService $childService;
     protected GovernorateService $governorateService;
     protected CityService $cityService;
+    protected SponsershipOrganizationService $sponsershipOrganizationService;
+    protected SponsershipStatusService $sponsershipStatusService;
+    protected SponsershipTypeService $sponsershipTypeService;
+
     // boot
-    public function boot(ChildService $childService, GovernorateService $governorateService, CityService $cityService)
+    public function boot(ChildService $childService, GovernorateService $governorateService, CityService $cityService, SponsershipOrganizationService $sponsershipOrganizationService, SponsershipStatusService $sponsershipStatusService, SponsershipTypeService $sponsershipTypeService)
     {
         $this->childService = $childService;
         $this->governorateService = $governorateService;
         $this->cityService = $cityService;
+        $this->sponsershipOrganizationService = $sponsershipOrganizationService;
+        $this->sponsershipStatusService = $sponsershipStatusService;
+        $this->sponsershipTypeService = $sponsershipTypeService;
     }
 
     // mount
@@ -48,6 +60,9 @@ class EditChild extends Component
         $this->ChildID = $ChildID;
         $this->governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
         $this->cities = $this->governorateService->getAllCitiesbyGovernorate($this->child->governoate_id);
+        $this->sponsership_organizations = $this->sponsershipOrganizationService->getActive();
+        $this->sponsership_statuses = $this->sponsershipStatusService->getActive();
+        $this->sponsership_types = $this->sponsershipTypeService->getActive();
         // $this->governoate_id ?? ($this->cities = []);
 
         // basic info
@@ -77,6 +92,11 @@ class EditChild extends Component
         $this->governoate_id = $this->child->governoate_id;
         $this->city_id = $this->child->city_id;
         $this->address_details = $this->child->address_details;
+
+
+        $this->sponsership_status_id = $this->child->sponsership_status_id;
+        $this->sponsership_organization_id = $this->child->sponsership_organization_id;
+        $this->sponsership_type_id = $this->child->sponsership_type_id;
 
         // child family
         $this->number_of_people_including_mother = $this->child->childFamily->number_of_people_including_mother;
@@ -269,6 +289,9 @@ class EditChild extends Component
             'authorized_contact_number' => $this->authorized_contact_number,
             'backup_contact_number' => $this->backup_contact_number,
             'whatsApp_number' => $this->whatsApp_number,
+            'sponsership_status_id' => $this->sponsership_status_id ? $this->sponsership_status_id : null,
+            'sponsership_organization_id' => $this->sponsership_organization_id ? $this->sponsership_organization_id : null,
+            'sponsership_type_id' => $this->sponsership_type_id ? $this->sponsership_type_id : null,
         ];
 
         $childFamilyData = [

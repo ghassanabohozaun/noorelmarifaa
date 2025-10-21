@@ -155,6 +155,18 @@
                         name: 'health_status',
                     },
                     {
+                        data: 'sponsership_status_id',
+                        name: 'sponsership_status_id',
+                    },
+                    {
+                        data: 'sponsership_type_id',
+                        name: 'sponsership_type_id',
+                    },
+                    {
+                        data: 'sponsership_organization_id',
+                        name: 'sponsership_organization_id',
+                    },
+                    {
                         data: 'governoate_id',
                         name: 'governoate_id',
                     },
@@ -234,6 +246,8 @@
                             // columns: [0, 1, 2],
                             columns: ':not(:last-child)',
                         }
+
+
                     },
 
                 ]

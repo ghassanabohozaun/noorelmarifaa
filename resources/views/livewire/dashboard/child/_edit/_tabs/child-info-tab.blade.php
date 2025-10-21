@@ -47,6 +47,12 @@
                 &nbsp;
                 {!! $health_status !!}
             </li>
+
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                    class="text-dark">{!! __('children.disease_clarification') !!}:</strong>
+                &nbsp;
+                {!! $disease_clarification !!}
+            </li>
         </ul>
 
     </div>
@@ -54,15 +60,12 @@
     <div class="col-lg-6">
         <ul class="list-group">
 
-            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                    class="text-dark">{!! __('children.disease_clarification') !!}:</strong>
-                &nbsp;
-                {!! $disease_clarification !!}
-            </li>
+
 
             <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                 <strong class="text-dark">{!! __('children.authorized_contact_number') !!}:</strong>
                 &nbsp;
+                <span style="background-color: #21d4fd;color: white ;padding: 2px">05 |</span>
                 {!! $authorized_contact_number !!}
             </li>
 
@@ -70,12 +73,14 @@
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.backup_contact_number') !!}:
                 </strong>
                 &nbsp;
+                <span style="background-color: #21d4fd;color: white ;padding: 2px">05 |</span>
                 {!! $backup_contact_number !!}
             </li>
 
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.whatsApp_number') !!}:
                 </strong>
                 &nbsp;
+                <span style="background-color: #21d4fd;color: white ;padding: 2px">0097 |</span>
                 {!! $whatsApp_number !!}
             </li>
 
@@ -95,6 +100,29 @@
                 </strong>
                 &nbsp;
                 {!! $address_details !!}
+            </li>
+
+
+
+
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.sponsership_status_id') !!}:
+                </strong>
+                &nbsp;
+                {!! $child->sponsershipStatus->name !!}
+            </li>
+
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.sponsership_type_id') !!}:
+                </strong>
+                &nbsp;
+                {!! $child->sponsershipType->name !!}
+            </li>
+
+            </li>
+
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.sponsership_organization_id') !!}:
+                </strong>
+                &nbsp;
+                {!! $child->sponsershipOrganization->name !!}
             </li>
 
         </ul>

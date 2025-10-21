@@ -107,6 +107,19 @@ class Child extends Authenticatable
         return $this->hasOne(ChildFile::class, 'child_id');
     }
 
+    public function sponsershipStatus() {
+        return $this->belongsTo(SponsershipStatus::class , 'sponsership_status_id' );
+    }
+
+    public function sponsershipType() {
+        return $this->belongsTo(SponsershipType::class , 'sponsership_type_id' );
+    }
+
+    public function sponsershipOrganization() {
+        return $this->belongsTo(SponsershipOrganization::class , 'sponsership_organization_id' );
+    }
+
+
     // accessories
     public function getCreatedAtAttribute($value)
     {
@@ -123,6 +136,7 @@ class Child extends Authenticatable
         }
         return Carbon::parse($value)->format('d/m/Y h:i A');
     }
+
 
     // public function getGenderAttribute($value)
     // {

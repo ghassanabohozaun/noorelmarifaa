@@ -16,6 +16,14 @@ class SponsershipOrganization extends Model
 
     public array $translatable = ['name'];
 
+       // relations
+    public function children()
+    {
+        return $this->hasMany(Child::class, 'sponsership_organization_id');
+    }
+
+
+
     // scopes
     public function scopeActive($query)
     {

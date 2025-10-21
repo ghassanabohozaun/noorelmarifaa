@@ -161,11 +161,12 @@
                         },
                         type: 'post',
                         dataType: 'json',
+
                         success: function(data) {
-
+                            console.log(data);
                             $('#myTable').load(location.href + (' #myTable'));
-                            if (data.status == true) {
-
+                            if (data.status === true) {
+                                console.log(data.status);
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",
                                     text: "{!! __('general.delete_success_message') !!} ",
@@ -179,21 +180,26 @@
                                     }
                                 });
                                 // $('.row_' + id).remove();
-                            } else if (data.status == false) {
-                                swal({
-                                    title: "{!! __('general.warning') !!} ",
-                                    text: "{!! __('general.delete_error_message') !!} ",
-                                    icon: "warning",
-                                    buttons: {
-                                        confirm: {
-                                            text: "{!! __('general.yes') !!}",
-                                            visible: true,
-                                            closeModal: true
-                                        }
-                                    }
-                                });
                             }
                         }, //end success
+                        error: function(data) {
+
+                            console.log(data.status);
+                            swal({
+                                title: "{!! __('general.warning') !!} ",
+                                text: "{!! __('general.delete_error_message') !!} ",
+                                icon: "warning",
+                                buttons: {
+                                    confirm: {
+                                        text: "{!! __('general.yes') !!}",
+                                        visible: true,
+                                        closeModal: true
+                                    }
+                                }
+                            });
+
+                        }
+
                     });
 
                 } else {

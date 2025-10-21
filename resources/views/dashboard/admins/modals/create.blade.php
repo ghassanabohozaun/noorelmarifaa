@@ -53,9 +53,6 @@
                             </div>
                             <!-- end: row -->
 
-
-
-
                             <!-- begin: row -->
                             <div class="row">
                                 <!-- begin: input -->
@@ -102,9 +99,6 @@
                                 <!-- end: input -->
                             </div>
                             <!-- end: row -->
-
-
-
 
                             <!-- begin: row -->
                             <div class="row">

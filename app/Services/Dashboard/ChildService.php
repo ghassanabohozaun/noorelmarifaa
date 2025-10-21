@@ -67,6 +67,15 @@ class ChildService
             ->addColumn('health_status', function ($child) {
                 return $child->childHealthStatus();
             })
+            ->addColumn('sponsership_status_id', function ($child) {
+                return $child->sponsership_status_id ?  $child->sponsershipStatus->getTranslation('name', Lang()) : '';
+            })
+            ->addColumn('sponsership_type_id', function ($child) {
+                return $child->sponsership_type_id ? $child->sponsershipType->getTranslation('name', Lang()) : '';
+            })
+            ->addColumn('sponsership_organization_id', function ($child) {
+                return $child->sponsership_organization_id ? $child->sponsershipOrganization->getTranslation('name', Lang()) : '';
+            })
             ->addColumn('governoate_id', function ($child) {
                 return $child->governorate->name;
             })

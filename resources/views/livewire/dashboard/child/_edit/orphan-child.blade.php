@@ -252,6 +252,8 @@
             <label for="class">{!! __('children.class') !!}</label>
             <select wire:model.live="class" class="form-control">
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
+                <option value="under_school_age">{!! __('children.under_school_age') !!}</option>
+                <option value="kindergarten">{!! __('children.kindergarten') !!}</option>
                 <option value="1">{!! __('children.class_1') !!}</option>
                 <option value="2">{!! __('children.class_2') !!}</option>
                 <option value="3">{!! __('children.class_3') !!}</option>
@@ -447,6 +449,85 @@
 
 </div>
 <!-- end: authorized_contact_number , backup_contact_number , whatsApp_number -->
+
+
+<!-- begin: governoate_id , city_id , address_details-->
+@if (admin()->check())
+    <div class="row mt-2">
+
+        <!-- begin: input -->
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="sponsership_status_id">{!! __('children.sponsership_status_id') !!}</label>
+                <select type="text" wire:model="sponsership_status_id" id="sponsership_status_id"
+                    name="sponsership_status_id" class="form-control">
+                    <option value="0" selected='selected'>
+                        {!! __('children.select') !!} {!! __('children.sponsership_status_id') !!}
+                    </option>
+                    @foreach ($sponsership_statuses as $key => $status)
+                        <option value="{!! $status->id !!}">{!! $status->name !!}</option>
+                    @endforeach
+                </select>
+                @error('sponsership_status_id')
+                    <span class="text text-danger">
+                        <strong class="strong-weight">{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <!-- end: input -->
+
+
+        <!-- begin: input -->
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="sponsership_type_id">{!! __('children.sponsership_type_id') !!}</label>
+                <select type="text" wire:model="sponsership_type_id" id="sponsership_type_id"
+                    name="sponsership_type_id" class="form-control">
+                    <option value="0" selected='selected'>
+                        {!! __('children.select') !!} {!! __('children.sponsership_type_id') !!}
+                    </option>
+                    @foreach ($sponsership_types as $key => $type)
+                        <option value="{!! $type->id !!}">{!! $type->name !!}</option>
+                    @endforeach
+                </select>
+                @error('sponsership_type_id')
+                    <span class="text text-danger">
+                        <strong class="strong-weight">{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <!-- end: input -->
+
+        <!-- begin: input -->
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="sponsership_organization_id">{!! __('children.sponsership_organization_id') !!}</label>
+                <select type="text" wire:model="sponsership_organization_id" id="sponsership_organization_id"
+                    name="sponsership_organization_id" class="form-control">
+                    <option value="0" selected='selected'>
+                        {!! __('children.select') !!} {!! __('children.sponsership_organization_id') !!}
+                    </option>
+                    @foreach ($sponsership_organizations as $key => $organization)
+                        <option value="{!! $organization->id !!}">{!! $organization->name !!}</option>
+                    @endforeach
+                </select>
+                @error('sponsership_organization_id')
+                    <span class="text text-danger">
+                        <strong class="strong-weight">{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <!-- end: input -->
+
+
+
+
+    </div>
+@endif
+<!-- end: governoate_id , city_id , address_details -->
 
 
 <!-- begin: button -->

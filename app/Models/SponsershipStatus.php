@@ -27,6 +27,13 @@ class SponsershipStatus extends Model
         return $query->whereStatus(0);
     }
 
+
+    // relation
+    public function children()
+    {
+        return $this->hasMany(child::class, 'sponsership_status_id');
+    }
+
     // accessories
 
     // public function getStatusAttribute($status)

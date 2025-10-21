@@ -30,6 +30,12 @@ class SponsershipTypeService
         return $this->sponsershipTypeRepository->getAll();
     }
 
+      // get active
+    public function getActive()
+    {
+        return $this->sponsershipTypeRepository->getActive();
+    }
+
     // create
     public function create($data)
     {
@@ -60,7 +66,7 @@ class SponsershipTypeService
     public function destroy($id)
     {
         $type = self::getOne($id);
-        if (!$type) {
+       if ($type->children()->count() > 0 || !$type) {
             return false;
         }
         $type = $this->sponsershipTypeRepository->destroy($type);

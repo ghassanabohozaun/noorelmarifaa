@@ -30,6 +30,12 @@ class SponsershipStatusService
         return $this->sponsershipStatusRepository->getAll();
     }
 
+    // get active
+    public function getActive()
+    {
+        return $this->sponsershipStatusRepository->getActive();
+    }
+
     // create
     public function create($data)
     {
@@ -60,9 +66,11 @@ class SponsershipStatusService
     public function destroy($id)
     {
         $sponsershipStatus = self::getOne($id);
-        if (!$sponsershipStatus) {
+
+        if ($sponsershipStatus->children()->count() > 0 || !$sponsershipStatus) {
             return false;
         }
+
         $sponsershipStatus = $this->sponsershipStatusRepository->destroy($sponsershipStatus);
         if (!$sponsershipStatus) {
             return false;
@@ -77,7 +85,7 @@ class SponsershipStatusService
         if (!$sponsershipStatus) {
             return false;
         }
-        $sponsershipStatus = $this->sponsershipStatusRepository->changeStatus($sponsershipStatus , $status);
+        $sponsershipStatus = $this->sponsershipStatusRepository->changeStatus($sponsershipStatus, $status);
         if (!$sponsershipStatus) {
             return false;
         }

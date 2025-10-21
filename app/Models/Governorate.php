@@ -16,7 +16,6 @@ class Governorate extends Model
     public array $translatable = ['name'];
 
     // relation
-
     public function cities()
     {
         return $this->hasMany(City::class, 'governorate_id');

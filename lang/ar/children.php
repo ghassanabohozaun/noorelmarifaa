@@ -5,7 +5,7 @@ return [
     'children' => 'الأطفال الايتام',
     'show_all_children' => 'عرض جميع الأطفال',
     'show_child' => 'عرض الطفل',
-    'welcome'=>'مرحباً ',
+    'welcome' => 'مرحباً ',
 
     'orphan_child' => 'بيانات الطفل',
     'child_family' => 'بيانات  عائلة الطفل',
@@ -86,6 +86,8 @@ return [
     'address_details' => 'تفاصيل العنوان',
     'status' => 'حالة',
     'freeze' => 'تجميد',
+    'under_school_age' => 'دون سن الدراسة',
+    'kindergarten' => 'رياض أطفال',
     'class_1' => 'الصف الأول',
     'class_2' => 'الصف الثاني',
     'class_3' => 'الصف الثالت',
@@ -94,6 +96,9 @@ return [
     'class_6' => 'الصف السادس',
     'class_7' => 'الصف السابع',
     'class_8' => 'الصف الثامن',
+    'sponsership_status_id' => 'حالة الكفالة',
+    'sponsership_organization_id' => 'المؤسسة الكافلة',
+    'sponsership_type_id' => 'نوع الكفالة',
 
     'enter_first_name_ar' => 'أدخل اسم الطفل الاول بالعربي',
     'enter_father_name_ar' => 'أدخل اسم والد الطفل  بالعربي',

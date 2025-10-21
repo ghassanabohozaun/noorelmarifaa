@@ -8,18 +8,25 @@ use App\Models\City;
 use App\Services\Dashboard\ChildService;
 use App\Services\Dashboard\CityService;
 use App\Services\Dashboard\GovernorateService;
+use App\Services\Dashboard\SponsershipOrganizationService;
+use App\Services\Dashboard\SponsershipStatusService;
+use App\Services\Dashboard\SponsershipTypeService;
 use Illuminate\Http\Request;
 use PDF;
 
 class ChildernController extends Controller
 {
-    protected $childService, $governorateService, $cityService;
+    protected $childService, $governorateService, $cityService, $sponsershipOrganizationService, $sponsershipStatusService , $sponsershipTypeService;
     // __construct
-    public function __construct(ChildService $childService, GovernorateService $governorateService, CityService $cityService)
+    public function __construct(ChildService $childService, GovernorateService $governorateService, CityService $cityService,
+     SponsershipOrganizationService $sponsershipOrganizationService, SponsershipStatusService $sponsershipStatusService, SponsershipTypeService $sponsershipTypeService)
     {
         $this->childService = $childService;
         $this->governorateService = $governorateService;
         $this->cityService = $cityService;
+        $this->sponsershipOrganizationService = $sponsershipOrganizationService;
+        $this->sponsershipStatusService = $sponsershipStatusService;
+        $this->sponsershipTypeService = $sponsershipTypeService;
     }
 
     // index
@@ -127,7 +134,7 @@ class ChildernController extends Controller
         //  return $pdf->stream($child->childFullName().'.pdf');
     }
 
-      // get cities
+    // get cities
     public function getCities($governorate_id)
     {
         $cities = City::where('governorate_id', $governorate_id)->pluck('name', 'id');

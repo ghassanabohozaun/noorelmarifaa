@@ -18,6 +18,11 @@ class SponsershipOrganizationRepository
         return SponsershipOrganization::orderByDesc('created_at')->select('id', 'name', 'status')->paginate(10);
     }
 
+    // get active
+    public function getActive()  {
+        return SponsershipOrganization::orderByDesc('created_at')->select('id', 'name', 'status')->active()->get();
+    }
+
     // create
     public function create($data)
     {

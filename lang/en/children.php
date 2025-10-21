@@ -85,6 +85,8 @@ return [
     'address_details' => 'Address Details',
     'status' => 'Status',
     'freeze' => 'Freeze',
+    'under_school_age' => 'Under School Age',
+    'kindergarten' => 'Kindergarten',
     'class_1' => 'Class One',
     'class_2' => 'Class Two',
     'class_3' => 'Class Three',
@@ -92,7 +94,11 @@ return [
     'class_5' => 'Class Five',
     'class_6' => 'Class Six',
     'class_7' => 'Class Seven',
-    'class_8' => 'Class Eight ',
+    'class_8' => 'Class Eight',
+
+    'sponsership_status_id' => 'Sponsership Status',
+    'sponsership_organization_id' => 'Sponsership Organization',
+    'sponsership_type_id' => 'Sponsership Type',
 
     'enter_child_full_name' => 'Enter Child Full Name',
     'enter_first_name_ar' => 'Enter Arabic Child  First Name',

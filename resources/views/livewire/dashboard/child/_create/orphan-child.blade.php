@@ -253,6 +253,8 @@
             <label for="class">{!! __('children.class') !!}</label>
             <select wire:model.live="class" class="form-control">
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
+                <option value="under_school_age">{!! __('children.under_school_age') !!}</option>
+                <option value="kindergarten">{!! __('children.kindergarten') !!}</option>
                 <option value="1">{!! __('children.class_1') !!}</option>
                 <option value="2">{!! __('children.class_2') !!}</option>
                 <option value="3">{!! __('children.class_3') !!}</option>
