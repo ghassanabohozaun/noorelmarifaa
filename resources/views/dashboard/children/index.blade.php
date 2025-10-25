@@ -292,7 +292,8 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#city_id').empty().append(
-                            '<option value="">Select City</option>');
+                            '<option value=""> {!! __('users.select') !!} {!! __('users.city_id') !!}</option>'
+                        );
                         $.each(data, function(key, value) {
                             $('#city_id').append('<option value="' + key +
                                 '">' + value + '</option>');
@@ -301,7 +302,8 @@
                     }
                 });
             } else {
-                $('#city_id').empty().append('<option value="">Select City</option>').prop(
+                $('#city_id').empty().append(
+                    '<option value=""> {!! __('users.select') !!} {!! __('users.city_id') !!}</option>').prop(
                     'disabled', true);
             }
         });

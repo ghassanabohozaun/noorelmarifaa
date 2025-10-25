@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->date('birthday')->nullable();
             $table->enum('classification', ['fatherless', 'parentless'])->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
-            $table->string('class')->nullable();
+            $table->integer('class')->nullable();
             $table->enum('health_status', ['good', 'sick'])->nullable();
             $table->longText('disease_clarification')->nullable();
             $table->string('authorized_contact_number')->nullable();

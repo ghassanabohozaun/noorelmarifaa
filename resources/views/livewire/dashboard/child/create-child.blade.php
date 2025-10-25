@@ -37,7 +37,6 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
         </div>
         <!-- end: steps row -->

@@ -1,4 +1,4 @@
-<h4>{!! __('children.files') !!}</h4>
+<h4>{!! __('children.confirmations') !!}</h4>
 <hr>
 <div class="mt-3">
 
