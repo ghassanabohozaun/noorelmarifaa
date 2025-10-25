@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Exports\ChildrenExport;
 use App\Http\Controllers\Controller;
-
+use App\Models\Child;
 use App\Models\City;
 use App\Services\Dashboard\ChildService;
 use App\Services\Dashboard\CityService;
@@ -12,14 +13,14 @@ use App\Services\Dashboard\SponsershipOrganizationService;
 use App\Services\Dashboard\SponsershipStatusService;
 use App\Services\Dashboard\SponsershipTypeService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class ChildernController extends Controller
 {
-    protected $childService, $governorateService, $cityService, $sponsershipOrganizationService, $sponsershipStatusService , $sponsershipTypeService;
+    protected $childService, $governorateService, $cityService, $sponsershipOrganizationService, $sponsershipStatusService, $sponsershipTypeService;
     // __construct
-    public function __construct(ChildService $childService, GovernorateService $governorateService, CityService $cityService,
-     SponsershipOrganizationService $sponsershipOrganizationService, SponsershipStatusService $sponsershipStatusService, SponsershipTypeService $sponsershipTypeService)
+    public function __construct(ChildService $childService, GovernorateService $governorateService, CityService $cityService, SponsershipOrganizationService $sponsershipOrganizationService, SponsershipStatusService $sponsershipStatusService, SponsershipTypeService $sponsershipTypeService)
     {
         $this->childService = $childService;
         $this->governorateService = $governorateService;
@@ -140,4 +141,17 @@ class ChildernController extends Controller
         $cities = City::where('governorate_id', $governorate_id)->pluck('name', 'id');
         return response()->json($cities);
     }
+
+
+        public function export(Request $request)
+    {
+        $selectedColumns = $request->input('columns', ['id','first_name', 'father_name', 'grand_father_name', 'family_name', 'personal_id']);
+
+        return Excel::download(new ChildrenExport(Child::get(), $selectedColumns), 'children.xlsx');
+
+        // $filters = $request->only(['status']); // Get filters from request
+        // $selectedColumns = $request->input('columns', ['id', 'name']); // Get selected columns from request
+        //  return Excel::download(new AdminsExport($filters, $selectedColumns), 'dynamic_users.xlsx');
+    }
+
 }

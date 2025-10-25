@@ -81,6 +81,8 @@ Route::group(
 
             ########################################### children routes  ######################################################################
             Route::group(['middleware' => 'can:children'], function () {
+                Route::get('/children/export', [ChildernController::class, 'export'])->name('children.export');
+
                 Route::resource('children', ChildernController::class);
                 Route::get('/children-all', [ChildernController::class, 'getAll'])->name('children.get.all');
                 Route::post('/childrem/change-status', [ChildernController::class, 'changeStatus'])->name('children.change.status');

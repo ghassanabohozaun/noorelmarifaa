@@ -9,7 +9,7 @@
     <!-- end: card header -->
 
     <!-- begin: card content  show-->
-    <div class="card-content collapse ">
+    <div class="card-content collapse show">
         <div class="card-body">
             <form class="form">
                 <div class="form-body">
@@ -22,6 +22,15 @@
                                 id="personal_id">
                         </div>
                         <!-- end: input -->
+
+                        <!-- begin: input -->
+                        <div class="form-group col-md-2">
+                            <label class="sr-only" for="guardian_personal_id">{!! __('children.guardian_personal_id') !!}</label>
+                            <input type="text" class="form-control" placeholder="{!! __('children.enter_guardian_personal_id') !!}"
+                                id="guardian_personal_id">
+                        </div>
+                        <!-- end: input -->
+
 
                         <!-- begin: input -->
                         <div class="form-group col-md-2">
@@ -84,14 +93,28 @@
                     </div>
 
                 </div>
-                <div class="form-actions">
-                    <button type="button" class="btn btn-sm btn-warning mr-1" id="children_search_btn">
+
+                <div class="form-actions" style="margin-top: -8px">
+                    <button type="button" class="btn btn-sm btn-secondary mr-1" id="children_search_btn">
                         <i class="la la-search"></i> {!! __('general.search') !!}
                     </button>
-                    <button type="submit" class="btn btn-sm btn-primary" id="children_reset_btn">
+                    <button type="submit" class="btn btn-sm btn-light-dark mr-1" id="children_reset_btn">
                         <i class="la la-close"></i> {!! __('general.reset') !!}
                     </button>
+
+                    <a href="{!! route('dashboard.children.export') !!}" type="button" class="btn btn-sm btn-light mr-1"
+                        id="ticket_ecxel">
+                        <i class="la la-file-excel-o"></i> {!! __('general.excel') !!}
+                    </a>
+
+                    {{--
+                    <a href="javascript:void(0)" class="btn btn-sm btn-warning btn-glow mr-1">
+                        <span class="la la-file-pdf-o"></span> {!! __('general.pdf') !!}
+                    </a>
+                    --}}
                 </div>
+
+
             </form>
 
         </div>

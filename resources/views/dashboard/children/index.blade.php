@@ -73,7 +73,7 @@
         loadData();
 
         function loadData(personal_id = '', gender = '', classification = '', health_status = '', governoate_id = '',
-            city_id = '') {
+            city_id = '', guardian_personal_id = '') {
             // yajra tables
             $('#yajra-datatable').DataTable({
                 // dom: 'Bfrtip',
@@ -83,7 +83,6 @@
                 fixedHeader: true,
                 "bDestroy": true,
                 "bFilter": false,
-
                 // rowReorder: {
                 //     update: false,
                 //     // selector: 'tr',
@@ -119,7 +118,8 @@
                         classification: classification,
                         health_status: health_status,
                         governoate_id: governoate_id,
-                        city_id: city_id
+                        city_id: city_id,
+                        guardian_personal_id: guardian_personal_id
                     },
                     beforeSend: function() {}
                 },
@@ -199,9 +199,9 @@
 
                 layout: {
                     // 'colvis',
-                    topStart: {
-                        buttons: ['copy', 'print', 'excel', 'pdf']
-                    }
+                    // topStart: {
+                    //     buttons: ['copy', 'print', 'excel', 'pdf']
+                    // }
                 },
                 language: lang === 'ar' ? {
                     url: '{!! asset('vendor/datatables/ar.json') !!}',
@@ -264,8 +264,10 @@
             var health_status = $('#health_status').val();
             var governoate_id = $('#governoate_id').val();
             var city_id = $('#city_id').val();
+            var guardian_personal_id = $('#guardian_personal_id').val();
 
-            loadData(personal_id, gender, classification, health_status, governoate_id, city_id);
+            loadData(personal_id, gender, classification, health_status, governoate_id, city_id,
+                guardian_personal_id);
         })
 
 
@@ -278,7 +280,7 @@
             $('#health_status').val('');
             $('#governoate_id').val('');
             $('#city_id').val('');
-
+            $('#guardian_personal_id').val('');
             loadData();
         });
 

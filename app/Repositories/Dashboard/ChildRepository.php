@@ -59,11 +59,15 @@ class ChildRepository
             ->when(!empty(request()->city_id), function ($query) {
                 $query->where('city_id', request()->city_id);
             })
+            ->when(!empty(request()->guardian_personal_id), function ($query) {
+                $query->whereRelation('childGuardian', 'guardian_personal_id',  request()->guardian_personal_id);
+            })
+
             ->latest()
             ->get();
     }
 
-        // get children
+    // get children
     public function getChildrenWithRelations()
     {
         return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])

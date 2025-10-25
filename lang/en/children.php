@@ -57,9 +57,15 @@ return [
     'select' => 'Select',
     'uploading' => 'Uploading ...',
 
+    'id' => 'ID',
     'full_name' => 'Child Full Name',
     'full_name_ar' => 'Arabic Child Full Name',
     'full_name_en' => 'English Child Full Name',
+    'first_name' => 'Child  First Name',
+    'father_name' => 'Child Father Name',
+    'grand_father_name' => 'Child  Grand Father Name',
+    'family_name' => 'Child  Family Name',
+
     'first_name_ar' => 'Arabic Child  First Name',
     'father_name_ar' => 'Arabic Child Father Name',
     'grand_father_name_ar' => 'Arabic Child  Grand Father Name',
