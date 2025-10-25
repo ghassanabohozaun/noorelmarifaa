@@ -142,10 +142,14 @@ class ChildernController extends Controller
         return response()->json($cities);
     }
 
-
-        public function export(Request $request)
+    public function export(Request $request)
     {
-        $selectedColumns = $request->input('columns', ['id','first_name', 'father_name', 'grand_father_name', 'family_name', 'personal_id']);
+
+        //  'number_of_people_including_mother', 'guardian_full_name','guardian_personal_id','guardian_relationship_with_the_child',
+
+        $selectedColumns = $request->input('columns', ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name',
+        'personal_id', 'birthday', 'gender', 'health_status','class','classification',
+        'governoate_id', 'city_id', 'authorized_contact_number', 'whatsApp_number']);
 
         return Excel::download(new ChildrenExport(Child::get(), $selectedColumns), 'children.xlsx');
 
@@ -153,5 +157,4 @@ class ChildernController extends Controller
         // $selectedColumns = $request->input('columns', ['id', 'name']); // Get selected columns from request
         //  return Excel::download(new AdminsExport($filters, $selectedColumns), 'dynamic_users.xlsx');
     }
-
 }

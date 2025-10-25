@@ -102,8 +102,7 @@
                         <i class="la la-close"></i> {!! __('general.reset') !!}
                     </button>
 
-                    <a href="{!! route('dashboard.children.export') !!}" type="button" class="btn btn-sm btn-light mr-1"
-                        id="ticket_ecxel">
+                    <a href="{!! route('dashboard.children.export') !!}" type="button" class="btn btn-sm btn-light mr-1">
                         <i class="la la-file-excel-o"></i> {!! __('general.excel') !!}
                     </a>
 
