@@ -57,6 +57,7 @@ return [
     'select' => 'Select',
     'uploading' => 'Uploading ...',
     'created_at'=>'Created at',
+    'photo'=>'Photo',
 
     'id' => 'ID',
     'full_name' => 'Child Full Name',
