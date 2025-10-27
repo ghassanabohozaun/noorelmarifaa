@@ -107,8 +107,8 @@ class ChildrenExport implements WithHeadings, FromQuery, WithMapping, WithColumn
         $items['classification'] = $row->childClassification();
         $items['city_id'] = $row->city->name;
         $items['governoate_id'] = $row->governorate->name;
-        $items['authorized_contact_number'] = $row->authorized_contact_number;
-        $items['whatsApp_number'] = $row->whatsApp_number;
+        $items['authorized_contact_number'] = '05'. $row->authorized_contact_number;
+        $items['whatsApp_number'] ='+0094'. $row->whatsApp_number;
 
         return $items;
     }

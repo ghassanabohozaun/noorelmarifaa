@@ -254,10 +254,11 @@ class CreateChild extends Component
             $this->currentStep = 1;
         } else {
             flash()->success(message: __('general.add_success_message'));
-            //$this->resetExcept(['categories', 'brands', 'successMessage']);
+            $this->resetExcept(['governorates', 'cities','child']);
             $this->currentStep = 1;
         }
     }
+
 
     public function changeGovernorate($id)
     {
