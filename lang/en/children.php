@@ -56,6 +56,7 @@ return [
     'choose_file' => 'Choose file',
     'select' => 'Select',
     'uploading' => 'Uploading ...',
+    'created_at'=>'Created at',
 
     'id' => 'ID',
     'full_name' => 'Child Full Name',

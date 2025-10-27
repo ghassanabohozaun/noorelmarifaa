@@ -141,6 +141,7 @@
                                                                 <th scope="col">{!! __('children.gender') !!}</th>
                                                                 <th scope="col">{!! __('children.class') !!}</th>
                                                                 <th scope="col">{!! __('children.authorized_contact_number') !!}</th>
+                                                                <th scope="col">{!! __('children.created_at') !!}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -175,6 +176,9 @@
                                                                     </td>
                                                                     <td class="text-center" style="vertical-align:middle">
                                                                         {!! $child->authorized_contact_number !!}
+                                                                    </td>
+                                                                    <td class="text-center" style="vertical-align:middle">
+                                                                        {!! $child->created_at !!}
                                                                     </td>
                                                                 </tr>
 
