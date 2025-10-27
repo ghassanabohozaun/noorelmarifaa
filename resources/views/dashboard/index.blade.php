@@ -172,7 +172,7 @@
                                                                         {!! $child->childGender() !!}
                                                                     </td>
                                                                     <td class="text-center" style="vertical-align:middle">
-                                                                        {!! $child->class !!}
+                                                                        {!! $child->childClass() !!}
                                                                     </td>
                                                                     <td class="text-center" style="vertical-align:middle">
                                                                         {!! $child->authorized_contact_number !!}

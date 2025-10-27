@@ -61,6 +61,39 @@ class Child extends Authenticatable
         }
     }
 
+        // child class function
+    public function childClass()
+    {
+        if ($this->class == 'under_school_age') {
+            return __('children.under_school_age');
+        } else if ($this->class == 'kindergarten') {
+            return __('children.kindergarten');
+        } else if ($this->class == '1') {
+            return __('children.class_1');
+        }
+         else if ($this->class == '2') {
+            return __('children.class_2');
+        }
+         else if ($this->class == '3') {
+            return __('children.class_3');
+        }
+         else if ($this->class == '4') {
+            return __('children.class_4');
+        }
+         else if ($this->class == '5') {
+            return __('children.class_5');
+        }
+         else if ($this->class == '6') {
+            return  __('children.class_6');
+        }
+         else if ($this->class == '7') {
+            return  __('children.class_7');
+        }
+         else if ($this->class == '8') {
+            return __('children.class_8');
+        }
+    }
+
     // child health status function
     public function childHealthStatus()
     {
