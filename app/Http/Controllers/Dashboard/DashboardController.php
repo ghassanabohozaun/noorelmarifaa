@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Child;
 use App\Services\Dashboard\ChildService;
 use App\Services\Dashboard\CityService;
 use App\Services\Dashboard\GovernorateService;
@@ -19,7 +20,7 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        $children = $this->childService->getChildrenWithRelations();
+        $children =  Child::latest()->take(10)->get();
         $title = __('dashboard.dashboard');
         return view('dashboard.index', compact('children', 'title'));
     }
