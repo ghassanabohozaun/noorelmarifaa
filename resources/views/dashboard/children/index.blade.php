@@ -83,6 +83,8 @@
                 fixedHeader: true,
                 "bDestroy": true,
                 "bFilter": false,
+                "bLengthChange": false, //thought this line could hide the LengthMenu
+                pageLength: 10,
                 // rowReorder: {
                 //     update: false,
                 //     // selector: 'tr',
