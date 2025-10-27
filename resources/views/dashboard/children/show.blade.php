@@ -39,7 +39,7 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-1">
-                        <a href="{!! route('dashboard.children.edit', $child->id) !!}" class="btn btn-primary round btn-glow px-2">
+                        <a href="{!! route('dashboard.children.edit', $child->id) !!}" class="btn btn-primary btn-glow px-2">
                             {!! __('children.update_child') !!}
                         </a>
                         <a href="{!! route('dashboard.children.create') !!}" class="btn btn-info  btn-glow px-2">
