@@ -132,6 +132,12 @@
                         orderable: false,
                     },
                     {
+                        data: 'photo',
+                        name: 'photo',
+                        searchable: false,
+                        orderable: false,
+                    },
+                    {
                         data: 'full_name',
                         name: 'full_name',
                     },

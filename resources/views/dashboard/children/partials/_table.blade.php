@@ -25,6 +25,7 @@
 
                          <tr>
                              <th>#</th>
+                             <th>{!! __('children.photo') !!}</th>
                              <th>{!! __('children.full_name') !!}</th>
                              <th>{!! __('children.personal_id') !!}</th>
                              <th>{!! __('children.birthday') !!}</th>

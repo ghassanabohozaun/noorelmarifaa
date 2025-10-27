@@ -62,6 +62,9 @@ class ChildService
 
         return DataTables::of($children)
             ->addIndexColumn()
+            ->addColumn('photo', function ($child) {
+                return view('dashboard.children.parts.photo', compact('child'));
+            })
             ->addColumn('full_name', function ($child) {
                 return $child->childFullName(); // ar and en
             })
