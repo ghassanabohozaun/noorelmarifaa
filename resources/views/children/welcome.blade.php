@@ -13,8 +13,8 @@
                 <div class="col-md-4 col-md-5 col-sm-12 mb-2 mx-auto">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{!! __('children.welcome') !!}
-                            </h4>
+                            <h1 style="font-size: 20px" class="card-title">{!! __('children.welcome') !!}
+                            </h1>
                         </div>
                         <div class="card-content collapse show mt-2">
                             @if (setting()->logo != null)
