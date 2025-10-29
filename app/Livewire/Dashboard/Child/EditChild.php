@@ -18,6 +18,7 @@ class EditChild extends Component
 {
     use WithFileUploads;
     public $currentStep = 1;
+    public $personalIDReadOnly =  1 ,  $locked = 'open';
     public $ChildID;
     public $first_name_ar, $father_name_ar, $grand_father_name_ar, $family_name_ar;
     public $first_name_en, $father_name_en, $grand_father_name_en, $family_name_en;
@@ -339,10 +340,20 @@ class EditChild extends Component
             flash()->success(message: __('general.update_success_message'));
             // $this->resetExcept(['categories', 'brands', 'successMessage']);
             $this->reset(['password', 'password_confirm']);
+            $this->personalIDReadOnly = 1;
             $this->currentStep = 1;
         }
     }
 
+    public function unlockPersonalID(){
+        $this->personalIDReadOnly = 0;
+        $this->locked = 'close';
+    }
+
+      public function lockedPersonalID(){
+        $this->personalIDReadOnly = 1;
+        $this->locked = 'open';
+    }
     public function changeGovernorate($id)
     {
         if ($id != 0) {

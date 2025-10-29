@@ -56,8 +56,8 @@ return [
     'choose_file' => 'Choose file',
     'select' => 'Select',
     'uploading' => 'Uploading ...',
-    'created_at'=>'Created at',
-    'photo'=>'Child Photo',
+    'created_at' => 'Created at',
+    'photo' => 'Child Photo',
 
     'id' => 'ID',
     'full_name' => 'Child Full Name',
@@ -108,6 +108,10 @@ return [
     'sponsership_organization_id' => 'Sponsership Organization',
     'sponsership_type_id' => 'Sponsership Type',
 
+    'enter_first_name' => 'Enter Child  First Name',
+    'enter_father_name' => 'Enter Child Father Name',
+    'enter_grand_father_name' => 'Enter Child  Grand Father Name',
+    'enter_family_name' => 'Enter Child  Family Name',
     'enter_child_full_name' => 'Enter Child Full Name',
     'enter_first_name_ar' => 'Enter Arabic Child  First Name',
     'enter_father_name_ar' => 'Enter Arabic Child Father Name',

@@ -13,7 +13,8 @@
         <div class="form-group">
             <label for="number_of_people_including_mother">{!! __('children.number_of_people_including_mother') !!}</label>
             <input type="number" wire:model.live="number_of_people_including_mother" class="form-control"
-                autocomplete="off" placeholder="{!! __('children.enter_number_of_people_including_mother') !!}">
+                autocomplete="off" placeholder="{!! __('children.enter_number_of_people_including_mother') !!}"
+                @error('number_of_people_including_mother')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('number_of_people_including_mother')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -29,7 +30,8 @@
         <div class="form-group">
             <label for="male_number">{!! __('children.male_number') !!}</label>
             <input type="number" wire:model.live="male_number" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_male_number') !!}">
+                placeholder="{!! __('children.enter_male_number') !!}"
+                @error('male_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('male_number')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -45,7 +47,8 @@
         <div class="form-group">
             <label for="female_number">{!! __('children.female_number') !!}</label>
             <input type="number" wire:model.live="female_number" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_female_number') !!}">
+                placeholder="{!! __('children.enter_female_number') !!}"
+                @error('female_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('female_number')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -73,7 +76,8 @@
         <div class="form-group">
             <label for="father_full_name_ar">{!! __('children.father_full_name_ar') !!}</label>
             <input type="text" wire:model.live="father_full_name_ar" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_father_full_name_ar') !!}">
+                placeholder="{!! __('children.enter_father_full_name_ar') !!}"
+                @error('father_full_name_ar')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('father_full_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -88,7 +92,8 @@
         <div class="form-group">
             <label for="father_full_name_en">{!! __('children.father_full_name_en') !!}</label>
             <input type="text" wire:model.live="father_full_name_en" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_father_full_name_en') !!}">
+                placeholder="{!! __('children.enter_father_full_name_en') !!}"
+                @error('father_full_name_en')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('father_full_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -97,8 +102,6 @@
         </div>
     </div>
     <!-- end: input -->
-
-
 
 
 </div>
@@ -112,7 +115,8 @@
         <div class="form-group">
             <label for="father_personal_id">{!! __('children.father_personal_id') !!}</label>
             <input type="text" wire:model.live="father_personal_id" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_father_personal_id') !!}">
+                placeholder="{!! __('children.enter_father_personal_id') !!}"
+                @error('father_personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('father_personal_id')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -127,7 +131,8 @@
         <div class="form-group">
             <label for="father_date_of_death">{!! __('children.father_date_of_death') !!}</label>
             <input type="date" wire:model.live="father_date_of_death" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_father_date_of_death') !!}">
+                placeholder="{!! __('children.enter_father_date_of_death') !!}"
+                @error('father_date_of_death')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('father_date_of_death')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -141,7 +146,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="father_respon_of_death">{!! __('children.father_respon_of_death') !!}</label>
-            <select wire:model.live="father_respon_of_death" class="form-control">
+            <select wire:model.live="father_respon_of_death" class="form-control"
+                @error('father_respon_of_death')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="illness">{!! __('children.illness') !!}</option>
                 <option value="martyr">{!! __('children.martyr') !!}</option>
@@ -169,7 +175,8 @@
         <div class="form-group">
             <label for="mother_full_name_ar">{!! __('children.mother_full_name_ar') !!}</label>
             <input type="text" wire:model.live="mother_full_name_ar" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_mother_full_name_ar') !!}">
+                placeholder="{!! __('children.enter_mother_full_name_ar') !!}"
+                @error('mother_full_name_ar')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('mother_full_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -184,7 +191,8 @@
         <div class="form-group">
             <label for="mother_full_name_en">{!! __('children.mother_full_name_en') !!}</label>
             <input type="text" wire:model.live="mother_full_name_en" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_mother_full_name_en') !!}">
+                placeholder="{!! __('children.enter_mother_full_name_en') !!}"
+                @error('mother_full_name_en')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('mother_full_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -207,7 +215,8 @@
         <div class="form-group">
             <label for="mother_personal_id">{!! __('children.mother_personal_id') !!}</label>
             <input type="text" wire:model.live="mother_personal_id" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_mother_personal_id') !!}">
+                placeholder="{!! __('children.enter_mother_personal_id') !!}"
+                @error('mother_personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('mother_personal_id')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -222,7 +231,8 @@
         <div class="form-group">
             <label for="is_mother_the_guardian">{!! __('children.is_mother_the_guardian') !!}</label>
             <select wire:model="is_mother_the_guardian" wire:change="changeIsMotherTheGuardain($event.target.value)"
-                class="form-control">
+                class="form-control"
+                @error('is_mother_the_guardian')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="0">{!! __('children.no') !!}</option>
                 <option value="1">{!! __('children.yes') !!}</option>
@@ -244,7 +254,8 @@
         <div class="form-group">
             <label for="is_mother_alive">{!! __('children.is_mother_alive') !!}</label>
             <select wire:model.live="is_mother_alive" class="form-control" {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!}
-                wire:change="changeIsMotherAlive($event.target.value)">
+                wire:change="changeIsMotherAlive($event.target.value)"
+                @error('is_mother_alive')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="0">{!! __('children.no') !!}</option>
                 <option value="1">{!! __('children.yes') !!}</option>
@@ -265,7 +276,8 @@
             <div class="form-group">
                 <label for="mother_date_of_death">{!! __('children.mother_date_of_death') !!}</label>
                 <input type="date" wire:model.live="mother_date_of_death" class="form-control" autocomplete="off"
-                    placeholder="{!! __('children.enter_mother_date_of_death') !!}">
+                    placeholder="{!! __('children.enter_mother_date_of_death') !!}"
+                    @error('mother_date_of_death')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 @error('mother_date_of_death')
                     <span class="text text-danger">
                         <strong>{!! $message !!}</strong>

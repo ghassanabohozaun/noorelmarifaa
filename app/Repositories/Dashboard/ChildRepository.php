@@ -41,6 +41,32 @@ class ChildRepository
     public function getChildren($request)
     {
         return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])
+            ->when(!empty(request()->first_name_ar), function ($query) {
+                $query->where('first_name->ar', 'like', '%' . request()->first_name_ar . '%');
+            })
+            ->when(!empty(request()->father_name_ar), function ($query) {
+                $query->where('father_name->ar', 'like', '%' . request()->father_name_ar . '%');
+            })
+            ->when(!empty(request()->grand_father_name_ar), function ($query) {
+                $query->where('grand_father_name->ar', 'like', '%' . request()->grand_father_name_ar . '%');
+            })
+            ->when(!empty(request()->family_name_ar), function ($query) {
+                $query->where('family_name->ar', 'like', '%' . request()->family_name_ar . '%');
+            })
+
+            ->when(!empty(request()->first_name_en), function ($query) {
+                $query->where('first_name->en', 'like', '%' . request()->first_name_en . '%');
+            })
+            ->when(!empty(request()->father_name_en), function ($query) {
+                $query->where('father_name->en', 'like', '%' . request()->father_name_en . '%');
+            })
+            ->when(!empty(request()->grand_father_name_en), function ($query) {
+                $query->where('grand_father_name->en', 'like', '%' . request()->grand_father_name_en . '%');
+            })
+            ->when(!empty(request()->family_name_en), function ($query) {
+                $query->where('family_name->en', 'like', '%' . request()->family_name_en . '%');
+            })
+
             ->when(!empty(request()->personal_id), function ($query) {
                 $query->where('personal_id', request()->personal_id);
             })
@@ -60,7 +86,7 @@ class ChildRepository
                 $query->where('city_id', request()->city_id);
             })
             ->when(!empty(request()->guardian_personal_id), function ($query) {
-                $query->whereRelation('childGuardian', 'guardian_personal_id',  request()->guardian_personal_id);
+                $query->whereRelation('childGuardian', 'guardian_personal_id', request()->guardian_personal_id);
             })
 
             ->latest()
@@ -171,9 +197,12 @@ class ChildRepository
         return ChildFile::create($childFileData);
     }
 
-    //update child guardian
+    //update child files
     public function updateChildFiles($myChild, $childFileData)
     {
         return $myChild->childFile->update($childFileData);
     }
+
+    // destroy child
+    public function destroyChildFiles($myChild) {}
 }

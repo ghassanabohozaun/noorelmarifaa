@@ -57,8 +57,8 @@ return [
     'choose_file' => 'اختار الملف',
     'select' => 'اختار',
     'uploading' => 'تحميل الصورة ....',
-    'created_at'=>'أنشأ في',
-    'photo'=>'صورة الطفل',
+    'created_at' => 'أنشأ في',
+    'photo' => 'صورة الطفل',
 
     'id' => 'الرقم المتسلسل',
     'full_name' => 'اسم الطفل  كاملاً',
@@ -108,6 +108,11 @@ return [
     'sponsership_organization_id' => 'المؤسسة الكافلة',
     'sponsership_type_id' => 'نوع الكفالة',
 
+    'enter_full_name' => 'ادخل اسم الطفل  كاملاً',
+    'enter_first_name' => 'ادخل اسم الطفل   الاول',
+    'enter_father_name' => 'ادخل اسم والد  الطفل  ',
+    'enter_grand_father_name' => 'ادخل اسم جد الطفل  ',
+    'enter_family_name' => 'ادخل اسم عائلة الطفل',
     'enter_first_name_ar' => 'أدخل اسم الطفل الاول بالعربي',
     'enter_father_name_ar' => 'أدخل اسم والد الطفل  بالعربي',
     'enter_grand_father_name_ar' => 'ادخل اسم جد الطفل بالعربي',

@@ -9,7 +9,8 @@
         <div class="form-group">
             <label for="first_name_ar">{!! __('children.first_name_ar') !!}</label>
             <input type="text" wire:model.live="first_name_ar" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_first_name_ar') !!}">
+                placeholder="{!! __('children.enter_first_name_ar') !!}"
+                @error('first_name_ar')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('first_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -25,7 +26,8 @@
         <div class="form-group">
             <label for="father_name_ar">{!! __('children.father_name_ar') !!}</label>
             <input type="text" wire:model.live="father_name_ar" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_father_name_ar') !!}">
+                placeholder="{!! __('children.enter_father_name_ar') !!}"
+                @error('father_name_ar')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('father_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -42,7 +44,8 @@
         <div class="form-group">
             <label for="grand_father_name_ar">{!! __('children.grand_father_name_ar') !!}</label>
             <input type="text" wire:model.live="grand_father_name_ar" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_grand_father_name_ar') !!}">
+                placeholder="{!! __('children.enter_grand_father_name_ar') !!}"
+                @error('grand_father_name_ar')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('grand_father_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -57,7 +60,8 @@
         <div class="form-group">
             <label for="family_name_ar">{!! __('children.family_name_ar') !!}</label>
             <input type="text" wire:model.live='family_name_ar' class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_family_name_ar') !!}">
+                placeholder="{!! __('children.enter_family_name_ar') !!}"
+                @error('family_name_ar')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('family_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -77,7 +81,8 @@
         <div class="form-group">
             <label for="first_name_en">{!! __('children.first_name_en') !!}</label>
             <input type="text" wire:model.live="first_name_en" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_first_name_en') !!}">
+                placeholder="{!! __('children.enter_first_name_en') !!}"
+                @error('first_name_en')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('first_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -93,7 +98,8 @@
         <div class="form-group">
             <label for="father_name_en">{!! __('children.father_name_en') !!}</label>
             <input type="text" wire:model.live="father_name_en" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_father_name_en') !!}">
+                placeholder="{!! __('children.enter_father_name_en') !!}"
+                @error('father_name_en')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('father_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -109,7 +115,8 @@
         <div class="form-group">
             <label for="grand_father_name_en">{!! __('children.grand_father_name_en') !!}</label>
             <input type="text" wire:model.live="grand_father_name_en" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_grand_father_name_en') !!}">
+                placeholder="{!! __('children.enter_grand_father_name_en') !!}"
+                @error('grand_father_name_en')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('grand_father_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -125,7 +132,8 @@
         <div class="form-group">
             <label for="family_name_en">{!! __('children.family_name_en') !!}</label>
             <input type="text" wire:model.live='family_name_en' class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_family_name_en') !!}">
+                placeholder="{!! __('children.enter_family_name_en') !!}"
+                @error('family_name_en')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('family_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -140,20 +148,58 @@
 
 <!-- end: personal_id , birthday , classification , gender ,password,password_confirm -->
 <div class="row">
+
     <!-- begin: input -->
-    <div class="col-md-3">
-        <div class="form-group">
+    @if (admin()->check())
+        <div class="col-md-3">
             <label for="personal_id">{!! __('children.personal_id') !!}</label>
-            <input type="text" wire:model.live="personal_id" class="form-control" autocomplete="off" readonly
-                placeholder="{!! __('children.enter_personal_id') !!}">
+            <div class="input-group">
+                @if ($locked == 'open')
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3"
+                            style="color: black;font-size: 15px;cursor: pointer;"
+                            wire:click.prevent="unlockPersonalID()">
+                            <i class="icon-lock"></i>
+                        </span>
+                    </div>
+                @elseif($locked == 'close')
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3"
+                            style="color:black;font-size: 15px;cursor: pointer;"
+                            wire:click.prevent="lockedPersonalID()">
+                            <i class="icon-lock-open"></i>
+                        </span>
+                    </div>
+                @endif
+
+
+                <input type="text" wire:model.live="personal_id" class="form-control" autocomplete="off"
+                    {!! $personalIDReadOnly ? 'readonly' : '' !!} placeholder="{!! __('children.enter_personal_id') !!}" aria-describedby="basic-addon3"
+                    @error('personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
+            </div>
             @error('personal_id')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
                 </span>
             @enderror
         </div>
-    </div>
+    @else
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="personal_id">{!! __('children.personal_id') !!}</label>
+                <input type="text" wire:model.live="personal_id" class="form-control" autocomplete="off"
+                    {!! $personalIDReadOnly ? 'readonly' : '' !!} placeholder="{!! __('children.enter_personal_id') !!}"
+                    @error('personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
+                @error('personal_id')
+                    <span class="text text-danger">
+                        <strong>{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+    @endif
     <!-- end: input -->
+
 
 
     <!-- begin: input -->
@@ -161,7 +207,8 @@
         <div class="form-group">
             <label for="birthday">{!! __('children.birthday') !!}</label>
             <input type="date" wire:model.live="birthday" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_birthday') !!}">
+                placeholder="{!! __('children.enter_birthday') !!}"
+                @error('birthday')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('birthday')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -176,7 +223,8 @@
     <div class="col-md-2">
         <div class="form-group">
             <label for="gender">{!! __('children.gender') !!}</label>
-            <select wire:model.live="gender" class="form-control">
+            <select wire:model.live="gender" class="form-control"
+                @error('gender')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="male">{!! __('children.male') !!}</option>
                 <option value="female">{!! __('children.female') !!}</option>
@@ -195,7 +243,8 @@
         <div class="form-group">
             <label for="password">{!! __('children.password') !!}</label>
             <input type="password" wire:model.live="password" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_password') !!}">
+                placeholder="{!! __('children.enter_password') !!}"
+                @error('password')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('password')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -208,7 +257,8 @@
         <div class="form-group">
             <label for="password_confirm">{!! __('children.password_confirm') !!}</label>
             <input type="password" wire:model.live="password_confirm" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_password_confirm') !!}">
+                placeholder="{!! __('children.enter_password_confirm') !!}"
+                @error('password_confirm')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('password_confirm')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -232,7 +282,8 @@
     <div class="col-md-2">
         <div class="form-group">
             <label for="classification">{!! __('children.classification') !!}</label>
-            <select wire:model.live="classification" class="form-control">
+            <select wire:model.live="classification" class="form-control"
+                @error('classification')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="fatherless">{!! __('children.fatherless') !!}</option>
                 <option value="parentless">{!! __('children.parentless') !!}</option>
@@ -250,7 +301,8 @@
     <div class="col-md-2">
         <div class="form-group">
             <label for="class">{!! __('children.class') !!}</label>
-            <select wire:model.live="class" class="form-control">
+            <select wire:model.live="class" class="form-control"
+                @error('class')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="under_school_age">{!! __('children.under_school_age') !!}</option>
                 <option value="kindergarten">{!! __('children.kindergarten') !!}</option>
@@ -278,7 +330,7 @@
         <div class="form-group">
             <label for="gender">{!! __('children.health_status') !!}</label>
             <select wire:model.live="health_status" wire:change="changeHealthStatus($event.target.value)"
-                class="form-control">
+                class="form-control" @error('health_status')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="good">{!! __('children.good') !!}</option>
                 <option value="sick">{!! __('children.sick') !!}</option>
@@ -299,7 +351,8 @@
             <div class="form-group">
                 <label for="disease_clarification">{!! __('children.disease_clarification') !!}</label>
                 <input type="text" wire:model.live="disease_clarification" class="form-control"
-                    autocomplete="off" placeholder="{!! __('children.enter_disease_clarification') !!}">
+                    autocomplete="off" placeholder="{!! __('children.enter_disease_clarification') !!}"
+                    @error('disease_clarification')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 @error('disease_clarification')
                     <span class="text text-danger">
                         <strong>{!! $message !!}</strong>
@@ -323,7 +376,8 @@
         <div class="form-group">
             <label for="governoate_id">{!! __('children.governoate_id') !!}</label>
             <select type="text" wire:model="governoate_id" wire:change="changeGovernorate($event.target.value)"
-                id="governoate_id" name="governoate_id" class="form-control">
+                id="governoate_id" name="governoate_id" class="form-control"
+                @error('governoate_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="0" selected='selected'>
                     {!! __('children.select') !!} {!! __('children.governoate_id') !!}
                 </option>
@@ -344,7 +398,8 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="city_id">{!! __('children.city_id') !!}</label>
-            <select class="form-control custom_select" wire:model="city_id" id="city_id" name="city_id">
+            <select class="form-control custom_select" wire:model="city_id" id="city_id" name="city_id"
+                @error('city_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="0" selected='selected'>
                     {!! __('general.select_from_list') !!}
                 </option>
@@ -370,7 +425,8 @@
         <div class="form-group">
             <label for="address_details">{!! __('children.address_details') !!}</label>
             <input type="text" wire:model.live="address_details" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_address_details') !!}">
+                placeholder="{!! __('children.enter_address_details') !!}"
+                @error('address_details')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('address_details')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -394,10 +450,11 @@
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3" style="color: rgb(8, 10, 87);font-size: 15px">
-                    <i class="la la-mobile"></i> 05 </span>
+                    <i class="ft-phone"></i>&nbsp; 05 </span>
             </div>
             <input type="text" wire:model.live="authorized_contact_number" class="form-control"
-                autocomplete="off" placeholder="{!! __('children.enter_authorized_contact_number') !!}" aria-describedby="basic-addon3">
+                autocomplete="off" placeholder="{!! __('children.enter_authorized_contact_number') !!}" aria-describedby="basic-addon3"
+                @error('authorized_contact_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
         </div>
         @error('authorized_contact_number')
             <span class="text text-danger">
@@ -413,10 +470,11 @@
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3" style="color: rgb(8, 10, 87);font-size: 15px">
-                    <i class="la la-mobile"></i> 05 </span>
+                    <i class="ft-phone"></i>&nbsp; 05 </span>
             </div>
             <input type="text" wire:model.live="backup_contact_number" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_backup_contact_number') !!}" aria-describedby="basic-addon3">
+                placeholder="{!! __('children.enter_backup_contact_number') !!}" aria-describedby="basic-addon3"
+                @error('backup_contact_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
         </div>
         @error('backup_contact_number')
             <span class="text text-danger">
@@ -432,11 +490,12 @@
         <label for="whatsApp_number">{!! __('children.whatsApp_number') !!}</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3" style="color: green;font-size: 15px">
-                    <i class="la la-whatsapp"></i> 0097 </span>
+                <span class="input-group-text" id="basic-addon3" style="color: rgb(16, 99, 16);font-size: 15px">
+                    <i class="la la-whatsapp" style="font-size: 16px"></i>&nbsp; 0097 </span>
             </div>
             <input type="text" wire:model.live="whatsApp_number" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_whatsApp_number') !!}" aria-describedby="basic-addon3">
+                placeholder="{!! __('children.enter_whatsApp_number') !!}" aria-describedby="basic-addon3"
+                @error('whatsApp_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
         </div>
         @error('whatsApp_number')
             <span class="text text-danger">
@@ -460,7 +519,8 @@
             <div class="form-group">
                 <label for="sponsership_status_id">{!! __('children.sponsership_status_id') !!}</label>
                 <select type="text" wire:model="sponsership_status_id" id="sponsership_status_id"
-                    name="sponsership_status_id" class="form-control">
+                    name="sponsership_status_id" class="form-control"
+                    @error('sponsership_status_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                     <option value="0" selected='selected'>
                         {!! __('children.select') !!} {!! __('children.sponsership_status_id') !!}
                     </option>
@@ -483,7 +543,8 @@
             <div class="form-group">
                 <label for="sponsership_type_id">{!! __('children.sponsership_type_id') !!}</label>
                 <select type="text" wire:model="sponsership_type_id" id="sponsership_type_id"
-                    name="sponsership_type_id" class="form-control">
+                    name="sponsership_type_id" class="form-control"
+                    @error('sponsership_type_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                     <option value="0" selected='selected'>
                         {!! __('children.select') !!} {!! __('children.sponsership_type_id') !!}
                     </option>
@@ -505,7 +566,8 @@
             <div class="form-group">
                 <label for="sponsership_organization_id">{!! __('children.sponsership_organization_id') !!}</label>
                 <select type="text" wire:model="sponsership_organization_id" id="sponsership_organization_id"
-                    name="sponsership_organization_id" class="form-control">
+                    name="sponsership_organization_id" class="form-control"
+                    @error('sponsership_organization_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                     <option value="0" selected='selected'>
                         {!! __('children.select') !!} {!! __('children.sponsership_organization_id') !!}
                     </option>

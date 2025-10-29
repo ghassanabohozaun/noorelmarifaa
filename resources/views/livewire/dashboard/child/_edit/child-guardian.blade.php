@@ -8,7 +8,8 @@
         <div class="form-group">
             <label for="guardian_full_name_ar">{!! __('children.guardian_full_name_ar') !!}</label>
             <input type="text" wire:model.live="guardian_full_name_ar" class="form-control" autocomplete="off"
-                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_full_name_ar') !!}">
+                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_full_name_ar') !!}"
+                @error('guardian_full_name_ar')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('guardian_full_name_ar')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -23,7 +24,8 @@
         <div class="form-group">
             <label for="guardian_full_name_en">{!! __('children.guardian_full_name_en') !!}</label>
             <input type="text" wire:model.live="guardian_full_name_en" class="form-control" autocomplete="off"
-                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_full_name_en') !!}">
+                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_full_name_en') !!}"
+                @error('guardian_full_name_en')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('guardian_full_name_en')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -39,7 +41,8 @@
         <div class="form-group">
             <label for="guardian_personal_id">{!! __('children.guardian_personal_id') !!}</label>
             <input type="text" wire:model.live="guardian_personal_id" class="form-control" autocomplete="off"
-                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_personal_id') !!}">
+                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_personal_id') !!}"
+                @error('guardian_personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('guardian_personal_id')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -60,7 +63,8 @@
         <div class="form-group">
             <label for="guardian_birthday">{!! __('children.guardian_birthday') !!}</label>
             <input type="date" wire:model.live="guardian_birthday" class="form-control" autocomplete="off"
-                placeholder="{!! __('children.enter_guardian_birthday') !!}">
+                placeholder="{!! __('children.enter_guardian_birthday') !!}"
+                @error('guardian_birthday')  style="border-color: rgb(246, 78, 96)"  @enderror>
             @error('guardian_birthday')
                 <span class="text text-danger">
                     <strong>{!! $message !!}</strong>
@@ -74,8 +78,8 @@
     <div class="col-md-4">
         <div class="form-group">
             <label for="guardian_relationship_with_the_child">{!! __('children.guardian_relationship_with_the_child') !!}</label>
-            <select wire:model.live="guardian_relationship_with_the_child" class="form-control"
-                {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!}>
+            <select wire:model.live="guardian_relationship_with_the_child" class="form-control" {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!}
+                @error('guardian_relationship_with_the_child')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 <option value="" selected>{!! __('children.select_from_list') !!}</option>
                 <option value="mother">{!! __('children.mother') !!}</option>
                 <option value="uncle">{!! __('children.uncle') !!}</option>
@@ -101,7 +105,8 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="why_not_the_mother_is_guardian">{!! __('children.why_not_the_mother_is_guardian') !!}</label>
-                <select wire:model.live="why_not_the_mother_is_guardian" class="form-control">
+                <select wire:model.live="why_not_the_mother_is_guardian" class="form-control"
+                    @error('why_not_the_mother_is_guardian')  style="border-color: rgb(246, 78, 96)"  @enderror>
                     <option value="" selected>{!! __('children.select_from_list') !!}</option>
                     <option value="divorced">{!! __('children.divorced') !!}</option>
                     <option value="abandoned">{!! __('children.abandoned') !!}</option>

@@ -35,9 +35,14 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-1">
+                        <a href="{!! route('dashboard.children.export') !!}" type="button" class="btn btn-sm btn-warning  btn-glow mr-1">
+                            <i class="la la-file-excel-o"></i> {!! __('general.excel') !!}
+                        </a>
+
                         <a href="{!! route('dashboard.children.create') !!}" class="btn btn-info  btn-glow px-2">
                             {!! __('children.create_new_child') !!}
                         </a>
+
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -72,7 +77,9 @@
 
         loadData();
 
-        function loadData(personal_id = '', gender = '', classification = '', health_status = '', governoate_id = '',
+        function loadData(first_name_ar = '', father_name_ar = '', grand_father_name_ar = '', family_name_ar = '',
+            first_name_en = '', father_name_en = '', grand_father_name_en = '', family_name_en = '',
+            personal_id = '', gender = '', classification = '', health_status = '', governoate_id = '',
             city_id = '', guardian_personal_id = '') {
             // yajra tables
             $('#yajra-datatable').DataTable({
@@ -115,6 +122,14 @@
                 ajax: {
                     url: '{!! route('dashboard.children.get.all') !!}',
                     data: {
+                        first_name_ar: first_name_ar,
+                        father_name_ar: father_name_ar,
+                        grand_father_name_ar: grand_father_name_ar,
+                        family_name_ar: family_name_ar,
+                        first_name_en: first_name_en,
+                        father_name_en: father_name_en,
+                        grand_father_name_en: grand_father_name_en,
+                        family_name_en: family_name_en,
                         personal_id: personal_id,
                         gender: gender,
                         classification: classification,
@@ -163,18 +178,6 @@
                         name: 'health_status',
                     },
                     {
-                        data: 'sponsership_status_id',
-                        name: 'sponsership_status_id',
-                    },
-                    {
-                        data: 'sponsership_type_id',
-                        name: 'sponsership_type_id',
-                    },
-                    {
-                        data: 'sponsership_organization_id',
-                        name: 'sponsership_organization_id',
-                    },
-                    {
                         data: 'governoate_id',
                         name: 'governoate_id',
                     },
@@ -185,6 +188,18 @@
                     {
                         data: 'authorized_contact_number',
                         name: 'authorized_contact_number',
+                    },
+                    {
+                        data: 'sponsership_status_id',
+                        name: 'sponsership_status_id',
+                    },
+                    {
+                        data: 'sponsership_type_id',
+                        name: 'sponsership_type_id',
+                    },
+                    {
+                        data: 'sponsership_organization_id',
+                        name: 'sponsership_organization_id',
                     },
                     // {
                     //     data: 'backup_contact_number',
@@ -263,34 +278,7 @@
             });
         }
 
-        // search
-        $('body').on('click', '#children_search_btn', function(e) {
-            e.preventDefault();
-            var personal_id = $('#personal_id').val();
-            var gender = $('#gender').val();
-            var classification = $('#classification').val();
-            var health_status = $('#health_status').val();
-            var governoate_id = $('#governoate_id').val();
-            var city_id = $('#city_id').val();
-            var guardian_personal_id = $('#guardian_personal_id').val();
 
-            loadData(personal_id, gender, classification, health_status, governoate_id, city_id,
-                guardian_personal_id);
-        })
-
-
-        // reset
-        $('body').on('click', '#children_reset_btn', function(e) {
-            e.preventDefault();
-            $('#personal_id').val('');
-            $('#gender').val('')
-            $('#classification').val('');
-            $('#health_status').val('');
-            $('#governoate_id').val('');
-            $('#city_id').val('');
-            $('#guardian_personal_id').val('');
-            loadData();
-        });
 
         // address dependency
         $('#governoate_id').on('change', function() {

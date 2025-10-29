@@ -3,6 +3,14 @@
     {!! $title !!}
 @endsection
 
+@push('style')
+    <style>
+        .form-control:disabled,
+        .form-control[readonly] {
+            background-color: #dcdddf;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="app-content content">
 
