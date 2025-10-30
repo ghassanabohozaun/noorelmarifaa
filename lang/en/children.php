@@ -232,4 +232,7 @@ return [
     'children_count' => 'Children Count',
     'governorates_count' => 'Governorates Count',
     'cities_count' => 'Cities Count',
+
+    'male_children' => 'Male Children',
+    'female_children' => 'Female Children',
 ];

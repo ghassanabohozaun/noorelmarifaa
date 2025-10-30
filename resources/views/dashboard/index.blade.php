@@ -100,6 +100,43 @@
             </div>
             <!-- end: staticstics -->
 
+            <!--begin::chart-->
+            <div class="card card-custom gutter-b">
+
+                <div class="card-body py-2" style="">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <!--begin::flight reservations chart-->
+                            <div class="col-lg-6">
+                                <div class="col-12">
+                                    <div style="width: 100% ; margin: auto">
+                                        <canvas id="barChart1" width="1100" height="600"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::flight reservations chart-->
+
+                            <!--begin::ticket reservations charts -->
+                            <div class="col-lg-6">
+                                <div class="col-12">
+                                    <div style="width: 100% ; margin: auto">
+                                        <canvas id="barChart2" width="1100" height="600"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::ticket reservations chart-->
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--end::Body-->
+            </div>
+            <!--end::chart-->
+
+
+
             <!-- begin: children -->
             <div class="content-body">
                 <section id="basic-form-layouts">
@@ -212,3 +249,67 @@
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
 @endsection
+@push('scripts')
+    <script type="text/javascript" src="{!! asset('assets/dashbaord/js/scripts/Chart.bundle.min.js') !!}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var maleRegistrationData = <?php echo json_encode($maleRegistrationData); ?>;
+            var barCanvas = $("#barChart1");
+            var barChart = new Chart(barCanvas, {
+                type: 'line',
+                data: {
+                    labels: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov',
+                        'dec'
+                    ],
+                    datasets: [{
+                        label: '{!! trans('children.male_children') !!}',
+                        data: maleRegistrationData,
+                        backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'violet',
+                            'purple', 'pink', 'indigo', 'silver', 'gold', 'brown'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxis: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            })
+        });
+
+
+        $(function() {
+            var femaleRegistrationData = <?php echo json_encode($femaleRegistrationData); ?>;
+            var barCanvas = $("#barChart2");
+            var barChart = new Chart(barCanvas, {
+                type: 'line', //bar
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                        'Dec'
+                    ],
+                    datasets: [{
+                        label: '{!! trans('children.female_children') !!}',
+                        data: femaleRegistrationData,
+                        backgroundColor: ['gold', 'green', 'blue', 'violet', 'red', 'orange',
+                            'yellow', 'pink', 'indigo', 'silver',
+                            'purple', 'brown'
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxis: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            })
+        });
+    </script>
+@endpush

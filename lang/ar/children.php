@@ -227,4 +227,7 @@ return [
     'children_count' => 'عدد الاطفال الأيتام',
     'governorates_count' => 'عدد المحافظات',
     'cities_count' => 'عدد المدن',
+
+    'male_children' => 'الاطفال الذكور',
+    'female_children' => 'الأطفال الاناث',
 ];

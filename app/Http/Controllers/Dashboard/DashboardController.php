@@ -22,7 +22,10 @@ class DashboardController extends Controller
     {
         $children =  Child::latest()->take(10)->get();
         $title = __('dashboard.dashboard');
-        return view('dashboard.index', compact('children', 'title'));
+        $maleRegistrationData = $this->maleChildRegistrationChart();
+        $femaleRegistrationData = $this->femaleChildRegistrationChart();
+
+        return view('dashboard.index', compact('children', 'title','maleRegistrationData','femaleRegistrationData'));
     }
 
     // addresses
@@ -32,4 +35,49 @@ class DashboardController extends Controller
         $cities = $this->cityService->getAllCitiesWithoutRelation();
         return view('dashboard.address', compact('governorates', 'cities'));
     }
+
+
+
+    // child registration chart function
+    public function maleChildRegistrationChart()
+    {
+        $childRegistration = Child::where('gender', 'male')->selectRaw('COUNT(*) as count, YEAR(created_at) as year, MONTH(created_at) as month')->groupBy('year', 'month')->orderBy('year')->orderBy('month')->get();
+
+        $childCount = [];
+        $months = [];
+        foreach ($childRegistration as $key => $item) {
+            $childCount[$key] = $item['count'];
+            $months[$key] = $item['month'];
+        }
+
+        $maleRegistrationData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        foreach ($months as $index => $month) {
+            $maleRegistrationData[$month - 1] = $childCount[$index];
+        }
+        return $maleRegistrationData;
+    }
+
+
+      // child registration chart function
+    public function femaleChildRegistrationChart()
+    {
+        $childRegistration = Child::where('gender', 'female')->selectRaw('COUNT(*) as count, YEAR(created_at) as year, MONTH(created_at) as month')->groupBy('year', 'month')->orderBy('year')->orderBy('month')->get();
+
+        $childCount = [];
+        $months = [];
+        foreach ($childRegistration as $key => $item) {
+            $childCount[$key] = $item['count'];
+            $months[$key] = $item['month'];
+        }
+
+        $femaleRegistrationData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        foreach ($months as $index => $month) {
+            $femaleRegistrationData[$month - 1] = $childCount[$index];
+        }
+        return $femaleRegistrationData;
+    }
+
+
+
+
 }
