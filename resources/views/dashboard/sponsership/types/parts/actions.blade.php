@@ -10,8 +10,8 @@
         </a>
 
         {{-- delete --}}
-        <a href="#" class="btn btn-sm btn-outline-danger delete_type_btn" data-id="{!! $type->id !!}">
+        {{-- <a href="#" class="btn btn-sm btn-outline-danger delete_type_btn" data-id="{!! $type->id !!}">
             <i class="la la-trash"></i>
-        </a>
+        </a> --}}
     </div>
 </div>
