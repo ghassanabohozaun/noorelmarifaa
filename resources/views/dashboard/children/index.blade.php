@@ -39,6 +39,8 @@
                             <i class="la la-file-excel-o"></i> {!! __('general.excel') !!}
                         </a>
 
+
+
                         <a href="{!! route('dashboard.children.create') !!}" class="btn btn-info  btn-glow px-2">
                             {!! __('children.create_new_child') !!}
                         </a>
