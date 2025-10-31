@@ -127,9 +127,7 @@
             <!-- end: world -->
 
 
-
             <!-- begin: world -->
-
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class=" nav-item">
                     <a href="#">
@@ -176,10 +174,7 @@
 
                 </li>
             </ul>
-
             <!-- end: world -->
-
-
 
             <!-- begin: children -->
             @can('children')
@@ -199,13 +194,17 @@
                                 </a>
 
                             </li>
+                            <li class="@if (str_contains(Route::currentRouteName(), 'children.show.report')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.children.show.report') !!}" data-i18n="nav.dash.children">
+                                    {!! __('children.reports') !!}
+                                </a>
+                            </li>
                         </ul>
                         <!-- end: children -->
                     </li>
                 </ul>
             @endcan
             <!-- end: children -->
-
 
         </div>
     </div>

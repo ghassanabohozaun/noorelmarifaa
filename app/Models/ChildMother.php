@@ -16,6 +16,28 @@ class ChildMother extends Model
 
     public array $translatable = ['mother_full_name'];
 
+    // functions
+
+    public function isMotherAliveFunction()
+    {
+        if ($this->is_mother_alive == 1) {
+            return __('general.yes');
+        } else {
+            return __('general.no');
+        }
+    }
+
+
+    public function isMotherTheGuardianFunction()
+    {
+        if ($this->is_mother_the_guardian == 1) {
+            return __('general.yes');
+        } else {
+            return __('general.no');
+        }
+    }
+
+    // relations
     public function child()
     {
         return $this->belongsTo(Child::class, 'child_id');

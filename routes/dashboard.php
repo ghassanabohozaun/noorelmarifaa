@@ -81,9 +81,10 @@ Route::group(
 
             ########################################### children routes  ######################################################################
             Route::group(['middleware' => 'can:children'], function () {
-                Route::get('/children/export', [ChildernController::class, 'export'])->name('children.export');
+                Route::post('/children/export/excel', [ChildernController::class, 'exportExcel'])->name('children.export.excel');
 
                 Route::resource('children', ChildernController::class);
+                Route::get('/children/show/report', [ChildernController::class, 'showReport'])->name('children.show.report');
                 Route::get('/children-all', [ChildernController::class, 'getAll'])->name('children.get.all');
                 Route::post('/childrem/change-status', [ChildernController::class, 'changeStatus'])->name('children.change.status');
                 Route::get('download-pdf/{id?}', [ChildernController::class, 'downloadPDF'])->name('children.download.pdf');

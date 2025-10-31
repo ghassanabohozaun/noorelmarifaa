@@ -27,6 +27,8 @@ class Child extends Authenticatable
     // hidden
     protected $hidden = ['password'];
 
+
+
     // Get the attributes that should be cast.
     protected function casts(): array
     {

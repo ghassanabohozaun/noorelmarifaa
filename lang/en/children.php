@@ -13,6 +13,8 @@ return [
     'child_parents' => 'Child Parents',
     'show_child' => 'Show Child',
     'welcome' => 'Welcome',
+    'reports' => 'Reports',
+    'columns'=>'Columns',
 
     'child_info' => 'Child Informations',
     'family_info' => 'Family Informations',

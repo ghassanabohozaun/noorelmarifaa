@@ -6,6 +6,8 @@ return [
     'show_all_children' => 'عرض جميع الأطفال',
     'show_child' => 'عرض الطفل',
     'welcome' => 'مرحباً ',
+    'reports' => 'التقارير',
+    'columns' => 'الأعمدة',
 
     'orphan_child' => 'بيانات الطفل',
     'child_family' => 'بيانات  عائلة الطفل',

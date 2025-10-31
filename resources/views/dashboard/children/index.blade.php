@@ -35,12 +35,6 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-1">
-                        <a href="{!! route('dashboard.children.export') !!}" type="button" class="btn btn-sm btn-warning  btn-glow mr-1">
-                            <i class="la la-file-excel-o"></i> {!! __('general.excel') !!}
-                        </a>
-
-
-
                         <a href="{!! route('dashboard.children.create') !!}" class="btn btn-info  btn-glow px-2">
                             {!! __('children.create_new_child') !!}
                         </a>

@@ -13,6 +13,7 @@ use App\Services\Dashboard\SponsershipOrganizationService;
 use App\Services\Dashboard\SponsershipStatusService;
 use App\Services\Dashboard\SponsershipTypeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
@@ -142,19 +143,77 @@ class ChildernController extends Controller
         return response()->json($cities);
     }
 
-    public function export(Request $request)
+    // show report
+    public function showReport()
     {
+        $title = __('children.reports');
 
-        //  'number_of_people_including_mother', 'guardian_full_name','guardian_personal_id','guardian_relationship_with_the_child',
+        $childColumnNames = $this->childColumnNamesFunction();
+        $familyCloumnNames = $this->columnNamesFunction('child_families');
+        $fatherCloumnNames = $this->columnNamesFunction('child_fathers');
+        $motherCloumnNames = $this->columnNamesFunction('child_mothers');
+        $guardianCloumnNames = $this->columnNamesFunction('child_guardians');
+                $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
 
-        $selectedColumns = $request->input('columns', ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name',
-        'personal_id', 'birthday', 'gender', 'health_status','class','classification',
-        'governoate_id', 'city_id', 'authorized_contact_number', 'whatsApp_number']);
 
-        return Excel::download(new ChildrenExport(Child::get(), $selectedColumns), 'children.xlsx');
+        return view('dashboard.children.report', compact('title', 'childColumnNames', 'familyCloumnNames',
+         'fatherCloumnNames','motherCloumnNames', 'guardianCloumnNames','governorates'));
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $filters = $request->except(['_token']);
+
+        if (empty($filters['columns'])) {
+            $selectedColumns = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'classification','gender','health_status','city_id', 'governoate_id', 'guardian_full_name'];
+        } else {
+            $selectedColumns = $request->input('columns', $filters);
+        }
+
+
+        $fileName = 'children_' . now() . '.xlsx';
+        return Excel::download(new ChildrenExport(Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])->get(), $selectedColumns, $filters), $fileName);
+
+        // //  'number_of_people_including_mother', 'guardian_full_name','guardian_personal_id','guardian_relationship_with_the_child',
+
+        // $selectedColumns = $request->input('columns', ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name', 'personal_id', 'birthday', 'gender', 'health_status', 'class', 'classification', 'governoate_id', 'city_id', 'authorized_contact_number', 'whatsApp_number']);
+
+        // return Excel::download(new ChildrenExport(Child::get(), $selectedColumns), 'children.xlsx');
 
         // $filters = $request->only(['status']); // Get filters from request
         // $selectedColumns = $request->input('columns', ['id', 'name']); // Get selected columns from request
         //  return Excel::download(new AdminsExport($filters, $selectedColumns), 'dynamic_users.xlsx');
+    }
+
+    //  child columns name function
+    public function childColumnNamesFunction()
+    {
+        // fliter children columns
+        $tableName = 'children';
+        $excludedColumns = ['deleted_at', 'updated_at', 'password', 'disease_clarification', 'backup_contact_number', 'status', 'freeze', 'address_details', 'created_at'];
+        $allCloumnsNames = DB::getSchemaBuilder()->getColumnListing($tableName);
+        $columnNames = collect($allCloumnsNames)
+            ->filter(function ($column) use ($excludedColumns) {
+                return !in_array($column, $excludedColumns);
+            })
+            ->values()
+            ->toArray();
+
+        return $columnNames;
+    }
+
+    //  father columns name function
+    public function columnNamesFunction($tableName)
+    {
+        $excludedColumns = ['id', 'created_at', 'child_id', 'deleted_at', 'updated_at'];
+        $allCloumnsNames = DB::getSchemaBuilder()->getColumnListing($tableName);
+        $columnNames = collect($allCloumnsNames)
+            ->filter(function ($column) use ($excludedColumns) {
+                return !in_array($column, $excludedColumns);
+            })
+            ->values()
+            ->toArray();
+
+        return $columnNames;
     }
 }
