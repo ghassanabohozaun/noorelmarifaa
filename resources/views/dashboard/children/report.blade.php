@@ -42,10 +42,13 @@
                     <!-- begin: content header right-->
                     <div class="content-header-right col-md-6 col-12">
                         <div class="float-md-right mb-2">
+
+                            <a href="" class="btn btn-sm btn-dark mr-1" id="children_reset_btn">
+                                <i class="la la-close"></i> {!! __('general.reset') !!}
+                            </a>
+
                             <button class="btn btn-success btn-glow px-2" type="submit">
                                 <i class="la la-file-excel-o"></i> {!! __('general.excel') !!}
-                                <i class="la la-refresh spinner spinner_loading d-none">
-                                </i>
                             </button>
                         </div>
                     </div>
