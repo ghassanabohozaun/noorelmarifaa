@@ -35,7 +35,7 @@
                             <div class="card-body">
                                 <div class="media d-flex">
                                     <div class="align-self-center">
-                                        <i class="icon-user info font-large-2 float-left"></i>
+                                        <i class="icon-user-following  info font-large-2 float-left"></i>
                                     </div>
                                     <div class="media-body text-right">
                                         <h3>{!! adminCount() !!}</h3>
@@ -52,7 +52,7 @@
                             <div class="card-body">
                                 <div class="media d-flex">
                                     <div class="align-self-center">
-                                        <i class="icon-user-following warning font-large-2 float-left"></i>
+                                        <i class="icon-users primary font-large-2 float-left"></i>
                                     </div>
                                     <div class="media-body text-right">
                                         <h3>{!! childCount() !!}</h3>
@@ -63,6 +63,44 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xl-3 col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="icon-user dark font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>{!! childMaleCount() !!}</h3>
+                                        <span>{!! __('children.male_count') !!}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="icon-user-female warning font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>{!! childFemaleCount() !!}</h3>
+                                        <span>{!! __('children.female_count') !!}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="col-xl-3 col-lg-6 col-12">
                     <div class="card">
                         <div class="card-content">

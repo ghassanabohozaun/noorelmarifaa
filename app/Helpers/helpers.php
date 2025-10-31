@@ -71,6 +71,20 @@ if (!function_exists('replaceHyphensWithSpaces')) {
         }
     }
 
+    if (!function_exists('childMaleCount')) {
+        function childMaleCount()
+        {
+            return Child::where('gender', 'male')->count();
+        }
+    }
+
+    if (!function_exists('childFemaleCount')) {
+        function childFemaleCount()
+        {
+            return Child::where('gender', 'female')->count();
+        }
+    }
+
     //  get admin count Helper Function
     if (!function_exists('adminCount')) {
         function adminCount()

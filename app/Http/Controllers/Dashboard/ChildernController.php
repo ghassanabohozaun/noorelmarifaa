@@ -153,11 +153,9 @@ class ChildernController extends Controller
         $fatherCloumnNames = $this->columnNamesFunction('child_fathers');
         $motherCloumnNames = $this->columnNamesFunction('child_mothers');
         $guardianCloumnNames = $this->columnNamesFunction('child_guardians');
-                $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
+        $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
 
-
-        return view('dashboard.children.report', compact('title', 'childColumnNames', 'familyCloumnNames',
-         'fatherCloumnNames','motherCloumnNames', 'guardianCloumnNames','governorates'));
+        return view('dashboard.children.report', compact('title', 'childColumnNames', 'familyCloumnNames', 'fatherCloumnNames', 'motherCloumnNames', 'guardianCloumnNames', 'governorates'));
     }
 
     public function exportExcel(Request $request)
@@ -165,24 +163,13 @@ class ChildernController extends Controller
         $filters = $request->except(['_token']);
 
         if (empty($filters['columns'])) {
-            $selectedColumns = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'classification','gender','health_status','city_id', 'governoate_id', 'guardian_full_name'];
+            $selectedColumns = ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name', 'classification', 'gender', 'health_status', 'city_id', 'governoate_id', 'guardian_full_name'];
         } else {
             $selectedColumns = $request->input('columns', $filters);
         }
 
-
         $fileName = 'children_' . now() . '.xlsx';
         return Excel::download(new ChildrenExport(Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])->get(), $selectedColumns, $filters), $fileName);
-
-        // //  'number_of_people_including_mother', 'guardian_full_name','guardian_personal_id','guardian_relationship_with_the_child',
-
-        // $selectedColumns = $request->input('columns', ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name', 'personal_id', 'birthday', 'gender', 'health_status', 'class', 'classification', 'governoate_id', 'city_id', 'authorized_contact_number', 'whatsApp_number']);
-
-        // return Excel::download(new ChildrenExport(Child::get(), $selectedColumns), 'children.xlsx');
-
-        // $filters = $request->only(['status']); // Get filters from request
-        // $selectedColumns = $request->input('columns', ['id', 'name']); // Get selected columns from request
-        //  return Excel::download(new AdminsExport($filters, $selectedColumns), 'dynamic_users.xlsx');
     }
 
     //  child columns name function

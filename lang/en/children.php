@@ -14,7 +14,7 @@ return [
     'show_child' => 'Show Child',
     'welcome' => 'Welcome',
     'reports' => 'Reports',
-    'columns'=>'Columns',
+    'columns' => 'Columns',
 
     'child_info' => 'Child Informations',
     'family_info' => 'Family Informations',
@@ -234,7 +234,8 @@ return [
     'children_count' => 'Children Count',
     'governorates_count' => 'Governorates Count',
     'cities_count' => 'Cities Count',
-
+    'male_count' => 'Male Count',
+    'female_count' => 'Female Count',
     'male_children' => 'Male Children',
     'female_children' => 'Female Children',
 ];
