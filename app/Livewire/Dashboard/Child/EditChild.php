@@ -18,7 +18,8 @@ class EditChild extends Component
 {
     use WithFileUploads;
     public $currentStep = 1;
-    public $personalIDReadOnly =  1 ,  $locked = 'open';
+    public $personalIDReadOnly = 1,
+        $locked = 'open';
     public $ChildID;
     public $first_name_ar, $father_name_ar, $grand_father_name_ar, $family_name_ar;
     public $first_name_en, $father_name_en, $grand_father_name_en, $family_name_en;
@@ -93,7 +94,6 @@ class EditChild extends Component
         $this->governoate_id = $this->child->governoate_id;
         $this->city_id = $this->child->city_id;
         $this->address_details = $this->child->address_details;
-
 
         $this->sponsership_status_id = $this->child->sponsership_status_id;
         $this->sponsership_organization_id = $this->child->sponsership_organization_id;
@@ -173,9 +173,9 @@ class EditChild extends Component
             'governoate_id' => ['required', 'exists:governorates,id'],
             'city_id' => ['required', 'exists:cities,id'],
             'address_details' => ['required', 'string', 'min:5'],
-            'authorized_contact_number' => ['required', 'string', 'min:5'],
-            'backup_contact_number' => ['required', 'string', 'min:5'],
-            'whatsApp_number' => ['required', 'string', 'min:5'],
+            'authorized_contact_number' => ['required', 'string', 'min:5', 'max:10'],
+            'backup_contact_number' => ['required', 'string', 'min:5', 'max:10'],
+            'whatsApp_number' => ['required', 'string', 'min:5', 'max:14'],
         ];
 
         if ($this->health_status == 'sick') {
@@ -345,12 +345,14 @@ class EditChild extends Component
         }
     }
 
-    public function unlockPersonalID(){
+    public function unlockPersonalID()
+    {
         $this->personalIDReadOnly = 0;
         $this->locked = 'close';
     }
 
-      public function lockedPersonalID(){
+    public function lockedPersonalID()
+    {
         $this->personalIDReadOnly = 1;
         $this->locked = 'open';
     }

@@ -95,9 +95,9 @@ class CreateChild extends Component
             'governoate_id' => ['required', 'exists:governorates,id'],
             'city_id' => ['required', 'exists:cities,id'],
             'address_details' => ['required', 'string', 'min:5'],
-            'authorized_contact_number' => ['required', 'string', 'min:5'],
-            'backup_contact_number' => ['required', 'string', 'min:5'],
-            'whatsApp_number' => ['required', 'string', 'min:5'],
+            'authorized_contact_number' => ['required', 'string', 'min:5', 'max:10'],
+            'backup_contact_number' => ['required', 'string', 'min:5', 'max:10'],
+            'whatsApp_number' => ['required', 'string', 'min:5', 'max:14'],
         ];
         if ($this->health_status == 'sick') {
             $data['disease_clarification'] = ['required', 'string', 'min:5'];
@@ -254,11 +254,10 @@ class CreateChild extends Component
             $this->currentStep = 1;
         } else {
             flash()->success(message: __('general.add_success_message'));
-            $this->resetExcept(['governorates', 'cities','child']);
+            $this->resetExcept(['governorates', 'cities', 'child']);
             $this->currentStep = 1;
         }
     }
-
 
     public function changeGovernorate($id)
     {

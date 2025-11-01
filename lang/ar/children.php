@@ -90,7 +90,7 @@ return [
     'disease_clarification' => 'توضيح المرض',
     'authorized_contact_number' => 'رقم التواصل المعتمد',
     'backup_contact_number' => 'رقم التواصل الاحتياط',
-    'whatsApp_number' => 'رقم الواتس اب',
+    'whatsApp_number' => 'رقم الواتس اب مع المقدمة',
     'governoate_id' => 'المحافظة',
     'city_id' => 'المدينة',
     'address_details' => 'تفاصيل العنوان',

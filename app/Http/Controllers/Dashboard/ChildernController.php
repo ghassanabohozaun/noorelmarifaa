@@ -163,7 +163,7 @@ class ChildernController extends Controller
         $filters = $request->except(['_token']);
 
         if (empty($filters['columns'])) {
-            $selectedColumns = ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name', 'classification', 'gender', 'health_status', 'city_id', 'governoate_id', 'guardian_full_name'];
+            $selectedColumns = ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name','personal_id', 'classification', 'gender', 'health_status', 'city_id', 'governoate_id', 'guardian_full_name'];
         } else {
             $selectedColumns = $request->input('columns', $filters);
         }

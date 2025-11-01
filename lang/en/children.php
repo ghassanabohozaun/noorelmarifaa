@@ -89,7 +89,7 @@ return [
     'disease_clarification' => 'Child  Disease Clarification',
     'authorized_contact_number' => 'Authorized Contact Number',
     'backup_contact_number' => 'Backup Contact Number',
-    'whatsApp_number' => 'WhatsApp Number',
+    'whatsApp_number' => 'WhatsApp Number with prepend',
     'governoate_id' => 'Governoate',
     'city_id' => 'City',
     'address_details' => 'Address Details',
