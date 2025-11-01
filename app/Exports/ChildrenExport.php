@@ -147,7 +147,7 @@ class ChildrenExport implements WithHeadings, FromCollection, WithMapping, WithC
             $items['gender'] = $row->childGender();
         }
         if (in_array('class', $this->columns)) {
-            $items['class'] = $row->childClass;
+            $items['class'] = $row->childClass();
         }
         if (in_array('health_status', $this->columns)) {
             $items['health_status'] = $row->childHealthStatus();
