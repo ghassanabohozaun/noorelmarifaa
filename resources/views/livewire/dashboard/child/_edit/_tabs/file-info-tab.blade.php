@@ -105,7 +105,7 @@
                               <img src="{!! asset('uploads/children/' . $guardian_personal_id_photo) !!}" alt="profile_image"
                                   class="w-100 shadow-sm img-fluid img-thumbnail round-md" />
 
-                              <a href="{!! asset('uploads/children/' . $father_death_certificate) !!}" target="_blank"
+                              <a href="{!! asset('uploads/children/' . $guardian_personal_id_photo) !!}" target="_blank"
                                   class="badge badge-sm bg-warning position-absolute" style="top: 8px; left: 8px;">
                                   {!! __('general.download') !!}
                               </a>
