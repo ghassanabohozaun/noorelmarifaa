@@ -132,6 +132,7 @@
     </div>
     <!-- END sidebar widget item -->
 
+
     <!-- xs modal -->
     <div class="zoom-anim-dialog mfp-hide modal-searchPanel" id="modal-popup-2">
         <div class="xs-search-panel">

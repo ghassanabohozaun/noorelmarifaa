@@ -155,7 +155,7 @@
 
 
     <!-- News Section -->
-    <section class="news-section">
+    {{-- <section class="news-section">
         <div class="auto-container">
             <!-- Sec Title -->
             <div class="sec-title centered">
@@ -289,7 +289,7 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
     <!-- End News Section -->
 
 
