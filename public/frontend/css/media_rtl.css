@@ -1,0 +1,90 @@
+/* -------------------------------------------------- */
+@media only screen and (max-width: 5000px) {
+
+}
+/* -------------------------------------------------- */
+@media only screen and (max-width: 1600px) {
+
+}
+/* -------------------------------------------------- */
+@media only screen and (max-width: 1340px) {
+
+}
+/* -------------------------------------------------- */
+@media only screen and (max-width: 1140px) {
+    .call-to-action-section .auto-container{
+        text-align: center;
+    }
+}
+
+/* -------------------------------------------------- */
+@media only screen and (max-width: 767px) {
+    .main-header .outer-box .nav-box {
+        margin-left: -650px;
+        float: left;
+    }
+
+    .main-header .outer-box .navsearch-button {
+        margin-left: -610px;
+        float: left;
+    }
+
+    .main-menu .navbar-collapse > ul li.dropdown .dropdown-btn {
+
+        margin-left: -460px;
+        float: left;
+    }
+
+    .main-menu .navbar-collapse > .navigation > li > a,
+    .main-menu .navbar-collapse > .navigation > li > ul > li > a,
+    .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > a {
+        padding: 10px 10px !important;
+        text-align: left;
+    }
+    .call-to-action-section .auto-container{
+        text-align: center;
+    }
+    .date-outer .month{
+      float: right;
+    }
+}
+
+/* -------------------------------------------------- */
+@media only screen and (max-width: 599px) {
+    .main-header .outer-box .nav-box {
+        margin-left: -460px;
+        float: left;
+    }
+
+    .main-header .outer-box .navsearch-button {
+        margin-left: -420px;
+        float: left;
+    }
+
+    .call-to-action-section .auto-container{
+        text-align: center;
+    }
+    .date-outer .month{
+        float: right;
+    }
+}
+
+/* -------------------------------------------------- */
+@media only screen and (max-width: 479px) {
+    .main-header .outer-box .nav-box {
+        margin-left: -330px;
+        float: left;
+    }
+
+    .main-header .outer-box .navsearch-button {
+        margin-left: -290px;
+        float: left;
+    }
+
+    .call-to-action-section .auto-container{
+        text-align: center;
+    }
+    .date-outer .month{
+        float: right;
+    }
+}
