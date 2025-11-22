@@ -7,7 +7,6 @@
     <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
 @endsection
 @section('content')
-
     <!--Main Slider-->
     <section class="main-slider">
 
@@ -295,7 +294,7 @@
 
 
     <!-- programs Section -->
-    <section class="faq-section style-two">
+    {{-- <section class="faq-section style-two">
         <div class="auto-container">
             <div class="row clearfix">
 
@@ -396,12 +395,12 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End programs Section -->
 
     <br /><br /><br />
     <!-- projects Section -->
-    <section class="news-section-two" style="background-image: url({!! asset('frontend/images/background/7.jpg') !!})">
+    {{-- <section class="news-section-two" style="background-image: url({!! asset('frontend/images/background/7.jpg') !!})">
         <div class="auto-container">
             <!-- Sec Title -->
             <div class="sec-title light">
@@ -476,11 +475,11 @@
                 </div>
             @endif
         </div>
-    </section>
+    </section> --}}
     <!-- End projects Section-->
 
     <!--Clients Section-->
-    <section class="clients-section">
+    {{-- <section class="clients-section">
         <div class="outer-container">
             <div class="sponsors-outer">
                 @if (setting()->sponsors_status != '0')
@@ -533,8 +532,6 @@
             </div>
 
         </div>
-    </section>
+    </section> --}}
     <!--End Clients Section-->
-
-
 @endsection
