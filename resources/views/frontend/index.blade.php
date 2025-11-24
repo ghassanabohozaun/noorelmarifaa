@@ -68,8 +68,8 @@
                             <figure class="video-image">
                                 <img src=" {!! asset('frontend/images/resource/video-img.jpg') !!}" alt="">
                             </figure>
-                            {{-- <a href="{{ websiteMainPage()->upload_video }}" class="lightbox-image overlay-box"><span
-                                    class="flaticon-play-button"><i class="ripple"></i></span></a> --}}
+                            <a href="{{ websiteMainPage()->upload_video }}" class="lightbox-image overlay-box"><span
+                                    class="flaticon-play-button"><i class="ripple"></i></span></a>
                         </div>
 
                     </div>
@@ -81,7 +81,7 @@
     <!-- End Welcome Section -->
 
     <!-- Counter Section -->
-    {{-- <section class="counter-section" style="background-image:url( {!! asset('frontend/images/background/1.jpg') !!})">
+    <section class="counter-section" style="background-image:url( {!! asset('frontend/images/background/1.jpg') !!})">
         <div class="auto-container">
 
             <!-- Fact Counter -->
@@ -149,7 +149,7 @@
             </div>
 
         </div>
-    </section> --}}
+    </section>
     <!-- End Counter Section -->
 
 

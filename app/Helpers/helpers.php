@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Governorate;
 use Illuminate\Support\Facades\Config;
 use App\Models\Setting;
+use App\Models\Website_main_page;
 
 //  setting Helper Function
 if (!function_exists('setting')) {
@@ -14,6 +15,12 @@ if (!function_exists('setting')) {
         return Setting::orderBy('id', 'desc')->first();
     }
 }
+
+function websiteMainPage()
+{
+    return Website_main_page::orderBy('id', 'desc')->first();
+}
+
 
 // test
 //  get language Helper Function
