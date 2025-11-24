@@ -154,7 +154,7 @@
 
 
     <!-- News Section -->
-    {{-- <section class="news-section">
+    <section class="news-section">
         <div class="auto-container">
             <!-- Sec Title -->
             <div class="sec-title centered">
@@ -262,7 +262,8 @@
                                     </h3>
                                     <ul class="post-meta">
                                         <li><a href="javascript:void(0)">
-                                                <span class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines">
+                                                <span
+                                                    class="icon flaticon-chat-comment-oval-speech-bubble-with-text-lines">
                                                 </span>{!! trans('frontend.comments') !!}
                                                 {!! App\Models\Comment::where('post_id', $nextPost->id)->count() !!}
 
@@ -288,7 +289,7 @@
             </div>
 
         </div>
-    </section> --}}
+    </section>
     <!-- End News Section -->
 
 
