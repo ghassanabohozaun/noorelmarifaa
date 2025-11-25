@@ -84,7 +84,7 @@
                                 '<div class="inner-box" style="">' +
                                 '<div class="image">' +
                                 '<a href="#">' +
-                                ' <img class="photos_gallery_img" src="https://www.noorelmarifa.org/storage/' + data[i].full_path_after_upload + '" alt=""/>' +
+                                ' <img class="photos_gallery_img" src="https://www.noorelmarifaa.org/storage/' + data[i].full_path_after_upload + '" alt=""/>' +
                                 '</a>' +
                                 ' </div>' +
                                 '<div class="lower-content">' +
