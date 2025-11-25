@@ -1,5 +1,4 @@
-<footer class="main-footer"
-        style="background-image:url( {!! asset('frontend/images/background/map-pattern.png') !!})">
+<footer class="main-footer" style="background-image:url( {!! asset('frontend/images/background/map-pattern.png') !!})">
     <div class="auto-container">
         <!--Widgets Section-->
         <div class="widgets-section">
@@ -10,37 +9,36 @@
                     <div class="footer-widget logo-widget">
                         <div class="logo">
                             <a href="{!! route('index') !!}">
-                                <img src="{!! asset('frontend/images/noor_footer_logo.gif') !!}"
-                                     alt="{!! asset('frontend/images/noor_footer_logo.gif') !!}"
-                                     title="{!! trans('frontend.logo') !!}">
+                                <img src="{!! asset('frontend/images/noor_footer_logo.gif') !!}" alt="{!! asset('frontend/images/noor_footer_logo.gif') !!}"
+                                    title="{!! trans('frontend.logo') !!}">
                             </a>
                         </div>
                         <div class="text my_lead ">
-                            {!! Lang() == 'ar' ? setting()->site_description_ar :setting()->site_description_en !!}
+                            {!! setting()->description !!}
                         </div>
                         <!--Social Box-->
                         <ul class="social-box">
                             <li>
-                                <a href="{!! setting()->site_facebook !!}" target="_blank">
+                                <a href="{!! setting()->facebook !!}" target="_blank">
                                     <span class="fab fa-facebook-f"></span>
                                 </a>
                             </li>
-                            <li><a href="mailto:{!! setting()->site_gmail !!}">
+                            <li><a href="mailto:{!! setting()->gmail !!}">
                                     <span class="fab fa-google"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{!! setting()->site_instagram !!}" target="_blank">
+                                <a href="{!! setting()->instagram !!}" target="_blank">
                                     <span class="fab fa-instagram"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{!! setting()->site_twitter !!}" target="_blank">
+                                <a href="{!! setting()->twitter !!}" target="_blank">
                                     <span class="fab fa-twitter"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{!! setting()->site_youtube !!}" target="_blank">
+                                <a href="{!! setting()->youtube !!}" target="_blank">
                                     <span class="fab fa-youtube"></span>
                                 </a>
                             </li>
@@ -48,24 +46,23 @@
 
                     </div>
                 </div>
-            @php
-                $postDepartments = App\Models\Department::where('status', 'enable')
-                ->where('class', 'post')->get();
-            @endphp
-            <!--Footer Column-->
+                @php
+                    $postDepartments = App\Models\Department::where('status', 'enable')->where('class', 'post')->get();
+                @endphp
+                <!--Footer Column-->
                 <div class="footer-column col-lg-2 col-md-4 col-sm-12">
                     <div class="footer-widget links-widget">
                         <h2>{!! trans('frontend.site_map') !!}</h2>
                         <ul class="footer-list">
                             <li><a href="{!! route('index') !!}">{!! trans('frontend.home') !!}</a></li>
-                            @foreach($postDepartments as $postDepartment)
+                            @foreach ($postDepartments as $postDepartment)
                                 <li>
-                                    @if(Lang()=='ar')
-                                        <a href="{!! route('categories',str_replace(' ','-',$postDepartment->dep_name_ar)) !!}">
+                                    @if (Lang() == 'ar')
+                                        <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_ar)) !!}">
                                             {!! $postDepartment->dep_name_ar !!}
                                         </a>
                                     @else
-                                        <a href="{!! route('categories',str_replace(' ','-',$postDepartment->dep_name_en)) !!}">
+                                        <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_en)) !!}">
                                             {!! $postDepartment->dep_name_en !!}
                                         </a>
                                     @endif
@@ -89,7 +86,8 @@
                             </li>
                             <li><a href="https://www.noorelmarifa.org:2096">{!! trans('frontend.web_mail') !!}</a></li>
                             <li>
-                                <a href="http://eservices.noorelmarifa.org/Portal/login.aspx">{!! trans('frontend.nma_portal') !!}</a>
+                                <a
+                                    href="http://eservices.noorelmarifa.org/Portal/login.aspx">{!! trans('frontend.nma_portal') !!}</a>
                             </li>
 
                         </ul>
@@ -100,11 +98,11 @@
                 <!--Footer Column-->
                 <div class="footer-column col-lg-4 col-md-4 col-sm-12">
                     <div class="footer-widget info-widget">
-                        <h2>{!! trans('frontend.contact_us')!!}</h2>
+                        <h2>{!! trans('frontend.contact_us') !!}</h2>
                         <ul class="list-style-one">
 
                             <li><span class="icon fas fa-map-marker-alt"></span>
-                                {!! Lang()=='ar' ? setting()->site_address_ar :setting()->site_address_en !!}
+                                {!! Lang() == 'ar' ? setting()->site_address_ar : setting()->site_address_en !!}
                             </li>
 
                             <li><span class="icon fas fa-phone"></span>
@@ -130,12 +128,11 @@
                         <!--Emailed Form-->
                         <div class="emailed-form">
 
-                                <div class="form-group">
-                                    <input type="email" name="email" value="" autocomplete="off"
-                                           placeholder="{!! trans('frontend.your_email') !!}"
-                                           required>
-                                    <button type="submit" class="theme-btn">{!! trans('frontend.add') !!}</button>
-                                </div>
+                            <div class="form-group">
+                                <input type="email" name="email" value="" autocomplete="off"
+                                    placeholder="{!! trans('frontend.your_email') !!}" required>
+                                <button type="submit" class="theme-btn">{!! trans('frontend.add') !!}</button>
+                            </div>
 
                         </div>
                     </div>
@@ -149,12 +146,12 @@
             <div class="clearfix">
                 <div class="text-center">
                     <div class="copyright">
-                        @if(Lang() =='ar')
+                        @if (Lang() == 'ar')
                             <span>&copy;</span>
                             جميع الحقوق محفوظة
                             <a href="{!! route('index') !!}"> جمعية نور المعرفة</a>2020<span>.</span>
                         @else
-                            Copyrights  &copy; 2020 <a href="{!! route('index') !!}">Nour El Marifa Association</a> .
+                            Copyrights &copy; 2020 <a href="{!! route('index') !!}">Nour El Marifa Association</a> .
                             All rights reserved.
                         @endif
                     </div>
