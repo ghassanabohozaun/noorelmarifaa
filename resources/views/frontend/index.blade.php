@@ -400,7 +400,7 @@
 
     <br /><br /><br />
     <!-- projects Section -->
-    {{-- <section class="news-section-two" style="background-image: url({!! asset('frontend/images/background/7.jpg') !!})">
+    <section class="news-section-two" style="background-image: url({!! asset('frontend/images/background/7.jpg') !!})">
         <div class="auto-container">
             <!-- Sec Title -->
             <div class="sec-title light">
@@ -475,7 +475,7 @@
                 </div>
             @endif
         </div>
-    </section> --}}
+    </section>
     <!-- End projects Section-->
 
     <!--Clients Section-->
