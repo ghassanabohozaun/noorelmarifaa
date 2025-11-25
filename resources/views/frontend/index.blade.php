@@ -479,7 +479,7 @@
     <!-- End projects Section-->
 
     <!--Clients Section-->
-    {{-- <section class="clients-section">
+    <section class="clients-section">
         <div class="outer-container">
             <div class="sponsors-outer">
                 @if (setting()->sponsors_status != '0')
@@ -532,6 +532,6 @@
             </div>
 
         </div>
-    </section> --}}
+    </section>
     <!--End Clients Section-->
 @endsection
