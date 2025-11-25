@@ -20,7 +20,6 @@
     <!--End Main Slider-->
 
 
-
     <!-- Call To Action Section -->
     <section class="call-to-action-section">
         <div class="auto-container">
@@ -295,7 +294,7 @@
 
 
     <!-- programs Section -->
-    {{-- <section class="faq-section style-two">
+    <section class="faq-section style-two">
         <div class="auto-container">
             <div class="row clearfix">
 
@@ -396,7 +395,7 @@
 
             </div>
         </div>
-    </section> --}}
+    </section>
     <!-- End programs Section -->
 
     <br /><br /><br />
