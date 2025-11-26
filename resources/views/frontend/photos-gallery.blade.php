@@ -1,10 +1,10 @@
 @extends('layouts.frontend')
-@section('title'){!! $title !!}@endsection
+@section('title')
+    {!! $title !!}
+@endsection
 @section('metaTags')
-    <meta name="description"
-          content="{!! Lang()=='ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords"
-          content="{!! Lang()=='ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+    <meta name="description" content="{!! Lang() == 'ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
+    <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
 @endsection
 @section('content')
     <!--Page Title-->
@@ -32,7 +32,7 @@
 
     <!-- Modal -->
     <div class="container-fluid modal fade photos_gallery_modal" style=" max-width: 100vw;" id="myModal" tabindex="-1"
-         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -56,11 +56,9 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-
-
         /////////////////////////////////////////////////////////////////
         ///  show photo gallery modal
-        $('body').on('click', '.show_photo_gallery_modal', function (e) {
+        $('body').on('click', '.show_photo_gallery_modal', function(e) {
             e.preventDefault();
 
             var id = $(this).data('id');
@@ -69,8 +67,10 @@
             $.ajax({
                 url: "{{ route('get.photos.gallery.photos') }}",
                 type: "GET",
-                data: {id: id},
-                success: function (data) {
+                data: {
+                    id: id
+                },
+                success: function(data) {
                     console.log(data.data)
                     //$('#photo_list').append(data);
 
@@ -78,13 +78,15 @@
 
                         $('#demo').html('<h3 class="text-warning">{!! trans('frontend.no_photos_exist_in_this_album') !!}</h3>')
                     } else {
-                        $('#demo').html('<div id="testing"  class="events-carousel owl-carousel owl-theme ">');
+                        $('#demo').html(
+                            '<div id="testing"  class="events-carousel owl-carousel owl-theme ">');
                         for (var i = 0; i < data.length; i++) {
                             $(".owl-carousel").append('<div class="event-block-two">' +
                                 '<div class="inner-box" style="">' +
                                 '<div class="image">' +
                                 '<a href="#">' +
-                                ' <img class="photos_gallery_img" src="https://www.noorelmarifaa.org/storage/' + data[i].full_path_after_upload + '" alt=""/>' +
+                                ' <img class="photos_gallery_img" src="http://noorelmarifaa.org/storage/' +
+                                data[i].full_path_after_upload + '" alt=""/>' +
                                 '</a>' +
                                 ' </div>' +
                                 '<div class="lower-content">' +
@@ -102,7 +104,9 @@
                             autoHeight: true,
                             smartSpeed: 500,
                             autoplay: false,
-                            navText: ['<span class="fas fa-long-arrow-alt-left"></span>', '<span class="fas fa-long-arrow-alt-right"></span>'],
+                            navText: ['<span class="fas fa-long-arrow-alt-left"></span>',
+                                '<span class="fas fa-long-arrow-alt-right"></span>'
+                            ],
                             responsive: {
                                 0: {
                                     items: 1,
@@ -129,13 +133,13 @@
                     }
                 }
 
-            });//end ajax
+            }); //end ajax
 
             $('.photos_gallery_modal').modal('show');
         });
         /////////////////////////////////////////////////////////////////
         ///  posts Paging
-        $(document).on('click', '.pagination a', function (e) {
+        $(document).on('click', '.pagination a', function(e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
             readPage(page);
@@ -145,13 +149,13 @@
         function readPage(page) {
             $.ajax({
                 url: '/photos-gallery-paging/' + '?page=' + page
-            }).done(function (data) {
+            }).done(function(data) {
                 $('#photos_gallery_list').html(data);
                 $('html, body').animate({
                     scrollTop: "520px"
                 }, 2000);
             });
 
-        }// end readPage
+        } // end readPage
     </script>
 @endpush
