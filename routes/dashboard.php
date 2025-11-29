@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\PostsController;
 use App\Http\Controllers\Dashboard\{AdminsController, ChildernController, CitiesController, DashboardController, GovernoratiesController, ProductsController, RolesController, SettingsController, SponsershipOrganizationsController, SponsershipStatusesController, SponsershipTypesController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
@@ -73,8 +74,24 @@ Route::group(
                 Route::put('/settings/{id?}', [SettingsController::class, 'update'])->name('settings.update');
             });
 
-            ########################################### products routes  ######################################################################
+            ########################################### posts routes  ######################################################################
 
+            Route::group(['middleware' => 'can:website'],  function () {
+                Route::resource('posts', PostsController::class);
+
+                // Route::get('/', [PostsController::class, 'index'])->name('website.posts.index');
+                // Route::get('/get-posts', [PostsController::class, 'getPosts'])->name('get.website.posts');
+                // Route::get('/create', [PostsController::class, 'create'])->name('website.posts.create');
+                // Route::get('/edit/{id?}', [PostsController::class, 'edit'])->name('website.posts.edit');
+                // Route::post('/store', [PostsController::class, 'store'])->name('website.posts.store');
+                // Route::post('/update/main/photo/{id}', [PostsController::class, 'updateMainPhoto'])->name('website.update.posts.main.photo');
+                // Route::post('/delete/main/photo', [PostsController::class, 'deleteMainPhoto'])->name('website.delete.posts.main.photo');
+                // Route::post('/upload/other/photos/{pid}', [PostsController::class, 'uploadOtherPhotos'])->name('website.post.upload.other.photos');
+                // Route::post('/delete/other/photo', [PostsController::class, 'deleteOtherPhoto'])->name('website.post.delete.other.photo');
+                // Route::post('/destroy', [PostsController::class, 'destroy'])->name('website.post.destroy');
+            });
+
+            ########################################### children routes  ######################################################################
             Livewire::setUpdateRoute(function ($handle) {
                 return Route::post('/livewire/update', $handle);
             });
@@ -100,14 +117,12 @@ Route::group(
                 Route::post('/sponsershipStatuses/destroy', [SponsershipStatusesController::class, 'destroy'])->name('sponsershipStatuses.destroy');
                 Route::post('/sponsershipStatuses/change-status', [SponsershipStatusesController::class, 'changestatus'])->name('sponsershipStatuses.change.status');
             });
-
             ########################################### sponsership organizations routes  ######################################################################
             Route::group(['middleware' => 'can:sponsershipOrganizations'], function () {
                 Route::resource('sponsershipOrganizations', SponsershipOrganizationsController::class);
                 Route::post('/sponsershipOrganizations/destroy', [sponsershipOrganizationsController::class, 'destroy'])->name('sponsershipOrganizations.destroy');
                 Route::post('/sponsershipOrganizations/change-status', [sponsershipOrganizationsController::class, 'changestatus'])->name('sponsershipOrganizations.change.status');
             });
-
             ########################################### sponsership types routes  ######################################################################
             Route::group(['middleware' => 'can:sponsershipTypes'], function () {
                 Route::resource('sponsershipTypes', SponsershipTypesController::class);

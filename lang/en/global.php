@@ -9,4 +9,7 @@ return [
     'sponsershipStatuses' => 'Sponsership Status Management',
     'sponsershipOrganizations' => 'Sponsership Organizations Management',
     'sponsershipTypes' => 'Sponsership Types Management',
+    'website'=>'Website Management',
+
+
 ];

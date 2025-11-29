@@ -7,11 +7,12 @@
     <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
 @endsection
 @section('content')
+
     <!--Main Slider-->
     <section class="main-slider">
 
         <div class="main-slider-carousel owl-carousel owl-theme ">
-            <image src="{!! asset('/hamla.jpg') !!}"></image>
+            <image src="{!! asset('/noorSlider.jpg') !!}"></image>
         </div>
 
         <!--Scroll Dwwn Btn-->
@@ -534,4 +535,5 @@
         </div>
     </section>
     <!--End Clients Section-->
+
 @endsection

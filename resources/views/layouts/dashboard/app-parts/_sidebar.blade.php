@@ -16,7 +16,6 @@
 
 
             <!-- begin: settings -->
-
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class=" nav-item">
                     <a href="#">
@@ -38,8 +37,43 @@
                     <!-- end: settings -->
                 </li>
             </ul>
-
             <!-- end: settings -->
+
+
+
+            <!-- begin: website -->
+            @can('website')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item">
+                        <a href="#">
+                            <i class="icon-list"></i>
+                            <span class="menu-title" data-i18n="nav.dash.brand">{!! __('dashboard.website') !!}</span>
+                            {{-- <span class="badge badge badge-info badge-pill float-right mr-2">3</span> --}}
+                        </a>
+
+                        <ul class="menu-content">
+                            <!-- begin: posts -->
+                            <li class="@if (str_contains(Route::currentRouteName(), 'posts')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.posts.index') !!}" data-i18n="nav.dash.posts">
+                                    {!! __('dashboard.posts') !!}
+                                </a>
+                            </li>
+                            <!-- end: posts -->
+
+                            {{-- <!-- begin: cities -->
+                            <li class="@if (str_contains(Route::currentRouteName(), 'cities.index')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.cities.index') !!}" data-i18n="nav.dash.cities">
+                                    {!! __('world.cities') !!}
+                                </a>
+                            </li>
+                            <!-- end: cities --> --}}
+
+                        </ul>
+
+                    </li>
+                </ul>
+            @endcan
+            <!-- end: world -->
 
 
 

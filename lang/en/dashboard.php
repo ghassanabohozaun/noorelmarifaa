@@ -10,7 +10,7 @@ return [
     'back_to_home' => 'Back To Home',
     'search' => 'Search ... ',
     'hello' => 'Hello ,',
-    'welcome'=>'Welcome',
+    'welcome' => 'Welcome',
 
     // menu
     'roles' => 'Roles',
@@ -20,6 +20,8 @@ return [
     'settings' => 'Site Settings',
     'products' => 'Products',
     'children' => 'Children',
+    'website' => 'Website',
+    'posts' => 'Posts',
 
     // login
     'login' => 'Login',

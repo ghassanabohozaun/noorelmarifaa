@@ -9,5 +9,6 @@ return [
         'sponsershipStatuses' => 'global.sponsershipStatuses',
         'sponsershipOrganizations' => 'global.sponsershipOrganizations',
         'sponsershipTypes' => 'global.sponsershipTypes',
+        'website'=>'global.website',
     ],
 ];

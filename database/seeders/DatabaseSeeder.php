@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             SponsershipStatusSeeder::class,
             SponsershipOrganizationSeeder::class,
             SponsershipTypeSeeder::class,
+            websietMainPageSeeder::class,
         ]);
     }
 }

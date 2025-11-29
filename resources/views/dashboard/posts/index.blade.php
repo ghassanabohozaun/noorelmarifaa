@@ -3,9 +3,6 @@
     {!! $title !!}
 @endsection
 
-@push('style')
-@endpush
-
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
@@ -14,7 +11,7 @@
 
                 <!-- begin: content header left-->
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('admins.admins') !!}</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">{!! __('posts.posts') !!}</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -24,11 +21,10 @@
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{!! route('dashboard.admins.index') !!}">
-                                        {!! __('admins.admins') !!}
+                                    <a href="{!! route(name: 'dashboard.posts.index') !!}">
+                                        {!! __('posts.posts') !!}
                                     </a>
                                 </li>
-
                             </ol>
                         </div>
                     </div>
@@ -38,14 +34,8 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-1">
-                        {{-- <a href="{{ route('dashboard.admins.create') }}" class="btn btn-info  btn-glow px-2" i>
-                            {!! __('admins.create_new_admin') !!}</a> --}}
-
-                        <button type="button" class="btn btn-info  btn-glow px-2" data-toggle="modal"
-                            data-target="#createAdminModal">
-                            {!! __('admins.create_new_admin') !!}
-                        </button>
-
+                        <a href="{{ route('dashboard.posts.create') }}" class="btn btn-info  btn-glow px-2" i>
+                            {!! __('posts.create_post') !!}</a>
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -62,7 +52,7 @@
                                 <!-- begin: card header -->
                                 <div class="card-header">
                                     <h4 class="card-title" id="basic-layout-colored-form-control">
-                                        {!! __('admins.show_all_admins') !!}
+                                        {!! __('posts.show_all_posts') !!}
                                     </h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -84,39 +74,45 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th class="text-center">{!! __('admins.name') !!}</th>
-                                                        <th class="text-center">{!! __('admins.email') !!}</th>
-                                                        <th class="text-center">{!! __('admins.role_id') !!}</th>
-                                                        <th class="text-center">{!! __('admins.status') !!}
-                                                        <th class="text-center">{!! __('admins.created_at') !!}
-                                                        <th class="text-center">{!! __('general.actions') !!}</th>
+                                                        <th>{!! __('posts.main_photo') !!}</th>
+                                                        <th>{!! __('posts.post_title_ar') !!}</th>
+                                                        <th>{!! __('posts.post_title_en') !!}</th>
+                                                        <th>{!! __('posts.post_language') !!}</th>
+                                                        <th>{!! __('posts.post_status') !!}</th>
+                                                        <th>{!! __('posts.post_added_date') !!}</th>
+                                                        <th>{!! __('posts.department_id') !!}</th>
+                                                        <th>{!! __('general.actions') !!}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ($admins as $key=>$admin)
-                                                        <tr id="row{{ $admin->id }}">
+                                                    @forelse ($posts as $key=>$post)
+                                                        <tr>
                                                             <th class="col-lg-1 ">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-3 text-center">{!! $admin->name !!}</td>
-                                                            <td class="col-lg-2 text-center">{!! $admin->email !!}</td>
-                                                            <td class="col-lg-2 text-center">{!! $admin->role->role !!}</td>
+                                                            <td class="col-lg-3 text-center">{!! $post->main_photo !!}</td>
+                                                            <td class="col-lg-2 text-center">{!! $post->post_title_ar !!}</td>
+                                                            <td class="col-lg-2 text-center">{!! $post->post_title_en !!}</td>
+                                                            <td class="col-lg-2 text-center">{!! $post->post_language !!}</td>
+                                                            <td class="col-lg-2 text-center">{!! $post->post_status !!}</td>
+                                                            <td class="col-lg-2 text-center">{!! $post->post_added_date !!}</td>
+                                                            <td class="col-lg-2 text-center">{!! $post->department_id !!}</td>
                                                             <td class="col-lg-1 text-center">
-                                                                @include('dashboard.admins.parts.status')</td>
-                                                            <td class="col-lg-2 text-center">{!! $admin->created_at->format('Y-m-d H:i A') !!}</td>
-                                                            <td class="col-lg-1 text-center">
-                                                                @include('dashboard.admins.parts.actions')
+                                                                {{-- @include('dashboard.posts.parts.actions') --}}
                                                             </td>
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="6" class="text-center">
-                                                                {!! __('admins.no_admins_found') !!}
+                                                            <td colspan="9" class="text-center">
+                                                                {!! __('posts.no_posts_found') !!}
                                                             </td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>
+
+                                                <tbody>
+                                                </tbody>
                                             </table>
                                             <div class="float-right">
-                                                {!! $admins->links() !!}
+                                                {!! $posts->links() !!}
                                             </div>
                                         </div>
                                     </div>
@@ -129,13 +125,11 @@
             </div><!-- end: content body  -->
         </div> <!-- end: content wrapper  -->
     </div><!-- end: content app  -->
-    @include('dashboard.admins.modals.create')
-    @include('dashboard.admins.modals.edit')
 @endsection
 @push('scripts')
     <script type="text/javascript">
-        // delete admin
-        $('body').on('click', '.delete_admin_btn', function(e) {
+        // delete roles
+        $('body').on('click', '.delete_role_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -161,7 +155,7 @@
             }).then(isConfirm => {
                 if (isConfirm) {
                     $.ajax({
-                        url: '{!! route('dashboard.admins.destroy') !!}',
+                        url: '{!! route('dashboard.roles.destroy') !!}',
                         data: {
                             id,
                             id
@@ -215,37 +209,6 @@
                     });
                 }
             });
-        });
-
-        //  change status
-        var statusSwitch = false;
-        $('body').on('change', '.change_status', function(e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-
-            if ($(this).is(':checked')) {
-                statusSwitch = 1;
-            } else {
-                statusSwitch = 0;
-            }
-
-            $.ajax({
-                url: "{{ route('dashboard.admins.change.status') }}",
-                data: {
-                    statusSwitch: statusSwitch,
-                    id: id
-                },
-                type: 'post',
-                dataType: 'JSON',
-                success: function(data) {
-                    if (data.status === true) {
-                        $('#myTable').load(location.href + (' #myTable'));
-                        flasher.success("{!! __('general.change_status_success_message') !!}");
-                    } else {
-                        flasher.error("{!! __('general.change_status_error_message') !!}");
-                    }
-                }, //end success
-            })
         });
     </script>
 @endpush
