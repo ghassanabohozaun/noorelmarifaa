@@ -79,7 +79,7 @@
                                                         <th>{!! __('posts.post_title_en') !!}</th>
                                                         <th>{!! __('posts.post_language') !!}</th>
                                                         {{-- <th>{!! __('posts.post_status') !!}</th> --}}
-                                                        {{-- <th>{!! __('posts.post_added_date') !!}</th> --}}
+                                                        <th>{!! __('posts.post_added_date') !!}</th>
                                                         <th>{!! __('posts.department_id') !!}</th>
                                                         <th>{!! __('general.actions') !!}</th>
                                                     </tr>
