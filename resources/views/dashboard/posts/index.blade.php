@@ -95,7 +95,7 @@
                                                             <td class="col-lg-2 text-center">{!! $post->post_language !!}</td>
                                                             {{-- <td class="col-lg-2 text-center">{!! $post->post_status !!}</td> --}}
                                                             {{-- <td class="col-lg-3 text-center">{!! $post->post_added_date !!}</td> --}}
-                                                            {{-- <td class="col-lg-2 text-center">{!! $post->department->name !!}</td> --}}
+                                                            <td class="col-lg-2 text-center">{!! $post->department->name !!}</td>
                                                             <td class="col-lg-1 text-center">
                                                                 @include('dashboard.posts.parts.actions')
                                                             </td>
