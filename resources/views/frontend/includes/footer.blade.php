@@ -46,11 +46,11 @@
 
                     </div>
                 </div>
-                @php
+                {{-- @php
                     $postDepartments = App\Models\Department::where('status', 'enable')->where('class', 'post')->get();
-                @endphp
+                @endphp --}}
                 <!--Footer Column-->
-                <div class="footer-column col-lg-2 col-md-4 col-sm-12">
+                {{-- <div class="footer-column col-lg-2 col-md-4 col-sm-12">
                     <div class="footer-widget links-widget">
                         <h2>{!! trans('frontend.site_map') !!}</h2>
                         <ul class="footer-list">
@@ -71,7 +71,7 @@
 
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 <!--Footer Column-->
                 <div class="footer-column col-lg-2 col-md-4 col-sm-12">
                     <div class="footer-widget links-widget">
@@ -84,12 +84,6 @@
                             </li>
                             <li><a href="{!! route('monthly.reports') !!}">{!! trans('frontend.monthly_report') !!}</a>
                             </li>
-                            <li><a href="https://www.noorelmarifa.org:2096">{!! trans('frontend.web_mail') !!}</a></li>
-                            <li>
-                                <a
-                                    href="http://eservices.noorelmarifa.org/Portal/login.aspx">{!! trans('frontend.nma_portal') !!}</a>
-                            </li>
-
                         </ul>
                     </div>
                 </div>

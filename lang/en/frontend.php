@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'whom' => 'Whom',
+    'beneficiaries_guide' => 'Beneficiaries Guide',
+    'systems' => 'Systems',
 
     'fax' => 'Fax',
     'email_us' => 'Email Us',
@@ -169,5 +172,4 @@ return [
     'no_monthly_reports_exists' => 'No Monthly Reports Exists Now',
 
     'maintenance' => 'Site Under Maintenance',
-
 ];

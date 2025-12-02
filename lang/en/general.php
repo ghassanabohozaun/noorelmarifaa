@@ -45,6 +45,7 @@ return [
     'send' => 'Send',
     'write_here' => 'Write Here ...',
     'filters' => 'Filters',
+    'full_screen'=>'Full Screen',
 
     'not_found' => 'Not Found',
     'example' => 'Example',

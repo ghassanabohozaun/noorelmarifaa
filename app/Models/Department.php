@@ -3,55 +3,33 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Translatable\HasTranslations;
 
 class Department extends Model
 {
+    use SoftDeletes, HasTranslations;
     protected $table = 'departments';
-    protected $fillable = [
-        'dep_name_ar',
-        'dep_name_en',
-        'status',
-        'class',
-        'icon',
-        'description',
-        'keyword',
-        'parent',
-    ];
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $fillable = ['name', 'slug', 'status'];
 
+    public $timestamps = true;
 
-    /////////////////////////////////////////////////////////////////////////
-    /// relationships
-    /// post
-    public function post()
+    public array $translatable = ['name','slug'];
+
+    // scopes
+    public function scopeActive($query)
     {
-        return $this->hasOne('App\Models\Post', 'department_id');
+        return $query->whereStatus(1);
     }
 
-    ////static pages
-    public function staticPage(){
-        return $this->hasOne('App\Models\StaticPage' , 'department_id');
-    }
-
-
-    public function parents()
+    public function scopeInactive($query)
     {
-        return $this->hasMany('App\Model\Department', 'id', 'parent');
+        return $query->whereStatus(0);
     }
 
-
-    ///// Relation To Navbar
-    public function parent()
+    // relations
+    public function posts()
     {
-        return $this->belongsTo('App\Models\Department', 'parent');
+        return $this->hasMany(Post::class, 'department_id');
     }
-
-    public function children()
-    {
-        return $this->hasMany('App\Models\Department', 'parent');
-    }
-
-    /////////////////////////////////////////////////////////////////////////
-    /// accessors
-
 }

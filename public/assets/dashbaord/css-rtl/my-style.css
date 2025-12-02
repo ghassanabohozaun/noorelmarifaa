@@ -29,6 +29,11 @@
              border-bottom: 5px solid transparent;
              border-left: 0px solid transparent;
          }
+
+.note-editor.is-invalid-summernote-editor {
+border: 1px solid #dc3545 !important;
+}
+
 input[type="checkbox"] {
 width: 1.0em;
 height: 1.0em;

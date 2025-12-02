@@ -35,7 +35,7 @@
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-1">
                         <a href="{{ route('dashboard.posts.create') }}" class="btn btn-info  btn-glow px-2" i>
-                            {!! __('posts.create_post') !!}</a>
+                            {!! __('posts.create_new_post') !!}</a>
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -78,8 +78,8 @@
                                                         <th>{!! __('posts.post_title_ar') !!}</th>
                                                         <th>{!! __('posts.post_title_en') !!}</th>
                                                         <th>{!! __('posts.post_language') !!}</th>
-                                                        <th>{!! __('posts.post_status') !!}</th>
-                                                        <th>{!! __('posts.post_added_date') !!}</th>
+                                                        {{-- <th>{!! __('posts.post_status') !!}</th> --}}
+                                                        {{-- <th>{!! __('posts.post_added_date') !!}</th> --}}
                                                         <th>{!! __('posts.department_id') !!}</th>
                                                         <th>{!! __('general.actions') !!}</th>
                                                     </tr>
@@ -88,15 +88,16 @@
                                                     @forelse ($posts as $key=>$post)
                                                         <tr>
                                                             <th class="col-lg-1 ">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-3 text-center">{!! $post->main_photo !!}</td>
+                                                            <td class="col-lg-1 text-center"> @include('dashboard.posts.parts.photo')
+                                                            </td>
                                                             <td class="col-lg-2 text-center">{!! $post->post_title_ar !!}</td>
                                                             <td class="col-lg-2 text-center">{!! $post->post_title_en !!}</td>
                                                             <td class="col-lg-2 text-center">{!! $post->post_language !!}</td>
-                                                            <td class="col-lg-2 text-center">{!! $post->post_status !!}</td>
-                                                            <td class="col-lg-2 text-center">{!! $post->post_added_date !!}</td>
-                                                            <td class="col-lg-2 text-center">{!! $post->department_id !!}</td>
+                                                            {{-- <td class="col-lg-2 text-center">{!! $post->post_status !!}</td> --}}
+                                                            {{-- <td class="col-lg-3 text-center">{!! $post->post_added_date !!}</td> --}}
+                                                            <td class="col-lg-2 text-center">{!! $post->department->name !!}</td>
                                                             <td class="col-lg-1 text-center">
-                                                                {{-- @include('dashboard.posts.parts.actions') --}}
+                                                                @include('dashboard.posts.parts.actions')
                                                             </td>
                                                         </tr>
                                                     @empty
@@ -129,7 +130,7 @@
 @push('scripts')
     <script type="text/javascript">
         // delete roles
-        $('body').on('click', '.delete_role_btn', function(e) {
+        $('body').on('click', '.delete_post_btn', function(e) {
             e.preventDefault();
             var id = $(this).data('id');
 
@@ -155,7 +156,7 @@
             }).then(isConfirm => {
                 if (isConfirm) {
                     $.ajax({
-                        url: '{!! route('dashboard.roles.destroy') !!}',
+                        url: '{!! route('dashboard.posts.destroy') !!}',
                         data: {
                             id,
                             id

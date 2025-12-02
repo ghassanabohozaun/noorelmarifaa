@@ -3,14 +3,17 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\PostRepository;
+use App\Utils\ImageManagerUtils;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 
 class PostService
 {
-    protected $postRepository;
+    protected $postRepository, $imageManagerUtils;
     // __construct
-    public function __construct(PostRepository $postRepository)
+    public function __construct(PostRepository $postRepository, ImageManagerUtils $imageManagerUtils)
     {
         $this->postRepository = $postRepository;
+        $this->imageManagerUtils = $imageManagerUtils;
     }
 
     // get one
@@ -30,15 +33,14 @@ class PostService
         return $this->postRepository->getAll();
     }
 
-    // get active
-    public function getActive()
-    {
-        return $this->postRepository->getActive();
-    }
-
     // create
     public function create($data)
     {
+        if (array_key_exists('photo', $data) && $data['photo'] != null) {
+            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'posts', 1700, 1000);
+            $data['photo'] = $photo_name;
+        }
+
         $post = $this->postRepository->create($data);
         if (!$post) {
             return false;
@@ -53,6 +55,14 @@ class PostService
         if (!$post) {
             return false;
         }
+
+        if (array_key_exists('photo', $data) && $data['photo'] != null) {
+            //remove old photo
+            $this->imageManagerUtils->removeImageFromLocal($post->photo, 'posts');
+            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'posts', 1700, 1000);
+            $data['photo'] = $photo_name;
+        }
+
         $post = $this->postRepository->update($post, $data);
         if (!$post) {
             return false;
@@ -66,9 +76,16 @@ class PostService
     {
         $post = self::getOne($id);
 
-
-         if ($post->children()->count() > 0 || !$post) {
+        if (!$post) {
             return false;
+        }
+
+        foreach ($post->files as $file) {
+            $this->imageManagerUtils->removeImageFromLocal($file->full_path_after_upload, 'post-photos');
+        }
+
+        if ($post->photo != null) {
+            $this->imageManagerUtils->removeImageFromLocal($post->photo, 'posts');
         }
 
         $post = $this->postRepository->destroy($post);
@@ -85,7 +102,7 @@ class PostService
         if (!$post) {
             return false;
         }
-        $post = $this->postRepository->changeStatus($post , $status);
+        $post = $this->postRepository->changeStatus($post, $status);
         if (!$post) {
             return false;
         }

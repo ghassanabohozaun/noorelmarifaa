@@ -2,7 +2,7 @@
 
 return [
     'posts' => 'Posts',
-    'show_all_posts'=>'Show All Posts',
+    'show_all_posts' => 'Show All Posts',
 
     'departments_update' => 'Department Update',
     'post_settings_tab' => 'Post Settings',
@@ -10,12 +10,14 @@ return [
     'post_details_en_tab' => 'Post Details |en',
     'post_department_tab' => 'Post Department',
     'post_media_tab' => 'Post Media',
-    'create_update_post' => 'Create And Update Post',
+    'update_post' => 'Update Post',
     'main_photo' => 'Post  Main Photo',
     'other_photos' => 'Post Other Photos',
     'main_photo_upload' => 'Drop Main Photo Here To Upload',
     'other_photos_upload' => 'Drop other Photos Here To Upload',
-    'create_post' => 'Create Post',
+    'create_new_post' => 'Create New Post',
+
+    'post_photos' => 'Post Photos',
 
     'post_language' => 'Post Language',
     'post_status' => 'Post Status',
@@ -32,10 +34,10 @@ return [
     'enter_post_title_ar' => 'Enter Post Title in Arabic',
     'enter_post_summary_ar' => 'Enter Post Summary in Arabic',
     'enter_post_details_ar' => 'Enter Post Details in Arabic',
-
     'enter_post_title_en' => 'Enter Post Title in English',
     'enter_post_summary_en' => 'Enter Post Summary in English',
     'enter_post_details_en' => 'Enter Post Details in English',
+    'enter_department_id' => 'Enter department',
 
     'post_title_ar_required' => 'Post Title in Arabic Required',
     'post_title_en_required' => 'Post Title in English Required',

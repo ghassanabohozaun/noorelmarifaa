@@ -3,8 +3,9 @@
 use App\Models\Admin;
 use App\Models\Child;
 use App\Models\City;
+use App\Models\Department;
 use App\Models\Governorate;
-use Illuminate\Support\Facades\Config;
+use App\Models\Page;
 use App\Models\Setting;
 use App\Models\Website_main_page;
 
@@ -16,13 +17,48 @@ if (!function_exists('setting')) {
     }
 }
 
-function websiteMainPage()
-{
-    return Website_main_page::orderBy('id', 'desc')->first();
+// website main page Function
+if (!function_exists('websiteMainPage')) {
+    function websiteMainPage()
+    {
+        return Website_main_page::orderBy('id', 'desc')->first();
+    }
 }
 
 
-// test
+//  departments Helper Function
+if (!function_exists('Departments')) {
+    function Departments()
+    {
+        return Department::active()->get();
+    }
+}
+
+
+//  whoms Helper Function
+if (!function_exists('Whoms')) {
+    function Whoms()
+    {
+        return Page::where('section', 'whom')->active()->get();
+    }
+}
+
+//  systems Helper Function
+if (!function_exists('Systems')) {
+    function Systems()
+    {
+        return Page::where('section', 'systems')->active()->get();
+    }
+}
+
+//  guide Helper Function
+if (!function_exists('Guides')) {
+    function Guides()
+    {
+        return Page::where('section', 'beneficiaries_guide')->active()->get();
+    }
+}
+
 //  get language Helper Function
 if (!function_exists('Lang')) {
     function Lang()
@@ -55,6 +91,7 @@ if (!function_exists('child')) {
     }
 }
 
+// slug
 if (!function_exists('slug')) {
     function slug($string)
     {
@@ -64,6 +101,7 @@ if (!function_exists('slug')) {
     }
 }
 
+// replace hyphens with spaces
 if (!function_exists('replaceHyphensWithSpaces')) {
     function replaceHyphensWithSpaces($string)
     {

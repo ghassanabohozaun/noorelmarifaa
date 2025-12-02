@@ -52,6 +52,35 @@
                         </a>
 
                         <ul class="menu-content">
+
+                            <!-- begin: departments -->
+                            <li class=" @if (str_contains(Route::currentRouteName(), 'pages')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.pages.index') !!}" data-i18n="nav.dash.pages">
+                                    {!! __('pages.pages') !!}
+                                </a>
+                            </li>
+                            <!-- end: departments -->
+
+                            <!-- begin: sliders -->
+                            <li class="@if (str_contains(Route::currentRouteName(), 'sliders')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.sliders.index') !!}" data-i18n="nav.dash.posts">
+                                    {!! __('dashboard.sliders') !!}
+                                </a>
+                            </li>
+                            <!-- end: sliders -->
+
+
+                            <!-- begin: departments -->
+                            <li class="@if (str_contains(Route::currentRouteName(), 'departments')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.departments.index') !!}" data-i18n="nav.dash.posts">
+                                    {!! __('dashboard.departments') !!}
+                                </a>
+                            </li>
+                            <!-- end: departments -->
+
+
+
+
                             <!-- begin: posts -->
                             <li class="@if (str_contains(Route::currentRouteName(), 'posts')) active @endif">
                                 <a class="menu-item" href="{!! route('dashboard.posts.index') !!}" data-i18n="nav.dash.posts">
@@ -59,14 +88,6 @@
                                 </a>
                             </li>
                             <!-- end: posts -->
-
-                            {{-- <!-- begin: cities -->
-                            <li class="@if (str_contains(Route::currentRouteName(), 'cities.index')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.cities.index') !!}" data-i18n="nav.dash.cities">
-                                    {!! __('world.cities') !!}
-                                </a>
-                            </li>
-                            <!-- end: cities --> --}}
 
                         </ul>
 
@@ -197,7 +218,8 @@
                         @can('sponsershipTypes')
                             <!-- begin: sponsershipStatuses -->
                             <li class="@if (str_contains(Route::currentRouteName(), 'sponsershipTypes.index')) active @endif">
-                                <a class="menu-item" href="{!! route('dashboard.sponsershipTypes.index') !!}" data-i18n="nav.dash.sponsershipTypes">
+                                <a class="menu-item" href="{!! route('dashboard.sponsershipTypes.index') !!}"
+                                    data-i18n="nav.dash.sponsershipTypes">
                                     {!! __('sponsership.sponsershipTypes') !!}
                                 </a>
                             </li>

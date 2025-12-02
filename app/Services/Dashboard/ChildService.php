@@ -3,7 +3,6 @@
 namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\ChildRepository;
-use Illuminate\Support\Facades\Cache;
 use App\Utils\ImageManagerUtils;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -234,7 +233,7 @@ class ChildService
                 return false;
             }
 
-            $this->childCache();
+
             DB::commit();
             return true;
         } catch (\Exception $e) {
@@ -258,7 +257,7 @@ class ChildService
         if (!$child) {
             return false;
         }
-        $this->childCache();
+
         return $child;
     }
 
@@ -278,11 +277,7 @@ class ChildService
         return $child;
     }
 
-    // child cache
-    public function childCache()
-    {
-        Cache::forget('children_count');
-    }
+
 
     // create child file
     public function createChildFile($file, $childFileData)

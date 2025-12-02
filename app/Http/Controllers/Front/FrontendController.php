@@ -4,21 +4,24 @@ namespace App\Http\Controllers\Front;
 
 use App\File;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CommentsRequest;
-use App\Http\Requests\CommunicationRequestsRequest;
-use App\Http\Requests\EmploysVolunteersRequest;
-use App\Http\Requests\ServicesGuaranteesRequest;
+
+use App\Http\Requests\Dashboard\CommentsRequest;
+use App\Http\Requests\Dashboard\CommunicationRequestsRequest;
+use App\Http\Requests\Dashboard\EmploysVolunteersRequest;
+use App\Http\Requests\Dashboard\ServicesGuaranteesRequest;
 use App\Models\Comment;
 use App\Models\CommunicationRequest;
 use App\Models\Department;
 use App\Models\EmployForm;
 use App\Models\MonthlyReport;
+use App\Models\Page;
 use App\Models\PhotoAlbum;
 use App\Models\Post;
 use App\Models\ServiceForm;
 use App\Models\Slider;
 use App\Models\Video;
 use App\Models\YearlyReports;
+use App\Services\Website\PageService;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,288 +31,161 @@ class FrontendController extends Controller
 {
     use GeneralTrait;
 
-    //////////////////////////////////////////////////////
-    /// maintenance
-    public function maintenance(){
-        $title  = trans('frontend.maintenance');
-        if(setting()->site_status == '1'){
+    protected $pageService;
+    // construct
+    public function __construct(PageService $pageService)
+    {
+        $this->pageService = $pageService;
+    }
+
+    // maintenance
+    public function maintenance()
+    {
+        $title = trans('frontend.maintenance');
+        if (setting()->site_status == '1') {
             return redirect('/');
         }
-        return view('frontend.maintenance',compact('title'));
+        return view('frontend.maintenance', compact('title'));
     }
-    //////////////////////////////////////////////////////
-    /// index
+
+    // index
     public function index()
     {
-        /* ``````````````````````````````````````````````````````````````````````````````*/
         if (Lang() == 'ar') {
             $title = setting()->site_name_ar;
         } else {
             $title = setting()->site_name_en;
         }
-        /* ``````````````````````````````````````````````````````````````````````````````*/
 
-        /* ``````````````````````````````````````````````````````````````````````````````*/
-
-        if (LaravelLocalization::getCurrentLocale() == 'ar') {
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $sliders = Slider:: orderBy('order', 'asc')->where('status', 'enable')
-                ->where(function ($q) {
-                    $q->where('language', 'ar')
-                        ->orWhere('language', 'ar_en')
-                        ->orWhere('language', 'without_language');
-                })->get();
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $latestPost = Post:: orderBy('id', 'desc')->where('post_status', 'enable')->where('department_id', '19')
-                ->where(function ($q) {
-                    $q->where('post_language', 'ar')
-                        ->orWhere('post_language', 'ar_en');
-                })->first();
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $nextPosts = Post:: orderBy('id', 'desc')->where('post_status', 'enable')->where('department_id', '19')
-                ->where(function ($q) {
-                    $q->where('post_language', 'ar')
-                        ->orWhere('post_language', 'ar_en');
-                })->skip(1)->take(3)->get();
-
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $projects = Post:: orderBy('id', 'desc')->where('post_status', 'enable')->where('department_id', '18')
-                ->where(function ($q) {
-                    $q->where('post_language', 'ar')
-                        ->orWhere('post_language', 'ar_en');
-                })->take(10)->get();
-
-        } else {
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $sliders = Slider:: orderBy('order', 'asc')->where('status', 'enable')
-                ->where(function ($q) {
-                    $q->where('language', 'en')
-                        ->orWhere('language', 'ar_en')
-                        ->orWhere('language', 'without_language');
-                })->get();
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $latestPost = Post:: orderBy('id', 'desc')->where('post_status', 'enable')->where('department_id', '19')
-                ->where(function ($q) {
-                    $q->where('post_language', 'en')
-                        ->orWhere('post_language', 'ar_en');
-                })->first();
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $nextPosts = Post:: orderBy('id', 'desc')->where('post_status', 'enable')->where('department_id', '19')
-                ->where(function ($q) {
-                    $q->where('post_language', 'en')
-                        ->orWhere('post_language', 'ar_en');
-                })->skip(1)->take(3)->get();
-            /* ``````````````````````````````````````````````````````````````````````````````*/
-            $projects = Post:: orderBy('id', 'desc')->where('post_status', 'enable')->where('department_id', '18')
-                ->where(function ($q) {
-                    $q->where('post_language', 'en')
-                        ->orWhere('post_language', 'ar_en');
-                })->take(10)->get();
-        }
-
-        return view('frontend.index', compact('title', 'sliders', 'latestPost', 'nextPosts', 'projects'));
+        return view('frontend.index', compact('title'));
     }
 
-    //////////////////////////////////////////////////////////////////////
-    /// page
-    public function page($val = null)
+    // page
+    public function page($slug = null)
     {
-        if (!$val) {
+        if (!$slug) {
             return redirect()->route('index');
         }
-        $OriginalPageTitle = str_replace('-', ' ', $val);
 
-        if (\Lang() == 'ar') {
-            $department = Department::with('staticPage')
-                ->where('dep_name_ar', '=', $OriginalPageTitle)->first();
-            if(!$department){
-                return redirect()->route('index');
-            }
-            $title = $department->dep_name_ar;
+        $page = Page::active()->where('slug->en', $slug)->orWhere('slug->ar', $slug)->first();
 
-        } else {
-            $department = Department::with('staticPage')
-                ->where('dep_name_en', '=', $OriginalPageTitle)->first();
-            if(!$department){
-                return redirect()->route('index');
-            }
-            $title = $department->dep_name_en;
-        }
-
-        //return $department;
-        return view('frontend.page', compact('department', 'title'));
-    }
-
-    //////////////////////////////////////////////////////////////////////
-    /// categories
-    public function categories($cat = null)
-    {
-        if (!$cat) {
+        if (!$page) {
             return redirect()->route('index');
         }
-        $OriginalPageTitle = str_replace('-', ' ', $cat);
 
-        if (\Lang() == 'ar') {
-            $department = Department::with('staticPage')
-                ->where('dep_name_ar', '=', $OriginalPageTitle)->first();
-            if(!$department){
-                return redirect()->route('index');
-            }
-            $title = $department->dep_name_ar;
-
-        } else {
-            $department = Department::with('staticPage')
-                ->where('dep_name_en', '=', $OriginalPageTitle)->first();
-            if(!$department){
-                return redirect()->route('index');
-            }
-            $title = $department->dep_name_en;
-        }
-
-
-        $id = $department->id;
-        if (LaravelLocalization::getCurrentLocale() == 'ar') {
-            if ($id == '19') {
-                $posts = Post::with('department')->with('admin')->where('post_status', 'enable')
-                    ->where('department_id', $id)->orderByDesc('created_at')->where(function ($q) {
-                        $q->where('post_language', 'ar')
-                            ->orWhere('post_language', 'ar_en');
-                    })->paginate(3);
-
-                $lastPosts = Post::where('department_id', '19')->where('post_status', 'enable')
-                    ->orderByDesc('created_at')->where(function ($q) {
-                        $q->where('post_language', 'ar')
-                            ->orWhere('post_language', 'ar_en');
-                    })->paginate(3);
-                return view('frontend.news', compact('department', 'posts', 'id', 'title',
-                    'lastPosts'));
-
-            } else {
-                $posts = Post::with('department')->with('admin')->where('post_status', 'enable')
-                    ->where('department_id', $id)->orderByDesc('created_at')->where(function ($q) {
-                        $q->where('post_language', 'ar')
-                            ->orWhere('post_language', 'ar_en');
-                    })->paginate(6);
-
-                return view('frontend.categories', compact('department', 'posts', 'id', 'title'));
-            }
-        } else {
-            if ($id == '19') {
-                $posts = Post::with('department')->with('admin')->where('post_status', 'enable')
-                    ->where('department_id', $id)->orderByDesc('created_at')->where(function ($q) {
-                        $q->where('post_language', 'en')
-                            ->orWhere('post_language', 'ar_en');
-                    })->paginate(3);
-
-                $lastPosts = Post::where('department_id', '19')->where('post_status', 'enable')
-                    ->orderByDesc('created_at')->where(function ($q) {
-                        $q->where('post_language', 'en')
-                            ->orWhere('post_language', 'ar_en');
-                    })->paginate(3);
-                return view('frontend.news', compact('department', 'posts', 'id', 'title',
-                    'lastPosts'));
-
-            } else {
-                $posts = Post::with('department')->with('admin')->where('post_status', 'enable')
-                    ->where('department_id', $id)->orderByDesc('created_at')->where(function ($q) {
-                        $q->where('post_language', 'en')
-                            ->orWhere('post_language', 'ar_en');
-                    })->paginate(6);
-
-                return view('frontend.categories', compact('department', 'posts', 'id', 'title'));
-            }
-        }
-
-
+        return view('frontend.page', compact('page'));
     }
 
-    //////////////////////////////////////////////////////////////////////
-    /// categories Paging
-    public function categoriesPaging($id = null)
+    // posts
+    public function posts($departmentSlug)
     {
-        $department = Department::with('staticPage')->find($id);
-        $id = $department->id;
-        if ($id == '19') {
-            $posts = Post::with('department')->with('admin')->where('post_status', 'enable')
-                ->where('department_id', $id)->orderByDesc('created_at')->paginate(3);
-            return view('frontend.news-paging', compact('department', 'posts', 'id'))->render();
-        } else {
-            $posts = Post::with('department')->with('admin')->where('post_status', 'enable')
-                ->where('department_id', $id)->orderByDesc('created_at')->paginate(6);
+        if (!$departmentSlug) {
+            return redirect()->route('index');
+        }
 
-            return view('frontend.categories-page', compact('department', 'posts', 'id'))->render();
+        $department = Department::active()->where('slug->en', $departmentSlug)->orWhere('slug->ar', $departmentSlug)->first();
+        $title = $department->name;
+        $department_id = $department->id;
+
+        if (Lang() == 'ar') {
+            $posts = Post::where('post_status', 'enable')
+                ->orderByDesc('post_added_date')
+                ->where('department_id', $department_id)
+                ->where(function ($q) {
+                    $q->where('post_language', 'ar')->orWhere('post_language', 'ar_en');
+                })
+                ->paginate(3);
+
+            $lastPosts = Post::where('post_status', 'enable')
+                ->orderByDesc('post_added_date')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'ar')->orWhere('post_language', 'ar_en');
+                })
+                ->paginate(3);
+        } else {
+            $posts = Post::where('post_status', 'enable')
+                ->orderByDesc('post_added_date')
+                ->where('department_id', $department_id)
+                ->where(function ($q) {
+                    $q->where('post_language', 'en')->orWhere('post_language', 'ar_en');
+                })
+                ->paginate(3);
+
+            $lastPosts = Post::where('post_status', 'enable')
+                ->orderByDesc('post_added_date')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'en')->orWhere('post_language', 'ar_en');
+                })
+                ->paginate(3);
+        }
+
+        if ($department_id == 1) {
+            return view('frontend.news', compact('department', 'posts', 'title', 'lastPosts', 'department_id'));
+        } else {
+            return view('frontend.categories', compact('department', 'posts', 'department_id', 'title'));
         }
     }
 
-    //////////////////////////////////////////////////////////////////////
-    /// category
-    public function new($val = null)
+    // posts Paging
+    public function postsPaging($id = null)
     {
+        $posts = Post::where('post_status', 'enable')->orderByDesc('post_added_date')->where('department_id', $id)->paginate(3);
 
+        if ($id == 1) {
+            return view('frontend.news-paging', compact('posts', 'id'))->render();
+        } else {
+            return view('frontend.categories-page', compact('posts', 'id'))->render();
+        }
+    }
+
+    // post
+    public function post($val = null)
+    {
         if (!$val) {
             return redirect()->route('index');
         }
 
         $originalTitle = str_replace('-', ' ', $val);
 
-        if (\Lang() == 'ar') {
-            $post = Post::with('department')->with('admin')
-                ->where('post_title_ar', '=', $originalTitle)->first();
-            if(!$post){
+        if (Lang() == 'ar') {
+            $post = Post::where('post_title_ar', '=', $originalTitle)->first();
+            if (!$post) {
                 return redirect()->route('index');
             }
-
         } else {
-            $post = Post::with('department')->with('admin')
-                ->where('post_title_en', '=', $originalTitle)->first();
-            if(!$post){
+            $post = Post::where('post_title_en', '=', $originalTitle)->first();
+            if (!$post) {
                 return redirect()->route('index');
             }
         }
 
-        if (LaravelLocalization::getCurrentLocale() == 'ar') {
-            $lastPosts = Post::where('department_id', '19')->where('post_status', 'enable')
-                ->orderByDesc('created_at')->where(function ($q) {
-                    $q->where('post_language', 'ar')
-                        ->orWhere('post_language', 'ar_en');
-                })->paginate(3);
+        if (Lang() == 'ar') {
+            $lastPosts = Post::where('post_status', 'enable')
+                ->orderByDesc('post_added_date')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'ar')->orWhere('post_language', 'ar_en');
+                })
+                ->paginate(3);
         } else {
-            $lastPosts = Post::where('department_id', '19')->where('post_status', 'enable')
-                ->orderByDesc('created_at')->where(function ($q) {
-                    $q->where('post_language', 'en')
-                        ->orWhere('post_language', 'ar_en');
-                })->paginate(3);
+            $lastPosts = Post::where('post_status', 'enable')
+                ->orderByDesc('post_added_date')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'en')->orWhere('post_language', 'ar_en');
+                })
+                ->paginate(3);
         }
 
         $comments = Comment::where('post_id', $post->id)->where('status', '1')->orderByDesc('created_at')->get();
         $title = $originalTitle;
-        return view('frontend.new', compact('post', 'title', 'lastPosts', 'comments'));
-    }
-
-    //////////////////////////////////////////////////////////////////////
-    /// category
-    public function category($val = null)
-    {
-        if (!$val) {
-            return redirect()->route('index');
-        }
-        $originalTitle = str_replace('-', ' ', $val);
-        if (\Lang() == 'ar') {
-            $post = Post::with('department')->with('admin')
-                ->where('post_title_ar', '=', $originalTitle)->first();
-            if(!$post){
-                return redirect()->route('index');
-            }
-
+        if ($post->department_id == 1) {
+            return view('frontend.new', compact('post', 'title', 'lastPosts', 'comments'));
         } else {
-            $post = Post::with('department')->with('admin')
-                ->where('post_title_en', '=', $originalTitle)->first();
-            if(!$post){
-                return redirect()->route('index');
-            }
+            return view('frontend.category', compact('post', 'title', 'lastPosts', 'comments'));
         }
-        $title = $originalTitle;
-        return view('frontend.category', compact('post', 'title'));
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -343,7 +219,6 @@ class FrontendController extends Controller
     /// add Communication Request
     public function addCommunicationRequest(CommunicationRequestsRequest $request)
     {
-
         if (setting()->comments_mailList_status == '0') {
             return $this->returnError(trans('frontend.comment_disable'), '500');
         } else {
@@ -371,7 +246,6 @@ class FrontendController extends Controller
     public function addOrder(EmploysVolunteersRequest $request)
     {
         try {
-
             if (setting()->forms_status == '0') {
                 return $this->returnError(trans('frontend.forms_disable'), '500');
             } else {
@@ -389,12 +263,9 @@ class FrontendController extends Controller
                 ]);
                 return $this->returnSuccessMessage(trans('general.add_success_message'));
             }
-
         } catch (\Exception $exception) {
             return $this->returnSuccessMessage(trans('general.update_success_message'));
         }
-
-
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -409,7 +280,6 @@ class FrontendController extends Controller
     public function addService(ServicesGuaranteesRequest $request)
     {
         try {
-
             if (setting()->forms_status == '0') {
                 return $this->returnError(trans('forms.forms_disable'), '500');
             } else {
@@ -424,7 +294,6 @@ class FrontendController extends Controller
                 ]);
                 return $this->returnSuccessMessage(trans('general.add_success_message'));
             }
-
         } catch (\Exception $exception) {
             return $this->returnSuccessMessage(trans('general.update_success_message'));
         }
@@ -437,17 +306,19 @@ class FrontendController extends Controller
         $title = trans('frontend.videos_gallery');
         if (LaravelLocalization::getCurrentLocale() == 'ar') {
             /* ``````````````````````````````````````````````````````````````````````````````*/
-            $videos = Video:: orderByDesc('id')->where('status', 'enable')
+            $videos = Video::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'ar')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'ar')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         } else {
-            $videos = Video:: orderByDesc('id')->where('status', 'enable')
+            $videos = Video::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'en')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         }
         return view('frontend.videos', compact('title', 'videos'));
     }
@@ -456,22 +327,23 @@ class FrontendController extends Controller
     ///  videos paging
     public function videoPaging()
     {
-
         $title = trans('frontend.videos_gallery');
 
         if (LaravelLocalization::getCurrentLocale() == 'ar') {
             /* ``````````````````````````````````````````````````````````````````````````````*/
-            $videos = Video:: orderByDesc('id')->where('status', 'enable')
+            $videos = Video::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'ar')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'ar')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         } else {
-            $videos = Video:: orderByDesc('id')->where('status', 'enable')
+            $videos = Video::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'en')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         }
         return view('frontend.videos-paging', compact('title', 'videos'))->render();
     }
@@ -483,17 +355,19 @@ class FrontendController extends Controller
         $title = trans('frontend.photos_gallery');
         if (LaravelLocalization::getCurrentLocale() == 'ar') {
             /* ``````````````````````````````````````````````````````````````````````````````*/
-            $photoAlbums = PhotoAlbum:: orderByDesc('id')->where('status', 'enable')
+            $photoAlbums = PhotoAlbum::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'ar')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'ar')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         } else {
-            $photoAlbums = PhotoAlbum:: orderByDesc('id')->where('status', 'enable')
+            $photoAlbums = PhotoAlbum::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'en')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         }
         return view('frontend.photos-gallery', compact('title', 'photoAlbums'));
     }
@@ -505,17 +379,19 @@ class FrontendController extends Controller
         $title = trans('frontend.photos_gallery');
         if (LaravelLocalization::getCurrentLocale() == 'ar') {
             /* ``````````````````````````````````````````````````````````````````````````````*/
-            $photoAlbums = PhotoAlbum:: orderByDesc('id')->where('status', 'enable')
+            $photoAlbums = PhotoAlbum::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'ar')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'ar')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         } else {
-            $photoAlbums = PhotoAlbum:: orderByDesc('id')->where('status', 'enable')
+            $photoAlbums = PhotoAlbum::orderByDesc('id')
+                ->where('status', 'enable')
                 ->where(function ($q) {
-                    $q->where('language', 'en')
-                        ->orWhere('language', 'ar_en');
-                })->paginate('6');
+                    $q->where('language', 'en')->orWhere('language', 'ar_en');
+                })
+                ->paginate('6');
         }
         return view('frontend.photos-gallery-paging', compact('title', 'photoAlbums'))->render();
     }
@@ -525,9 +401,7 @@ class FrontendController extends Controller
     public function photosGalleryPhotos(Request $request)
     {
         if ($request->ajax()) {
-            $data = File::where('relation_id', $request->id)
-                ->orderByDesc('created_at')
-                ->get();
+            $data = File::where('relation_id', $request->id)->orderByDesc('created_at')->get();
             return response()->json($data);
         }
     }
@@ -570,8 +444,7 @@ class FrontendController extends Controller
         if (!$year) {
             return redirect()->route('monthly.reports');
         }
-        $monthlyReportsForOneYear = MonthlyReport::where('year', $year)->orderBy('month','asc')->get();
+        $monthlyReportsForOneYear = MonthlyReport::where('year', $year)->orderBy('month', 'asc')->get();
         return view('frontend.monthly-reports-details', compact('title', 'monthlyReportsForOneYear', 'year'));
     }
-
 }

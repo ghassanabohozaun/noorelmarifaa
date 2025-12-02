@@ -7,40 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $table = 'posts';
-    protected $fillable = [
-        'post_title_ar',
-        'post_title_en',
-        'post_summary_ar',
-        'post_summary_en',
-        'post_details_ar',
-        'post_details_en',
-        'post_language',
-        'post_status',
-        'post_added_date',
-        'department_id',
-        'admin_id',
-        'photo',
-    ];
+    protected $fillable = ['post_title_ar', 'post_title_en', 'post_summary_ar', 'post_summary_en', 'post_details_ar', 'post_details_en', 'post_language', 'post_status', 'post_added_date', 'department_id', 'admins_id', 'photo'];
     protected $hidden = ['updated_at'];
 
     //////////////////////////////////// Relations ///////////////////////
-    /////////////////////////////////////////////////////////////////////
     /// department
 
-    public function department(){
-        return $this->belongsTo('App\Models\Department','department_id');
+    public function department()
+    {
+        return $this->belongsTo(Department::class , 'department_id');
     }
     /////////////////////////////////////////////////////////////////////
     /// admin
-    public function admin(){
-        return $this->belongsTo('App\Models\Admin','admin_id','id');
+    public function admin()
+    {
+        return $this->belongsTo('Admin', 'admins_id', 'id');
     }
     /////////////////////////////////////////////////////////////////////
     /// files
     public function files()
     {
-        return $this->hasMany('App\File', 'relation_id', 'id')
-            ->where('file_type', 'post');
+        return $this->hasMany('App\File', 'relation_id', 'id')->where('file_type', 'post-photos');
     }
 
     ////////////////////////////////////////////////////////////////
@@ -56,7 +43,6 @@ class Post extends Model
         }
     }
 
-
     ////////////////////////////////////////////////////////////////
     /// post language accessor
     public function getPostLanguageAttribute($value)
@@ -69,7 +55,4 @@ class Post extends Model
             return trans('general.ar_en');
         }
     }
-
-
-
 }

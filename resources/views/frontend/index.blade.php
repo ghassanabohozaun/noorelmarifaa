@@ -7,7 +7,6 @@
     <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
 @endsection
 @section('content')
-
     <!--Main Slider-->
     <section class="main-slider">
 
@@ -153,7 +152,7 @@
     <!-- End Counter Section -->
 
 
-    <!-- News Section -->
+    {{-- <!-- News Section -->
     <section class="news-section">
         <div class="auto-container">
             <!-- Sec Title -->
@@ -291,7 +290,7 @@
         </div>
     </section>
     <!-- End News Section -->
-
+    --}}
 
 
     <!-- programs Section -->
@@ -400,7 +399,7 @@
     <!-- End programs Section -->
 
     <br /><br /><br />
-    <!-- projects Section -->
+    {{-- <!-- projects Section -->
     <section class="news-section-two" style="background-image: url({!! asset('frontend/images/background/7.jpg') !!})">
         <div class="auto-container">
             <!-- Sec Title -->
@@ -477,7 +476,7 @@
             @endif
         </div>
     </section>
-    <!-- End projects Section-->
+    <!-- End projects Section--> --}}
 
     <!--Clients Section-->
     <section class="clients-section">
@@ -535,5 +534,4 @@
         </div>
     </section>
     <!--End Clients Section-->
-
 @endsection

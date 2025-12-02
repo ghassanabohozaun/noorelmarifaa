@@ -7,15 +7,15 @@
             <div class="inner-box">
                 <div class="image">
                     <a href="{!! route(
-                        'new',
+                        'post',
                         Lang() == 'ar' ? str_replace(' ', '-', $post->post_title_ar) : str_replace(' ', '-', $post->post_title_en),
                     ) !!}">
-                        <img style="height: 420px" src="{!! asset(Storage::url($post->photo)) !!}" alt="{!! asset(Storage::url($post->photo)) !!}"
+                        <img style="height: 420px" src="{!! asset('uploads/posts/' . $post->photo) !!}" alt="{!! asset('uploads/posts/' . $post->photo) !!}"
                             title="{!! Lang() == 'ar' ? $post->post_title_ar : $post->post_title_en !!}">
                     </a>
                     <div class="read-more">
                         <a href="{!! route(
-                            'new',
+                            'post',
                             Lang() == 'ar' ? str_replace(' ', '-', $post->post_title_ar) : str_replace(' ', '-', $post->post_title_en),
                         ) !!}" class="more">{!! trans('frontend.read_more') !!}</a>
                     </div>
@@ -33,7 +33,7 @@
                         </div>
                         <h3>
                             <a href="{!! route(
-                                'new',
+                                'post',
                                 Lang() == 'ar' ? str_replace(' ', '-', $post->post_title_ar) : str_replace(' ', '-', $post->post_title_en),
                             ) !!}">{!! Lang() == 'ar' ? $post->post_title_ar : $post->post_title_en !!}</a>
                         </h3>
@@ -46,11 +46,11 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);"><span class="icon far fa-folder-open"></span>
+                                {{-- <a href="javascript:void(0);"><span class="icon far fa-folder-open"></span>
                                     {!! Lang() == 'ar'
                                         ? App\Models\Department::where('id', $post->department_id)->first()->dep_name_ar
                                         : App\Models\Department::where('id', $post->department_id)->first()->dep_name_en !!}
-                                </a>
+                                </a> --}}
                             </li>
                         </ul>
                         <div class="text">

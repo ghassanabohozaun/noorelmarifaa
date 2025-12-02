@@ -24,17 +24,9 @@ class CreatePostsTable extends Migration
             $table->enum('post_language', ['ar', 'en', 'ar_en'])->default('ar');
             $table->enum('post_status', ['enable', 'disable', 'pending'])->default('disable');
             $table->string('post_added_date')->nullable();
-
-
-            $table->integer('department_id')->unsigned()->nullable();
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-
-
-            // $table->integer('admins_id')->unsigned()->nullable();
-            // $table->foreign('admins_id')->references('id')->on('admins')->onDelete('cascade');
-
+            $table->foreignId('department_id')->constrained('departments')->cascadeOnDelete();
+            $table->foreignId('admins_id')->constrained('admins')->cascadeOnDelete();
             $table->string('photo')->nullable();
-
             $table->timestamps();
         });
     }

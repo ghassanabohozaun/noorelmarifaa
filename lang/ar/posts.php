@@ -9,10 +9,11 @@ return [
     'post_details_en_tab' => 'تفاصيل المنشور | انجليزي',
     'post_department_tab' => 'قسم المنشور',
     'post_media_tab' => 'وسائط المنشور',
-    'create_update_post' => 'اضافة وتعديل المنشور',
+    'update_post' => 'تعديل المنشور',
     'main_photo' => 'الصورة الرئيسية للمنشور',
     'other_photos' => 'صور آخري للمنشور',
-    'create_post' => 'اضافة المنشور',
+    'create_new_post' => 'اضافة منشور جديد',
+    'post_photos'=>'صور المنشور',
 
     'main_photo_upload' => 'اضغط هنا لرفع الصورة الرئيسية للمنشور او قم باسقاطها هنا لرفعها',
     'other_photos_upload' => 'اضغط هنا لرفع صور آخري  للمنشور او قم باسقاطها هنا لرفعها',
@@ -35,6 +36,7 @@ return [
     'enter_post_title_en' => 'ادخل عنوان المنشور بالانجليزي',
     'enter_post_summary_en' => 'ادخل ملخص المنشور بالانجليزي',
     'enter_post_details_en' => 'ادخل تفاصيل المنشور بالانجليزي',
+    'enter_department_id' => 'ادخل القسم',
 
     'post_title_ar_required' => 'عنوان المنشور بالعربي مطلوب',
     'post_title_en_required' => 'عنوان المنشور بالانجليزي مطلوب',

@@ -45,7 +45,6 @@ return [
             'report' => false,
         ],
 
-
         'settings' => [
             'driver' => 'local',
             'root' => public_path('/uploads/settings'),
@@ -64,7 +63,40 @@ return [
             'report' => false,
         ],
 
+        'posts' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/posts'),
+            'url' => env('APP_URL') . '/uploads/posts',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+        'post-photos' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/post-photos'),
+            'url' => env('APP_URL') . '/uploads/post-photos',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
 
+        'sliders' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/sliders'),
+            'url' => env('APP_URL') . '/uploads/sliders',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'pages' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/pages'),
+            'url' => env('APP_URL') . '/uploads/pages',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

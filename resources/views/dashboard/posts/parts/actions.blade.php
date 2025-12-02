@@ -1,14 +1,23 @@
-{{-- <a href="{{ route('admin.comments', $instance->id) }}" class="btn btn-hover-primary btn-icon btn-pill "
-    title="{{ trans('general.comments') }}">
-    <i class="fa fa-comment fa-1x"></i>
-</a> --}}
+<div class="form-group">
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
-<a href="{{ route('dashboard.website.posts.edit', $instance->id) }}" class="btn btn-hover-primary btn-icon btn-pill "
-    title="{{ trans('general.edit') }}">
-    <i class="fa fa-edit fa-1x"></i>
-</a>
 
-<a href="#" class="btn btn-hover-danger btn-icon btn-pill delete_post_btn" data-id="{{ $instance->id }}"
-    title="{{ trans('general.delete') }}">
-    <i class="fa fa-trash fa-1x"></i>
-</a>
+        <a href="{{ route('dashboard.posts.photos', $post->id) }}" class="btn btn-sm btn-outline-primary"
+            title="{!! __('general.post_photo') !!}">
+            <i class="la la-plus"></i>
+        </a>
+
+
+        <a href="{{ route('dashboard.posts.edit', $post->id) }}" class="btn btn-sm btn-outline-primary"
+            title="{!! __('general.edit') !!}">
+            <i class="la la-edit"></i>
+        </a>
+
+
+        <a href="#" class="btn btn-sm btn-outline-danger delete_post_btn" data-id="{!! $post->id !!}"
+            title="{!! __('general.delete') !!}">
+            <i class="la la-trash-o"></i>
+        </a>
+
+    </div>
+</div>

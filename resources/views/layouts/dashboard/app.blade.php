@@ -4,7 +4,6 @@
 
 <head>
     @include('layouts.dashboard.app-parts._head')
-
     @stack('style')
     {{-- @livewireStyles --}}
 </head>

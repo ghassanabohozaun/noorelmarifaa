@@ -151,83 +151,74 @@
 
                     <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                         <ul class="navigation clearfix">
+
                             <li class="current">
                                 <a href="{!! route('index') !!}">
                                     {!! trans('frontend.home') !!}
                                 </a>
                             </li>
 
-                            @php
-                                $categories = App\Models\Department::with('children')
-                                    ->where('parent', '=', null)
-                                    ->where('status', 'enable')
-                                    ->where('class', '=', 'staticPage')
-                                    ->get();
-                            @endphp
-                            @foreach ($categories as $item)
-                                @if ($item->children->count() > 0)
-                                    <li class="dropdown">
-                                        <a href="#">
-                                            {!! Lang() == 'ar' ? $item->dep_name_ar : $item->dep_name_en !!}
-                                        </a>
-                                        <ul>
-                                            @foreach ($item->children as $submenu)
-                                                @if ($submenu->status == 'enable')
-                                                    <li>
-                                                        @if (Lang() == 'ar')
-                                                            <a href="{!! route('page', str_replace(' ', '-', $submenu->dep_name_ar)) !!}">
-                                                                {!! $submenu->dep_name_ar !!}
-                                                            </a>
-                                                        @else
-                                                            <a href="{!! route('page', str_replace(' ', '-', $submenu->dep_name_en)) !!}">
-                                                                {!! $submenu->dep_name_en !!}
-                                                            </a>
-                                                        @endif
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @else
-                                    <li>
-                                        @if (Lang() == 'ar')
-                                            <a href="{!! route('page', str_replace(' ', '-', $item->dep_name_ar)) !!}">
-                                                {!! $item->dep_name_ar !!}
+
+                            <li class="dropdown">
+                                <a href="#">
+                                    {!! trans('frontend.whom') !!}
+                                </a>
+                                <ul>
+                                    @foreach (Whoms() as $whom)
+                                        <li>
+                                            <a href="{!! route('page', $whom->slug) !!}">
+                                                {!! $whom->title !!}
                                             </a>
-                                        @else
-                                            <a href="{!! route('page', str_replace(' ', '-', $item->dep_name_en)) !!}">
-                                                {!! $item->dep_name_en !!}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#">
+                                    {!! trans('frontend.beneficiaries_guide') !!}
+                                </a>
+                                <ul>
+                                    @foreach (Guides() as $guide)
+                                        <li>
+                                            <a href="{!! route('page', $guide->slug) !!}">
+                                                {!! $guide->title !!}
                                             </a>
-                                        @endif
-                                    </li>
-                                @endif
-                            @endforeach
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#">
+                                    {!! trans('frontend.systems') !!}
+                                </a>
+                                <ul>
+                                    @foreach (Systems() as $system)
+                                        <li>
+                                            <a href="{!! route('page', $system->slug) !!}">
+                                                {!! $system->title !!}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
 
                             <li class="dropdown">
                                 <a href="#">
                                     {!! trans('frontend.posts') !!}
                                 </a>
                                 <ul>
-                                    @php
-                                        $postDepartments = App\Models\Department::where('status', 'enable')
-                                            ->where('class', 'post')
-                                            ->get();
-                                    @endphp
-                                    @foreach ($postDepartments as $postDepartment)
+                                    @foreach (Departments() as $department)
                                         <li>
-                                            @if (Lang() == 'ar')
-                                                <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_ar)) !!}">
-                                                    {!! $postDepartment->dep_name_ar !!}
-                                                </a>
-                                            @else
-                                                <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_en)) !!}">
-                                                    {!! $postDepartment->dep_name_en !!}
-                                                </a>
-                                            @endif
+                                            <a href="{!! route('posts', $department->slug) !!}">
+                                                {!! $department->name !!}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
                             </li>
+
 
                             <li class="dropdown">
                                 <a href="#">
@@ -340,61 +331,61 @@
                                 </a>
                             </li>
 
-                            @foreach ($categories as $item)
-                                @if ($item->children->count() > 0)
-                                    <li class="dropdown">
-                                        <a href="#">
-                                            {!! Lang() == 'ar' ? $item->dep_name_ar : $item->dep_name_en !!}
-                                        </a>
-                                        <ul>
-                                            @foreach ($item->children as $submenu)
-                                                @if ($submenu->status == 'enable')
-                                                    <li>
-                                                        @if (Lang() == 'ar')
-                                                            <a href="{!! route('page', str_replace(' ', '-', $submenu->dep_name_ar)) !!}">
-                                                                {!! $submenu->dep_name_ar !!}
-                                                            </a>
-                                                        @else
-                                                            <a href="{!! route('page', str_replace(' ', '-', $submenu->dep_name_en)) !!}">
-                                                                {!! $submenu->dep_name_en !!}
-                                                            </a>
-                                                        @endif
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @else
-                                    <li>
-                                        @if (Lang() == 'ar')
-                                            <a href="{!! route('page', str_replace(' ', '-', $item->dep_name_ar)) !!}">
-                                                {!! $item->dep_name_ar !!}
+                            <li class="dropdown">
+                                <a href="#">
+                                    {!! trans('frontend.whom') !!}
+                                </a>
+                                <ul>
+                                    @foreach (Whoms() as $whom)
+                                        <li>
+                                            <a href="{!! route('page', $whom->slug) !!}">
+                                                {!! $whom->title !!}
                                             </a>
-                                        @else
-                                            <a href="{!! route('page', str_replace(' ', '-', $item->dep_name_en)) !!}">
-                                                {!! $item->dep_name_en !!}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#">
+                                    {!! trans('frontend.beneficiaries_guide') !!}
+                                </a>
+                                <ul>
+                                    @foreach (Guides() as $guide)
+                                        <li>
+                                            <a href="{!! route('page', $guide->slug) !!}">
+                                                {!! $guide->title !!}
                                             </a>
-                                        @endif
-                                    </li>
-                                @endif
-                            @endforeach
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#">
+                                    {!! trans('frontend.systems') !!}
+                                </a>
+                                <ul>
+                                    @foreach (Systems() as $system)
+                                        <li>
+                                            <a href="{!! route('page', $system->slug) !!}">
+                                                {!! $system->title !!}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
 
                             <li class="dropdown">
                                 <a href="#">
                                     {!! trans('frontend.posts') !!}
                                 </a>
                                 <ul>
-                                    @foreach ($postDepartments as $postDepartment)
+                                    @foreach (Departments() as $department)
                                         <li>
-                                            @if (Lang() == 'ar')
-                                                <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_ar)) !!}">
-                                                    {!! $postDepartment->dep_name_ar !!}
-                                                </a>
-                                            @else
-                                                <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_en)) !!}">
-                                                    {!! $postDepartment->dep_name_en !!}
-                                                </a>
-                                            @endif
+                                            <a href="{!! route('posts', $department) !!}">
+                                                {!! $department->name !!}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>

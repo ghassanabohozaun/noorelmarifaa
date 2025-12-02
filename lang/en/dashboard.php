@@ -22,6 +22,8 @@ return [
     'children' => 'Children',
     'website' => 'Website',
     'posts' => 'Posts',
+    'departments' => 'Department',
+    'sliders' => 'Sliders',
 
     // login
     'login' => 'Login',

@@ -2,49 +2,28 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Translatable\HasTranslations;
 
 class Slider extends Model
 {
+    use SoftDeletes, HasTranslations;
     protected $table = 'sliders';
-    protected $fillable = [
-        'title_ar',
-        'title_en',
-        'details_ar',
-        'details_en',
-        'language',
-        'status',
-        'order',
-        'photo',
-        'button_status',
-        'link',
-    ];
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $fillable = ['title', 'details', 'url', 'order', 'details_status', 'button_status', 'status', 'photo'];
 
-    //////////////////////////////////////////////////////////////
-    /// accessors
-    //////////////////////////////////////////////////////////////
-    /// language
-    public function getLanguageAttribute($value)
+    public array $translatable = ['title', 'details', 'url'];
+
+    // accessories
+    public function getCreatedAtAttribute($value)
     {
-        if ($value == 'ar') {
-            return trans('general.ar');
-
-        } elseif ($value == 'en') {
-            return trans('general.en');
-
-        } elseif ($value == 'ar_en') {
-            return trans('general.ar_en');
-
-        } elseif ($value == 'without_language') {
-            return trans('sliders.without_language');
-        }
-    }
-    //////////////////////////////////////////////////////////////
-    /// status
-    public function getStatusAttribute($value)
-    {
-        return $value == 'enable' ? trans('general.enable') : trans('general.disable');
+        return Carbon::parse($value)->format('d/m/Y h:i A');
     }
 
+    // scopes
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }
