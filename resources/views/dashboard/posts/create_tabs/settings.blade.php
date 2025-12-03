@@ -109,7 +109,7 @@
                             <div class="col-lg-9 col-xl-9">
                                 <div class="input-group">
                                     <input type="file" class="form-control create_post_photo" id="photo"
-                                        name="photo" />
+                                        accept="image/*" name="photo" />
                                 </div>
                                 <img id="imagePreview" src="#" alt="Image Preview" class="mt-1"
                                     style="display: none; max-width: 200px; height: auto;">

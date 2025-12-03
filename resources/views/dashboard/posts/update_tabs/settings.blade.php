@@ -10,7 +10,7 @@
                     <div class="my-5">
 
                         <!-- begin: row id -->
-                        <div class="row">
+                        <div class="row d-none">
                             <!-- begin: input -->
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -19,9 +19,7 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- end: input -->
-
 
 
                         <!--begin::Group-->
@@ -132,7 +130,7 @@
                             <div class="col-lg-9 col-xl-9">
                                 <div class="input-group">
                                     <input type="file" class="form-control create_post_photo" id="photo"
-                                        name="photo" />
+                                        accept="image/*" name="photo" />
                                 </div>
                                 @if ($post->photo)
                                     <img id="imagePreview2" src="{!! asset('uploads/posts/' . $post->photo) !!}" alt="Image Preview"

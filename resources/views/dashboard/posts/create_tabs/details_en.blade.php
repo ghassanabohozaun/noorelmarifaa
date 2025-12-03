@@ -45,11 +45,10 @@
                         <!--begin::Group-->
                         <div class="form-group">
                             <label> {{ trans('posts.post_details_en') }}</label>
-                            <textarea type="email" class="form-control form-control-solid form-control-lg post_details_ar"
+                            <textarea type="email" class="form-control form-control-solid form-control-lg post_details_en"
                                 placeholder="{{ trans('posts.enter_post_details_en') }}" name="post_details_en" id="post_details_en"></textarea>
                             <span class="form-text text-danger" id="post_details_en_error"></span>
                         </div>
-
                         <!--end::Group-->
 
                     </div>

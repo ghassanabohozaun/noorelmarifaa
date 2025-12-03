@@ -238,6 +238,12 @@
                         $('.post_details_en').summernote('code', '');
 
                         flasher.success("{!! __('general.add_success_message') !!}");
+                        setTimeout(function() {
+                            window.location = "{!! route('dashboard.posts.index') !!}"
+                        }, 3000);
+
+
+
                     } else {
                         flasher.error("{!! __('general.add_error_message') !!}");
                     }
