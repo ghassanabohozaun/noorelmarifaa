@@ -96,25 +96,25 @@
                         <ul class="list-style-one">
 
                             <li><span class="icon fas fa-map-marker-alt"></span>
-                                {!! Lang() == 'ar' ? setting()->site_address_ar : setting()->site_address_en !!}
+                                {!! setting()->site_address !!}
                             </li>
 
                             <li><span class="icon fas fa-phone"></span>
                                 {!! trans('frontend.support') !!}:
-                                <a href="tel:{!! setting()->site_mobile !!}">
-                                    {!! setting()->site_mobile !!}
+                                <a href="tel:{!! setting()->mobile !!}">
+                                    {!! setting()->mobile !!}
                                 </a>
                             </li>
 
                             <li><span class="icon fas fa-envelope-open"></span>
                                 {!! trans('frontend.email') !!}:
-                                <a href="mailto:{!! setting()->site_email !!}"> {!! setting()->site_email !!}
+                                <a href="mailto:{!! setting()->email !!}"> {!! setting()->email !!}
                                 </a>
                             </li>
 
                             <li><span class="icon fab fa-google"></span>
                                 {!! trans('frontend.gmail') !!}:
-                                <a href="mailto:{!! setting()->site_gmail !!}"> {!! setting()->site_gmail !!}
+                                <a href="mailto:{!! setting()->gmail !!}"> {!! setting()->gmail !!}
                                 </a>
                             </li>
 
