@@ -50,28 +50,28 @@
                     $postDepartments = App\Models\Department::where('status', 'enable')->where('class', 'post')->get();
                 @endphp --}}
                 <!--Footer Column-->
-                {{-- <div class="footer-column col-lg-2 col-md-4 col-sm-12">
+                <div class="footer-column col-lg-2 col-md-4 col-sm-12">
                     <div class="footer-widget links-widget">
                         <h2>{!! trans('frontend.site_map') !!}</h2>
                         <ul class="footer-list">
                             <li><a href="{!! route('index') !!}">{!! trans('frontend.home') !!}</a></li>
-                            @foreach ($postDepartments as $postDepartment)
+
+                            @foreach (Departments() as $department)
                                 <li>
-                                    @if (Lang() == 'ar')
-                                        <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_ar)) !!}">
-                                            {!! $postDepartment->dep_name_ar !!}
-                                        </a>
-                                    @else
-                                        <a href="{!! route('categories', str_replace(' ', '-', $postDepartment->dep_name_en)) !!}">
-                                            {!! $postDepartment->dep_name_en !!}
-                                        </a>
-                                    @endif
+                                    <a href="{!! route('posts', $department->slug) !!}">
+                                        {!! $department->name !!}
+                                    </a>
                                 </li>
                             @endforeach
 
+
+
                         </ul>
                     </div>
-                </div> --}}
+                </div>
+
+
+
                 <!--Footer Column-->
                 <div class="footer-column col-lg-2 col-md-4 col-sm-12">
                     <div class="footer-widget links-widget">
