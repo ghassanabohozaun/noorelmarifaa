@@ -61,6 +61,12 @@ class PostService
             $this->imageManagerUtils->removeImageFromLocal($post->photo, 'posts');
             $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'posts', 1700, 1000);
             $data['photo'] = $photo_name;
+        } else {
+            if ($post->photo != null) {
+                $data['photo'] = $post->photo;
+            } else {
+                $data['photo'] = '';
+            }
         }
 
         $post = $this->postRepository->update($post, $data);

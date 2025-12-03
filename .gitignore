@@ -5,6 +5,9 @@
 /public/storage
 /public/uploads/children/*
 /public/uploads/settings/*
+/public/uploads/pages/*
+/public/uploads/post-photos/*
+/public/uploads/slider/*
 /storage/*.key
 /storage/pail
 /vendor
