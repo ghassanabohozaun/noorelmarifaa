@@ -152,7 +152,7 @@
     <!-- End Counter Section -->
 
 
-    {{-- <!-- News Section -->
+    <!-- News Section -->
     <section class="news-section">
         <div class="auto-container">
             <!-- Sec Title -->
@@ -172,13 +172,13 @@
                             <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                 <div class="image">
                                     <a href="{!! route(
-                                        'new',
+                                        'post',
                                         Lang() == 'ar'
                                             ? str_replace(' ', '-', $latestPost->post_title_ar)
                                             : str_replace(' ', '-', $latestPost->post_title_en),
                                     ) !!}">
-                                        <img style="height: 380px" src="{!! asset(Storage::url($latestPost->photo)) !!}"
-                                            alt="{!! asset(Storage::url($latestPost->photo)) !!}" title="{!! Lang() == 'ar' ? $latestPost->title_ar : $latestPost->title_en !!}" />
+                                        <img style="height: 380px" src="{!! asset('uploads/posts/' . $latestPost->photo) !!}"
+                                            alt="{!! asset('uploads/posts/' . $latestPost->photo) !!}" title="{!! Lang() == 'ar' ? $latestPost->title_ar : $latestPost->title_en !!}" />
                                     </a>
                                 </div>
                                 <div class="lower-content">
@@ -195,7 +195,7 @@
                                         <div class="clearfix"></div>
                                         <h3>
                                             <a href="{!! route(
-                                                'new',
+                                                'post',
                                                 Lang() == 'ar'
                                                     ? str_replace(' ', '-', $latestPost->post_title_ar)
                                                     : str_replace(' ', '-', $latestPost->post_title_en),
@@ -214,9 +214,7 @@
                                             </li>
                                             <li><a href="javascript:void(0)">
                                                     <span class="icon far fa-folder-open"></span>
-                                                    {!! Lang() == 'ar'
-                                                        ? App\Models\Department::where('id', $latestPost->department_id)->first()->dep_name_ar
-                                                        : App\Models\Department::where('id', $latestPost->department_id)->first()->dep_name_en !!}
+                                                    {!! __('frontend.news') !!}
                                                 </a>
                                             </li>
                                         </ul>
@@ -238,7 +236,7 @@
                         <!-- Start News Block -->
                         <div class="news-block-two">
                             <div class="inner-box wow fadeInUp" data-wow-delay="5ms" data-wow-duration="1500ms">
-                                <div class="image-layer" style="background-image: url({!! asset(Storage::url($nextPost->photo)) !!})">
+                                <div class="image-layer" style="background-image: url({!! asset('uploads/posts/' . $nextPost->photo) !!})">
                                 </div>
                                 <div class="content">
                                     <div class="date-outer">
@@ -253,7 +251,7 @@
                                     <div class="clearfix"></div>
                                     <h3>
                                         <a href="{!! route(
-                                            'new',
+                                            'post',
                                             Lang() == 'ar' ? str_replace(' ', '-', $nextPost->post_title_ar) : str_replace(' ', '-', $nextPost->post_title_en),
                                         ) !!}">
                                             {!! Lang() == 'ar' ? $nextPost->post_title_ar : $nextPost->post_title_en !!}
@@ -271,9 +269,7 @@
                                         <li>
                                             <a href="javascript:void(0)">
                                                 <span class="icon far fa-folder-open"></span>
-                                                {!! Lang() == 'ar'
-                                                    ? App\Models\Department::where('id', $nextPost->department_id)->first()->dep_name_ar
-                                                    : App\Models\Department::where('id', $nextPost->department_id)->first()->dep_name_en !!}
+                                                {!! __('frontend.news') !!}
                                             </a>
                                         </li>
                                     </ul>
@@ -290,7 +286,7 @@
         </div>
     </section>
     <!-- End News Section -->
-    --}}
+
 
 
     <!-- programs Section -->
@@ -399,7 +395,7 @@
     <!-- End programs Section -->
 
     <br /><br /><br />
-    {{-- <!-- projects Section -->
+    <!-- projects Section -->
     <section class="news-section-two" style="background-image: url({!! asset('frontend/images/background/7.jpg') !!})">
         <div class="auto-container">
             <!-- Sec Title -->
@@ -419,11 +415,11 @@
                             <div class="inner-box">
                                 <div class="image">
                                     <a href="{!! route(
-                                        'category',
+                                        'post',
                                         Lang() == 'ar' ? str_replace(' ', '-', $project->post_title_ar) : str_replace(' ', '-', $project->post_title_en),
                                     ) !!}">
-                                        <img src="{!! asset(Storage::url($project->photo)) !!}" style="width: 100% ; height: 250px"
-                                            alt="{!! asset(Storage::url($project->photo)) !!}" title="{!! Lang() == 'ar' ? $project->post_title_ar : $project->post_title_en !!}" />
+                                        <img src="{!! asset('uploads/posts/' . $project->photo) !!}" style="width: 100% ; height: 250px"
+                                            alt="{!! asset('uploads/posts/' . $project->photo) !!}" title="{!! Lang() == 'ar' ? $project->post_title_ar : $project->post_title_en !!}" />
                                     </a>
                                     <div class="read-more">
                                         <a href="#" class="more"> {!! trans('frontend.read_more') !!}</a>
@@ -443,7 +439,7 @@
                                         <div class="clearfix"></div>
                                         <h3>
                                             <a href="{!! route(
-                                                'category',
+                                                'post',
                                                 Lang() == 'ar' ? str_replace(' ', '-', $project->post_title_ar) : str_replace(' ', '-', $project->post_title_en),
                                             ) !!}">
                                                 {!! Lang() == 'ar' ? $project->post_title_ar : $project->post_title_en !!}
@@ -460,9 +456,7 @@
                                             </li>
                                             <li>
                                                 <a href="javascript:void(0)"><span class="icon far fa-folder-open"></span>
-                                                    {!! Lang() == 'ar'
-                                                        ? App\Models\Department::where('id', $project->department_id)->first()->dep_name_ar
-                                                        : App\Models\Department::where('id', $project->department_id)->first()->dep_name_en !!}
+                                                    {!! __('frontend.projects') !!}
                                                 </a>
                                             </li>
                                         </ul>
@@ -476,7 +470,7 @@
             @endif
         </div>
     </section>
-    <!-- End projects Section--> --}}
+    <!-- End projects Section-->
 
     <!--Clients Section-->
     <section class="clients-section">
@@ -488,7 +482,7 @@
                         <li class="slide-item">
                             <figure class="image-box">
                                 <a href="javascript:void(0)">
-                                    <img src="{!! asset('frontend/images/clients/ptc.jpg') !!}" alt="{!! asset('frontend/images/clients/ptc.jpg') !!}">
+                                    <img src="{!! asset('frontend/images/clients/ptc.jpg') !!}" alt="{!! asset('frontend/images/clients/ACT.png') !!}">
                                 </a>
                             </figure>
                         </li>

@@ -57,7 +57,62 @@ class FrontendController extends Controller
             $title = setting()->site_name_en;
         }
 
-        return view('frontend.index', compact('title'));
+        if (Lang() == 'ar') {
+            $latestPost = Post::latest()
+                ->where('post_status', 'enable')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'ar')->orWhere('post_language', 'ar_en');
+                })
+                ->first();
+
+            $nextPosts = Post::latest()
+                ->where('post_status', 'enable')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'ar')->orWhere('post_language', 'ar_en');
+                })
+                ->skip(1)
+                ->take(3)
+                ->get();
+
+            $projects = Post::latest()
+                ->where('post_status', 'enable')
+                ->where('department_id', 2)
+                ->where(function ($q) {
+                    $q->where('post_language', 'ar')->orWhere('post_language', 'ar_en');
+                })
+                ->take(10)
+                ->get();
+        } else {
+            $latestPost = Post::latest()
+                ->where('post_status', 'enable')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'en')->orWhere('post_language', 'ar_en');
+                })
+                ->first();
+
+            $nextPosts = Post::latest()
+                ->where('post_status', 'enable')
+                ->where('department_id', 1)
+                ->where(function ($q) {
+                    $q->where('post_language', 'en')->orWhere('post_language', 'ar_en');
+                })
+                ->skip(1)
+                ->take(3)
+                ->get();
+
+            $projects = Post::latest()
+                ->where('post_status', 'enable')
+                ->where('department_id', 2)
+                ->where(function ($q) {
+                    $q->where('post_language', 'en')->orWhere('post_language', 'ar_en');
+                })
+                ->take(10)
+                ->get();
+        }
+        return view('frontend.index', compact('title', 'latestPost', 'nextPosts', 'projects'));
     }
 
     // page

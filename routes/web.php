@@ -24,9 +24,9 @@ Route::group(
 
 
 
-        Route::get('/categories/{cat?}', [FrontendController::class, 'categories'])->name('categories');
-        Route::get('/categories-paging/{id?}', [FrontendController::class, 'categoriesPaging'])->name('categories.paging');
-        Route::get('/category/{val?}', [FrontendController::class, 'category'])->name('category');
+        // Route::get('/categories/{cat?}', [FrontendController::class, 'categories'])->name('categories');
+        // Route::get('/categories-paging/{id?}', [FrontendController::class, 'categoriesPaging'])->name('categories.paging');
+        // Route::get('/category/{val?}', [FrontendController::class, 'category'])->name('category');
 
         Route::post('/add-comment', [FrontendController::class, 'addComment'])->name('add.comment');
         Route::get('/contact-us', [FrontendController::class, 'contactUs'])->name('contact.us');
