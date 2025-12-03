@@ -114,7 +114,7 @@
 
                             <li><span class="icon fab fa-google"></span>
                                 {!! trans('frontend.gmail') !!}:
-                                <a href="mailto:{!! setting()->gmail !!}"> {!! setting()->gmail !!}
+                                <a href="mailto:{!! setting()->email_support !!}"> {!! setting()->email_support !!}
                                 </a>
                             </li>
 
