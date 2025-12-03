@@ -422,7 +422,10 @@
                                             alt="{!! asset('uploads/posts/' . $project->photo) !!}" title="{!! Lang() == 'ar' ? $project->post_title_ar : $project->post_title_en !!}" />
                                     </a>
                                     <div class="read-more">
-                                        <a href="#" class="more"> {!! trans('frontend.read_more') !!}</a>
+                                        <a href="{!! route(
+                                            'post',
+                                            Lang() == 'ar' ? str_replace(' ', '-', $project->post_title_ar) : str_replace(' ', '-', $project->post_title_en),
+                                        ) !!}" class="more"> {!! trans('frontend.read_more') !!}</a>
                                     </div>
                                 </div>
                                 <div class="lower-content">
