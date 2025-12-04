@@ -24,7 +24,7 @@ class PageRequest extends FormRequest
     {
         return [
             'title.*' => ['required', 'string', 'min:5', 'max:265', UniqueTranslationRule::for('pages')->ignore($this->id)],
-            'details.*' => ['required', 'string', 'min:5'],
+            // 'details.*' => ['required', 'string', 'min:5'],
             'section' => ['required'],
              'status' => ['required', 'in:0,1'],
         ];
