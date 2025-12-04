@@ -11,15 +11,15 @@
     <section class="main-slider">
 
 
-        @if (Lang() == 'ar')
-            <div class="main-slider-carousel owl-carousel owl-theme ">
+
+        <div class="main-slider-carousel owl-carousel owl-theme ">
+            @if (Lang() == 'ar')
                 <image src="{!! asset('/noorSlider.jpg') !!}"></image>
-            </div>
-        @else
-            <div class="main-slider-carousel owl-carousel owl-theme ">
+            @else
                 <image src="{!! asset('/noorSliderEn.jpg') !!}"></image>
-            </div>
-        @endif
+            @endif
+        </div>
+
 
 
 
