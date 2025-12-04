@@ -10,6 +10,7 @@
     <!--Main Slider-->
     <section class="main-slider">
 
+
         @if (Lang() == 'ar')
             <div class="main-slider-carousel owl-carousel owl-theme ">
                 <image src="{!! asset('/noorSlider.jpg') !!}"></image>
