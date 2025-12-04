@@ -20,13 +20,8 @@
             @endif
         </div>
 
-
-
-
-
-
         <!--Scroll Dwwn Btn-->
-        <div class="mouse-btn-down scroll-to-target" data-target=".welcome-section"></div>
+        {{-- <div class="mouse-btn-down scroll-to-target" data-target=".welcome-section"></div> --}}
     </section>
     <!--End Main Slider-->
 
