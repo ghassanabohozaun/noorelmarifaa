@@ -28,6 +28,16 @@
                         <h2 class="text-warning font-weight-bolder">{!! trans('frontend.coming_soon') !!}</h2>
                     @endif
 
+                    @if ($page->file)
+                        <div class="item_pdf">
+                            <i class="fa fa-file-pdf fa-6x" style="color:#ec4b1c"></i>
+                            <span class="caption_pdf">
+                                <a class="anchor_pdf" href="{!! asset('uploads/pages/' . $page->file) !!}" target="_blank">
+                                    {!! __('general.download') !!}
+                                </a>
+                            </span>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
