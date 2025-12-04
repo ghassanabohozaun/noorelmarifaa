@@ -245,7 +245,7 @@
                     el.select();
                     document.execCommand('copy');
                     document.body.removeChild(el);
-                    flasher.success("{!! __('general.copied') !!}");~
+                    flasher.success("{!! __('general.copied') !!}");
                 }
             });
 
