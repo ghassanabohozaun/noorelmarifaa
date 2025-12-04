@@ -10,9 +10,19 @@
     <!--Main Slider-->
     <section class="main-slider">
 
-        <div class="main-slider-carousel owl-carousel owl-theme ">
-            <image src="{!! asset('/noorSlider.jpg') !!}"></image>
-        </div>
+        @if (Lang() == 'ar')
+            <div class="main-slider-carousel owl-carousel owl-theme ">
+                <image src="{!! asset('/noorSlider.jpg') !!}"></image>
+            </div>
+        @else
+            <div class="main-slider-carousel owl-carousel owl-theme ">
+                <image src="{!! asset('/noorSliderEn.jpg') !!}"></image>
+            </div>
+        @endif
+
+
+
+
 
         <!--Scroll Dwwn Btn-->
         <div class="mouse-btn-down scroll-to-target" data-target=".welcome-section"></div>
