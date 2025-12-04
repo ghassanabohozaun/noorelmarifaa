@@ -49,6 +49,8 @@
                                 <i class="la la-save"></i>
                                 {!! __('general.save') !!}
                             </button>
+                            <i class="la la-refresh spinner spinner_loading d-none">
+                            </i>
 
                         </div>
                     </div>
@@ -361,6 +363,9 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                beforeSend: function() {
+                    $('.spinner_loading').removeClass('d-none');
+                },
                 success: function(data) {
                     if (data.status == true) {
                         resetUpdatePageFrom();
@@ -391,6 +396,9 @@
                     });
                 }, //end error
 
+                complete: function() {
+                    $('.spinner_loading').addClass('d-none');
+                }
             }); // end ajax
         }); //end submit
     </script>
