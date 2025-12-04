@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->longText('details');
             $table->string('section');
-            $table->string('photo')->nullable();
+            $table->string('file')->nullable();
             $table->boolean('status')->default(1);
             $table->softDeletes();
             $table->timestamps();

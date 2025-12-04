@@ -202,23 +202,30 @@
                                                 </div>
                                                 <!-- end: row section-->
 
-                                                <!-- begin: row  photo-->
+                                                <!-- begin: row  file-->
                                                 <div class="row">
                                                     <!-- begin: input -->
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="photo">{!! __('pages.photo') !!}</label>
-                                                            <input type="file" id="single_image_edit" name="photo"
+                                                            <label for="file">{!! __('pages.file') !!}</label>
+                                                            <input type="file" id="file" name="file"
                                                                 class="form-control">
                                                             <span class="text text-danger">
-                                                                <strong id="photo_error"> </strong>
+                                                                <strong id="file_error"> </strong>
                                                             </span>
+
+                                                            @if ($page->file)
+                                                                <a href="{!! asset('uploads/pages/' . $page->file) !!}" target="_blank"
+                                                                    class="btn btn-primary mt-1">
+                                                                    {!! __('pages.show_file') !!}
+                                                                </a>
+                                                            @endif
 
                                                         </div>
                                                     </div>
                                                     <!-- end: input -->
                                                 </div>
-                                                <!-- end: row photo-->
+                                                <!-- end: row file-->
 
                                                 <!-- begin: row  status-->
                                                 <div class="row">
@@ -274,7 +281,7 @@
     <script type="text/javascript">
         //properties
         var lang = "{!! Lang() !!}";
-        var page = "{!! $page->photo !!}";
+        var page = "{!! $page->file !!}";
 
         // details ar summernote
         $('.details_ar_summernote').summernote({
@@ -310,43 +317,7 @@
 
 
 
-        // file input
-        $("#single_image_edit").fileinput({
-            theme: 'fa5',
-            language: lang,
-            allowedFileTypes: ['image'],
-            maxFileCount: 1,
-            enableResumableUpload: true,
-            initialPreviewAsData: true,
-            allowedFileTypes: ['image'],
-            showCancel: true,
-            showUpload: false,
-            initialPreviewAsData: true,
-            initialPreview: page === '' ? [] : [
-                "{!! asset('/uploads/pages/' . $page->photo) !!}",
-            ],
-        });
 
-        $('#single_image_edit').on('filecleared', function(event) {
-            event.preventDefault();
-            var id = $('#pageId').val();
-            $.ajax({
-                url: "{{ route('dashboard.pages.delete.photo') }}",
-                data: {
-                    id: id
-                },
-                type: 'post',
-                dataType: 'JSON',
-                success: function(data) {
-                    if (data.status == true) {
-                        flasher.success("{!! __('general.delete_image_success_message') !!}");
-                    } else {
-                        flasher.error("{!! __('general.delete_image_error_message') !!}");
-                    }
-                }, //end success
-            })
-
-        });
 
 
         // reset form
@@ -356,7 +327,7 @@
             $('#details_ar').css('border-color', '');
             $('#details_en').css('border-color', '');
             $('#section').css('border-color', '');
-            $('#photo').css('border-color', '');
+            $('#file').css('border-color', '');
             $('#status').css('border-color', '');
             $('.details_ar_summernote').next('.note-editor').removeClass(
                 'is-invalid-summernote-editor');
@@ -368,7 +339,7 @@
             $('#details_ar_error').text('');
             $('#details_en_error').text('');
             $('#section_error').text('');
-            $('#photo_error').text('');
+            $('#file_error').text('');
             $('#status_error').text('');
         }
 

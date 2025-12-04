@@ -7,6 +7,7 @@ return [
     'whom'=>'Whom',
     'beneficiaries_guide'=>'Beneficiaries Guide',
     'systems'=>'Systems',
+    'show_file'=>'Show File',
 
 
     'title' => 'Page Title',
@@ -19,7 +20,7 @@ return [
 
     'status' => 'Status',
     'manage_status' => 'Manage Status',
-    'photo' => 'Page Photo',
+    'file' => 'File',
 
     'enter_title_ar' => 'Enter Arabic Page Title',
     'enter_title_en' => 'Enter English Page Title',

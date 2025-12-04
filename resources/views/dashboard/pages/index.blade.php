@@ -80,7 +80,6 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th class="text-center">{!! __('pages.photo') !!}</th>
                                                                 <th class="text-center">{!! __('pages.title') !!}</th>
                                                                 <th class="text-center">{!! __('pages.details') !!}</th>
                                                                 <th class="text-center">{!! __('pages.section') !!}</th>
@@ -152,12 +151,7 @@
                     searchable: false,
                     orderable: false,
                 },
-                {
-                    data: 'photo',
-                    name: 'photo',
-                    searchable: false,
-                    orderable: false,
-                },
+
                 {
                     data: 'title',
                     name: 'title',

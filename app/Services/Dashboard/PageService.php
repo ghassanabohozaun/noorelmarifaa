@@ -34,8 +34,6 @@ class PageService
         return $this->pageRepository->getPages();
     }
 
-
-
     // get all
     public function getAll()
     {
@@ -48,17 +46,17 @@ class PageService
             ->addColumn('details', function ($page) {
                 return view('dashboard.pages.parts.details', compact('page'));
             })
-             ->addColumn('section', function ($page) {
+            ->addColumn('section', function ($page) {
                 return $page->pageSection();
             })
             ->addColumn('status', function ($page) {
-                 return view('dashboard.pages.parts.status', compact('page'));
+                return view('dashboard.pages.parts.status', compact('page'));
             })
-            ->addColumn('photo', function ($page) {
-                return view('dashboard.pages.parts.photo', compact('page'));
-            })
+            // ->addColumn('photo', function ($page) {
+            //     return view('dashboard.pages.parts.photo', compact('page'));
+            // })
             ->addColumn('manage_status', function ($page) {
-               return view('dashboard.pages.parts.manage-status', compact('page'));
+                return view('dashboard.pages.parts.manage-status', compact('page'));
             })
             ->addColumn('actions', function ($page) {
                 return view('dashboard.pages.parts.actions', compact('page'));
@@ -69,9 +67,9 @@ class PageService
     // store page
     public function store($data)
     {
-        if (array_key_exists('photo', $data) && $data['photo'] != null) {
-            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'pages', 1700, 1000);
-            $data['photo'] = $photo_name;
+        if (array_key_exists('file', $data) && $data['file'] != null) {
+            $file_name = $this->imageManagerUtils->uploadSingleImage('', $data['file'], 'pages');
+            $data['file'] = $file_name;
         }
 
         $data['slug'] = [
@@ -91,11 +89,11 @@ class PageService
     {
         $page = self::getPage($data['id']);
 
-        if (array_key_exists('photo', $data) && $data['photo'] != null) {
-            //remove old photo
-            $this->imageManagerUtils->removeImageFromLocal($page->photo, 'pages');
-            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'pages', 1700, 1000);
-            $data['photo'] = $photo_name;
+        if (array_key_exists('file', $data) && $data['file'] != null) {
+            //remove old file
+            $this->imageManagerUtils->removeImageFromLocal($page->file, 'pages');
+            $file_name = $this->imageManagerUtils->uploadSingleImage('', $data['file'], 'pages');
+            $data['file'] = $file_name;
         }
 
         $data['slug'] = [
@@ -115,9 +113,9 @@ class PageService
     {
         $page = self::getPage($id);
 
-        //remove old photo
-        if ($page->photo != null) {
-            $this->imageManagerUtils->removeImageFromLocal($page->photo, 'pages');
+        //remove old file
+        if ($page->file != null) {
+            $this->imageManagerUtils->removeImageFromLocal($page->file, 'pages');
         }
 
         $page = $this->pageRepository->destroy($page);

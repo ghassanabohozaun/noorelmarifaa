@@ -26,8 +26,7 @@ class PageRequest extends FormRequest
             'title.*' => ['required', 'string', 'min:5', 'max:265', UniqueTranslationRule::for('pages')->ignore($this->id)],
             'details.*' => ['required', 'string', 'min:5'],
             'section' => ['required'],
-            'photo' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif,svg,webp'],
-            'status' => ['required', 'in:0,1'],
+             'status' => ['required', 'in:0,1'],
         ];
     }
 }

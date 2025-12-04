@@ -7,6 +7,7 @@ return [
     'whom'=>'من نحن',
     'beneficiaries_guide'=>'الارشادات',
     'systems'=>'الانظمة',
+    'show_file'=>'عرض الملف',
 
 
     'title' => 'عنوان الصفحة',
@@ -18,7 +19,7 @@ return [
     'section'=>'القسم',
     'status' => 'حالة',
     'manage_status' => 'إدراة الحالة',
-    'photo' => 'صورة الصفحة ',
+    'file' => 'الملف',
 
     'enter_title_ar' => 'ادخل عنوان الصفحة بالعربي',
     'enter_title_en' => 'ادخل عنوان الصفحة بالانجليزي',

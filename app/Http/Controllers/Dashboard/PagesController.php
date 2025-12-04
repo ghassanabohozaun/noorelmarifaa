@@ -40,7 +40,7 @@ class PagesController extends Controller
     // store
     public function store(PageRequest $request)
     {
-        $data = $request->only(['title', 'details', 'section', 'photo', 'status']);
+        $data = $request->only(['title', 'details', 'section', 'file', 'status']);
         $page = $this->pageService->store($data);
         if (!$page) {
             return response()->json(['status' => false], 500);
@@ -69,7 +69,7 @@ class PagesController extends Controller
     // update
     public function update(PageRequest $request, string $id)
     {
-        $data = $request->only(['id', 'title', 'details',  'section', 'photo', 'status']);
+        $data = $request->only(['id', 'title', 'details',  'section', 'file', 'status']);
         $page = $this->pageService->update($data);
         if (!$page) {
             return response()->json(['status' => false], 500);

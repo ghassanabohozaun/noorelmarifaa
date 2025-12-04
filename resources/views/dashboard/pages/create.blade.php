@@ -191,23 +191,23 @@
                                                 </div>
                                                 <!-- end: row section-->
 
-                                                <!-- begin: row  photo-->
+                                                <!-- begin: row  file-->
                                                 <div class="row">
                                                     <!-- begin: input -->
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="photo">{!! __('pages.photo') !!}</label>
-                                                            <input type="file" id="single_image_create" name="photo"
+                                                            <label for="file">{!! __('pages.file') !!}</label>
+                                                            <input type="file" id="file" name="file"
                                                                 class="form-control">
                                                             <span class="text text-danger">
-                                                                <strong id="photo_error"> </strong>
+                                                                <strong id="file_error"> </strong>
                                                             </span>
 
                                                         </div>
                                                     </div>
                                                     <!-- end: input -->
                                                 </div>
-                                                <!-- end: row photo-->
+                                                <!-- end: row file-->
 
                                                 <!-- begin: row  status-->
                                                 <div class="row">
@@ -296,19 +296,7 @@
         });
 
 
-        // file input
-        var lang = "{!! Lang() !!}";
-        $("#single_image_create").fileinput({
-            theme: 'fa5',
-            language: lang,
-            allowedFileTypes: ['image'],
-            maxFileCount: 1,
-            enableResumableUpload: true,
-            initialPreviewAsData: true,
-            allowedFileTypes: ['image'],
-            showCancel: false,
-            showUpload: false,
-        });
+
 
 
 
@@ -319,7 +307,7 @@
             $('#details_ar').css('border-color', '');
             $('#details_en').css('border-color', '');
             $('#section').css('border-color', '');
-            $('#photo').css('border-color', '');
+            $('#file').css('border-color', '');
             $('#status').css('border-color', '');
             $('.details_ar_summernote').next('.note-editor').removeClass(
                 'is-invalid-summernote-editor');
@@ -332,7 +320,7 @@
             $('#details_ar_error').text('');
             $('#details_en_error').text('');
             $('#section_error').text('');
-            $('#photo_error').text('');
+            $('#file_error').text('');
             $('#status_error').text('');
         }
 

@@ -13,7 +13,7 @@ class Page extends Model
     use SoftDeletes, HasTranslations;
 
     protected $table = 'pages';
-    protected $fillable = ['title', 'slug', 'details', 'section', 'photo', 'status'];
+    protected $fillable = ['title', 'slug', 'details', 'section', 'file', 'status'];
 
     protected array $translatable = ['title', 'details', 'slug'];
 
