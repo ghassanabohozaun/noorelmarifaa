@@ -53,13 +53,22 @@
 
                         <ul class="menu-content">
 
-                            <!-- begin: departments -->
+                            <!-- begin: upload center -->
+                            <li class=" @if (str_contains(Route::currentRouteName(), 'uploadCenter')) active @endif">
+                                <a class="menu-item" href="{!! route('dashboard.uploadCenter.index') !!}" data-i18n="nav.dash.pages">
+                                    {!! __('uploadCenter.upload_center') !!}
+                                </a>
+                            </li>
+                            <!-- end: upload center -->
+
+
+                            <!-- begin: pages -->
                             <li class=" @if (str_contains(Route::currentRouteName(), 'pages')) active @endif">
                                 <a class="menu-item" href="{!! route('dashboard.pages.index') !!}" data-i18n="nav.dash.pages">
                                     {!! __('pages.pages') !!}
                                 </a>
                             </li>
-                            <!-- end: departments -->
+                            <!-- end: pages -->
 
                             <!-- begin: sliders -->
                             <li class="@if (str_contains(Route::currentRouteName(), 'sliders')) active @endif">

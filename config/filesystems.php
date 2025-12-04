@@ -98,6 +98,15 @@ return [
             'report' => false,
         ],
 
+        'upload-center' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads/upload-center'),
+            'url' => env('APP_URL') . '/uploads/upload-center',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
