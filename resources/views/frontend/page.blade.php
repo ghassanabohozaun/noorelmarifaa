@@ -22,22 +22,25 @@
             <div class="row clearfix">
                 <div class="col-lg-12">
 
-                    @if ($page->details)
-                        {!! $page->details !!}
-                    @else
+                    @if (!$page->details && !$page->file)
                         <h2 class="text-warning font-weight-bolder">{!! trans('frontend.coming_soon') !!}</h2>
+                    @else
+                        @if ($page->details)
+                            {!! $page->details !!}
+                        @endif
+
+                        @if ($page->file)
+                            <div class="item_pdf">
+                                <i class="fa fa-file-pdf fa-6x" style="color:#ec4b1c"></i>
+                                <span class="caption_pdf">
+                                    <a class="anchor_pdf" href="{!! asset('uploads/pages/' . $page->file) !!}" target="_blank">
+                                        {!! __('general.download') !!}
+                                    </a>
+                                </span>
+                            </div>
+                        @endif
                     @endif
 
-                    @if ($page->file)
-                        <div class="item_pdf">
-                            <i class="fa fa-file-pdf fa-6x" style="color:#ec4b1c"></i>
-                            <span class="caption_pdf">
-                                <a class="anchor_pdf" href="{!! asset('uploads/pages/' . $page->file) !!}" target="_blank">
-                                    {!! __('general.download') !!}
-                                </a>
-                            </span>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
