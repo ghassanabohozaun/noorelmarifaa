@@ -50,6 +50,8 @@
                             <button type="submit" class="btn btn-info btn-glow px-2">
                                 <i class="la la-save"></i>
                                 {!! __('general.save') !!}
+                                <i class="la la-refresh spinner spinner_loading d-none">
+                                </i>
                             </button>
 
                         </div>
@@ -296,10 +298,6 @@
         });
 
 
-
-
-
-
         // reset form
         function resetCreatePageFrom() {
             $('#title_ar').css('border-color', '');
@@ -341,6 +339,9 @@
                 contentType: false,
                 cache: false,
                 processData: false,
+                beforeSend: function() {
+                    $('.spinner_loading').removeClass('d-none');
+                },
                 success: function(data) {
                     if (data.status == true) {
                         resetCreatePageFrom();
@@ -373,6 +374,9 @@
                         $('#' + key).css('border-color', '#F64E60');
                     });
                 }, //end error
+                complete: function() {
+                    $('.spinner_loading').addClass('d-none');
+                }
 
             }); // end ajax
         }); //end submit
