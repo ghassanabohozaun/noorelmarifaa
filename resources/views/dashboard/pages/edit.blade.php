@@ -88,7 +88,7 @@
 
                                             <div class="form-body">
                                                 <!-- begin: row -->
-                                                <div class="row ">
+                                                <div class="row  d-none">
                                                     <!-- begin: input -->
                                                     <div class="col-md-12">
                                                         <div class="form-group">
