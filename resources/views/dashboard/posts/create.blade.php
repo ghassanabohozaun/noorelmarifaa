@@ -183,7 +183,6 @@
         $('#create_post_form').on('submit', function(e) {
             e.preventDefault();
 
-            ////////////////////////////////////////////////////////////////////
             $('#post_title_ar_error').text('');
             $('#post_title_en_error').text('');
             $('#post_summary_ar_error').text('');
@@ -211,7 +210,8 @@
             $('#department_id').css('border-color', '');
             $('#photo').css('border-color', '');
 
-            ///////////////////////////////////////////////////////////////////
+
+
             var data = new FormData(this);
             var type = $(this).attr('method');
             var url = $(this).attr('action');
@@ -242,8 +242,6 @@
                             window.location = "{!! route('dashboard.posts.index') !!}"
                         }, 3000);
 
-
-
                     } else {
                         flasher.error("{!! __('general.add_error_message') !!}");
                     }
@@ -263,7 +261,6 @@
                                 'is-invalid-summernote-editor');
                         }
 
-
                         $('#' + key + '_error').text(value[0])
                         $('#' + key).css('border-color', '#F64E60 ')
                     });
@@ -281,8 +278,7 @@
 
         }); //end submit
 
-        ////////////////////////////////////
-        ////// Print Errors Function
+        // Print Errors Function
         function PostPrintErrors(msg) {
 
             $('.alert_errors').find('ul').empty();

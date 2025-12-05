@@ -29,6 +29,7 @@ return [
     'post_summary_en' => 'Post Summary | en',
     'post_details_en' => 'Post Details | en',
     'department_id' => 'Post Department',
+    'photo'=>'Post Photo',
 
     'enter_post_added_date' => 'Enter Post Added Date',
     'enter_post_title_ar' => 'Enter Post Title in Arabic',

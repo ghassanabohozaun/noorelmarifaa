@@ -21,6 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
 
             // web
             Route::middleware('web')->group(base_path('routes/dashboard.php'));
+            // website dashboard
+
+            Route::middleware('web')->group(base_path('routes/website-dashboard.php'));
 
             // child
             Route::middleware('web')->group(base_path('routes/child.php'));

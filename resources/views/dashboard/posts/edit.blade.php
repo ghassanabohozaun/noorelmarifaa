@@ -237,9 +237,9 @@
                         console.log(data);
                         $('.alert_errors').find('ul').empty();
                         $('.alert_errors').addClass('d-none');
-                        flasher.success("{!! __('general.add_success_message') !!}");
+                        flasher.success("{!! __('general.update_success_message') !!}");
                     } else {
-                        flasher.error("{!! __('general.add_error_message') !!}");
+                        flasher.error("{!! __('general.update_error_message') !!}");
                     }
                 }, //end success
                 error: function(reject) {

@@ -1882,12 +1882,12 @@ img {
 .main-slider .text {
     position: relative;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 30px;
     opacity: 0;
     line-height: 1.8em;
     font-weight: 400;
-    margin-top: 35px;
-    margin-bottom: 32px !important;
+    margin-top: 80px;
+    margin-bottom: 20px !important;
     -webkit-transition: all 1000ms ease;
     -moz-transition: all 100ms ease;
     -ms-transition: all 1000ms ease;

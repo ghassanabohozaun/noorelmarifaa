@@ -9,8 +9,8 @@
         </a>
 
         {{-- delete --}}
-        {{-- <a href="#" class="btn btn-sm btn-outline-danger delete_department_btn" data-id="{!! $department->id !!}">
+        <a href="#" class="btn btn-sm btn-outline-danger delete_department_btn" data-id="{!! $department->id !!}">
             <i class="la la-trash"></i>
-        </a> --}}
+        </a>
     </div>
 </div>

@@ -57,7 +57,10 @@ class FrontendController extends Controller
             $title = setting()->site_name_en;
         }
 
+         $sliders = Slider:: latest()->active()->get();
+
         if (Lang() == 'ar') {
+
             $latestPost = Post::latest()
                 ->where('post_status', 'enable')
                 ->where('department_id', 1)
@@ -112,7 +115,7 @@ class FrontendController extends Controller
                 ->take(10)
                 ->get();
         }
-        return view('frontend.index', compact('title', 'latestPost', 'nextPosts', 'projects'));
+        return view('frontend.index', compact('title', 'sliders','latestPost', 'nextPosts', 'projects'));
     }
 
     // page

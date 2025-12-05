@@ -24,7 +24,7 @@ class SliderRequest extends FormRequest
     {
         return [
             'title.*' => ['required', 'string', 'max:50'],
-            'details.*' => ['required', 'string', 'min:10', 'max:5000'],
+            // 'details.*' => ['required', 'string', 'min:10', 'max:5000'],
             'status' => ['required', 'in:1,0'],
             'photo' => ['required_without:hidden_photo', 'mimes:png,jpg,jpeg,webp', 'max:2048'],
         ];

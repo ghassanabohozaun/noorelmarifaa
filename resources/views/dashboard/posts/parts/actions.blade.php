@@ -1,11 +1,11 @@
 <div class="form-group">
     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
-
+        {{--
         <a href="{{ route('dashboard.posts.photos', $post->id) }}" class="btn btn-sm btn-outline-primary"
             title="{!! __('general.post_photo') !!}">
             <i class="la la-plus"></i>
-        </a>
+        </a> --}}
 
 
         <a href="{{ route('dashboard.posts.edit', $post->id) }}" class="btn btn-sm btn-outline-primary"

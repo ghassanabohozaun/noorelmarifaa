@@ -320,8 +320,6 @@
 
 
 
-
-
         // reset form
         function resetUpdatePageFrom() {
             $('#title_ar').css('border-color', '');

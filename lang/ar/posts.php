@@ -28,6 +28,7 @@ return [
     'post_summary_en' => 'ملخص المنشور | انجليزي',
     'post_details_en' => 'تفاصيل المنشور | انجليزي',
     'department_id' => 'قسم المنشور',
+    'photo'=>'صورة المنشور',
 
     'enter_post_added_date' => 'ادخل تاريخ اضافة المنشور',
     'enter_post_title_ar' => 'ادخل عنوان المنشور بالعربي',
@@ -51,6 +52,7 @@ return [
     'department_id_numeric' => 'القيمية المدخلة يجب ان تكون عددية',
     'image' => 'يجب ان تكون صورة باحدي الصيغ jpeg , jpg,png',
     'in' => 'القيمية المدخلة غير صحيحة',
+
 
     'no_posts_found' => 'لا يوجد منشورات حاليا ',
 

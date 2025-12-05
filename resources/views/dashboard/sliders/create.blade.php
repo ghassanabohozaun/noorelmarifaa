@@ -85,238 +85,227 @@
                                             <!--begin::table-->
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <div class="col-md-12">
 
-                                                        <!-- begin: row title -->
-                                                        <div class="row">
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="title_ar">{!! __('sliders.title_ar') !!}</label>
-                                                                    <input type="text" id="title_ar" name="title[ar]"
-                                                                        value="{!! old('title.ar') !!}"
-                                                                        class="form-control" autocomplete="off"
-                                                                        placeholder="{!! __('sliders.enter_title_ar') !!}">
-                                                                    <span class="text text-danger" id="title_ar_error">
-                                                                    </span>
-                                                                </div>
+                                                    <!-- begin: row title -->
+                                                    <div class="row">
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="title_ar">{!! __('sliders.title_ar') !!}</label>
+                                                                <input type="text" id="title_ar" name="title[ar]"
+                                                                    value="{!! old('title.ar') !!}" class="form-control"
+                                                                    autocomplete="off"
+                                                                    placeholder="{!! __('sliders.enter_title_ar') !!}">
+                                                                <span class="text text-danger" id="title_ar_error">
+                                                                </span>
                                                             </div>
-                                                            <!-- end: input -->
-
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="title_en">{!! __('sliders.title_en') !!}</label>
-                                                                    <input type="text" id="title_en" name="title[en]"
-                                                                        value="{!! old('title.en') !!}"
-                                                                        class="form-control " autocomplete="off"
-                                                                        placeholder="{!! __('sliders.enter_title_en') !!}">
-                                                                    <span class="text text-danger" id="title_en_error">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end: input -->
-
-
                                                         </div>
-                                                        <!-- end: row title -->
+                                                        <!-- end: input -->
 
-                                                        <!-- begin: row url -->
-                                                        <div class="row">
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="url_ar">{!! __('sliders.url_ar') !!}</label>
-                                                                    <input type="text" id="url_ar" name="url[ar]"
-                                                                        value="{!! old('url.ar') !!}"
-                                                                        class="form-control" autocomplete="off"
-                                                                        placeholder="{!! __('sliders.enter_url_ar') !!}">
-                                                                    <span class="text text-danger" id="url_ar_error">
-                                                                    </span>
-                                                                </div>
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="title_en">{!! __('sliders.title_en') !!}</label>
+                                                                <input type="text" id="title_en" name="title[en]"
+                                                                    value="{!! old('title.en') !!}" class="form-control "
+                                                                    autocomplete="off"
+                                                                    placeholder="{!! __('sliders.enter_title_en') !!}">
+                                                                <span class="text text-danger" id="title_en_error">
+                                                                </span>
                                                             </div>
-                                                            <!-- end: input -->
-
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="url_en">{!! __('sliders.url_en') !!}</label>
-                                                                    <input type="text" id="url_en" name="url[en]"
-                                                                        value="{!! old('url.en') !!}"
-                                                                        class="form-control " autocomplete="off"
-                                                                        placeholder="{!! __('sliders.enter_url_en') !!}">
-                                                                    <span class="text text-danger" id="url_en_error">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end: input -->
-
-
                                                         </div>
-                                                        <!-- end: row url -->
-
-
-                                                        <!-- begin: row -->
-                                                        <div class="row">
-                                                            <!-- begin: input details-->
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="details_ar">{!! __('sliders.details_ar') !!}</label>
-                                                                    <textarea type="text" rows="5" id="details_ar" name="details[ar]" class="form-control"
-                                                                        placeholder="{!! __('sliders.enter_details_ar') !!}"></textarea>
-                                                                    <span class="text text-danger" id="details_ar_error">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end: input -->
-
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="details_en">{!! __('sliders.details_en') !!}</label>
-                                                                    <textarea type="text" rows="5" id="details_en" name="details[en]" class="form-control "
-                                                                        placeholder="{!! __('sliders.enter_details_en') !!}"></textarea>
-                                                                    <span class="text text-danger" id="details_en_error">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end: input -->
-                                                        </div>
-                                                        <!-- end: row details-->
-
-
-                                                        <!-- begin: row  status-->
-                                                        <div class="row">
-
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="status">{!! __('sliders.status') !!}</label>
-                                                                    <div class="input-group">
-                                                                        <div
-                                                                            class="d-inline-block custom-control custom-radio mr-1">
-                                                                            <input type="radio"
-                                                                                class="custom-control-input bg-success"
-                                                                                name="status" id="activeStatusRadio"
-                                                                                value="1">
-                                                                            <label class="custom-control-label"
-                                                                                for="activeStatusRadio">{!! __('general.active') !!}
-                                                                            </label>
-                                                                        </div>
-                                                                        <div
-                                                                            class="d-inline-block custom-control custom-radio mr-1">
-                                                                            <input type="radio"
-                                                                                class="custom-control-input bg-danger"
-                                                                                name="status" id="inActiveStatusRadio"
-                                                                                value="0">
-                                                                            <label class="custom-control-label"
-                                                                                for="inActiveStatusRadio">{!! __('general.inactive') !!}
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <span class="text text-danger" id="status_error">
-                                                                    </span>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <!-- end: input -->
-
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="details_status">{!! __('sliders.details_status') !!}</label>
-                                                                    <div class="input-group">
-                                                                        <div
-                                                                            class="d-inline-block custom-control custom-radio mr-1">
-                                                                            <input type="radio"
-                                                                                class="custom-control-input bg-success"
-                                                                                name="details_status"
-                                                                                id="activeDetailsStatusRadio"
-                                                                                value="1">
-                                                                            <label class="custom-control-label"
-                                                                                for="activeDetailsStatusRadio">{!! __('general.active') !!}
-                                                                            </label>
-                                                                        </div>
-                                                                        <div
-                                                                            class="d-inline-block custom-control custom-radio mr-1">
-                                                                            <input type="radio"
-                                                                                class="custom-control-input bg-danger"
-                                                                                name="details_status"
-                                                                                id="inActiveDetailsStatusRadio"
-                                                                                value="0">
-                                                                            <label class="custom-control-label"
-                                                                                for="inActiveDetailsStatusRadio">{!! __('general.inactive') !!}
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end: input -->
-
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="button_status">{!! __('sliders.button_status') !!}</label>
-                                                                    <div class="input-group">
-                                                                        <div
-                                                                            class="d-inline-block custom-control custom-radio mr-1">
-                                                                            <input type="radio"
-                                                                                class="custom-control-input bg-success"
-                                                                                name="button_status"
-                                                                                id="activeButtonStatusRadio"
-                                                                                value="1">
-                                                                            <label class="custom-control-label"
-                                                                                for="activeButtonStatusRadio">{!! __('general.active') !!}
-                                                                            </label>
-                                                                        </div>
-                                                                        <div
-                                                                            class="d-inline-block custom-control custom-radio mr-1">
-                                                                            <input type="radio"
-                                                                                class="custom-control-input bg-danger"
-                                                                                name="button_status"
-                                                                                id="inActiveButtonStatusRadio"
-                                                                                value="0">
-                                                                            <label class="custom-control-label"
-                                                                                for="inActiveButtonStatusRadio">{!! __('general.inactive') !!}
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end: input -->
-                                                        </div>
-                                                        <!-- end: row  status-->
-
-                                                        <!-- begin: row  photo-->
-                                                        <div class="row">
-                                                            <!-- begin: input -->
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="photo">{!! __('sliders.photo') !!}</label>
-                                                                    <input type="file" id="single_image_create"
-                                                                        accept="image/*" name="photo"
-                                                                        class="form-control ">
-                                                                    <span class="text text-warning">
-                                                                        <strong>{!! __('sliders.slider_size') !!}</strong>
-                                                                    </span>
-                                                                    <span class="text text-danger" id="photo_error">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end: input -->
-                                                        </div>
-                                                        <!-- end: row  photo -->
-
-
-
+                                                        <!-- end: input -->
 
 
                                                     </div>
+                                                    <!-- end: row title -->
+
+                                                    <!-- begin: row url -->
+                                                    <div class="row">
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="url_ar">{!! __('sliders.url_ar') !!}</label>
+                                                                <input type="text" id="url_ar" name="url[ar]"
+                                                                    value="{!! old('url.ar') !!}" class="form-control"
+                                                                    autocomplete="off"
+                                                                    placeholder="{!! __('sliders.enter_url_ar') !!}">
+                                                                <span class="text text-danger" id="url_ar_error">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end: input -->
+
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="url_en">{!! __('sliders.url_en') !!}</label>
+                                                                <input type="text" id="url_en" name="url[en]"
+                                                                    value="{!! old('url.en') !!}" class="form-control "
+                                                                    autocomplete="off"
+                                                                    placeholder="{!! __('sliders.enter_url_en') !!}">
+                                                                <span class="text text-danger" id="url_en_error">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end: input -->
+
+
+                                                    </div>
+                                                    <!-- end: row url -->
+
+
+                                                    <!-- begin: row -->
+                                                    <div class="row">
+                                                        <!-- begin: input details-->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="details_ar">{!! __('sliders.details_ar') !!}</label>
+                                                                <textarea type="text" rows="5" id="details_ar" name="details[ar]" class="form-control"
+                                                                    placeholder="{!! __('sliders.enter_details_ar') !!}"></textarea>
+                                                                <span class="text text-danger" id="details_ar_error">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end: input -->
+
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="details_en">{!! __('sliders.details_en') !!}</label>
+                                                                <textarea type="text" rows="5" id="details_en" name="details[en]" class="form-control "
+                                                                    placeholder="{!! __('sliders.enter_details_en') !!}"></textarea>
+                                                                <span class="text text-danger" id="details_en_error">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end: input -->
+                                                    </div>
+                                                    <!-- end: row details-->
+
+
+                                                    <!-- begin: row  status-->
+                                                    <div class="row">
+
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="status">{!! __('sliders.status') !!}</label>
+                                                                <div class="input-group">
+                                                                    <div
+                                                                        class="d-inline-block custom-control custom-radio mr-1">
+                                                                        <input type="radio"
+                                                                            class="custom-control-input bg-success"
+                                                                            name="status" id="activeStatusRadio"
+                                                                            value="1">
+                                                                        <label class="custom-control-label"
+                                                                            for="activeStatusRadio">{!! __('general.active') !!}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="d-inline-block custom-control custom-radio mr-1">
+                                                                        <input type="radio"
+                                                                            class="custom-control-input bg-danger"
+                                                                            name="status" id="inActiveStatusRadio"
+                                                                            value="0">
+                                                                        <label class="custom-control-label"
+                                                                            for="inActiveStatusRadio">{!! __('general.inactive') !!}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <span class="text text-danger" id="status_error">
+                                                                </span>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <!-- end: input -->
+
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label
+                                                                    for="details_status">{!! __('sliders.details_status') !!}</label>
+                                                                <div class="input-group">
+                                                                    <div
+                                                                        class="d-inline-block custom-control custom-radio mr-1">
+                                                                        <input type="radio"
+                                                                            class="custom-control-input bg-success"
+                                                                            name="details_status"
+                                                                            id="activeDetailsStatusRadio" value="1">
+                                                                        <label class="custom-control-label"
+                                                                            for="activeDetailsStatusRadio">{!! __('general.active') !!}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="d-inline-block custom-control custom-radio mr-1">
+                                                                        <input type="radio"
+                                                                            class="custom-control-input bg-danger"
+                                                                            name="details_status"
+                                                                            id="inActiveDetailsStatusRadio"
+                                                                            value="0">
+                                                                        <label class="custom-control-label"
+                                                                            for="inActiveDetailsStatusRadio">{!! __('general.inactive') !!}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end: input -->
+
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="button_status">{!! __('sliders.button_status') !!}</label>
+                                                                <div class="input-group">
+                                                                    <div
+                                                                        class="d-inline-block custom-control custom-radio mr-1">
+                                                                        <input type="radio"
+                                                                            class="custom-control-input bg-success"
+                                                                            name="button_status"
+                                                                            id="activeButtonStatusRadio" value="1">
+                                                                        <label class="custom-control-label"
+                                                                            for="activeButtonStatusRadio">{!! __('general.active') !!}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="d-inline-block custom-control custom-radio mr-1">
+                                                                        <input type="radio"
+                                                                            class="custom-control-input bg-danger"
+                                                                            name="button_status"
+                                                                            id="inActiveButtonStatusRadio" value="0">
+                                                                        <label class="custom-control-label"
+                                                                            for="inActiveButtonStatusRadio">{!! __('general.inactive') !!}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end: input -->
+                                                    </div>
+                                                    <!-- end: row  status-->
+
+                                                    <!-- begin: row  photo-->
+                                                    <div class="row">
+                                                        <!-- begin: input -->
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="photo">{!! __('sliders.photo') !!}</label>
+                                                                <input type="file" id="single_image_create"
+                                                                    accept="image/*" name="photo"
+                                                                    class="form-control ">
+                                                                <span class="text text-warning">
+                                                                    <strong>{!! __('sliders.slider_size') !!}</strong>
+                                                                </span>
+                                                                <span class="text text-danger" id="photo_error">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end: input -->
+                                                    </div>
+                                                    <!-- end: row  photo -->
+
+
                                                 </div>
                                                 <!--end: form-->
                                             </div>

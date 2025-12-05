@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             SponsershipOrganizationSeeder::class,
             SponsershipTypeSeeder::class,
             websietMainPageSeeder::class,
+            DepartmentSeeder::class,
         ]);
     }
 }

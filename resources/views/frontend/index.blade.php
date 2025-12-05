@@ -10,18 +10,36 @@
     <!--Main Slider-->
     <section class="main-slider">
 
-
-
         <div class="main-slider-carousel owl-carousel owl-theme ">
-            @if (Lang() == 'ar')
-                <image src="{!! asset('/noorSlider.jpg') !!}"></image>
-            @else
-                <image src="{!! asset('/noorSliderEn.jpg') !!}"></image>
-            @endif
+
+            @foreach ($sliders as $key => $slider)
+                <div class="slide" style="background-image:url( {!! asset('uploads/sliders/' . $slider->photo) !!})">
+                    <div class="auto-container">
+                        <div class="content clearfix">
+                            {{-- <h2>
+                                {!! $slider->title !!}
+                            </h2> --}}
+                            @if ($slider->details_status == 1)
+                                <div class="text">
+                                    {!! $slider->details !!}
+                                </div>
+                            @endif
+                            @if ($slider->button_status == 1)
+                                <span class="my_slider_span">
+                                    <a href="{!! $slider->link !!}" target="_blank" class="my_slider_button">
+                                        {!! $slider->title !!}
+                                    </a>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
         </div>
 
         <!--Scroll Dwwn Btn-->
-        {{-- <div class="mouse-btn-down scroll-to-target" data-target=".welcome-section"></div> --}}
+        <div class="mouse-btn-down scroll-to-target" data-target=".welcome-section"></div>
     </section>
     <!--End Main Slider-->
 
@@ -41,7 +59,6 @@
         </div>
     </section>
     <!-- End Call To Action Section -->
-
 
 
     <!-- Welcome Section -->
@@ -294,7 +311,6 @@
     <!-- End News Section -->
 
 
-
     <!-- programs Section -->
     <section class="faq-section style-two">
         <div class="auto-container">
@@ -537,4 +553,5 @@
         </div>
     </section>
     <!--End Clients Section-->
+
 @endsection
