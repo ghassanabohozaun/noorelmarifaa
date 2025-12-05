@@ -1,10 +1,10 @@
 @extends('layouts.frontend')
-@section('title') {!! $title !!} @endsection
+@section('title')
+    {!! $title !!}
+@endsection
 @section('metaTags')
-    <meta name="description"
-          content="{!! Lang()=='ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
-    <meta name="keywords"
-          content="{!! Lang()=='ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
+    <meta name="description" content="{!! Lang() == 'ar' ? setting()->site_description_ar : setting()->site_description_en !!}">
+    <meta name="keywords" content="{!! Lang() == 'ar' ? setting()->site_keywords_ar : setting()->site_keywords_en !!}">
 @endsection
 @section('content')
     <!--Page Title-->
@@ -31,10 +31,9 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-
         /////////////////////////////////////////////////////////////////
         ///  posts Paging
-        $(document).on('click', '.pagination a', function (e) {
+        $(document).on('click', '.pagination a', function(e) {
             e.preventDefault();
             var page = $(this).attr('href').split('page=')[1];
             readPage(page);
@@ -44,13 +43,13 @@
         function readPage(page) {
             $.ajax({
                 url: '/video-paging/' + '?page=' + page
-            }).done(function (data) {
+            }).done(function(data) {
                 $('#videos_list').html(data);
                 $('html, body').animate({
                     scrollTop: "520px"
-                }, 2000);
+                }, 100);
             });
 
-        }// end readPage
+        } // end readPage
     </script>
 @endpush

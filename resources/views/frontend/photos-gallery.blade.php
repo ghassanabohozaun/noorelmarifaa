@@ -153,7 +153,7 @@
                 $('#photos_gallery_list').html(data);
                 $('html, body').animate({
                     scrollTop: "520px"
-                }, 2000);
+                }, 100);
             });
 
         } // end readPage
