@@ -507,10 +507,18 @@
                         <li class="slide-item">
                             <figure class="image-box">
                                 <a href="javascript:void(0)">
-                                    <img src="{!! asset('frontend/images/clients/ptc.jpg') !!}" alt="{!! asset('frontend/images/clients/ACT.png') !!}">
+                                    <img src="{!! asset('frontend/images/clients/ptc.jpg') !!}" alt="{!! asset('frontend/images/clients/ptc.jpg') !!}">
                                 </a>
                             </figure>
                         </li>
+                        <li class="slide-item">
+                            <figure class="image-box">
+                                <a href="javascript:void(0)">
+                                    <img src="{!! asset('frontend/images/clients/iqfa.png') !!}" alt="{!! asset('frontend/images/clients/iqfa.png') !!}">
+                                </a>
+                            </figure>
+                        </li>
+
                         <li class="slide-item">
                             <figure class="image-box">
                                 <a href="javascript:void(0)">
