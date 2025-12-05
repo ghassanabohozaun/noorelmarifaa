@@ -44,7 +44,7 @@
             }).done(function(data) {
                 $('#posts_list').html(data);
                 $('html, body').animate({
-                    scrollTop: "480px"
+                    scrollTop: "520px"
                 }, 100);
             });
 
