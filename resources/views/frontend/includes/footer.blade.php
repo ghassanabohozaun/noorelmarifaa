@@ -143,9 +143,11 @@
                         @if (Lang() == 'ar')
                             <span>&copy;</span>
                             جميع الحقوق محفوظة
-                            <a href="{!! route('index') !!}"> جمعية نور المعرفة</a>2020<span>.</span>
+                            <a href="{!! route('index') !!}"> جمعية نور
+                                المعرفة</a>{!! date('Y') !!}<span>.</span>
                         @else
-                            Copyrights &copy; 2020 <a href="{!! route('index') !!}">Nour El Marifa Association</a> .
+                            Copyrights &copy; {!! date('Y') !!} <a href="{!! route('index') !!}">Nour El Marifa
+                                Association</a> .
                             All rights reserved.
                         @endif
                     </div>
