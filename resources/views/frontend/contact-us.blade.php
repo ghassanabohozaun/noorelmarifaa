@@ -124,6 +124,10 @@
 
 
 
+
+
+
+
                         </div>
 
                         <!-- Column -->
@@ -157,6 +161,7 @@
 @endsection
 @push('js')
     {!! NoCaptcha::renderJs() !!}
+
 
     <script type="text/javascript">
         //////////////////////////////////////////////////////
