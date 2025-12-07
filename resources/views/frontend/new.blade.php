@@ -84,6 +84,8 @@
                                         </p>
                                     </div>
 
+                                    <h3>testst</h3>
+
                                     <!--Social Box-->
                                     <ul class="social-box">
                                         <li class="share">{!! trans('frontend.sharing') !!} :</li>
@@ -223,6 +225,7 @@
                         <!--End Faq Form -->
 
                     </div>
+                    <!-- Comment Form -->
 
                 </div>
 
