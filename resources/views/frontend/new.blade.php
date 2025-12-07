@@ -84,7 +84,18 @@
                                         </p>
                                     </div>
 
-                                    <h3>testst</h3>
+
+
+                                    @foreach ($post->files() as $file)
+                                        <h1>111</h1>
+                                    @endforeach
+
+                                    {{-- <div class="image">
+                                        <img src="{!! asset('uploads/posts/' . $post->photo) !!}" alt="{!! asset('uploads/posts/' . $post->photo) !!}"
+                                            title="{!! Lang() == 'ar' ? $post->post_title_ar : $post->post_title_en !!}" />
+                                    </div> --}}
+
+
 
                                     <!--Social Box-->
                                     <ul class="social-box">
