@@ -220,7 +220,7 @@ class FrontendController extends Controller
         }
 
         if (Lang() == 'ar') {
-            $lastPosts = Post::where('post_status', 'enable')
+            $lastPosts = Post::with('files')->where('post_status', 'enable')
                 ->orderByDesc('post_added_date')
                 ->where('department_id', 1)
                 ->where(function ($q) {
@@ -228,7 +228,7 @@ class FrontendController extends Controller
                 })
                 ->paginate(3);
         } else {
-            $lastPosts = Post::where('post_status', 'enable')
+            $lastPosts = Post::with('files')->where('post_status', 'enable')
                 ->orderByDesc('post_added_date')
                 ->where('department_id', 1)
                 ->where(function ($q) {
