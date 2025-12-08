@@ -68,7 +68,7 @@ class SliderService
     public function create($data)
     {
         if (array_key_exists('photo', $data) && $data['photo'] != null) {
-            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'sliders', 1920, 650);
+            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'sliders', 1920, height: 650);
             $data['photo'] = $photo_name;
         }
 
