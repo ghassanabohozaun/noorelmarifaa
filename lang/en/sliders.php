@@ -34,7 +34,7 @@ return [
     'enter_order' => 'Enter Slider Order',
     'enter_photo' => 'Enter Slider Photo',
 
-    'slider_size' => ' Slider Size :  1920 * 742',
+    'slider_size' => ' Slider Size :  1920 * 650',
 
     'no_sliders_found' => 'No Sliders Found',
 ];
