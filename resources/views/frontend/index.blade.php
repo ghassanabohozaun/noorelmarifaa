@@ -19,18 +19,16 @@
                             {{-- <h2>
                                 {!! $slider->title !!}
                             </h2> --}}
-                            @if ($slider->details_status == 1)
-                                <div class="text">
-                                    {!! $slider->details !!}
-                                </div>
-                            @endif
-                            @if ($slider->button_status == 1)
+
+                            <div class="text"> &nbsp; </div>
+
+                            {{-- @if ($slider->button_status == 1)
                                 <span class="my_slider_span">
                                     <a href="{!! $slider->link !!}" target="_blank" class="my_slider_button">
                                         {!! $slider->title !!}
                                     </a>
                                 </span>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>
