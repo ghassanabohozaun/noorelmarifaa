@@ -68,7 +68,7 @@ class SliderService
     public function create($data)
     {
         if (array_key_exists('photo', $data) && $data['photo'] != null) {
-            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'sliders', 1700, 1000);
+            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'sliders', 1920, 742);
             $data['photo'] = $photo_name;
         }
 
@@ -86,7 +86,7 @@ class SliderService
 
         if (array_key_exists('photo', $data) && $data['photo'] != null) {
             $this->imageManagerUtils->removeImageFromLocal($slider->photo, 'sliders');
-            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'sliders', 1700, 1000);
+            $photo_name = $this->imageManagerUtils->saveResizeImage($data['photo'], 'sliders', 1920, 742);
             $data['photo'] = $photo_name;
         }
 
