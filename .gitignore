@@ -7,7 +7,7 @@
 /public/uploads/settings/*
 /public/uploads/pages/*
 /public/uploads/post-photos/*
-/public/uploads/slider/*
+/public/uploads/sliders/*
 /storage/*.key
 /storage/pail
 /vendor
