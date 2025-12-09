@@ -7861,7 +7861,7 @@ img {
 
 .events-detail-section .inner-container .upper-image img {
     position: relative;
-    width: 100%;
+    width: 80%;
     display: block;
     border-radius: 12px;
 }
