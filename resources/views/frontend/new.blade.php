@@ -78,17 +78,13 @@
                                     <h3>{!! Lang() == 'ar' ? $post->post_title_ar : $post->post_title_en !!}</h3>
                                     <div class="text my_lead">
                                         <p>
-                                            {!! Lang() == 'ar'
-                                                ? strip_tags(htmlspecialchars_decode($post->post_details_ar))
-                                                : strip_tags(htmlspecialchars_decode($post->post_details_en)) !!}
+                                            {!! Lang() == 'ar' ? $post->post_details_ar : $post->post_details_en !!}
                                         </p>
                                     </div>
 
 
 
-                                    @foreach ($post->files() as $file)
-                                        <h1>111</h1>
-                                    @endforeach
+
 
                                     {{-- <div class="image">
                                         <img src="{!! asset('uploads/posts/' . $post->photo) !!}" alt="{!! asset('uploads/posts/' . $post->photo) !!}"
