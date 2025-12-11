@@ -163,8 +163,13 @@ class ChildrenExport implements WithHeadings, FromCollection, WithMapping, WithC
         if (in_array('governoate_id', $this->columns)) {
             $items['governoate_id'] = $row->governorate->name;
         }
+
         if (in_array('city_id', $this->columns)) {
             $items['city_id'] = $row->city->name;
+        }
+
+        if (in_array('address_details', $this->columns)) {
+            $items['address_details'] = $row->address_details;
         }
 
         // family

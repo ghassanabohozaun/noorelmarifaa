@@ -83,16 +83,6 @@
                                     </div>
 
 
-
-
-
-                                    {{-- <div class="image">
-                                        <img src="{!! asset('uploads/posts/' . $post->photo) !!}" alt="{!! asset('uploads/posts/' . $post->photo) !!}"
-                                            title="{!! Lang() == 'ar' ? $post->post_title_ar : $post->post_title_en !!}" />
-                                    </div> --}}
-
-
-
                                     <!--Social Box-->
                                     <ul class="social-box">
                                         <li class="share">{!! trans('frontend.sharing') !!} :</li>

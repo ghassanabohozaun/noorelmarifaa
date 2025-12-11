@@ -177,7 +177,7 @@ class ChildernController extends Controller
     {
         // fliter children columns
         $tableName = 'children';
-        $excludedColumns = ['deleted_at', 'updated_at', 'password', 'disease_clarification', 'backup_contact_number', 'status', 'freeze', 'address_details', 'created_at'];
+        $excludedColumns = ['deleted_at', 'updated_at', 'password', 'disease_clarification', 'backup_contact_number', 'status', 'freeze', 'created_at'];
         $allCloumnsNames = DB::getSchemaBuilder()->getColumnListing($tableName);
         $columnNames = collect($allCloumnsNames)
             ->filter(function ($column) use ($excludedColumns) {
