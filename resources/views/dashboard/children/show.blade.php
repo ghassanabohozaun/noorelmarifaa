@@ -90,7 +90,7 @@
 
                                             <a href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank"
                                                 class="btn btn-warning btn-glow px-2 ">
-                                                <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!}
+                                                <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!} 2
                                             </a>
 
                                         </div>

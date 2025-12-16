@@ -6,7 +6,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
     <title>{!! $child->childFullName() !!}</title>
 
     <style>
@@ -41,7 +40,7 @@
         }
 
         .form-box table tr.top table td {
-            padding-bottom: 20px;
+            /* padding-bottom: 20px; */
         }
 
         .form-box table tr.top table td.title {
@@ -121,48 +120,20 @@
 
     <div class="form-box {{ config('app.locale') == 'ar' ? 'rtl' : '' }}">
 
-        {{-- header --}}
-        <table>
-
-            {{-- images --}}
-            <tr class="form-box">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td width="70%">
-                                <img src="{!! $image !!}" style="width: 250px;">
-                            </td>
-                            <td width="20%"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
-
-            {{-- title --}}
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                <h5><u>{!! __('children.sponsorship_program_file') !!} :</u> </h5>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+        <p>
+            <img src="{!! $image !!}" style="width: 250px;">
+        </p>
+        <p>
+        <h2 style="color: black"><i><u>{!! __('children.sponsorship_program_file') !!}:</u></i> </h2>
+        </p>
 
 
 
-
-
-        </table>
-
-        <h2 style="color:blue">Child details</h2>
+        <h1 style="color:#4472C4">Child details</h1>
         <table style="width:100% ;">
             <tr>
                 <td> Name:{!! $child->childFullName() !!}</td>
-                <td rowspan="5">
+                <td rowspan="5" style="text-align: right; vertical-align: bottom;">
                     <img src="{!! $picture_of_the_orphan_child !!}" style="width: 200px;border: 2px solid #333;border-radius: 10px;">
                 </td>
             </tr>
@@ -220,7 +191,7 @@
 
 
 
-        <h2 style="color:blue">Parents Details:</h2>
+        <h1 style="color:#4472C4">Parents Details:</h1>
         <table style="width:100% ;">
             <tr>
                 <td> Father Name: {!! $child->childFather->father_full_name !!}</td>
@@ -230,10 +201,10 @@
             </tr>
         </table>
 
-        <h2 style="color:blue">Guardian Details:</h2>
+        <h1 style="color:#4472C4">Guardian Details:</h1>
         <table style="width:100% ;">
             <tr>
-                <td> Name : {!! $child->childGuardian->guardian_full_name !!} </td>
+                <td> Name: {!! $child->childGuardian->guardian_full_name !!} </td>
             </tr>
             <tr>
                 <td> Relationship: {!! $child->childGuardian->guardian_relationship_with_the_child !!}</td>

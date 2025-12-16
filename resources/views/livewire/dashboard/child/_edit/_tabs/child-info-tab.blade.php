@@ -65,7 +65,6 @@
             <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                 <strong class="text-dark">{!! __('children.authorized_contact_number') !!}:</strong>
                 &nbsp;
-                <span style="background-color: #21d4fd;color: white ;padding: 2px">05 |</span>
                 {!! $authorized_contact_number !!}
             </li>
 
@@ -73,14 +72,12 @@
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.backup_contact_number') !!}:
                 </strong>
                 &nbsp;
-                <span style="background-color: #21d4fd;color: white ;padding: 2px">05 |</span>
                 {!! $backup_contact_number !!}
             </li>
 
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.whatsApp_number') !!}:
                 </strong>
                 &nbsp;
-                <span style="background-color: #21d4fd;color: white ;padding: 2px">0097 |</span>
                 {!! $whatsApp_number !!}
             </li>
 
