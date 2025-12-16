@@ -16,18 +16,13 @@ class Child extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes, HasTranslations, HasApiTokens;
 
     protected $table = 'children';
-    protected $fillable = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'password', 'personal_id',
-    'birthday', 'classification', 'gender', 'class', 'health_status', 'disease_clarification', 'governoate_id', 'city_id',
-    'sponsership_status_id', 'sponsership_organization_id', 'sponsership_type_id', 'address_details', 'authorized_contact_number',
-    'backup_contact_number', 'whatsApp_number', 'status', 'freeze'];
+    protected $fillable = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'password', 'personal_id', 'birthday', 'classification', 'gender', 'class', 'health_status', 'disease_clarification', 'governoate_id', 'city_id', 'sponsership_status_id', 'sponsership_organization_id', 'sponsership_type_id', 'address_details', 'authorized_contact_number', 'backup_contact_number', 'whatsApp_number', 'status', 'freeze'];
     //public $timestamps = false;
 
     public array $translatable = ['first_name', 'father_name', 'grand_father_name', 'family_name'];
 
     // hidden
     protected $hidden = ['password'];
-
-
 
     // Get the attributes that should be cast.
     protected function casts(): array
@@ -63,36 +58,37 @@ class Child extends Authenticatable
         }
     }
 
-        // child class function
+    // child class function
     public function childClass()
     {
         if ($this->class == 'under_school_age') {
             return __('children.under_school_age');
-        } else if ($this->class == 'kindergarten') {
+        } elseif ($this->class == 'kindergarten') {
             return __('children.kindergarten');
-        } else if ($this->class == '1') {
+        } elseif ($this->class == '1') {
             return __('children.class_1');
-        }
-         else if ($this->class == '2') {
+        } elseif ($this->class == '2') {
             return __('children.class_2');
-        }
-         else if ($this->class == '3') {
+        } elseif ($this->class == '3') {
             return __('children.class_3');
-        }
-         else if ($this->class == '4') {
+        } elseif ($this->class == '4') {
             return __('children.class_4');
-        }
-         else if ($this->class == '5') {
+        } elseif ($this->class == '5') {
             return __('children.class_5');
-        }
-         else if ($this->class == '6') {
-            return  __('children.class_6');
-        }
-         else if ($this->class == '7') {
-            return  __('children.class_7');
-        }
-         else if ($this->class == '8') {
+        } elseif ($this->class == '6') {
+            return __('children.class_6');
+        } elseif ($this->class == '7') {
+            return __('children.class_7');
+        } elseif ($this->class == '8') {
             return __('children.class_8');
+        } elseif ($this->class == '9') {
+            return __('children.class_9');
+        } elseif ($this->class == '10') {
+            return __('children.class_10');
+        } elseif ($this->class == '11') {
+            return __('children.class_11');
+        } elseif ($this->class == '12') {
+            return __('children.class_12');
         }
     }
 
@@ -142,18 +138,20 @@ class Child extends Authenticatable
         return $this->hasOne(ChildFile::class, 'child_id');
     }
 
-    public function sponsershipStatus() {
-        return $this->belongsTo(SponsershipStatus::class , 'sponsership_status_id' );
+    public function sponsershipStatus()
+    {
+        return $this->belongsTo(SponsershipStatus::class, 'sponsership_status_id');
     }
 
-    public function sponsershipType() {
-        return $this->belongsTo(SponsershipType::class , 'sponsership_type_id' );
+    public function sponsershipType()
+    {
+        return $this->belongsTo(SponsershipType::class, 'sponsership_type_id');
     }
 
-    public function sponsershipOrganization() {
-        return $this->belongsTo(SponsershipOrganization::class , 'sponsership_organization_id' );
+    public function sponsershipOrganization()
+    {
+        return $this->belongsTo(SponsershipOrganization::class, 'sponsership_organization_id');
     }
-
 
     // accessories
     public function getCreatedAtAttribute($value)
@@ -171,7 +169,6 @@ class Child extends Authenticatable
         }
         return Carbon::parse($value)->format('d/m/Y h:i A');
     }
-
 
     // public function getGenderAttribute($value)
     // {

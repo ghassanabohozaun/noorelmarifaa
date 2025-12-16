@@ -15,13 +15,13 @@ class SponsershipTypeRepository
     // get all
     public function getAll()
     {
-        return SponsershipType::orderByDesc('created_at')->select('id', 'name', 'status')->paginate(10);
+        return SponsershipType::orderByDesc('created_at')->select('id','sponsership_organization_id', 'name', 'status')->paginate(10);
     }
 
     // get active
     public function getActive()
     {
-        return SponsershipType::orderByDesc('created_at')->select('id', 'name', 'status')->active()->get();
+        return SponsershipType::orderByDesc('created_at')->select('id','sponsership_organization_id', 'name', 'status')->active()->get();
     }
 
     // create

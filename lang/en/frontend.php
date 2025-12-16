@@ -98,6 +98,7 @@ return [
     'support' => 'Support',
     'email' => 'Email',
     'gmail' => 'Gmail',
+    'support_email' =>'Support Email',
     'site_map' => 'Site Map',
     'coming_soon' => 'Coming Soon',
     'last_news' => 'Last News',

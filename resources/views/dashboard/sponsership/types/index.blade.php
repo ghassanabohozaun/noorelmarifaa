@@ -77,6 +77,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
+                                                        <th>{!! __('sponsership.sponsership_organization_id') !!}</th>
                                                         <th>{!! __('sponsership.name') !!}</th>
                                                         <th class="text-center">{!! __('sponsership.status') !!}</th>
                                                         <th class="text-center">{!! __('sponsership.manage_status') !!}</th>
@@ -87,7 +88,8 @@
                                                     @forelse ($types as $type)
                                                         <tr>
                                                             <th class="col-lg-1">{!! $loop->iteration !!} </th>
-                                                            <td class="col-lg-8">{!! $type->name !!}</td>
+                                                            <td class="col-lg-4">{!! $type->sponsershipOrganization->name !!}</td>
+                                                            <td class="col-lg-4">{!! $type->name !!}</td>
                                                             <td class="col-lg-1 text-center">
                                                                 @include('dashboard.sponsership.types.parts.status')
                                                             </td>

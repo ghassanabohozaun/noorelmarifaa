@@ -16,7 +16,7 @@ return [
     'roles' => 'Roles',
     'admins' => 'Admins',
     'users' => 'Users',
-    'world' => 'World',
+    'world' => 'Addresses',
     'settings' => 'Site Settings',
     'products' => 'Products',
     'children' => 'Children',
@@ -24,6 +24,7 @@ return [
     'posts' => 'Posts',
     'departments' => 'Department',
     'sliders' => 'Sliders',
+    'reports' => 'Reports',
 
     // login
     'login' => 'Login',

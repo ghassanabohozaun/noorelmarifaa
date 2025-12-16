@@ -314,6 +314,10 @@
                 <option value="6">{!! __('children.class_6') !!}</option>
                 <option value="7">{!! __('children.class_7') !!}</option>
                 <option value="8">{!! __('children.class_8') !!}</option>
+                <option value="9">{!! __('children.class_9') !!}</option>
+                <option value="10">{!! __('children.class_10') !!}</option>
+                <option value="11">{!! __('children.class_11') !!}</option>
+                <option value="12">{!! __('children.class_12') !!}</option>
             </select>
             @error('class')
                 <span class="text text-danger">
@@ -498,7 +502,7 @@
 <!-- end: authorized_contact_number , backup_contact_number , whatsApp_number -->
 
 
-<!-- begin: governoate_id , city_id , address_details-->
+<!-- begin: sponsership_status_id , sponsership_organization_id , sponsership_type_id-->
 @if (admin()->check())
     <div class="row mt-2">
 
@@ -517,6 +521,30 @@
                     @endforeach
                 </select>
                 @error('sponsership_status_id')
+                    <span class="text text-danger">
+                        <strong class="strong-weight">{!! $message !!}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <!-- end: input -->
+
+
+        <!-- begin: input -->
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="sponsership_organization_id">{!! __('children.sponsership_organization_id') !!}</label>
+                <select type="text" wire:model="sponsership_organization_id" id="sponsership_organization_id"
+                    name="sponsership_organization_id" class="form-control"
+                    @error('sponsership_organization_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
+                    <option value="0" selected='selected'>
+                        {!! __('children.select') !!} {!! __('children.sponsership_organization_id') !!}
+                    </option>
+                    @foreach ($sponsership_organizations as $key => $organization)
+                        <option value="{!! $organization->id !!}">{!! $organization->name !!}</option>
+                    @endforeach
+                </select>
+                @error('sponsership_organization_id')
                     <span class="text text-danger">
                         <strong class="strong-weight">{!! $message !!}</strong>
                     </span>
@@ -549,35 +577,11 @@
         </div>
         <!-- end: input -->
 
-        <!-- begin: input -->
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="sponsership_organization_id">{!! __('children.sponsership_organization_id') !!}</label>
-                <select type="text" wire:model="sponsership_organization_id" id="sponsership_organization_id"
-                    name="sponsership_organization_id" class="form-control"
-                    @error('sponsership_organization_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
-                    <option value="0" selected='selected'>
-                        {!! __('children.select') !!} {!! __('children.sponsership_organization_id') !!}
-                    </option>
-                    @foreach ($sponsership_organizations as $key => $organization)
-                        <option value="{!! $organization->id !!}">{!! $organization->name !!}</option>
-                    @endforeach
-                </select>
-                @error('sponsership_organization_id')
-                    <span class="text text-danger">
-                        <strong class="strong-weight">{!! $message !!}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        <!-- end: input -->
-
-
 
 
     </div>
 @endif
-<!-- end: governoate_id , city_id , address_details -->
+<!-- begin: sponsership_status_id , sponsership_organization_id , sponsership_type_id-->
 
 
 <!-- begin: button -->

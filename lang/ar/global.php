@@ -10,4 +10,6 @@ return [
     'sponsershipOrganizations' => 'التحكم في المؤسسات الكفالة',
     'sponsershipTypes' => 'التحكم في انواع الكفالات',
     'website' => 'التحكم في الموقع الالكتروني',
+    'reports'=>'التحكم في التقارير',
+
 ];

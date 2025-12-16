@@ -4,12 +4,11 @@ return [
     'settings' => 'Settings Management',
     'roles' => 'Roles Management',
     'admins' => 'Admins Management',
-    'world' => 'World Management',
+    'world' => 'Addresses Management',
     'children' => 'Children Management',
     'sponsershipStatuses' => 'Sponsership Status Management',
     'sponsershipOrganizations' => 'Sponsership Organizations Management',
     'sponsershipTypes' => 'Sponsership Types Management',
-    'website'=>'Website Management',
-
-
+    'website' => 'Website Management',
+    'reports' => 'Reports Managments',
 ];

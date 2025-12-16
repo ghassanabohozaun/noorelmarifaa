@@ -50,7 +50,7 @@ class CityService
     {
         $city = self::getCity($id);
 
-        if (!$city) {
+        if ($city->children()->count() > 0 || !$city) {
             return false;
         }
 

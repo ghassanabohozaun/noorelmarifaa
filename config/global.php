@@ -10,5 +10,6 @@ return [
         'sponsershipOrganizations' => 'global.sponsershipOrganizations',
         'sponsershipTypes' => 'global.sponsershipTypes',
         'website'=>'global.website',
+        'reports'=>'global.reports',
     ],
 ];

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Exports\ChildrenExport;
 use App\Http\Controllers\Controller;
-use App\Models\Child;
 use App\Models\City;
 use App\Services\Dashboard\ChildService;
 use App\Services\Dashboard\CityService;
@@ -14,7 +12,6 @@ use App\Services\Dashboard\SponsershipStatusService;
 use App\Services\Dashboard\SponsershipTypeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class ChildernController extends Controller
@@ -120,6 +117,13 @@ class ChildernController extends Controller
         }
     }
 
+    // get cities
+    public function getCities($governorate_id)
+    {
+        $cities = City::where('governorate_id', $governorate_id)->pluck('name', 'id');
+        return response()->json($cities);
+    }
+
     public function downloadPDF($id)
     {
         $child = $this->childService->getChildWithRelations($id);
@@ -134,73 +138,5 @@ class ChildernController extends Controller
 
         return $pdf->stream($child->childFullName() . '.pdf');
         //  return $pdf->stream($child->childFullName().'.pdf');
-    }
-
-    // get cities
-    public function getCities($governorate_id)
-    {
-        $cities = City::where('governorate_id', $governorate_id)->pluck('name', 'id');
-        return response()->json($cities);
-    }
-
-    // show report
-    public function showReport()
-    {
-        $title = __('children.reports');
-
-        $childColumnNames = $this->childColumnNamesFunction();
-        $familyCloumnNames = $this->columnNamesFunction('child_families');
-        $fatherCloumnNames = $this->columnNamesFunction('child_fathers');
-        $motherCloumnNames = $this->columnNamesFunction('child_mothers');
-        $guardianCloumnNames = $this->columnNamesFunction('child_guardians');
-        $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
-
-        return view('dashboard.children.report', compact('title', 'childColumnNames', 'familyCloumnNames', 'fatherCloumnNames', 'motherCloumnNames', 'guardianCloumnNames', 'governorates'));
-    }
-
-    public function exportExcel(Request $request)
-    {
-        $filters = $request->except(['_token']);
-
-        if (empty($filters['columns'])) {
-            $selectedColumns = ['id', 'first_name', 'father_name', 'grand_father_name', 'family_name','personal_id', 'classification', 'gender', 'health_status', 'city_id', 'governoate_id', 'guardian_full_name'];
-        } else {
-            $selectedColumns = $request->input('columns', $filters);
-        }
-
-        $fileName = 'children_' . now() . '.xlsx';
-        return Excel::download(new ChildrenExport(Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])->get(), $selectedColumns, $filters), $fileName);
-    }
-
-    //  child columns name function
-    public function childColumnNamesFunction()
-    {
-        // fliter children columns
-        $tableName = 'children';
-        $excludedColumns = ['deleted_at', 'updated_at', 'password', 'disease_clarification', 'backup_contact_number', 'status', 'freeze', 'created_at'];
-        $allCloumnsNames = DB::getSchemaBuilder()->getColumnListing($tableName);
-        $columnNames = collect($allCloumnsNames)
-            ->filter(function ($column) use ($excludedColumns) {
-                return !in_array($column, $excludedColumns);
-            })
-            ->values()
-            ->toArray();
-
-        return $columnNames;
-    }
-
-    //  father columns name function
-    public function columnNamesFunction($tableName)
-    {
-        $excludedColumns = ['id', 'created_at', 'child_id', 'deleted_at', 'updated_at'];
-        $allCloumnsNames = DB::getSchemaBuilder()->getColumnListing($tableName);
-        $columnNames = collect($allCloumnsNames)
-            ->filter(function ($column) use ($excludedColumns) {
-                return !in_array($column, $excludedColumns);
-            })
-            ->values()
-            ->toArray();
-
-        return $columnNames;
     }
 }

@@ -108,13 +108,13 @@
 
                             <li><span class="icon fas fa-envelope-open"></span>
                                 {!! trans('frontend.email') !!}:
-                                <a href="mailto:{!! setting()->email !!}"> {!! setting()->email !!}
+                                <a href="mailto:{!! setting()->email !!}" target="_blank"> {!! setting()->email !!}
                                 </a>
                             </li>
 
                             <li><span class="icon fab fa-google"></span>
-                                {!! trans('frontend.gmail') !!}:
-                                <a href="mailto:{!! setting()->email_support !!}"> {!! setting()->email_support !!}
+                                {!! trans('frontend.support_email') !!}:
+                                <a href="mailto:{!! setting()->email_support !!}" target="_blank"> {!! setting()->email_support !!}
                                 </a>
                             </li>
 

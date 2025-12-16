@@ -24,6 +24,7 @@ class SponsershipTypeRequest extends FormRequest
     {
         return [
             'name.*' => ['required', 'string', 'max:100', UniqueTranslationRule::for('sponsership_types')->ignore($this->id)],
+            'sponsership_organization_id'=>['required'],
         ];
     }
 }

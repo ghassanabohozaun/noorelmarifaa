@@ -24,8 +24,9 @@
                                 <span class="fab fa-facebook-f"></span>
                             </a>
                         </li>
-                        <li><a href="mailto:{!! setting()->email_support !!}">
-                                <span class="fab fa-google"></span>
+                        <li>
+                            <a href="mailto:projects@noorelmarifaa.org" target="_blank">
+                                <span class="flaticon-envelope"></span>
                             </a>
                         </li>
                         <li>
@@ -100,8 +101,9 @@
                             <ul>
                                 <li>
                                     <span>
-                                        {!! trans('frontend.palestine_gaza') !!}
-                                        <br> {!! setting()->email !!}
+                                        {!! setting()->email !!}
+                                        <br>
+                                        {!! setting()->email_support !!}
                                     </span>
 
 
@@ -306,8 +308,8 @@
             <!--Logo-->
             <div class="logo pull-left">
                 <a href="{!! route('index') !!}" class="img-responsive">
-                    <img src=" {!! asset('frontend/images/logo_complete.jpg') !!}" width="195" height="160" alt="{!! asset('frontend/images/logo_complete.jpg') !!}"
-                        title="{!! trans('frontend.logo') !!}">
+                    <img src=" {!! asset('frontend/images/logo_complete.jpg') !!}" width="195" height="160"
+                        alt="{!! asset('frontend/images/logo_complete.jpg') !!}" title="{!! trans('frontend.logo') !!}">
                 </a>
             </div>
 

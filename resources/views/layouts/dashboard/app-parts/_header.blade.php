@@ -216,11 +216,11 @@
                      <li class="dropdown dropdown-user nav-item">
                          <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                              <span class="mr-1">{!! __('dashboard.hello') !!}
-                                 <span class="user-name text-bold-700">{!! Auth::guard('admin')->name !!}</span>
+                                 <span class="user-name text-bold-700">{!! AdminByModel()->name !!}</span>
                              </span>
                              <span class="avatar avatar-online">
-                                 <img src="{!! asset('assets/dashbaord') !!}/images/portrait/small/avatar-s-19.png"
-                                     alt="avatar"><i></i></span>
+                                 <img src="{!! asset('assets\dashbaord\images\avatar-male.jpg') !!}" alt="avatar" style="border-raduis:50%">
+                             </span>
                          </a>
                          <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i
                                      class="ft-user"></i> Edit Profile</a>

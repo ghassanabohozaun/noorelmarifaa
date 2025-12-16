@@ -62,8 +62,8 @@ class EditChild extends Component
         $this->ChildID = $ChildID;
         $this->governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
         $this->cities = $this->governorateService->getAllCitiesbyGovernorate($this->child->governoate_id);
-        $this->sponsership_organizations = $this->sponsershipOrganizationService->getActive();
         $this->sponsership_statuses = $this->sponsershipStatusService->getActive();
+        $this->sponsership_organizations = $this->sponsershipOrganizationService->getActive();
         $this->sponsership_types = $this->sponsershipTypeService->getActive();
         // $this->governoate_id ?? ($this->cities = []);
 

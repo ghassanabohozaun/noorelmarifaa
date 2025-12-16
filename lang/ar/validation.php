@@ -328,5 +328,6 @@ return [
         'orphan_child_birth_certificate' => 'شهادة ميلاد الطفل ',
         'father_death_certificate' => 'شهادة وفاة الاب',
         'guardian_personal_id_photo' => 'صورة هوية الوصي',
+         'sponsership_organization_id'=>'المؤسسة الكافلة',
     ],
 ];

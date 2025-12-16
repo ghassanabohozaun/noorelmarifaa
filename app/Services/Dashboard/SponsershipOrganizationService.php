@@ -67,7 +67,7 @@ class SponsershipOrganizationService
         $organization = self::getOne($id);
 
 
-         if ($organization->children()->count() > 0 || !$organization) {
+        if ($organization->children()->count() > 0 || !$organization) {
             return false;
         }
 
@@ -85,7 +85,7 @@ class SponsershipOrganizationService
         if (!$organization) {
             return false;
         }
-        $organization = $this->sponsershipOrganizationRepository->changeStatus($organization , $status);
+        $organization = $this->sponsershipOrganizationRepository->changeStatus($organization, $status);
         if (!$organization) {
             return false;
         }

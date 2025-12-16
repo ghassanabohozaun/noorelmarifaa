@@ -23,6 +23,7 @@ return [
     'posts' => 'المنشورات',
     'departments' => 'الأقسام',
     'sliders' => 'سلايدرات',
+    'reports'=>'التقارير',
 
     // login
     'login' => 'تسجيل الدخول',

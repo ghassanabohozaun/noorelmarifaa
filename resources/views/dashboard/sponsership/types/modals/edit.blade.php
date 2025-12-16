@@ -40,6 +40,31 @@
                                 <!-- begin: input -->
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="sponsership_organization_id">{!! __('sponsership.sponsership_organization_id') !!}</label>
+                                        <select class="form-control" id='sponsership_organization_id_edit'
+                                            name="sponsership_organization_id">
+                                            <option value="" selected="">
+                                                {!! __('general.select_from_list') !!}</option>
+                                            @foreach ($organizations as $organization)
+                                                <option value="{!! $organization->id !!}">
+                                                    {!! $organization->name !!}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text text-danger">
+                                            <strong id="sponsership_organization_id_error"></strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- end: input -->
+                            </div>
+                            <!-- end: row -->
+
+                            <!-- begin: row -->
+                            <div class="row">
+                                <!-- begin: input -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label for="name">{!! __('sponsership.name_ar') !!}</label>
                                         <input type="text" id="name_ar_edit" name="name[ar]" class="form-control"
                                             autocomplete="off" placeholder="{!! __('sponsership.enter_name_ar') !!}">
@@ -100,13 +125,19 @@
         // show edit modal
         $('body').on('click', '.edit_type_button', function(e) {
             e.preventDefault();
+            var organization_id = $(this).attr('type-sponsership-organization-id');
+
+
             var type_id = $(this).attr('type-id');
             var type_name_ar = $(this).attr('type-name-ar');
             var type_name_en = $(this).attr('type-name-en');
 
+
             $('#id_edit').val(type_id);
+            $('#sponsership_organization_id_edit').val(organization_id);
             $('#name_ar_edit').val(type_name_ar);
             $('#name_en_edit').val(type_name_en);
+
 
             $('#updateTypeModal').modal('show');
         })

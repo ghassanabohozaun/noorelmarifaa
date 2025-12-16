@@ -278,6 +278,10 @@
                 <option value="6">{!! __('children.class_6') !!}</option>
                 <option value="7">{!! __('children.class_7') !!}</option>
                 <option value="8">{!! __('children.class_8') !!}</option>
+                <option value="9">{!! __('children.class_9') !!}</option>
+                <option value="10">{!! __('children.class_10') !!}</option>
+                <option value="11">{!! __('children.class_11') !!}</option>
+                <option value="12">{!! __('children.class_12') !!}</option>
             </select>
             @error('class')
                 <span class="text text-danger">

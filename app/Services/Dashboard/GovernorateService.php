@@ -85,7 +85,7 @@ class GovernorateService
     public function destroyGovernorate($id)
     {
         $governorate = self::getGovernorate($id);
-        if ($governorate->cities->count() > 0 || !$governorate) {
+        if ($governorate->cities->count() > 0 || $governorate->children()->count() > 0 || !$governorate) {
             return false;
         }
 

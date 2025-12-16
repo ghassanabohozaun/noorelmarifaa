@@ -7,6 +7,8 @@
     'name' => 'Name',
     'name_ar' => 'Arabic Name',
     'name_en' => 'English Name',
+    'sponsership_organization_id' => 'SponserShip Organization',
+
     'enter_name_ar' => 'Enter Arabic Name',
     'enter_name_en' => 'Enter English Name',
     'status' => 'Status',

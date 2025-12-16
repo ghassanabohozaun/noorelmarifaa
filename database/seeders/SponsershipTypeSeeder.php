@@ -15,6 +15,7 @@ class SponsershipTypeSeeder extends Seeder
     {
         $types = [
             [
+                'sponsership_organization_id' => 1,
                 'name' => [
                     'ar' => 'كفالة يتيم',
                     'en' => 'Orphan Sponsership',
@@ -22,6 +23,7 @@ class SponsershipTypeSeeder extends Seeder
             ],
 
             [
+                'sponsership_organization_id' => 1,
                 'name' => [
                     'ar' => 'كفالة عائلة فقيرة',
                     'en' => 'Poor Family Sponsership',

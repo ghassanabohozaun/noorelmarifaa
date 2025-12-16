@@ -105,6 +105,11 @@ return [
     'class_6' => 'الصف السادس',
     'class_7' => 'الصف السابع',
     'class_8' => 'الصف الثامن',
+    'class_9' => 'الصف التاسع',
+    'class_10' => 'الصف العاشر',
+    'class_11' => 'الصف الحادي عشر',
+    'class_12' => 'الصف الثاني عشر',
+
     'sponsership_status_id' => 'حالة الكفالة',
     'sponsership_organization_id' => 'المؤسسة الكافلة',
     'sponsership_type_id' => 'نوع الكفالة',

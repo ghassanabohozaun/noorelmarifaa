@@ -315,5 +315,6 @@ return [
         'orphan_child_birth_certificate' => 'Orphan Child Birth Certificate',
         'father_death_certificate' => 'Father Death Certificate',
         'guardian_personal_id_photo' => 'Guardian Personal ID Photo',
+        'sponsership_organization_id' => 'SponserShip Organization',
     ],
 ];

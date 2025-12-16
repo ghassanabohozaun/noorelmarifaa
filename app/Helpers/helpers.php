@@ -8,6 +8,8 @@ use App\Models\Governorate;
 use App\Models\Page;
 use App\Models\Setting;
 use App\Models\Website_main_page;
+use Illuminate\Support\Facades\Auth;
+
 
 //  setting Helper Function
 if (!function_exists('setting')) {
@@ -72,6 +74,15 @@ if (!function_exists('admin')) {
     function admin()
     {
         return auth()->guard('admin');
+    }
+}
+
+
+//  get admin by model Helper Function
+if (!function_exists('AdminByModel')) {
+    function adminByModel()
+    {
+        return Admin::find(auth()->guard('admin')->id());
     }
 }
 

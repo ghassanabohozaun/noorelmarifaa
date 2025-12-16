@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\SponsershipTypeRequest;
+use App\Services\Dashboard\SponsershipOrganizationService;
 use App\Services\Dashboard\SponsershipTypeService;
 use Illuminate\Http\Request;
 
 class SponsershipTypesController extends Controller
 {
-    protected $sponsershipTypeService;
+    protected $sponsershipTypeService , $sponsershipOrganizationService;
     // __construct
-    public function __construct(SponsershipTypeService $sponsershipTypeService)
+    public function __construct(SponsershipTypeService $sponsershipTypeService , SponsershipOrganizationService $sponsershipOrganizationService)
     {
         $this->sponsershipTypeService = $sponsershipTypeService;
+        $this->sponsershipOrganizationService = $sponsershipOrganizationService;
     }
 
     // index
@@ -21,7 +23,8 @@ class SponsershipTypesController extends Controller
     {
         $title = __('sponsership.sponsershipTypes');
         $types = $this->sponsershipTypeService->getAll();
-        return view('dashboard.sponsership.types.index', compact('title', 'types'));
+        $organizations = $this->sponsershipOrganizationService->getActive();
+        return view('dashboard.sponsership.types.index', compact('title', 'types','organizations'));
     }
 
     // create
@@ -33,7 +36,7 @@ class SponsershipTypesController extends Controller
     // store
     public function store(SponsershipTypeRequest $request)
     {
-        $data = $request->only(['name']);
+        $data = $request->only(['sponsership_organization_id', 'name']);
         $status = $this->sponsershipTypeService->create($data);
         if (!$status) {
             return response()->json(['status' => false], 500);
@@ -56,7 +59,7 @@ class SponsershipTypesController extends Controller
     // update
     public function update(SponsershipTypeRequest $request, string $id)
     {
-        $data = $request->only(['id','name']);
+        $data = $request->only(['id', 'sponsership_organization_id', 'name']);
         $status = $this->sponsershipTypeService->update($data);
         if (!$status) {
             return response()->json(['status' => false], 500);

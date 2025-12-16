@@ -6,7 +6,7 @@
 @section('content')
     <div class="app-content content">
 
-        <form class="form" action="{!! route('dashboard.children.export.excel') !!}" method="post" enctype="multipart/form-data"
+        <form class="form" action="{!! route('dashboard.reports.export.excel') !!}" method="post" enctype="multipart/form-data"
             id="storeReservationForm">
             @csrf
             <div class="content-wrapper">

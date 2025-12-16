@@ -248,7 +248,6 @@
         {{-- footer --}}
         <table>
 
-
             <tr>
                 <td>
                     <table style="margin: 40px auto;">

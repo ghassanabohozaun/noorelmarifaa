@@ -11,6 +11,7 @@ return [
     'name' => 'الاسم',
     'name_ar' => 'الاسم بالعربي',
     'name_en' => 'الاسم بالانجليزي',
+    'sponsership_organization_id'=>'المؤسسة الكافلة',
 
     'enter_name_ar' => 'ادخل الاسم بالعربي',
     'enter_name_en' => 'ادخل الاسم بالانجليزي',

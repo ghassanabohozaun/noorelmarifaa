@@ -10,7 +10,7 @@ class SponsershipType extends Model
 {
     use SoftDeletes, HasTranslations;
     protected $table = 'sponsership_types';
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['sponsership_organization_id','name', 'status'];
 
     public $timestamps = true;
 
@@ -21,6 +21,12 @@ class SponsershipType extends Model
     {
         return $this->hasMany(Child::class, 'sponsership_type_id');
     }
+
+    public function sponsershipOrganization()
+    {
+        return $this->belongsTo(SponsershipOrganization::class, 'sponsership_organization_id');
+    }
+
 
     // scopes
     public function scopeActive($query)

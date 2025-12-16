@@ -7,7 +7,7 @@ use App\Http\Controllers\Dashboard\DepartmentsController;
 use App\Http\Controllers\Dashboard\PagesController;
 use App\Http\Controllers\Dashboard\PostsController;
 use App\Http\Controllers\Dashboard\SlidersController;
-use App\Http\Controllers\Dashboard\{AdminsController, ChildernController, CitiesController, DashboardController, GovernoratiesController, ProductsController, RolesController, SettingsController, SponsershipOrganizationsController, SponsershipStatusesController, SponsershipTypesController, UploadCenterController};
+use App\Http\Controllers\Dashboard\{AdminsController, ChildernController, ChildrenReportsController, CitiesController, DashboardController, GovernoratiesController, ProductsController, RolesController, SettingsController, SponsershipOrganizationsController, SponsershipStatusesController, SponsershipTypesController, UploadCenterController};
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -114,7 +114,6 @@ Route::group(
                 Route::resource('uploadCenter', UploadCenterController::class);
                 Route::post('/uploadCenter/destroy', [UploadCenterController::class, 'destroy'])->name('uploadCenter.destroy');
                 Route::get('/get-file-by-id', [UploadCenterController::class, 'getUploadCenterFileById'])->name('uploadCenter.get.file.by.id');
-
             });
 
             ########################################### children routes  ######################################################################
@@ -124,14 +123,16 @@ Route::group(
 
             ########################################### children routes  ######################################################################
             Route::group(['middleware' => 'can:children'], function () {
-                Route::post('/children/export/excel', [ChildernController::class, 'exportExcel'])->name('children.export.excel');
-
                 Route::resource('children', ChildernController::class);
-                Route::get('/children/show/report', [ChildernController::class, 'showReport'])->name('children.show.report');
                 Route::get('/children-all', [ChildernController::class, 'getAll'])->name('children.get.all');
                 Route::post('/childrem/change-status', [ChildernController::class, 'changeStatus'])->name('children.change.status');
                 Route::get('download-pdf/{id?}', [ChildernController::class, 'downloadPDF'])->name('children.download.pdf');
                 Route::get('/children/get-cities/{id?}', [ChildernController::class, 'getCities'])->name('children.get.cities');
+            });
+            ########################################### childrenReport routes  ######################################################################
+            Route::group(['middleware' => 'can:reports'], function () {
+                Route::get('/reports/show/report', [ChildrenReportsController::class, 'showReport'])->name('reports.show.report');
+                Route::post('/reports/export/excel', [ChildrenReportsController::class, 'exportExcel'])->name('reports.export.excel');
             });
 
             ########################################### addresses routes  ######################################################################

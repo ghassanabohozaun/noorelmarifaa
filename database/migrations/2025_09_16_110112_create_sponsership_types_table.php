@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('sponsership_types', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sponsership_organization_id')->constrained('sponsership_organizations')->cascadeOnDelete();
             $table->string('name');
             $table->boolean('status')->default(1);
             $table->softDeletes();

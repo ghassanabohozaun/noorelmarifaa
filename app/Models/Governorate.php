@@ -21,6 +21,11 @@ class Governorate extends Model
         return $this->hasMany(City::class, 'governorate_id');
     }
 
+    public function children()
+    {
+        return $this->hasMany(Child::class, 'governoate_id');
+    }
+
     // accsessores
     public function getStatusAttribute($status)
     {

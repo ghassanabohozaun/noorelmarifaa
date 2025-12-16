@@ -22,6 +22,32 @@
 
                     <div class="row">
                         <div class="col-lg-12">
+                            
+                            <!-- begin: row -->
+                            <div class="row">
+                                <!-- begin: input -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="sponsership_organization_id">{!! __('sponsership.sponsership_organization_id') !!}</label>
+                                        <select class="form-control" id='sponsership_organization_id'
+                                            name="sponsership_organization_id">
+                                            <option value="" selected="">
+                                                {!! __('general.select_from_list') !!}</option>
+                                            @foreach ($organizations as $organization)
+                                                <option value="{!! $organization->id !!}" {!! old('sponsership_organization_id') == $organization->id ? 'selected' : '' !!}>
+                                                    {!! $organization->name !!}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text text-danger">
+                                            <strong id="sponsership_organization_id_error"></strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- end: input -->
+                            </div>
+                            <!-- end: row -->
+
 
                             <!-- begin: row -->
                             <div class="row">
@@ -87,9 +113,11 @@
     <script type="text/javascript">
         // reset
         function resetCreateForm() {
+            $('#sponsership_organization_id').css('border-color', '');
             $('#name_ar').css('border-color', '');
             $('#name_en').css('border-color', '');
 
+            $('#sponsership_organization_id_error').text('');
             $('#name_ar_error').text('');
             $('#name_en_error').text('');
         }

@@ -98,6 +98,8 @@ return [
     'support' => 'الدعم',
     'email' => 'ايميل',
     'gmail' => 'جيميل',
+    'support_email' => 'ايميل الدعم',
+
     'site_map' => 'خريطة الموقع',
     'coming_soon' => 'المحتوي قريباً',
     'last_news' => 'آخر الأخبار',

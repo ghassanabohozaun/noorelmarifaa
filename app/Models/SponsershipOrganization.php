@@ -23,6 +23,11 @@ class SponsershipOrganization extends Model
     }
 
 
+    public function sponsershipTypes()
+    {
+        return $this->hasMany(SponsershipType::class, 'sponsership_organization_id');
+    }
+
 
     // scopes
     public function scopeActive($query)
