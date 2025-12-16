@@ -83,6 +83,13 @@
                                     </div>
 
 
+                                    @if (!empty($post->files()->get()))
+                                        @foreach ($post->files()->get() as $file)
+                                            <img src="{!! asset('uploads/post-photos/' . $file->full_path_after_upload) !!}" alt="{!! asset('uploads/post-photos/' . $file->full_path_after_upload) !!}"
+                                                title="{!! Lang() == 'ar' ? $post->post_title_ar : $post->post_title_en !!}" class="rounded mt-1" />
+                                        @endforeach
+                                    @endif
+
                                     <!--Social Box-->
                                     <ul class="social-box">
                                         <li class="share">{!! trans('frontend.sharing') !!} :</li>

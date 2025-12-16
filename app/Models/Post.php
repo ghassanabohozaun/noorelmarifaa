@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\File;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -27,7 +28,7 @@ class Post extends Model
     /// files
     public function files()
     {
-        return $this->hasMany('App\File', 'relation_id', 'id')->where('file_type', 'post-photos');
+        return $this->hasMany(File::class, 'relation_id');
     }
 
     ////////////////////////////////////////////////////////////////
