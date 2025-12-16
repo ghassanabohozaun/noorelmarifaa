@@ -85,7 +85,21 @@
                                                 class="btn btn-warning btn-glow px-2">
                                                 <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!}
                                             </a>
+
+                                            &nbsp;&nbsp;
+
+                                            <a href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank"
+                                                class="btn btn-warning btn-glow px-2 ">
+                                                <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!}
+                                            </a>
+
                                         </div>
+
+                                        <div class="row mb-3" style="margin: 10px">
+
+                                        </div>
+
+
                                         <!-- begin: basic info div -->
                                         <div class="row">
                                             <div class="col-lg-12">

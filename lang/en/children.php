@@ -224,6 +224,8 @@ return [
     // form
     'sponsorship_program_form' => 'Sponsorship Program Form',
     'download_sponsorship_form' => 'Download Sponsorship Form',
+    'sponsorship_program_file' => 'Sponsorship Program File',
+
 
     'address' => 'Address',
     'health_condition' => 'Health Condition :',
