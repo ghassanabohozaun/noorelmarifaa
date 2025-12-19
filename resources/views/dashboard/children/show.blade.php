@@ -39,12 +39,33 @@
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-1">
+
+                        <div class="dropdown float-md-left">
+                            <button class="btn btn-dark btn-glow px-2  dropdown-toggle " id="dropdownBreadcrumbButton"
+                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">Actions</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton" x-placement="bottom-start"
+                                style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank"><i
+                                        class="la la-file-pdf-o"></i>Form 1</a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank"><i
+                                        class="la la-file-pdf-o"></i> Form 2</a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf3', $child->id) !!}" target="_blank"><i
+                                        class="la la-file-pdf-o"></i> Form 3</a>
+                            </div>
+                        </div>
+                        &nbsp;
+
+
                         <a href="{!! route('dashboard.children.edit', $child->id) !!}" class="btn btn-primary btn-glow px-2">
                             {!! __('children.update_child') !!}
                         </a>
                         <a href="{!! route('dashboard.children.create') !!}" class="btn btn-info  btn-glow px-2">
                             {!! __('children.create_new_child') !!}
                         </a>
+
+
+
                     </div>
                 </div>
                 <!-- end: content header right-->
@@ -80,7 +101,7 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
 
-                                        <div class="row mb-3" style="margin: 10px">
+                                        {{-- <div class="row mb-3" style="margin: 10px">
                                             <a href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank"
                                                 class="btn btn-warning btn-glow px-2">
                                                 <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!}
@@ -102,7 +123,7 @@
 
                                         <div class="row mb-3" style="margin: 10px">
 
-                                        </div>
+                                        </div> --}}
 
 
                                         <!-- begin: basic info div -->
