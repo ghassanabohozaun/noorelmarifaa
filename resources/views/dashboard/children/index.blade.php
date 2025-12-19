@@ -87,6 +87,7 @@
                 "bDestroy": true,
                 "bFilter": false,
                 "bLengthChange": false, //thought this line could hide the LengthMenu
+
                 pageLength: 10,
                 // rowReorder: {
                 //     update: false,
@@ -142,12 +143,12 @@
                         searchable: false,
                         orderable: false,
                     },
-                    {
-                        data: 'photo',
-                        name: 'photo',
-                        searchable: false,
-                        orderable: false,
-                    },
+                    // {
+                    //     data: 'photo',
+                    //     name: 'photo',
+                    //     searchable: false,
+                    //     orderable: false,
+                    // },
                     {
                         data: 'full_name',
                         name: 'full_name',
@@ -165,14 +166,14 @@
                         data: 'gender',
                         name: 'gender',
                     },
-                    {
-                        data: 'classification',
-                        name: 'classification',
-                    },
-                    {
-                        data: 'health_status',
-                        name: 'health_status',
-                    },
+                    // {
+                    //     data: 'classification',
+                    //     name: 'classification',
+                    // },
+                    // {
+                    //     data: 'health_status',
+                    //     name: 'health_status',
+                    // },
                     {
                         data: 'governoate_id',
                         name: 'governoate_id',
@@ -185,14 +186,14 @@
                         data: 'authorized_contact_number',
                         name: 'authorized_contact_number',
                     },
-                    {
-                        data: 'sponsership_status_id',
-                        name: 'sponsership_status_id',
-                    },
-                    {
-                        data: 'sponsership_type_id',
-                        name: 'sponsership_type_id',
-                    },
+                    // {
+                    //     data: 'sponsership_status_id',
+                    //     name: 'sponsership_status_id',
+                    // },
+                    // {
+                    //     data: 'sponsership_type_id',
+                    //     name: 'sponsership_type_id',
+                    // },
                     {
                         data: 'sponsership_organization_id',
                         name: 'sponsership_organization_id',
@@ -202,12 +203,12 @@
                     //     name: 'backup_contact_number',
                     // },
 
-                    {
-                        data: 'status_manage',
-                        name: 'status_manage',
-                        searchable: false,
-                        orderable: false,
-                    },
+                    // {
+                    //     data: 'status_manage',
+                    //     name: 'status_manage',
+                    //     searchable: false,
+                    //     orderable: false,
+                    // },
 
                     {
                         data: 'actions',

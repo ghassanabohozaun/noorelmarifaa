@@ -25,21 +25,21 @@
 
                          <tr>
                              <th>#</th>
-                             <th>{!! __('children.photo') !!}</th>
+                             {{-- <th>{!! __('children.photo') !!}</th> --}}
                              <th>{!! __('children.full_name') !!}</th>
                              <th>{!! __('children.personal_id') !!}</th>
                              <th>{!! __('children.birthday') !!}</th>
                              <th>{!! __('children.gender') !!}</th>
-                             <th>{!! __('children.classification') !!}</th>
-                             <th>{!! __('children.health_status') !!}</th>
+                             {{-- <th>{!! __('children.classification') !!}</th>
+                             <th>{!! __('children.health_status') !!}</th> --}}
                              <th>{!! __('children.governoate_id') !!}</th>
                              <th>{!! __('children.city_id') !!}</th>
                              <th>{!! __('children.authorized_contact_number') !!}</th>
-                             <th>{!! __('children.sponsership_status_id') !!}</th>
-                             <th>{!! __('children.sponsership_type_id') !!}</th>
+                             {{-- <th>{!! __('children.sponsership_status_id') !!}</th>
+                             <th>{!! __('children.sponsership_type_id') !!}</th> --}}
                              <th>{!! __('children.sponsership_organization_id') !!}</th>
                              {{-- <th>{!! __('children.backup_contact_number') !!}</th> --}}
-                             <th>{!! __('children.status_manage') !!}</th>
+                             {{-- <th>{!! __('children.status_manage') !!}</th> --}}
                              <th>{!! __('general.actions') !!}</th>
                          </tr>
                      </thead>
