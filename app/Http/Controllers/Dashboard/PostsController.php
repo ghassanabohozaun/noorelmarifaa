@@ -93,7 +93,7 @@ class PostsController extends Controller
     public function uploadOtherPhotos(Request $request, $paid)
     {
         if ($request->hasFile('file')) {
-            $photo_name = $this->imageManagerUtils->saveResizeImage($request['file'], 'post-photos', 1700, 1000);
+            $photo_name = $this->imageManagerUtils->saveResizeImage($request['file'], 'post-photos', 1920, 1080);
 
             $file = new File();
             $file->file_name = $request->file('file')->getClientOriginalName();

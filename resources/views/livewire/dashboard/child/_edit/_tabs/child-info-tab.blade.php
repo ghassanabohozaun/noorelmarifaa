@@ -60,8 +60,6 @@
     <div class="col-lg-6">
         <ul class="list-group">
 
-
-
             <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                 <strong class="text-dark">{!! __('children.authorized_contact_number') !!}:</strong>
                 &nbsp;
@@ -98,9 +96,6 @@
                 &nbsp;
                 {!! $address_details !!}
             </li>
-
-
-
 
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">{!! __('children.sponsership_status_id') !!}:
                 </strong>

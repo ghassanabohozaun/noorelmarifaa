@@ -102,6 +102,13 @@ class Child extends Authenticatable
         }
     }
 
+    public function childBirthDay()
+    {
+
+         return Carbon::parse($this->birthday)->format('d/m/Y');
+
+    }
+
     // relations
     public function governorate()
     {

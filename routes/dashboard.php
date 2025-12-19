@@ -128,6 +128,8 @@ Route::group(
                 Route::post('/childrem/change-status', [ChildernController::class, 'changeStatus'])->name('children.change.status');
                 Route::get('download-pdf/{id?}', [ChildernController::class, 'downloadPDF'])->name('children.download.pdf');
                 Route::get('download-pdf2/{id?}', [ChildernController::class, 'downloadPDF2'])->name('children.download.pdf2');
+                Route::get('download-pdf3/{id?}', [ChildernController::class, 'downloadPDF3'])->name('children.download.pdf3');
+
                 Route::get('/children/get-cities/{id?}', [ChildernController::class, 'getCities'])->name('children.get.cities');
             });
             ########################################### childrenReport routes  ######################################################################

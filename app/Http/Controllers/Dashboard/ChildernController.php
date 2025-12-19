@@ -140,8 +140,7 @@ class ChildernController extends Controller
         //  return $pdf->stream($child->childFullName().'.pdf');
     }
 
-
-      public function downloadPDF2($id)
+    public function downloadPDF2($id)
     {
         $child = $this->childService->getChildWithRelations($id);
 
@@ -157,6 +156,19 @@ class ChildernController extends Controller
         //  return $pdf->stream($child->childFullName().'.pdf');
     }
 
+    public function downloadPDF3($id)
+    {
+        $child = $this->childService->getChildWithRelations($id);
 
+        $data = [
+            'picture_of_the_orphan_child' => public_path('uploads/children/' . $child->childFile->picture_of_the_orphan_child),
+            'image' => public_path('assets/dashbaord/images/pdf-uk.png'),
+            'child' => $child,
+        ];
 
+        $pdf = PDF::loadView('dashboard.children.pdf3', $data);
+
+        return $pdf->stream($child->childFullName() . '.pdf');
+        //  return $pdf->stream($child->childFullName().'.pdf');
+    }
 }
