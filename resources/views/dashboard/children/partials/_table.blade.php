@@ -47,7 +47,7 @@
                         @forelse ($children as $child)
                             <tr>
                                 <td>{!! $loop->iteration !!}</td>
-                                <td>@include('dashboard.children.parts.photo')</td>
+                                <td style="width: 10%;">@include('dashboard.children.parts.photo')</td>
                                 <td>{!! $child->childFullName() !!}</td>
                                 <td>{!! $child->personal_id !!}</td>
                                 <td>{!! $child->birthday !!}</td>
