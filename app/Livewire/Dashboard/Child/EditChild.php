@@ -24,6 +24,7 @@ class EditChild extends Component
     public $first_name_ar, $father_name_ar, $grand_father_name_ar, $family_name_ar;
     public $first_name_en, $father_name_en, $grand_father_name_en, $family_name_en;
     public $password, $password_confirm, $personal_id, $birthday, $classification, $gender, $class, $health_status, $disease_clarification, $governoate_id, $city_id, $address_details;
+    public $school_name, $school_address, $school_tel, $school_type, $pay_school_fees, $fees_per_month;
     public $authorized_contact_number, $backup_contact_number, $whatsApp_number;
     public $sponsership_status_id, $sponsership_organization_id, $sponsership_type_id;
     public $number_of_people_including_mother, $male_number, $female_number;
@@ -85,6 +86,13 @@ class EditChild extends Component
         $this->gender = $this->child->gender;
 
         $this->class = $this->child->class;
+        $this->school_name = $this->child->school_name;
+        $this->school_address = $this->child->school_address;
+        $this->school_tel = $this->child->school_tel;
+        $this->school_type = $this->child->school_type;
+        $this->pay_school_fees = $this->child->pay_school_fees;
+        $this->fees_per_month = $this->child->fees_per_month;
+
         $this->health_status = $this->child->health_status;
         $this->disease_clarification = $this->child->disease_clarification;
 
@@ -169,6 +177,13 @@ class EditChild extends Component
             'classification' => ['required'],
             'gender' => ['required'],
             'class' => ['required'],
+            'school_name' => ['required'],
+            'school_address' => ['required'],
+            'school_tel' => ['required'],
+            'school_type' => ['required'],
+            'pay_school_fees' => ['required'],
+            // 'fees_per_month' => ['required','numeric','decimal:2,4'],
+
             'health_status' => ['required'],
             'governoate_id' => ['required', 'exists:governorates,id'],
             'city_id' => ['required', 'exists:cities,id'],
@@ -180,6 +195,10 @@ class EditChild extends Component
 
         if ($this->health_status == 'sick') {
             $data['disease_clarification'] = ['required', 'string', 'min:5'];
+        }
+
+        if ($this->pay_school_fees == '1') {
+            $data['fees_per_month'] =['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
         }
 
         $this->validate($data);
@@ -281,7 +300,15 @@ class EditChild extends Component
             'birthday' => $this->birthday,
             'classification' => $this->classification,
             'gender' => $this->gender,
+
             'class' => $this->class,
+            'school_name' => $this->school_name,
+            'school_address' => $this->school_address,
+            'school_tel' => $this->school_tel,
+            'school_type' => $this->school_type,
+            'pay_school_fees' => $this->pay_school_fees,
+            'fees_per_month' => $this->pay_school_fees == 0 ? null : $this->fees_per_month,
+
             'health_status' => $this->health_status,
             'disease_clarification' => $this->health_status == 'sick' ? $this->disease_clarification : null,
             'governoate_id' => $this->governoate_id,
@@ -381,6 +408,13 @@ class EditChild extends Component
     {
         if ($value == 1) {
             $this->mother_date_of_death = null;
+        }
+    }
+
+    public function doesFamilyPayFees($value)
+    {
+        if ($value == 0) {
+            $this->fees_per_month = null;
         }
     }
 

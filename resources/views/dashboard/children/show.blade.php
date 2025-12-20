@@ -43,7 +43,7 @@
                         <div class="dropdown float-md-left">
                             <button class="btn btn-dark btn-glow px-2  dropdown-toggle " id="dropdownBreadcrumbButton"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">Actions</button>
+                                aria-expanded="false">{!! __('general.export') !!}</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton" x-placement="bottom-start"
                                 style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                                 <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank"><i

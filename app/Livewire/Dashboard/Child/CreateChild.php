@@ -19,6 +19,7 @@ class CreateChild extends Component
     public $first_name_ar, $father_name_ar, $grand_father_name_ar, $family_name_ar;
     public $first_name_en, $father_name_en, $grand_father_name_en, $family_name_en;
     public $password, $password_confirm, $personal_id, $birthday, $classification, $gender, $class, $health_status, $disease_clarification, $governoate_id, $city_id, $address_details;
+    public $school_name, $school_address, $school_tel, $school_type, $pay_school_fees, $fees_per_month;
     public $authorized_contact_number, $backup_contact_number, $whatsApp_number;
     public $number_of_people_including_mother, $male_number, $female_number;
     public $governorates, $cities;
@@ -91,6 +92,12 @@ class CreateChild extends Component
             'classification' => ['required'],
             'gender' => ['required'],
             'class' => ['required'],
+            'school_name' => ['required'],
+            'school_address' => ['required'],
+            'school_tel' => ['required'],
+            'school_type' => ['required'],
+            'pay_school_fees' => ['required'],
+            // 'fees_per_month' => ['required','numeric','decimal:2,4'],
             'health_status' => ['required'],
             'governoate_id' => ['required', 'exists:governorates,id'],
             'city_id' => ['required', 'exists:cities,id'],
@@ -99,9 +106,14 @@ class CreateChild extends Component
             'backup_contact_number' => ['required', 'string', 'min:5', 'max:10'],
             'whatsApp_number' => ['required', 'string', 'min:5', 'max:14'],
         ];
+
         if ($this->health_status == 'sick') {
             $data['disease_clarification'] = ['required', 'string', 'min:5'];
         }
+        if ($this->pay_school_fees == '1') {
+            $data['fees_per_month'] =['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
+        }
+
         $this->validate($data);
 
         $this->currentStep = 2;
@@ -200,7 +212,15 @@ class CreateChild extends Component
             'birthday' => $this->birthday,
             'classification' => $this->classification,
             'gender' => $this->gender,
+
             'class' => $this->class,
+            'school_name' => $this->school_name,
+            'school_address' => $this->school_address,
+            'school_tel' => $this->school_tel,
+            'school_type' => $this->school_type,
+            'pay_school_fees' => $this->pay_school_fees,
+            'fees_per_month' => $this->pay_school_fees == 0 ? null : $this->fees_per_month,
+
             'health_status' => $this->health_status,
             'disease_clarification' => $this->health_status == 'sick' ? $this->disease_clarification : null,
             'governoate_id' => $this->governoate_id,
@@ -284,6 +304,13 @@ class CreateChild extends Component
     {
         if ($value == 1) {
             $this->mother_date_of_death = null;
+        }
+    }
+
+       public function doesFamilyPayFees($value)
+    {
+        if ($value == 0) {
+            $this->fees_per_month = null;
         }
     }
 

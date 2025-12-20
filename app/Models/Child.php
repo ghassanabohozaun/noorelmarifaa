@@ -16,7 +16,11 @@ class Child extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes, HasTranslations, HasApiTokens;
 
     protected $table = 'children';
-    protected $fillable = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'password', 'personal_id', 'birthday', 'classification', 'gender', 'class', 'health_status', 'disease_clarification', 'governoate_id', 'city_id', 'sponsership_status_id', 'sponsership_organization_id', 'sponsership_type_id', 'address_details', 'authorized_contact_number', 'backup_contact_number', 'whatsApp_number', 'status', 'freeze'];
+    protected $fillable = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'password', 'personal_id', 'birthday', 'classification', 'gender',
+    'class', 'school_name', 'school_address', 'school_tel', 'school_type', 'pay_school_fees', 'fees_per_month',
+    'health_status', 'disease_clarification', 'governoate_id', 'city_id', 'sponsership_status_id',
+    'sponsership_organization_id', 'sponsership_type_id', 'address_details', 'authorized_contact_number',
+    'backup_contact_number', 'whatsApp_number', 'status', 'freeze'];
     //public $timestamps = false;
 
     public array $translatable = ['first_name', 'father_name', 'grand_father_name', 'family_name'];
@@ -104,9 +108,7 @@ class Child extends Authenticatable
 
     public function childBirthDay()
     {
-
-         return Carbon::parse($this->birthday)->format('d/m/Y');
-
+        return Carbon::parse($this->birthday)->format('d/m/Y');
     }
 
     // relations
