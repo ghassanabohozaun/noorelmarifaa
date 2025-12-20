@@ -32,9 +32,11 @@ class ChildernController extends Controller
     public function index()
     {
         $title = __('children.show_all_children');
+        $children = $this->childService->getChildrenByPagination();
+
         $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
         $cities = $this->cityService->getAllCitiesWithoutRelation();
-        return view('dashboard.children.index', compact('title', 'governorates', 'cities'));
+        return view('dashboard.children.index', compact('title', 'children', 'governorates', 'cities'));
     }
 
     // get All

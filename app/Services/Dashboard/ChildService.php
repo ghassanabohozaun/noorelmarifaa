@@ -40,6 +40,11 @@ class ChildService
         return $child;
     }
 
+    // get children by pagination
+    public function getChildrenByPagination()  {
+    return $this->childRepository->getChildrenByPagination();
+    }
+
     // get children
     public function getChildren()
     {

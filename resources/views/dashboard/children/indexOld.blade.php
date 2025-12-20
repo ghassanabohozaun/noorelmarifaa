@@ -2,16 +2,7 @@
 @section('title')
     {!! $title !!}
 @endsection
-@push('style')
-    <style>
-        .pagination li .disabled {
-            color: #850d0d;
-            cursor: not-allowed;
-            pointer-events: none;
-            font-size: 100px
-        }
-    </style>
-@endpush
+
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
@@ -78,7 +69,215 @@
 
 @push('scripts')
     <script type="text/javascript">
-        // governoate change
+        var lang = '{{ Lang() }}';
+
+        loadData();
+
+        function loadData(first_name_ar = '', father_name_ar = '', grand_father_name_ar = '', family_name_ar = '',
+            first_name_en = '', father_name_en = '', grand_father_name_en = '', family_name_en = '',
+            personal_id = '', gender = '', classification = '', health_status = '', governoate_id = '',
+            city_id = '', guardian_personal_id = '') {
+            // yajra tables
+            $('#yajra-datatable').DataTable({
+                // dom: 'Bfrtip',
+                processing: true,
+                serverSide: true,
+                colReorder: true,
+                fixedHeader: true,
+                "bDestroy": true,
+                "bFilter": false,
+                "bLengthChange": false, //thought this line could hide the LengthMenu
+
+                pageLength: 10,
+                // rowReorder: {
+                //     update: false,
+                //     // selector: 'tr',
+                //     selector: "td:not(:first-child):not(:nth-child(4)):not(:nth-child(13)):not(:nth-child(14))",
+                // },
+                // select: true,
+                // responsive: true,
+                // scrollCollapse: true,
+                // scroller: true,
+                // scrollY: 900,
+                responsive: {
+                    details: {
+                        display: DataTable.Responsive.display.modal({
+                            header: function(row) {
+                                var data = row.data();
+                                console.log(data);
+                                return '{!! __('general.detalis_for') !!} : ' + data['full_name'];
+                            }
+                        }),
+                        renderer: DataTable.Responsive.renderer.tableAll({
+                            tableClass: 'table'
+                        })
+                    }
+                },
+
+                // ajax: '{!! route('dashboard.children.get.all') !!}',
+
+                ajax: {
+                    url: '{!! route('dashboard.children.get.all') !!}',
+                    data: {
+                        first_name_ar: first_name_ar,
+                        father_name_ar: father_name_ar,
+                        grand_father_name_ar: grand_father_name_ar,
+                        family_name_ar: family_name_ar,
+                        first_name_en: first_name_en,
+                        father_name_en: father_name_en,
+                        grand_father_name_en: grand_father_name_en,
+                        family_name_en: family_name_en,
+                        personal_id: personal_id,
+                        gender: gender,
+                        classification: classification,
+                        health_status: health_status,
+                        governoate_id: governoate_id,
+                        city_id: city_id,
+                        guardian_personal_id: guardian_personal_id
+                    },
+                    beforeSend: function() {}
+                },
+
+                columns: [{
+                        data: 'DT_RowIndex',
+                        searchable: false,
+                        orderable: false,
+                    },
+                    // {
+                    //     data: 'photo',
+                    //     name: 'photo',
+                    //     searchable: false,
+                    //     orderable: false,
+                    // },
+                    {
+                        data: 'full_name',
+                        name: 'full_name',
+                    },
+                    {
+                        data: 'personal_id',
+                        name: 'personal_id',
+                    },
+
+                    {
+                        data: 'birthday',
+                        name: 'birthday',
+                    },
+                    {
+                        data: 'gender',
+                        name: 'gender',
+                    },
+                    // {
+                    //     data: 'classification',
+                    //     name: 'classification',
+                    // },
+                    // {
+                    //     data: 'health_status',
+                    //     name: 'health_status',
+                    // },
+                    {
+                        data: 'governoate_id',
+                        name: 'governoate_id',
+                    },
+                    {
+                        data: 'city_id',
+                        name: 'city_id',
+                    },
+                    {
+                        data: 'authorized_contact_number',
+                        name: 'authorized_contact_number',
+                    },
+                    // {
+                    //     data: 'sponsership_status_id',
+                    //     name: 'sponsership_status_id',
+                    // },
+                    // {
+                    //     data: 'sponsership_type_id',
+                    //     name: 'sponsership_type_id',
+                    // },
+                    {
+                        data: 'sponsership_organization_id',
+                        name: 'sponsership_organization_id',
+                    },
+                    // {
+                    //     data: 'backup_contact_number',
+                    //     name: 'backup_contact_number',
+                    // },
+
+                    // {
+                    //     data: 'status_manage',
+                    //     name: 'status_manage',
+                    //     searchable: false,
+                    //     orderable: false,
+                    // },
+
+                    {
+                        data: 'actions',
+                        searchable: false,
+                        orderable: false,
+                    }
+                ],
+
+                layout: {
+                    // 'colvis',
+                    // topStart: {
+                    //     buttons: ['copy', 'print', 'excel', 'pdf']
+                    // }
+                },
+                language: lang === 'ar' ? {
+                    url: '{!! asset('vendor/datatables/ar.json') !!}',
+                } : {},
+
+                buttons: [{
+                        extend: 'colvis',
+                        className: 'btn btn-default',
+                        exportOptions: {
+                            // columns: [0, 1, 2],
+                            columns: ':not(:last-child)',
+                        }
+                    },
+                    {
+                        extend: 'copy',
+                        className: 'btn btn-default',
+                        exportOptions: {
+                            // columns: [0, 1, 2],
+                            columns: ':not(:last-child)',
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        className: 'btn btn-default',
+                        exportOptions: {
+                            // columns: [0, 1, 2],
+                            columns: ':not(:last-child)',
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-default',
+                        exportOptions: {
+                            // columns: [0, 1, 2],
+                            columns: ':not(:last-child)',
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        className: 'btn btn-default',
+                        exportOptions: {
+                            // columns: [0, 1, 2],
+                            columns: ':not(:last-child)',
+                        }
+
+
+                    },
+
+                ]
+
+            });
+        }
+
+
+
+        // address dependency
         $('#governoate_id').on('change', function() {
             var id = $(this).val();
             if (id) {
