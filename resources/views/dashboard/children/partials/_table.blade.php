@@ -25,7 +25,7 @@
 
                         <tr>
                             <th>#</th>
-                            <th>{!! __('children.photo') !!}</th>
+                            {{-- <th>{!! __('children.photo') !!}</th> --}}
                             <th>{!! __('children.full_name') !!}</th>
                             <th>{!! __('children.personal_id') !!}</th>
                             <th>{!! __('children.birthday') !!}</th>
@@ -47,7 +47,7 @@
                         @forelse ($children as $child)
                             <tr>
                                 <td>{!! $loop->iteration !!}</td>
-                                <td style="width: 9%;">@include('dashboard.children.parts.photo')</td>
+                                {{-- <td style="width: 9%;">@include('dashboard.children.parts.photo')</td> --}}
                                 <td>{!! $child->childFullName() !!}</td>
                                 <td>{!! $child->personal_id !!}</td>
                                 <td>{!! $child->birthday !!}</td>
