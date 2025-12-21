@@ -8,34 +8,62 @@
                     <div class="card-head">
                         <div class="card-body">
                             <ul class="list-group">
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.personal_id') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.full_name_ar') !!}:
+                                    </strong>
+                                    &nbsp;{!! $child->getTranslation('first_name', 'ar') .
+                                        ' ' .
+                                        $child->getTranslation('father_name', 'ar') .
+                                        ' ' .
+                                        $child->getTranslation('grand_father_name', 'ar') .
+                                        ' ' .
+                                        $child->getTranslation('family_name', 'ar') .
+                                        ' ' !!}
+                                </li>
+
+
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.full_name_en') !!}:
+                                    </strong>
+                                    &nbsp;{!! $child->getTranslation('first_name', 'en') .
+                                        ' ' .
+                                        $child->getTranslation('father_name', 'en') .
+                                        ' ' .
+                                        $child->getTranslation('grand_father_name', 'en') .
+                                        ' ' .
+                                        $child->getTranslation('family_name', 'en') .
+                                        ' ' !!}
+                                </li>
+
+
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.personal_id') !!}:</strong>
                                     &nbsp;{!! $child->personal_id !!}
                                 </li>
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.birthday') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.birthday') !!}:</strong>
                                     &nbsp;{!! $child->birthday !!}
                                 </li>
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.classification') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.classification') !!}:</strong>
                                     &nbsp;{!! $child->childClassification() !!}
                                 </li>
 
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.gender') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.gender') !!}:</strong>
                                     &nbsp;{!! $child->childGender() !!}
                                 </li>
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.class') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.class') !!}:</strong>
                                     &nbsp;{!! $child->class !!}
                                 </li>
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.health_status') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.health_status') !!}:</strong>
                                     &nbsp;{!! $child->childHealthStatus() !!}
                                 </li>
 
@@ -62,8 +90,8 @@
 
                             <ul class="list-group">
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.disease_clarification') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.disease_clarification') !!}:</strong>
                                     &nbsp;{!! $child->disease_clarification !!}
                                 </li>
 
@@ -74,14 +102,14 @@
                                 </li>
 
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.backup_contact_number') !!}:
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.backup_contact_number') !!}:
                                     </strong>
                                     &nbsp;{!! $child->backup_contact_number !!}
                                 </li>
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.whatsApp_number') !!}:
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.whatsApp_number') !!}:
                                     </strong>
                                     &nbsp;{!! $child->whatsApp_number !!}
                                 </li>
@@ -93,14 +121,14 @@
                                 </li>
 
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.city_id') !!}:
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.city_id') !!}:
                                     </strong>
                                     &nbsp;{!! $child->city->name !!}
                                 </li>
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.address_details') !!}:
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.address_details') !!}:
                                     </strong>
                                     &nbsp;{!! $child->address_details !!}
                                 </li>
@@ -126,8 +154,8 @@
 
                             <ul class="list-group">
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.school_name') !!}:</strong>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.school_name') !!}:</strong>
                                     &nbsp;{!! $child->school_name !!}
                                 </li>
 
@@ -138,14 +166,14 @@
                                 </li>
 
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.school_tel') !!}:
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.school_tel') !!}:
                                     </strong>
                                     &nbsp;{!! $child->school_tel !!}
                                 </li>
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.school_type') !!}:
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.school_type') !!}:
                                     </strong>
                                     &nbsp;{!! $child->school_type !!}
                                 </li>
@@ -156,8 +184,8 @@
                                 </li>
 
 
-                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
-                                        class="text-dark">{!! __('children.fees_per_month') !!}:
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.fees_per_month') !!}:
                                     </strong>
                                     &nbsp;{!! $child->fees_per_month !!}
                                 </li>

@@ -52,6 +52,6 @@
     <!--------------------------------------- details ------------------------>
     <div class="tab-pane" id="tabVerticalLeft15" aria-labelledby="baseVerticalLeft1-tab5">
 
-        details
+        <div class="">........</div>
     </div>
 </div>

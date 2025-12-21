@@ -30,9 +30,11 @@
                                             class="border-radius-lg shadow-sm rounded" style="width: 150px">
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        @livewire('dashboard.child.show-child', compact('child', 'ChildID'))
+                                        @include('dashboard.children.profile.tabs')
+
                                     </div>
                                 </div>
                             </div>
