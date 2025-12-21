@@ -39,7 +39,7 @@
 
                 <!-- begin: content header right-->
                 <div class="content-header-right col-md-6 col-12">
-                    <div class="float-md-right mb-2">
+                    <div class="float-md-right mb-1">
 
                         <div class="btn-group">
                             <button class="btn btn-warning btn-glow px-2  dropdown-toggle " id="dropdownBreadcrumbButton"

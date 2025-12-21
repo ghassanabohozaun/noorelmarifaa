@@ -44,6 +44,23 @@
                 </div>
                 <!-- end: content header left-->
 
+                <!-- begin: content header right-->
+                <div class="content-header-right col-md-6 col-12">
+                    <div class="float-md-right mb-1">
+
+                        <a href="{!! route('dashboard.children.show', $child->id) !!}" class="btn btn-primary btn-glow px-2">
+                            {!! __('children.show_child') !!}
+                        </a>
+
+                        <a href="{!! route('dashboard.children.create') !!}" class="btn btn-info  btn-glow px-2">
+                            {!! __('children.create_new_child') !!}
+                        </a>
+
+                    </div>
+                </div>
+                <!-- end: content header right-->
+
+
             </div> <!-- end :content header -->
 
             <!-- begin: content body -->

@@ -248,7 +248,9 @@ class ChildService
         // child files
         if (array_key_exists($file, $childFileData) && $childFileData[$file] != null) {
             // remove old photo
-            $this->imageManagerUtils->removeImageFromLocal($myChild->childFile->$file, 'children');
+            if ($myChild->childFile->$file != null) {
+                $this->imageManagerUtils->removeImageFromLocal($myChild->childFile->$file, 'children');
+            }
             // upload new photo
             $file_name = $this->imageManagerUtils->saveResizeImage($childFileData[$file], 'children', 1000, 800);
 
