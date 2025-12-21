@@ -8,6 +8,8 @@ return [
     'no_image' => 'No Image',
     'no_logo' => 'No Log',
     'link'=>'Link',
+        'loading'=>'loading ...',
+
 
     'prev' => 'Previous',
     'more' => 'More pages',

@@ -62,47 +62,9 @@ class ChildService
     // get all
     public function getAll($request)
     {
-        $children = $this->childRepository->getChildren($request);
+        return $this->childRepository->getChildren($request);
 
-        return DataTables::of($children)
-            ->addIndexColumn()
-            ->addColumn('photo', function ($child) {
-                return view('dashboard.children.parts.photo', compact('child'));
-            })
-            ->addColumn('full_name', function ($child) {
-                return $child->childFullName(); // ar and en
-            })
-            ->addColumn('gender', function ($child) {
-                return $child->childGender();
-            })
-            ->addColumn('classification', function ($child) {
-                return $child->childClassification();
-            })
-            ->addColumn('health_status', function ($child) {
-                return $child->childHealthStatus();
-            })
-            ->addColumn('sponsership_status_id', function ($child) {
-                return $child->sponsership_status_id ?  $child->sponsershipStatus->getTranslation('name', Lang()) : '';
-            })
-            ->addColumn('sponsership_type_id', function ($child) {
-                return $child->sponsership_type_id ? $child->sponsershipType->getTranslation('name', Lang()) : '';
-            })
-            ->addColumn('sponsership_organization_id', function ($child) {
-                return $child->sponsership_organization_id ? $child->sponsershipOrganization->getTranslation('name', Lang()) : '';
-            })
-            ->addColumn('governoate_id', function ($child) {
-                return $child->governorate->name;
-            })
-            ->addColumn('city_id', function ($child) {
-                return $child->city->name;
-            })
-            ->addColumn('status_manage', function ($child) {
-                return view('dashboard.children.parts.status_manage', compact('child'));
-            })
-            ->addColumn('actions', function ($child) {
-                return view('dashboard.children.parts.actions', compact('child'));
-            })
-            ->make(true);
+
     }
 
     // create child

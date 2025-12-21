@@ -4,11 +4,27 @@
 @endsection
 @push('style')
     <style>
-        .pagination li .disabled {
-            color: #850d0d;
-            cursor: not-allowed;
-            pointer-events: none;
-            font-size: 100px
+        .table-container {
+            position: relative;
+        }
+
+        #loading-indicator {
+            font-size: 15px;
+            font-weight: bolder;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            background-color: rgba(117, 112, 112, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            color: white
+        }
+
+        #spinner {
+            font-size: 20px;
         }
     </style>
 @endpush
@@ -62,8 +78,24 @@
                         <section id="basic-form-layouts">
                             <div class="row match-height">
                                 <div class="col-md-12">
+
                                     @include('dashboard.children.partials._search')
-                                    @include('dashboard.children.partials._table')
+
+                                    {{-- <input type="text" id="search" placeholder="Search items..."> --}}
+                                    <div class="table-container">
+                                        <div id="loading-indicator" class="loader">
+                                            <!-- You can use text, an image, or CSS-only spinners -->
+                                            <i class="la la-spinner spinner" id="spinner"></i> {!! __('general.loading') !!}
+                                            <!-- or <img src="loading.gif" alt="Loading..."> -->
+                                        </div>
+                                        <div id="table_data">
+                                            @include('dashboard.children.partials._table', [
+                                                'children' => $children,
+                                            ])
+                                        </div>
+                                    </div>
+
+
                                 </div><!-- end: row  -->
                         </section>
                         <!-- end: sections  -->
@@ -78,6 +110,111 @@
 
 @push('scripts')
     <script type="text/javascript">
+        $(document).ready(function() {
+
+            // fetch data
+            function fetch_data(page) {
+                var gender = $('#gender').val();
+                var first_name_ar = $('#first_name_ar').val();
+                var father_name_ar = $('#father_name_ar').val();
+                var grand_father_name_ar = $('#grand_father_name_ar').val();
+                var family_name_ar = $('#family_name_ar').val();
+
+                var first_name_en = $('#first_name_en').val();
+                var father_name_en = $('#father_name_en').val();
+                var grand_father_name_en = $('#grand_father_name_en').val();
+                var family_name_en = $('#family_name_en').val();
+
+                var personal_id = $('#personal_id').val();
+                var gender = $('#gender').val();
+                var classification = $('#classification').val();
+                var health_status = $('#health_status').val();
+                var governoate_id = $('#governoate_id').val();
+                var city_id = $('#city_id').val();
+                var guardian_personal_id = $('#guardian_personal_id').val();
+
+
+                $.ajax({
+                    url: "{{ route('dashboard.children.index') }}?page=" + page,
+                    data: {
+                        first_name_ar: first_name_ar,
+                        father_name_ar: father_name_ar,
+                        grand_father_name_ar: grand_father_name_ar,
+                        family_name_ar: family_name_ar,
+                        first_name_en: first_name_en,
+                        father_name_en: father_name_en,
+                        grand_father_name_en: grand_father_name_en,
+                        family_name_en: family_name_en,
+                        personal_id: personal_id,
+                        gender: gender,
+                        classification: classification,
+                        health_status: health_status,
+                        governoate_id: governoate_id,
+                        city_id: city_id,
+                        guardian_personal_id: guardian_personal_id
+                    },
+                    beforeSend: function() {
+                        // Show the loading indicator before the request is sent
+                        $('#loading-indicator').show();
+                        // Optional: clear previous table data
+                        $('#data-table tbody').empty();
+                    },
+                    success: function(data) {
+                        $('#table_data').html(data);
+                    },
+                    complete: function() {
+                        // Hide the loading indicator when the request is complete (whether success or error)
+                        $('#loading-indicator').hide();
+                    },
+                });
+            }
+
+            // Handle pagination link clicks
+            $(document).on('click', '.pagination a', function(event) {
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                fetch_data(page);
+            });
+
+
+
+            // search
+            $('body').on('click', '#children_search_btn', function(e) {
+                fetch_data(1);
+            })
+
+
+            // reset
+            $('body').on('click', '#children_reset_btn', function(e) {
+                e.preventDefault();
+                $('#first_name_ar').val('');
+                $('#father_name_ar').val('');
+                $('#grand_father_name_ar').val('');
+                $('#family_name_ar').val('');
+
+                $('#first_name_en').val('');
+                $('#father_name_en').val('');
+                $('#grand_father_name_en').val('');
+                $('#family_name_en').val('');
+
+                $('#personal_id').val('');
+                $('#gender').val('')
+                $('#classification').val('');
+                $('#health_status').val('');
+                $('#governoate_id').val('');
+                $('#city_id').val('');
+                $('#guardian_personal_id').val('');
+                fetch_data(1);
+            });
+
+            // Handle search input (e.g., on keyup)
+            $('#search').on('keyup', function() {
+                fetch_data(1); // Reset to page 1 on new search
+            });
+        });
+
+
+
         // governoate change
         $('#governoate_id').on('change', function() {
             var id = $(this).val();
@@ -107,7 +244,10 @@
         // delete
         $('body').on('click', '.delete_child_btn', function(e) {
             e.preventDefault();
-            var currentPage = $('#yajra-datatable').DataTable().page();
+
+            var $tr = $(this).closest('tr');
+
+
             var id = $(this).data('id');
             swal({
                 title: "{{ __('general.ask_delete_record') }}",
@@ -138,7 +278,11 @@
                         type: 'DELETE',
                         dataType: 'json',
                         success: function(data) {
-                            $('#yajra-datatable').DataTable().page(currentPage).draw(false);
+
+                            $tr.fadeOut(700, function() {
+                                $tr.remove();
+                            });
+
                             if (data.status == true) {
                                 swal({
                                     title: "{!! __('general.deleted') !!} ",

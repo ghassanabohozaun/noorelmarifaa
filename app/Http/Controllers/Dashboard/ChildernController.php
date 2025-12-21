@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Child;
 use App\Models\City;
 use App\Services\Dashboard\ChildService;
 use App\Services\Dashboard\CityService;
@@ -29,13 +30,26 @@ class ChildernController extends Controller
     }
 
     // index
-    public function index()
+    public function index(Request $request)
     {
         $title = __('children.show_all_children');
-        $children = $this->childService->getChildrenByPagination();
+        // $children = $this->childService->getChildrenByPagination();
 
         $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
         $cities = $this->cityService->getAllCitiesWithoutRelation();
+
+        $children = $this->childService->getAll($request);
+
+
+
+
+
+
+
+        if ($request->ajax()) {
+            return view('dashboard.children.partials._table', compact('children'))->render();
+        }
+
         return view('dashboard.children.index', compact('title', 'children', 'governorates', 'cities'));
     }
 

@@ -98,7 +98,8 @@ class ChildRepository
             })
 
             ->latest()
-            ->get();
+            ->paginate(10)
+            ->withQueryString();
     }
 
     // get children

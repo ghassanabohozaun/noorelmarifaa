@@ -20,9 +20,9 @@
     <div class="card-content collapse show">
         <div class="card-body">
             <div class="table-responsive ">
-                <table id="yajra-datatable" class="table table-striped table-bordered ">
-                    <thead>
 
+                <table class="table">
+                    <thead>
                         <tr>
                             <th>#</th>
                             {{-- <th>{!! __('children.photo') !!}</th> --}}
@@ -30,17 +30,19 @@
                             <th>{!! __('children.personal_id') !!}</th>
                             <th>{!! __('children.birthday') !!}</th>
                             <th>{!! __('children.gender') !!}</th>
-                            {{-- <th>{!! __('children.classification') !!}</th>
-                             <th>{!! __('children.health_status') !!}</th> --}}
+                            <th>{!! __('children.classification') !!}</th>
+                            {{-- <th>{!! __('children.health_status') !!}</th> --}}
                             <th>{!! __('children.governoate_id') !!}</th>
                             <th>{!! __('children.city_id') !!}</th>
                             <th>{!! __('children.authorized_contact_number') !!}</th>
                             {{-- <th>{!! __('children.sponsership_status_id') !!}</th>
-                             <th>{!! __('children.sponsership_type_id') !!}</th> --}}
-                            <th>{!! __('children.sponsership_organization_id') !!}</th>
+                            <th>{!! __('children.sponsership_type_id') !!}</th> --}}
+                            {{-- <th>{!! __('children.sponsership_organization_id') !!}</th> --}}
                             {{-- <th>{!! __('children.backup_contact_number') !!}</th> --}}
                             {{-- <th>{!! __('children.status_manage') !!}</th> --}}
                             <th>{!! __('general.actions') !!}</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
@@ -51,22 +53,23 @@
                                 <td>{!! $child->childFullName() !!}</td>
                                 <td>{!! $child->personal_id !!}</td>
                                 <td>{!! $child->birthday !!}</td>
-                                <td>{!! $child->gender !!}</td>
-                                {{-- <td>{!! !!}</td>
-                             <td>{!! !!}</td> --}}
+                                <td>{!! $child->childGender() !!}</td>
+                                <td>{!! $child->childClassification() !!}</td>
+                                {{-- <td>{!! !!}</td> --}}
                                 <td>{!! $child->governorate->name !!}</td>
                                 <td>{!! $child->city->name !!}</td>
                                 <td>{!! $child->authorized_contact_number !!}</td>
                                 {{-- <td>{!! !!}</td>
-                             <td>{!! !!}</td> --}}
-                                <td>{!! $child->sponsership_organization_id ? $child->sponsershipOrganization->getTranslation('name', Lang()) : '' !!}</td>
+                                <td>{!! !!}</td> --}}
+                                {{-- <td>{!! $child->sponsership_organization_id ? $child->sponsershipOrganization->getTranslation('name', Lang()) : '' !!}</td> --}}
                                 {{-- <td>{!! !!}</td>
-                             <td>{!! !!}</td> --}}
+                                <td>{!! !!}</td> --}}
                                 <td>@include('dashboard.children.parts.actions')</td>
+
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">
+                                <td colspan="10" class="text-center">
                                     {!! __('world.no_cities_found') !!}
                                 </td>
                             </tr>
@@ -74,12 +77,15 @@
 
                     </tbody>
                 </table>
-                <div class="float-right">
+
+                {{-- The pagination links (use withQueryString() in controller to preserve search params) --}}
+                <div class="pagination-links float-right">
                     {!! $children->links() !!}
                 </div>
+
+
             </div>
         </div>
     </div>
     <!-- end: card content -->
 </div>
-</div> <!-- end: card  -->
