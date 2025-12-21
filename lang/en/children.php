@@ -224,11 +224,10 @@ return [
     'orphan_child_birth_certificate' => 'Orphan Child Birth Certificate',
     'father_death_certificate' => 'Father Death Certificate',
     'guardian_personal_id_photo' => 'Guardian Personal ID Photo',
+    'child_activity_photo'=>'Child Actitvity Photo',
+    'child_longitudinal_photo'=>'Child Longitudinal Photo',
+    'child_with_family_photo'=>'Child With Family Photo',
 
-    'enter_picture_of_the_orphan_child' => 'Enter Picture Of The Orphan Child',
-    'enter_orphan_child_birth_certificate' => 'Enter Orphan Child Birth Certificate',
-    'enter_father_death_certificate' => 'Enter Father Death Certificate',
-    'enter_guardian_personal_id_photo' => 'Enter Guardian Personal ID Photo',
 
     'status_manage' => 'Status Manage',
     'no_childern_found' => 'No Orphan Childern Found !',

@@ -6,8 +6,10 @@
 /public/uploads/children/*
 /public/uploads/settings/*
 /public/uploads/pages/*
+/public/uploads/post/*
 /public/uploads/post-photos/*
 /public/uploads/sliders/*
+/public/uploads/upload-center/*
 /storage/*.key
 /storage/pail
 /vendor

@@ -10,7 +10,9 @@ class ChildFile extends Model
     use SoftDeletes;
 
     protected $table = 'child_files';
-    protected $fillable = ['picture_of_the_orphan_child', 'orphan_child_birth_certificate', 'father_death_certificate', 'guardian_personal_id_photo', 'child_id'];
+    protected $fillable = ['picture_of_the_orphan_child', 'orphan_child_birth_certificate', 'father_death_certificate', 'guardian_personal_id_photo',
+    'child_activity_photo', 'child_longitudinal_photo', 'child_with_family_photo',
+    'child_id'];
     // public $timestamps = false;
 
     // relations

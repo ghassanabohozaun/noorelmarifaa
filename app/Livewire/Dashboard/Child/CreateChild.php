@@ -27,6 +27,7 @@ class CreateChild extends Component
     public $mother_full_name_ar, $mother_full_name_en, $mother_personal_id, $is_mother_alive, $mother_date_of_death, $is_mother_the_guardian;
     public $guardian_full_name_ar, $guardian_full_name_en, $guardian_personal_id, $guardian_birthday, $why_not_the_mother_is_guardian, $guardian_relationship_with_the_child;
     public $picture_of_the_orphan_child, $orphan_child_birth_certificate, $father_death_certificate, $guardian_personal_id_photo;
+    public $child_activity_photo, $child_longitudinal_photo, $child_with_family_photo;
 
     public ?Child $child;
 
@@ -111,7 +112,7 @@ class CreateChild extends Component
             $data['disease_clarification'] = ['required', 'string', 'min:5'];
         }
         if ($this->pay_school_fees == '1') {
-            $data['fees_per_month'] =['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
+            $data['fees_per_month'] = ['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
         }
 
         $this->validate($data);
@@ -190,6 +191,9 @@ class CreateChild extends Component
             'orphan_child_birth_certificate' => ['required', 'mimes:png,jpg,jpeg'],
             'father_death_certificate' => ['required', 'mimes:png,jpg,jpeg,gif'],
             'guardian_personal_id_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
+            'child_activity_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
+            'child_longitudinal_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
+            'child_with_family_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
         ]);
         $this->currentStep = 5;
     }
@@ -265,6 +269,9 @@ class CreateChild extends Component
             'orphan_child_birth_certificate' => $this->orphan_child_birth_certificate,
             'father_death_certificate' => $this->father_death_certificate,
             'guardian_personal_id_photo' => $this->guardian_personal_id_photo,
+            'child_activity_photo' => $this->child_activity_photo,
+            'child_longitudinal_photo' => $this->child_longitudinal_photo,
+            'child_with_family_photo' => $this->child_with_family_photo,
         ];
 
         $childCreated = $this->childService->createChild($childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData);
@@ -307,7 +314,7 @@ class CreateChild extends Component
         }
     }
 
-       public function doesFamilyPayFees($value)
+    public function doesFamilyPayFees($value)
     {
         if ($value == 0) {
             $this->fees_per_month = null;

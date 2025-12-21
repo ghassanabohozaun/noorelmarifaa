@@ -33,7 +33,10 @@ class EditChild extends Component
     public $mother_full_name_ar, $mother_full_name_en, $mother_personal_id, $is_mother_alive, $mother_date_of_death, $is_mother_the_guardian;
     public $guardian_full_name_ar, $guardian_full_name_en, $guardian_personal_id, $guardian_birthday, $why_not_the_mother_is_guardian, $guardian_relationship_with_the_child;
     public $picture_of_the_orphan_child, $orphan_child_birth_certificate, $father_death_certificate, $guardian_personal_id_photo;
+    public $child_activity_photo, $child_longitudinal_photo, $child_with_family_photo;
     public $new_picture_of_the_orphan_child, $new_orphan_child_birth_certificate, $new_father_death_certificate, $new_guardian_personal_id_photo;
+    public $new_child_activity_photo, $new_child_longitudinal_photo, $new_child_with_family_photo;
+
     public $sponsership_organizations, $sponsership_statuses, $sponsership_types;
 
     public ?Child $child;
@@ -140,6 +143,10 @@ class EditChild extends Component
         $this->orphan_child_birth_certificate = $this->child->childFile->orphan_child_birth_certificate;
         $this->father_death_certificate = $this->child->childFile->father_death_certificate;
         $this->guardian_personal_id_photo = $this->child->childFile->guardian_personal_id_photo;
+
+        $this->child_activity_photo = $this->child->childFile->child_activity_photo;
+        $this->child_longitudinal_photo = $this->child->childFile->child_longitudinal_photo;
+        $this->child_with_family_photo = $this->child->childFile->child_with_family_photo;
     }
 
     protected function rules()
@@ -183,7 +190,6 @@ class EditChild extends Component
             'school_type' => ['required'],
             'pay_school_fees' => ['required'],
             // 'fees_per_month' => ['required','numeric','decimal:2,4'],
-
             'health_status' => ['required'],
             'governoate_id' => ['required', 'exists:governorates,id'],
             'city_id' => ['required', 'exists:cities,id'],
@@ -198,7 +204,7 @@ class EditChild extends Component
         }
 
         if ($this->pay_school_fees == '1') {
-            $data['fees_per_month'] =['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
+            $data['fees_per_month'] = ['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
         }
 
         $this->validate($data);
@@ -277,6 +283,10 @@ class EditChild extends Component
         //     'orphan_child_birth_certificate' => ['nullable', 'sometimes', 'mimes:png,jpg,jpeg,gif,pdf', 'max:2024'],
         //     'father_death_certificate' => ['nullable', 'sometimes', 'mimes:png,jpg,jpeg,gif,pdf', 'max:2024'],
         //     'guardian_personal_id_photo' => ['nullable', 'sometimes', 'mimes:png,jpg,jpeg,gif', 'max:2024'],
+        //     'child_activity_photo' => ['nullable', 'sometimes', 'mimes:png,jpg,jpeg,gif', 'max:2024'],
+        //     'child_longitudinal_photo' => ['nullable', 'sometimes', 'mimes:png,jpg,jpeg,gif', 'max:2024'],
+        //     'child_with_family_photo' => ['nullable', 'sometimes', 'mimes:png,jpg,jpeg,gif', 'max:2024'],
+
         // ]);
 
         $this->currentStep = 5;
@@ -351,11 +361,15 @@ class EditChild extends Component
             'why_not_the_mother_is_guardian' => $this->is_mother_the_guardian == 1 ? null : $this->why_not_the_mother_is_guardian,
         ];
 
+
         $childFileData = [
             'picture_of_the_orphan_child' => $this->new_picture_of_the_orphan_child,
             'orphan_child_birth_certificate' => $this->new_orphan_child_birth_certificate,
             'father_death_certificate' => $this->new_father_death_certificate,
             'guardian_personal_id_photo' => $this->new_guardian_personal_id_photo,
+            'child_activity_photo' => $this->new_child_activity_photo,
+            'child_longitudinal_photo' => $this->new_child_longitudinal_photo,
+            'child_with_family_photo' => $this->new_child_with_family_photo,
         ];
 
         $childCreated = $this->childService->updateChild($this->ChildID, $this->child, $childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData);

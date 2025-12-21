@@ -41,8 +41,9 @@ class ChildService
     }
 
     // get children by pagination
-    public function getChildrenByPagination()  {
-    return $this->childRepository->getChildrenByPagination();
+    public function getChildrenByPagination()
+    {
+        return $this->childRepository->getChildrenByPagination();
     }
 
     // get children
@@ -52,7 +53,7 @@ class ChildService
         return $children;
     }
 
-  // get children
+    // get children
     public function getChildrenWithRelations()
     {
         $children = $this->childRepository->getChildrenWithRelations();
@@ -63,8 +64,6 @@ class ChildService
     public function getAll($request)
     {
         return $this->childRepository->getChildren($request);
-
-
     }
 
     // create child
@@ -112,26 +111,9 @@ class ChildService
             $childFileData['father_death_certificate'] = $this->createChildFile('father_death_certificate', $childFileData);
             $childFileData['guardian_personal_id_photo'] = $this->createChildFile('guardian_personal_id_photo', $childFileData);
 
-            // child files
-            // if (array_key_exists('picture_of_the_orphan_child', $childFileData) && $childFileData['picture_of_the_orphan_child'] != null) {
-            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['picture_of_the_orphan_child'], 'children');
-            //     $childFileData['picture_of_the_orphan_child'] = $file_name;
-            // }
-
-            // if (array_key_exists('orphan_child_birth_certificate', $childFileData) && $childFileData['orphan_child_birth_certificate'] != null) {
-            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['orphan_child_birth_certificate'], 'children');
-            //     $childFileData['orphan_child_birth_certificate'] = $file_name;
-            // }
-
-            // if (array_key_exists('father_death_certificate', $childFileData) && $childFileData['father_death_certificate'] != null) {
-            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['father_death_certificate'], 'children');
-            //     $childFileData['father_death_certificate'] = $file_name;
-            // }
-
-            // if (array_key_exists('guardian_personal_id_photo', $childFileData) && $childFileData['guardian_personal_id_photo'] != null) {
-            //     $file_name = $this->imageManagerUtils->uploadSingleImage('/', $childFileData['guardian_personal_id_photo'], 'children');
-            //     $childFileData['guardian_personal_id_photo'] = $file_name;
-            // }
+            $childFileData['child_activity_photo'] = $this->createChildFile('child_activity_photo', $childFileData);
+            $childFileData['child_longitudinal_photo'] = $this->createChildFile('child_longitudinal_photo', $childFileData);
+            $childFileData['child_with_family_photo'] = $this->createChildFile('child_with_family_photo', $childFileData);
 
             $childFileData['child_id'] = $child->id;
             $childFile = $this->childRepository->createChildFiles($childFileData);
@@ -194,12 +176,15 @@ class ChildService
             $childFileData['father_death_certificate'] = $this->updateChildFile('father_death_certificate', $myChild, $childFileData);
             $childFileData['guardian_personal_id_photo'] = $this->updateChildFile('guardian_personal_id_photo', $myChild, $childFileData);
 
+            $childFileData['child_activity_photo'] = $this->updateChildFile('child_activity_photo', $myChild, $childFileData);
+            $childFileData['child_longitudinal_photo'] = $this->updateChildFile('child_longitudinal_photo', $myChild, $childFileData);
+            $childFileData['child_with_family_photo'] = $this->updateChildFile('child_with_family_photo', $myChild, $childFileData);
+
             $childFileData['child_id'] = $ChildID;
             $childFile = $this->childRepository->updateChildFiles($myChild, $childFileData);
             if (!$childFile) {
                 return false;
             }
-
 
             DB::commit();
             return true;
@@ -219,11 +204,11 @@ class ChildService
             return false;
         }
 
-        $child = $this->childRepository->destoryChild($child);
+        $this->removeChildFile('child_activity_photo', $child);
+        $this->removeChildFile('child_longitudinal_photo', $child);
+        $this->removeChildFile('child_with_family_photo', $child);
 
-        if (!$child) {
-            return false;
-        }
+        $child = $this->childRepository->destoryChild($child);
 
         return $child;
     }
@@ -243,8 +228,6 @@ class ChildService
         }
         return $child;
     }
-
-
 
     // create child file
     public function createChildFile($file, $childFileData)
@@ -273,6 +256,14 @@ class ChildService
         } else {
             $file_name = $myChild->childFile->$file;
             return $file_name;
+        }
+    }
+
+    // remove child file
+    public function removeChildFile($file, $child)
+    {
+        if ($child->childFile->$file != null) {
+            $this->imageManagerUtils->removeImageFromLocal($child->childFile->$file, 'children');
         }
     }
 }
