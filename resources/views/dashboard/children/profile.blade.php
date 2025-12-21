@@ -134,7 +134,7 @@
                                                         {!! $child->childFullName() !!}
                                                     </h3>
 
-                                                    @include('dashboard\children\profile\tabs')
+                                                    @include('dashboard.children.profile.tabs')
 
 
                                                 </div>
