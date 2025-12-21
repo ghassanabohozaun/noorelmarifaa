@@ -15,6 +15,7 @@ return [
     'welcome' => 'Welcome',
     'reports' => 'Reports',
     'columns' => 'Columns',
+    'details'=>'Other Details',
 
     'child_info' => 'Child Informations',
     'family_info' => 'Family Informations',

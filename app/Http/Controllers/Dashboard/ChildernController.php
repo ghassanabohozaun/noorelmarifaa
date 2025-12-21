@@ -40,12 +40,6 @@ class ChildernController extends Controller
 
         $children = $this->childService->getAll($request);
 
-
-
-
-
-
-
         if ($request->ajax()) {
             return view('dashboard.children.partials._table', compact('children'))->render();
         }
@@ -87,7 +81,7 @@ class ChildernController extends Controller
         $governoates = $this->governorateService->getAllGovernoratesWithoutRelations();
         $cities = $this->cityService->getAllCitiesWithoutRelation();
         $ChildID = $id;
-        return view('dashboard.children.show', compact('title', 'ChildID', 'child'));
+        return view('dashboard.children.profile', compact('title', 'ChildID', 'child'));
     }
 
     // edit

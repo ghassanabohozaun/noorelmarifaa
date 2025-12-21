@@ -8,6 +8,7 @@ return [
     'welcome' => 'مرحباً ',
     'reports' => 'التقارير',
     'columns' => 'الأعمدة',
+    'details' => 'تفاصيل اخري',
 
     'orphan_child' => 'بيانات الطفل',
     'child_family' => 'بيانات  عائلة الطفل',
@@ -116,9 +117,9 @@ return [
     'class_10' => 'الصف العاشر',
     'class_11' => 'الصف الحادي عشر',
     'class_12' => 'الصف الثاني عشر',
-    'unrwa'=>'مدرسة اونروا',
-    'goverment'=>'مدرسة حكومية',
-    'private'=>'مدرسة خاصة',
+    'unrwa' => 'مدرسة اونروا',
+    'goverment' => 'مدرسة حكومية',
+    'private' => 'مدرسة خاصة',
 
     'sponsership_status_id' => 'حالة الكفالة',
     'sponsership_organization_id' => 'المؤسسة الكافلة',

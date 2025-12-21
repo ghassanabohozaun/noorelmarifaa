@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row ">
     <div class="col-lg-6">
         <hr class="horizontal gray-light my-2">
         <ul class="list-group">
