@@ -41,27 +41,23 @@
                 <div class="content-header-right col-md-6 col-12">
                     <div class="float-md-right mb-2">
 
-                        <div class="dropdown float-md-left">
-                            <button class="btn btn-dark btn-glow px-2  dropdown-toggle " id="dropdownBreadcrumbButton"
+                        <div class="btn-group">
+                            <button class="btn btn-warning btn-glow px-2  dropdown-toggle " id="dropdownBreadcrumbButton"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">{!! __('general.export') !!}
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton" x-placement="bottom-start"
-                                style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                aria-expanded="false">{!! __('general.export') !!}</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton" style="width: 200px;"
+                                x-placement="bottom-start">
                                 <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank">
-                                    <i class="la la-file-pdf-o"></i>Form 1
+                                    <i class="la la-file-pdf-o text-warning "></i>&nbsp; Association Form
                                 </a>
                                 <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank">
-                                    <i class="la la-file-pdf-o"></i> Form 2
+                                    <i class="la la-file-pdf-o text-warning"></i>&nbsp; Donar Form
                                 </a>
                                 <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf3', $child->id) !!}" target="_blank">
-                                    <i class="la la-file-pdf-o"></i> Form 3
+                                    <i class="la la-file-pdf-o text-warning"></i>&nbsp; UK Form
                                 </a>
                             </div>
                         </div>
-                        &nbsp;
-
 
                         <a href="{!! route('dashboard.children.edit', $child->id) !!}" class="btn btn-primary btn-glow px-2">
                             {!! __('children.update_child') !!}
@@ -69,8 +65,6 @@
                         <a href="{!! route('dashboard.children.create') !!}" class="btn btn-info  btn-glow px-2">
                             {!! __('children.create_new_child') !!}
                         </a>
-
-
 
                     </div>
                 </div>
@@ -115,9 +109,11 @@
                                                     @if ($child->childFile->picture_of_the_orphan_child)
                                                         <div class="media mt-3">
                                                             <div class="media-left pr-1">
-                                                                <span class="avatar avatar-lg rounded-circle">
-                                                                    <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}"
-                                                                        alt="avatar"><i></i></span>
+                                                                <span class="avatar avatar-lg">
+                                                                    <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="avatar"
+                                                                        style="border-radius: 5px;">
+                                                                </span>
+
                                                             </div>
                                                         </div>
                                                     @else
@@ -125,14 +121,19 @@
                                                             <div class="media-left pr-1">
                                                                 <span class="avatar avatar-lg rounded-circle">
                                                                     <img src="{!! asset('assets\dashbaord\images\avatar-male.jpg') !!}"
-                                                                        alt="avatar"><i></i></span>
+                                                                        alt="avatar"><i></i>
+                                                                </span>
+
                                                             </div>
                                                         </div>
                                                     @endif
 
-                                                    <h3 class="media-heading  pt-1  text-info">
+                                                    <h3 class="media-heading  pt-1 font-medium-5 text-black"
+                                                        style="font-weight: 500">
+                                                        <i class="la la-check-square font-medium-3"></i>
                                                         {!! $child->childFullName() !!}
                                                     </h3>
+
 
                                                     @include('dashboard.children.profile.tabs')
 
