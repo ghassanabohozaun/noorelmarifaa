@@ -107,78 +107,86 @@
 
 
         {{-- child_activity_photo --}}
-        <div class="col-lg-3">
-            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
-                    <p> {!! __('children.child_activity_photo') !!}:
-                </strong>&nbsp;
-                </p>
-                <div class="position-relative d-inline-block mr-2 mb-2">
+        @if ($child->childFile->child_activity_photo)
+            <div class="col-lg-3">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
+                        <p> {!! __('children.child_activity_photo') !!}:
+                    </strong>&nbsp;
+                    </p>
+                    <div class="position-relative d-inline-block mr-2 mb-2">
 
-                    <img src="{!! asset('uploads/children/' . $child->childFile->child_activity_photo) !!}" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
+                        <img src="{!! asset('uploads/children/' . $child->childFile->child_activity_photo) !!}" alt="profile_image"
+                            class="w-100 border-radius-lg shadow-sm" />
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->child_activity_photo) !!}" target="_blank"
-                        class="badge badge-sm badge-primary position-absolute" style="top: 3px; left: 3px;">
-                        {!! __('general.download') !!}
-                    </a>
+                        <a href="{!! asset('uploads/children/' . $child->childFile->child_activity_photo) !!}" target="_blank"
+                            class="badge badge-sm badge-primary position-absolute" style="top: 3px; left: 3px;">
+                            {!! __('general.download') !!}
+                        </a>
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->child_activity_photo) !!}" target="_blank"
-                        class="badge badge-sm badge-warning position-absolute" id="show_child_activity_photo_modal"
-                        style="top: 3px; right: 3px;">
-                        {!! __('general.view') !!}
-                    </a>
-                </div>
-            </li>
-        </div>
+                        <a href="{!! asset('uploads/children/' . $child->childFile->child_activity_photo) !!}" target="_blank"
+                            class="badge badge-sm badge-warning position-absolute" id="show_child_activity_photo_modal"
+                            style="top: 3px; right: 3px;">
+                            {!! __('general.view') !!}
+                        </a>
+                    </div>
+                </li>
+            </div>
+        @endif
 
 
         {{-- child_longitudinal_photo --}}
-        <div class="col-lg-3">
-            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
-                    <p> {!! __('children.child_longitudinal_photo') !!}:
-                </strong>&nbsp;
-                </p>
-                <div class="position-relative d-inline-block mr-2 mb-2">
+        @if ($child->childFile->child_longitudinal_photo)
+            <div class="col-lg-3">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
+                        <p> {!! __('children.child_longitudinal_photo') !!}:
+                    </strong>&nbsp;
+                    </p>
+                    <div class="position-relative d-inline-block mr-2 mb-2">
 
-                    <img src="{!! asset('uploads/children/' . $child->childFile->child_longitudinal_photo) !!}" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
+                        <img src="{!! asset('uploads/children/' . $child->childFile->child_longitudinal_photo) !!}" alt="profile_image"
+                            class="w-100 border-radius-lg shadow-sm" />
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->child_longitudinal_photo) !!}" target="_blank"
-                        class="badge badge-sm badge-primary position-absolute" style="top: 3px; left: 3px;">
-                        {!! __('general.download') !!}
-                    </a>
+                        <a href="{!! asset('uploads/children/' . $child->childFile->child_longitudinal_photo) !!}" target="_blank"
+                            class="badge badge-sm badge-primary position-absolute" style="top: 3px; left: 3px;">
+                            {!! __('general.download') !!}
+                        </a>
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->child_longitudinal_photo) !!}" target="_blank"
-                        class="badge badge-sm badge-warning position-absolute" id="show_child_longitudinal_photo_modal"
-                        style="top: 3px; right: 3px;">
-                        {!! __('general.view') !!}
-                    </a>
-                </div>
-            </li>
-        </div>
+                        <a href="{!! asset('uploads/children/' . $child->childFile->child_longitudinal_photo) !!}" target="_blank"
+                            class="badge badge-sm badge-warning position-absolute"
+                            id="show_child_longitudinal_photo_modal" style="top: 3px; right: 3px;">
+                            {!! __('general.view') !!}
+                        </a>
+                    </div>
+                </li>
+            </div>
+        @endif
 
         {{-- child_with_family_photo --}}
-        <div class="col-lg-3">
-            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
-                    <p> {!! __('children.child_with_family_photo') !!}:
-                </strong>&nbsp;
-                </p>
-                <div class="position-relative d-inline-block mr-2 mb-2">
+        @if ($child->childFile->child_with_family_photo)
+            <div class="col-lg-3">
+                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
+                        <p> {!! __('children.child_with_family_photo') !!}:
+                    </strong>&nbsp;
+                    </p>
+                    <div class="position-relative d-inline-block mr-2 mb-2">
 
-                    <img src="{!! asset('uploads/children/' . $child->childFile->child_with_family_photo) !!}" alt="profile_image"
-                        class="w-100 border-radius-lg shadow-sm" />
+                        <img src="{!! asset('uploads/children/' . $child->childFile->child_with_family_photo) !!}" alt="profile_image"
+                            class="w-100 border-radius-lg shadow-sm" />
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->child_with_family_photo) !!}" target="_blank"
-                        class="badge badge-sm badge-primary position-absolute" style="top: 3px; left: 3px;">
-                        {!! __('general.download') !!}
-                    </a>
+                        <a href="{!! asset('uploads/children/' . $child->childFile->child_with_family_photo) !!}" target="_blank"
+                            class="badge badge-sm badge-primary position-absolute" style="top: 3px; left: 3px;">
+                            {!! __('general.download') !!}
+                        </a>
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->child_with_family_photo) !!}" target="_blank"
-                        class="badge badge-sm badge-warning position-absolute" id="show_child_with_family_photo_modal"
-                        style="top: 3px; right: 3px;">
-                        {!! __('general.view') !!}
-                    </a>
-                </div>
-            </li>
-        </div>
+                        <a href="{!! asset('uploads/children/' . $child->childFile->child_with_family_photo) !!}" target="_blank"
+                            class="badge badge-sm badge-warning position-absolute"
+                            id="show_child_with_family_photo_modal" style="top: 3px; right: 3px;">
+                            {!! __('general.view') !!}
+                        </a>
+                    </div>
+                </li>
+            </div>
+        @endif
 
 
     </div>
