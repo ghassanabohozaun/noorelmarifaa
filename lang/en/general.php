@@ -7,9 +7,9 @@ return [
     'no_photo' => 'No Photo',
     'no_image' => 'No Image',
     'no_logo' => 'No Log',
-    'link'=>'Link',
-        'loading'=>'loading ...',
-
+    'link' => 'Link',
+    'loading' => 'loading ...',
+    'view' => 'View',
 
     'prev' => 'Previous',
     'more' => 'More pages',
@@ -48,7 +48,7 @@ return [
     'send' => 'Send',
     'write_here' => 'Write Here ...',
     'filters' => 'Filters',
-    'full_screen'=>'Full Screen',
+    'full_screen' => 'Full Screen',
 
     'not_found' => 'Not Found',
     'example' => 'Example',

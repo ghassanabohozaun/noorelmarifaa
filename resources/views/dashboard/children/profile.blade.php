@@ -31,11 +31,6 @@
                                         {!! __('children.profile') !!}
                                     </a>
                                 </li>
-                                {{-- <li class="breadcrumb-item">
-                                    <a href="">
-                                        {!! $employee->EmployeeFullName() !!}
-                                    </a>
-                                </li> --}}
                             </ol>
                         </div>
                     </div>
@@ -49,15 +44,20 @@
                         <div class="dropdown float-md-left">
                             <button class="btn btn-dark btn-glow px-2  dropdown-toggle " id="dropdownBreadcrumbButton"
                                 type="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">{!! __('general.export') !!}</button>
+                                aria-expanded="false">{!! __('general.export') !!}
+                            </button>
+
                             <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton" x-placement="bottom-start"
                                 style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank"><i
-                                        class="la la-file-pdf-o"></i>Form 1</a>
-                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank"><i
-                                        class="la la-file-pdf-o"></i> Form 2</a>
-                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf3', $child->id) !!}" target="_blank"><i
-                                        class="la la-file-pdf-o"></i> Form 3</a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank">
+                                    <i class="la la-file-pdf-o"></i>Form 1
+                                </a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank">
+                                    <i class="la la-file-pdf-o"></i> Form 2
+                                </a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf3', $child->id) !!}" target="_blank">
+                                    <i class="la la-file-pdf-o"></i> Form 3
+                                </a>
                             </div>
                         </div>
                         &nbsp;
@@ -108,35 +108,10 @@
                                     <!-- begin: card content -->
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-
-                                            {{-- <div class="row mb-3" style="margin: 10px">
-                                            <a href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank"
-                                                class="btn btn-warning btn-glow px-2">
-                                                <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!}
-                                            </a>
-
-                                            &nbsp;&nbsp;
-
-                                            <a href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank"
-                                                class="btn btn-warning btn-glow px-2 ">
-                                                <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!} 2
-                                            </a>
-                                            &nbsp;&nbsp;
-                                            <a href="{!! route('dashboard.children.download.pdf3', $child->id) !!}" target="_blank"
-                                                class="btn btn-warning btn-glow px-2 ">
-                                                <i class="la la-file-pdf-o"></i> {!! __('children.download_sponsorship_form') !!} 3
-                                            </a>
-
-                                        </div>
-
-                                        <div class="row mb-3" style="margin: 10px">
-
-                                        </div> --}}
-
-
                                             <!-- begin: basic info div -->
                                             <div class="row">
                                                 <div class="col-lg-12">
+
                                                     @if ($child->childFile->picture_of_the_orphan_child)
                                                         <div class="media mt-3">
                                                             <div class="media-left pr-1">
@@ -154,11 +129,14 @@
                                                             </div>
                                                         </div>
                                                     @endif
+
                                                     <h3 class="media-heading  pt-1  text-info">
                                                         {!! $child->childFullName() !!}
                                                     </h3>
 
                                                     @include('dashboard\children\profile\tabs')
+
+
                                                 </div>
                                             </div>
                                             <!-- end: basic info div -->
@@ -170,7 +148,6 @@
                         </div>
                     </section>
                     <!-- end: section   -->
-
                 </div>
             </div>
 

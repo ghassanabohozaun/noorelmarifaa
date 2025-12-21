@@ -2,7 +2,6 @@
 <ul class="list-group">
 
     <div class="row">
-
         <div class="col-lg-3">
             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">
                     <p> {!! __('children.picture_of_the_orphan_child') !!}:
@@ -12,13 +11,17 @@
 
                     <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" target="_blank" class="badge badge-sm bg-info position-absolute"
-                        style="top: 5px; left: 2px;">
-                        {!! __('general.download') !!}
+                    <a href="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" target="_blank" class="btn btn-sm btn-info position-absolute"
+                        style="top: 3px; left: 3px;">
+                        <i class="la la-download"></i>
+                    </a>
+
+                    <a href="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" target="_blank" class="btn btn-sm btn-primary position-absolute"
+                        style="top: 3px; right: 3px;">
+                        <i class="la la-eye"></i>
                     </a>
                 </div>
             </li>
-
         </div>
 
         <div class="col-lg-3">
@@ -30,10 +33,16 @@
 
                     <img src="{!! asset('uploads/children/' . $child->childFile->orphan_child_birth_certificate) !!}" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->orphan_child_birth_certificate) !!}" target="_blank" class="badge badge-sm bg-info position-absolute"
-                        style="top: 5px; left: 2px;">
-                        {!! __('general.download') !!}
+                    <a href="{!! asset('uploads/children/' . $child->childFile->orphan_child_birth_certificate) !!}" target="_blank" class="btn btn-sm btn-info position-absolute"
+                        style="top: 3px; left: 3px;">
+                        <i class="la la-download"></i>
                     </a>
+
+                    <a href="{!! asset('uploads/children/' . $child->childFile->orphan_child_birth_certificate) !!}" target="_blank" class="btn btn-sm btn-info position-absolute"
+                        style="top: 3px; right: 3px;">
+                        <i class="la la-eye"></i>
+                    </a>
+
                 </div>
             </li>
 
@@ -48,10 +57,16 @@
 
                     <img src="{!! asset('uploads/children/' . $child->childFile->father_death_certificate) !!}" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->father_death_certificate) !!}" target="_blank" class="badge badge-sm bg-info position-absolute"
-                        style="top: 5px; left: 2px;">
-                        {!! __('general.download') !!}
+                    <a href="{!! asset('uploads/children/' . $child->childFile->father_death_certificate) !!}" target="_blank" class="btn btn-sm btn-info position-absolute"
+                        style="top: 3px; left: 3px;">
+                        <i class="la la-download"></i>
                     </a>
+
+                    <a href="{!! asset('uploads/children/' . $child->childFile->father_death_certificate) !!}" target="_blank" class="btn btn-sm btn-info position-absolute"
+                        style="top: 3px; right: 3px;">
+                        <i class="la la-eye"></i>
+                    </a>
+
                 </div>
             </li>
         </div>
@@ -65,10 +80,16 @@
 
                     <img src="{!! asset('uploads/children/' . $child->childFile->guardian_personal_id_photo) !!}" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
 
-                    <a href="{!! asset('uploads/children/' . $child->childFile->guardian_personal_id_photo) !!}" target="_blank" class="badge badge-sm bg-info position-absolute"
-                        style="top: 5px; left: 2px;">
-                        {!! __('general.download') !!}
+                    <a href="{!! asset('uploads/children/' . $child->childFile->guardian_personal_id_photo) !!}" target="_blank" class="btn btn-sm btn-info position-absolute"
+                        style="top: 3px; left: 3px;">
+                        <i class="la la-download"></i>
                     </a>
+
+                    <a href="{!! asset('uploads/children/' . $child->childFile->guardian_personal_id_photo) !!}" target="_blank" class="btn btn-sm btn-info position-absolute"
+                        style="top: 3px; right: 3px;">
+                        <i class="la la-eye"></i>
+                    </a>
+
                 </div>
             </li>
 
