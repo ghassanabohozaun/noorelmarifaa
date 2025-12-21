@@ -112,6 +112,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+            let page = 1;
+
             // fetch data
             function fetch_data(page) {
                 var gender = $('#gender').val();
@@ -172,7 +174,7 @@
             // Handle pagination link clicks
             $(document).on('click', '.pagination a', function(event) {
                 event.preventDefault();
-                var page = $(this).attr('href').split('page=')[1];
+                page = $(this).attr('href').split('page=')[1];
                 fetch_data(page);
             });
 
@@ -211,162 +213,161 @@
             $('#search').on('keyup', function() {
                 fetch_data(1); // Reset to page 1 on new search
             });
-        });
 
-
-
-        // governoate change
-        $('#governoate_id').on('change', function() {
-            var id = $(this).val();
-            if (id) {
-                $.ajax({
-                    url: '{!! route('dashboard.children.get.cities', ':id') !!}'.replace(':id', id),
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#city_id').empty().append(
-                            '<option value=""> {!! __('users.select') !!} {!! __('users.city_id') !!}</option>'
-                        );
-                        $.each(data, function(key, value) {
-                            $('#city_id').append('<option value="' + key +
-                                '">' + value + '</option>');
-                        });
-                        $('#city_id').prop('disabled', false);
-                    }
-                });
-            } else {
-                $('#city_id').empty().append(
-                    '<option value=""> {!! __('users.select') !!} {!! __('users.city_id') !!}</option>').prop(
-                    'disabled', true);
-            }
-        });
-
-        // delete
-        $('body').on('click', '.delete_child_btn', function(e) {
-            e.preventDefault();
-
-            var $tr = $(this).closest('tr');
-
-
-            var id = $(this).data('id');
-            swal({
-                title: "{{ __('general.ask_delete_record') }}",
-                icon: "warning",
-                buttons: {
-                    cancel: {
-                        text: "{{ __('general.no') }}",
-                        value: null,
-                        visible: true,
-                        className: "btn-danger",
-                        closeModal: false,
-                    },
-                    confirm: {
-                        text: "{{ __('general.yes') }}",
-                        value: true,
-                        visible: true,
-                        className: "btn-info",
-                        closeModal: false
-                    }
-                }
-            }).then(isConfirm => {
-                if (isConfirm) {
+            // governoate change
+            $('#governoate_id').on('change', function() {
+                var id = $(this).val();
+                if (id) {
                     $.ajax({
-                        url: '{!! route('dashboard.children.destroy', ':id') !!}'.replace(':id', id),
-                        data: {
-                            '_token': "{!! csrf_token() !!}"
-                        },
-                        type: 'DELETE',
+                        url: '{!! route('dashboard.children.get.cities', ':id') !!}'.replace(':id', id),
+                        type: 'GET',
                         dataType: 'json',
                         success: function(data) {
-
-                            $tr.fadeOut(700, function() {
-                                $tr.remove();
+                            $('#city_id').empty().append(
+                                '<option value=""> {!! __('users.select') !!} {!! __('users.city_id') !!}</option>'
+                            );
+                            $.each(data, function(key, value) {
+                                $('#city_id').append('<option value="' + key +
+                                    '">' + value + '</option>');
                             });
-
-                            if (data.status == true) {
-                                swal({
-                                    title: "{!! __('general.deleted') !!} ",
-                                    text: "{!! __('general.delete_success_message') !!} ",
-                                    icon: "success",
-                                    buttons: {
-                                        confirm: {
-                                            text: "{!! __('general.yes') !!}",
-                                            visible: true,
-                                            closeModal: true
-                                        }
-                                    }
-                                });
-                                // setTimeout(function() {
-                                //     window.location.reload();
-                                // }, 1000)
-                            } else if (data.status == false) {
-                                swal({
-                                    title: "{!! __('general.warning') !!} ",
-                                    text: "{!! __('general.delete_error_message') !!} ",
-                                    icon: "warning",
-                                    buttons: {
-                                        confirm: {
-                                            text: "{!! __('general.yes') !!}",
-                                            visible: true,
-                                            closeModal: true
-                                        }
-                                    }
-                                });
-                            }
-                        }, //end success
-                    });
-
-                } else {
-                    swal({
-                        title: "{!! __('general.cancelled') !!} ",
-                        text: "{!! __('general.delete_error_message') !!} ",
-                        icon: "error",
-                        buttons: {
-                            confirm: {
-                                text: "{!! __('general.yes') !!}",
-                                visible: true,
-                                closeModal: true
-                            }
+                            $('#city_id').prop('disabled', false);
                         }
                     });
+                } else {
+                    $('#city_id').empty().append(
+                            '<option value=""> {!! __('users.select') !!} {!! __('users.city_id') !!}</option>')
+                        .prop(
+                            'disabled', true);
                 }
             });
 
 
-        });
+            // delete
+            $('body').on('click', '.delete_child_btn', function(e) {
+                e.preventDefault();
 
-        //  change status
-        var statusSwitch = false;
-        $('body').on('change', '.change_status', function(e) {
-            e.preventDefault();
+                var $tr = $(this).closest('tr');
+                var id = $(this).data('id');
 
-            var currentPage = $('#yajra-datatable').DataTable().page();
-            var id = $(this).data('id');
 
-            if ($(this).is(':checked')) {
-                statusSwitch = 1;
-            } else {
-                statusSwitch = 0;
-            }
-
-            $.ajax({
-                url: "{{ route('dashboard.children.change.status') }}",
-                data: {
-                    statusSwitch: statusSwitch,
-                    id: id
-                },
-                type: 'post',
-                dataType: 'JSON',
-                success: function(data) {
-
-                    $('#yajra-datatable').DataTable().page(currentPage).draw(false);
-                    if (data.status == true) {
-                        flasher.success("{!! __('general.change_status_success_message') !!}");
-                    } else {
-                        flasher.error("{!! __('general.change_status_error_message') !!}");
+                swal({
+                    title: "{{ __('general.ask_delete_record') }}",
+                    icon: "warning",
+                    buttons: {
+                        cancel: {
+                            text: "{{ __('general.no') }}",
+                            value: null,
+                            visible: true,
+                            className: "btn-danger",
+                            closeModal: false,
+                        },
+                        confirm: {
+                            text: "{{ __('general.yes') }}",
+                            value: true,
+                            visible: true,
+                            className: "btn-info",
+                            closeModal: false
+                        }
                     }
-                }, //end success
-            })
+                }).then(isConfirm => {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: '{!! route('dashboard.children.destroy', ':id') !!}'.replace(':id', id),
+                            data: {
+                                '_token': "{!! csrf_token() !!}"
+                            },
+                            type: 'DELETE',
+                            dataType: 'json',
+                            success: function(data) {
+
+                                $tr.fadeOut(700, function() {
+                                    $tr.remove();
+                                });
+
+                                if (data.status == true) {
+                                    swal({
+                                        title: "{!! __('general.deleted') !!} ",
+                                        text: "{!! __('general.delete_success_message') !!} ",
+                                        icon: "success",
+                                        buttons: {
+                                            confirm: {
+                                                text: "{!! __('general.yes') !!}",
+                                                visible: true,
+                                                closeModal: true
+                                            }
+                                        }
+                                    });
+                                    // setTimeout(function() {
+                                    //     window.location.reload();
+                                    // }, 1000)
+                                } else if (data.status == false) {
+                                    swal({
+                                        title: "{!! __('general.warning') !!} ",
+                                        text: "{!! __('general.delete_error_message') !!} ",
+                                        icon: "warning",
+                                        buttons: {
+                                            confirm: {
+                                                text: "{!! __('general.yes') !!}",
+                                                visible: true,
+                                                closeModal: true
+                                            }
+                                        }
+                                    });
+                                }
+                            }, //end success
+                        });
+
+                    } else {
+                        swal({
+                            title: "{!! __('general.cancelled') !!} ",
+                            text: "{!! __('general.delete_error_message') !!} ",
+                            icon: "error",
+                            buttons: {
+                                confirm: {
+                                    text: "{!! __('general.yes') !!}",
+                                    visible: true,
+                                    closeModal: true
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+            });
+
+            //  change status
+            var statusSwitch = false;
+            $('body').on('change', '.change_status', function(e) {
+                e.preventDefault();
+
+                var id = $(this).data('id');
+
+                if ($(this).is(':checked')) {
+                    statusSwitch = 1;
+                } else {
+                    statusSwitch = 0;
+                }
+
+                $.ajax({
+                    url: "{{ route('dashboard.children.change.status') }}",
+                    data: {
+                        statusSwitch: statusSwitch,
+                        id: id
+                    },
+                    type: 'post',
+                    dataType: 'JSON',
+                    success: function(data) {
+
+                        if (data.status == true) {
+                            flasher.success("{!! __('general.change_status_success_message') !!}");
+                        } else {
+                            flasher.error("{!! __('general.change_status_error_message') !!}");
+                        }
+                    }, //end success
+                })
+            });
+
         });
     </script>
 @endpush
