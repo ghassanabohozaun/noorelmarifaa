@@ -46,12 +46,10 @@
     <!---------------------------------------  file info ------------------------>
     <div class="tab-pane" id="tabVerticalLeft14" aria-labelledby="baseVerticalLeft1-tab4">
         @include('dashboard.children.profile.tabs.file-info')
-
     </div>
 
     <!--------------------------------------- details ------------------------>
     <div class="tab-pane" id="tabVerticalLeft15" aria-labelledby="baseVerticalLeft1-tab5">
-
-        <div class="">........</div>
+        @include('dashboard.children.profile.tabs.child-details')
     </div>
 </div>

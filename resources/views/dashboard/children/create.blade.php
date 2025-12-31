@@ -3,6 +3,17 @@
     {!! $title !!}
 @endsection
 
+@push('style')
+    <style>
+        .table-scroll-wrapper {
+            overflow-x: auto;
+            /* Adds horizontal scrolling when content overflows */
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling for iOS devices */
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="app-content content">
 
@@ -78,15 +89,3 @@
 
     </div><!-- end: content app  -->
 @endsection
-
-
-
-{{-- @push('scripts')
-    <script>
-        document.addEventListener('livewire:init', () => {
-            Livewire.on('showFullScreenModal', () => {
-                $('#fullScreenModal').modal('show');
-            });
-        });
-    </script>
-@endpush --}}

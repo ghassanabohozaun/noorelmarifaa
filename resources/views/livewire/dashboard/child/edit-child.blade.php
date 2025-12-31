@@ -21,19 +21,19 @@
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 2 ? 'current-item' : '' !!}">
                             <span class="progress-count">2</span>
-                            {{-- <span class="progress-label">{!! __('children.parents_info') !!}</span> --}}
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 3 ? 'current-item' : '' !!}">
                             <span class="progress-count">3</span>
-                            {{-- <span class="progress-label">{!! __('children.guardian_info') !!}</span> --}}
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 4 ? 'current-item' : '' !!}">
                             <span class="progress-count">4</span>
-                            {{-- <span class="progress-label">{!! __('children.files') !!}</span> --}}
                         </li>
                         <li class="step-wizard-item {!! $currentStep == 5 ? 'current-item' : '' !!}">
                             <span class="progress-count">5</span>
-                            {{-- <span class="progress-label">{!! __('children.confirmations') !!}</span> --}}
+                        </li>
+
+                        <li class="step-wizard-item {!! $currentStep == 6 ? 'current-item' : '' !!}">
+                            <span class="progress-count">6</span>
                         </li>
                     </ul>
                 </div>
@@ -53,7 +53,6 @@
         <!-- begin: second child parents -->
         <div class="container-fluid {!! $currentStep != 2 ? 'displayNone' : '' !!}">
             @include('livewire.dashboard.child._edit.child-parents')
-
         </div>
         <!-- end: second child parents -->
 
@@ -65,15 +64,23 @@
         <!-- end: third child guardian -->
 
 
-        <!-- begin: third child file -->
+        <!-- begin: fourth details -->
         <div class="container-fluid {!! $currentStep != 4 ? 'displayNone' : '' !!}">
+            @include('livewire.dashboard.child._edit.child-details')
+        </div>
+        <!-- end: fourth details -->
+
+
+        <!-- begin: third child file -->
+        <div class="container-fluid {!! $currentStep != 5 ? 'displayNone' : '' !!}">
             @include('livewire.dashboard.child._edit.child-file')
 
         </div>
         <!-- end: third child file -->
 
+
         <!-- begin: fourth confirmations -->
-        <div class="container-fluid {!! $currentStep != 5 ? 'displayNone' : '' !!}">
+        <div class="container-fluid {!! $currentStep != 6 ? 'displayNone' : '' !!}">
             @include('livewire.dashboard.child._edit.confirmations')
         </div>
         <!-- end: fourth confirmations -->

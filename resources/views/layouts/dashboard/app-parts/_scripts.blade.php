@@ -61,6 +61,16 @@
     <script src="{!! asset('vendor/fileInput/js/fileinput.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('vendor/fileInput/themes/fa5/theme.min.js') !!}" type="text/javascript"></script>
 
+    <script src="{!! asset('assets/dashbaord/js/scripts/bootstrap-datepicker.min.js') !!}" type="text/javascript"></script>
+
+
+    <script src="{!! asset('assets/dashbaord/js/scripts/bootstrap-datepicker.en-US.min.js') !!}" type="text/javascript"></script>
+
+    <script src="{!! asset('assets/dashbaord/js/scripts/bootstrap-datepicker.ar.min.js') !!}" type="text/javascript"></script>
+
+
+
+
     @if (Lang() == 'ar')
         <script src="{!! asset('vendor/fileInput/js/locales/LANG.js') !!}" type="text/javascript"></script>
         <script src="{!! asset('vendor/fileInput/js/locales/ar.js') !!}" type="text/javascript"></script>

@@ -11,10 +11,10 @@ class ChildGuardian extends Model
     use SoftDeletes, HasTranslations;
 
     protected $table = 'child_guardians';
-    protected $fillable = ['guardian_full_name', 'guardian_personal_id', 'guardian_birthday', 'why_not_the_mother_is_guardian', 'guardian_relationship_with_the_child', 'child_id'];
+    protected $fillable = ['guardian_full_name', 'guardian_first_name', 'guardian_middle_name', 'guardian_surname_name', 'guardian_work', 'guardian_address', 'guardian_personal_id', 'guardian_birthday', 'why_not_the_mother_is_guardian', 'guardian_relationship_with_the_child', 'child_id'];
     //public $timestamps = false;
 
-    public array $translatable = ['guardian_full_name'];
+    public array $translatable = ['guardian_full_name', 'guardian_first_name', 'guardian_middle_name', 'guardian_surname_name', 'guardian_work','guardian_address'];
 
     // function
     public function childWhyNotTheMotherIsGuardian()

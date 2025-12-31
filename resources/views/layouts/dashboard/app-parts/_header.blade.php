@@ -1,4 +1,4 @@
- <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow navbar-semi-dark fixed-top navbar-shadow"
+ <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow navbar-light fixed-top navbar-shadow"
      {{-- class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow navbar-semi-dark fixed-top navbar-shadow"> --}} {{--  --}}>
      <div class="navbar-wrapper">
          <div class="navbar-header">

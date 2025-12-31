@@ -20,10 +20,19 @@
                                     &nbsp;{!! $child->childGuardian->guardian_personal_id !!}
                                 </li>
 
-
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
                                         class="text-dark">{!! __('children.guardian_birthday') !!}:</strong>
                                     &nbsp;{!! $child->childGuardian->guardian_birthday !!}
+                                </li>
+
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                                        class="text-dark">{!! __('children.guardian_work') !!}:</strong>
+                                    &nbsp;{!! $child->childGuardian->guardian_work !!}
+                                </li>
+
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                                        class="text-dark">{!! __('children.guardian_address') !!}:</strong>
+                                    &nbsp;{!! $child->childGuardian->guardian_address !!}
                                 </li>
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong

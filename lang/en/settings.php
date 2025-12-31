@@ -6,6 +6,8 @@ return [
     'contact_section' => 'Contact Section',
     'media_section' => 'Media Section',
     'socail_section' => 'socail Media Section',
+        'children_settings_sections'=>'Children settings Sections',
+
 
     //
     'site_name_ar' => 'Site Name | ar',
@@ -35,6 +37,8 @@ return [
     'maintenance_message' => 'Site Maintenance Message',
     'lang_front_button_status' => 'Language button in the frontend',
     'disabled_forms_button' => 'Disabled Forms Button',
+    'disabled_child_register' => 'Disabled Child Register',
+
     'forms_status' => 'Forms Status',
     'status' => 'Site Status',
     'comments_mailList_status' => 'Comments and MailList Status',

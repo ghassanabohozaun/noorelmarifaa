@@ -8,7 +8,6 @@
         <form class="form" id="settings_form" action="" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-
             <div class="content-wrapper">
                 <!-- begin: content header -->
                 <div class="content-header row">
@@ -57,7 +56,6 @@
 
                     <section id="basic-form-layouts">
                         <div class="row match-height">
-
 
                             <!-- start: row  basic settings -->
                             <div class="col-md-8">
@@ -331,6 +329,56 @@
 
 
 
+                            <!-- start: row  socail section-->
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <!-- begin: card header -->
+                                    <div class="card-header">
+                                        <h4 class="card-title" id="basic-layout-colored-form-control">
+                                            {!! __('settings.children_settings_sections') !!}
+                                        </h4>
+                                    </div>
+                                    <!-- end: card header -->
+
+                                    <!-- begin: card content -->
+                                    <div class="card-content collapse show">
+                                        <div class="card-body">
+
+                                            <div class="form-body">
+
+
+                                                <div class="row">
+                                                    <!-- begin: input -->
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="with_disability">{!! __('settings.disabled_child_register') !!}</label>
+                                                            <select id="disabled_child_register"
+                                                                name="disabled_child_register" class="form-control">
+                                                                <option value="0"
+                                                                    {{ setting()->disabled_child_register == '0' ? 'selected' : '' }}>
+                                                                    {!! __('general.no') !!}</option>
+                                                                <option value="1"
+                                                                    {{ setting()->disabled_child_register == '1' ? 'selected' : '' }}>
+                                                                    {!! __('general.yes') !!}</option>
+                                                            </select>
+                                                            <span class="text text-danger">
+                                                                <strong id="disabled_child_register_error"></strong>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end: input -->
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end: card content -->
+                                    </div>
+                                </div> <!-- end: card  -->
+                            </div><!-- end: row  socail section- -->
+
+
+
 
                             <!-- start: row  socail section-->
                             <div class="col-md-12">
@@ -517,7 +565,7 @@
             $('#linkedin_error').text('');
             $('#favicon_error').text('');
             $('#logo_error').text('');
-
+            $('#disabled_child_register_error').text('');
 
             $('#site_name_ar').css('border-color', '');
             $('#site_name_en').css('border-color', '');
@@ -539,7 +587,7 @@
             $('#linkedin').css('border-color', '');
             $('#favicon').css('border-color', '');
             $('#logo').css('border-color', '');
-
+            $('#disabled_child_register').css('border-color', '');
         };
 
 

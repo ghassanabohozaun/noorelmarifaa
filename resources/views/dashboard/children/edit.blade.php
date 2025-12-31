@@ -5,12 +5,16 @@
 
 @push('style')
     <style>
-        .form-control:disabled,
-        .form-control[readonly] {
-            background-color: #dcdddf;
+        .inputs_div {
+            border: 1px solid #cecbcb;
+            padding: 20px;
+            margin: 20px 1px;
+            border-radius: 2px;
+            box-shadow: 1px 2px #ebeaea;
         }
     </style>
 @endpush
+
 @section('content')
     <div class="app-content content">
 
@@ -86,7 +90,6 @@
                                     </div>
                                 </div>
                                 <!-- end: card header -->
-
                                 <!-- begin: card content -->
                                 <div class="card-content collapse show">
                                     <div class="card-body">
@@ -103,25 +106,3 @@
 
     </div><!-- end: content app  -->
 @endsection
-
-
-
-@push('scripts')
-    {{-- <script>
-        $(document).ready(function() {
-            // images preview
-            $("#picture_of_the_orphan_child").change(function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $(".picture_of_the_orphan_child_preview")
-                            .attr("src", e.target.result)
-                            .css("display", "block");
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-    </script> --}}
-@endpush

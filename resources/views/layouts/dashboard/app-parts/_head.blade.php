@@ -1,6 +1,7 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui , shrink-to-fit=no">
+
  <meta name="description" content="">
  <meta name="keywords" content="">
  <meta name="author" content="PIXINVENT">
@@ -43,10 +44,23 @@
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
  {{-- end file input --}}
 
+ <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/bootstrap-datepicker.min.css') !!}"
+     integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
  <style>
      .strong-weight {
          font-size: 12px;
          font-weight: bolder;
+     }
+
+     .datepicker td,
+     th {
+         text-align: center;
+         padding: 8px 12px;
+         font-size: 14px;
      }
  </style>
  @if (Lang() == 'ar')

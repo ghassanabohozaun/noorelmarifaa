@@ -107,7 +107,7 @@
                                                 <div class="col-lg-12">
 
                                                     @if ($child->childFile->picture_of_the_orphan_child)
-                                                        <div class="media mt-3">
+                                                        <div class="media mt-2 mx-2">
                                                             <div class="media-left pr-1">
                                                                 <span class="avatar avatar-lg">
                                                                     <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="avatar"
@@ -117,7 +117,7 @@
                                                             </div>
                                                         </div>
                                                     @else
-                                                        <div class="media mt-3">
+                                                        <div class="media mt-2 mx-2">
                                                             <div class="media-left pr-1">
                                                                 <span class="avatar avatar-lg rounded-circle">
                                                                     <img src="{!! asset('assets\dashbaord\images\avatar-male.jpg') !!}"
@@ -128,15 +128,7 @@
                                                         </div>
                                                     @endif
 
-                                                    <h3 class="media-heading  pt-1 font-medium-5 text-black"
-                                                        style="font-weight: 500">
-                                                        <i class="la la-check-square font-medium-3"></i>
-                                                        {!! $child->childFullName() !!}
-                                                    </h3>
-
-
                                                     @include('dashboard.children.profile.tabs')
-
 
                                                 </div>
                                             </div>

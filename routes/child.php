@@ -21,6 +21,7 @@ Route::group(
         ###################################### register  ##################################################################
         Route::group(['middleware' => 'guest:child'], function () {
             Route::get('register', [RegisterController::class, 'index'])->name('get.register');
+            Route::get('disabled/register', [RegisterController::class, 'disabledRegister'])->name('disabled.register');
         });
         ########################################### index routes ################################################################
         Route::get('welcome', [ChildrenController::class, 'welcome'])

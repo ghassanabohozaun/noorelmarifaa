@@ -67,7 +67,7 @@ class ChildService
     }
 
     // create child
-    public function createChild($childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData)
+    public function createChild($childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData, $childBrotherMemberData, $childSisterMemberData, $childDetailsData)
     {
         try {
             DB::beginTransaction();
@@ -121,9 +121,39 @@ class ChildService
                 return false;
             }
 
+            // child brother members data
+            foreach ($childBrotherMemberData as $memberItem) {
+                if ($memberItem['member_name']['ar'] != '') {
+                    $memberItem['child_id'] = $child->id;
+                    $member = $this->childRepository->createChildFamilyMember($memberItem);
+                    if (!$member) {
+                        return false;
+                    }
+                }
+            }
+
+            // child sister members data
+            foreach ($childSisterMemberData as $memberItem) {
+                if ($memberItem['member_name']['ar'] != '') {
+                    $memberItem['child_id'] = $child->id;
+                    $member = $this->childRepository->createChildFamilyMember($memberItem);
+                    if (!$member) {
+                        return false;
+                    }
+                }
+            }
+
+            // child details
+            $childDetailsData['child_id'] = $child->id;
+            $childDetails = $this->childRepository->createChildDetails($childDetailsData);
+            if (!$childDetails) {
+                return false;
+            }
+
             DB::commit();
             return true;
         } catch (\Exception $e) {
+            dd($e->getMessage());
             DB::rollBack();
             Log::error('Error Creating Child  : ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
             return false;
@@ -131,7 +161,7 @@ class ChildService
     }
 
     // update child
-    public function updateChild($ChildID, $myChild, $childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData)
+    public function updateChild($ChildID, $myChild, $childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData, $childBrotherMemberData,$childSisterMemberData, $childDetailsData)
     {
         try {
             DB::beginTransaction();
@@ -186,11 +216,43 @@ class ChildService
                 return false;
             }
 
+            // delete all child family members
+            $this->childRepository->deleteAllFChildFamilyMemebers($myChild);
+
+            // child brother members data
+            foreach ($childBrotherMemberData as $memberItem) {
+                if ($memberItem['member_name']['ar'] != '') {
+                    $memberItem['child_id'] = $ChildID;
+                    $member = $this->childRepository->createChildFamilyMember($memberItem);
+                    if (!$member) {
+                        return false;
+                    }
+                }
+            }
+
+             // child sister members data
+            foreach ($childSisterMemberData as $memberItem) {
+                if ($memberItem['member_name']['ar'] != '') {
+                    $memberItem['child_id'] = $ChildID;
+                    $member = $this->childRepository->createChildFamilyMember($memberItem);
+                    if (!$member) {
+                        return false;
+                    }
+                }
+            }
+
+            // child details
+            $childDetailsData['child_id'] = $ChildID;
+            $childDetails = $this->childRepository->updateChildDetails($myChild, $childDetailsData);
+            if (!$childDetails) {
+                return false;
+            }
+
             DB::commit();
             return true;
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
+            dd($e->getMessage());
             Log::error('Error Creating Child  : ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
             return false;
         }

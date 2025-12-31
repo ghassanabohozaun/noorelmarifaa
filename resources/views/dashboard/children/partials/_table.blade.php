@@ -19,7 +19,7 @@
     <!-- begin: card content -->
     <div class="card-content collapse show">
         <div class="card-body">
-            <div class="table-responsive ">
+            <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -69,7 +69,7 @@
                         @empty
                             <tr>
                                 <td colspan="10" class="text-center">
-                                    {!! __('world.no_cities_found') !!}
+                                    {!! __('children.no_children_found') !!}
                                 </td>
                             </tr>
                         @endforelse

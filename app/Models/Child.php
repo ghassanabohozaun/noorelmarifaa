@@ -16,11 +16,7 @@ class Child extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes, HasTranslations, HasApiTokens;
 
     protected $table = 'children';
-    protected $fillable = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'password', 'personal_id', 'birthday', 'classification', 'gender',
-    'class', 'school_name', 'school_address', 'school_tel', 'school_type', 'pay_school_fees', 'fees_per_month',
-    'health_status', 'disease_clarification', 'governoate_id', 'city_id', 'sponsership_status_id',
-    'sponsership_organization_id', 'sponsership_type_id', 'address_details', 'authorized_contact_number',
-    'backup_contact_number', 'whatsApp_number', 'status', 'freeze'];
+    protected $fillable = ['first_name', 'father_name', 'grand_father_name', 'family_name', 'password', 'personal_id', 'birthday', 'classification', 'gender', 'class', 'school_name', 'school_address', 'school_tel', 'school_type', 'pay_school_fees', 'fees_per_month', 'health_status', 'disease_clarification', 'with_disability', 'kind_of_disability', 'governoate_id', 'city_id', 'sponsership_status_id', 'sponsership_organization_id', 'sponsership_type_id', 'address_details', 'authorized_contact_number', 'backup_contact_number', 'whatsApp_number', 'status', 'freeze'];
     //public $timestamps = false;
 
     public array $translatable = ['first_name', 'father_name', 'grand_father_name', 'family_name'];
@@ -127,6 +123,21 @@ class Child extends Authenticatable
         return $this->hasOne(ChildFamily::class, 'child_id');
     }
 
+    public function childFamilyMembers()
+    {
+        return $this->hasMany(ChildFamilyMember::class, 'child_id');
+    }
+
+    public function childBrotherMembers()
+    {
+        return $this->hasMany(ChildFamilyMember::class, 'child_id')->where('member_relation', 'brother');
+    }
+
+    public function childSisterMembers()
+    {
+        return $this->hasMany(ChildFamilyMember::class, 'child_id')->where('member_relation', 'sister');
+    }
+
     public function childFather()
     {
         return $this->hasOne(ChildFather::class, 'child_id');
@@ -145,6 +156,11 @@ class Child extends Authenticatable
     public function childFile()
     {
         return $this->hasOne(ChildFile::class, 'child_id');
+    }
+
+    public function childDetails()
+    {
+        return $this->hasOne(ChildDetail::class, 'child_id');
     }
 
     public function sponsershipStatus()
@@ -178,6 +194,22 @@ class Child extends Authenticatable
         }
         return Carbon::parse($value)->format('d/m/Y h:i A');
     }
+
+    // public function getBirthdayAttribute($value)
+    // {
+    //     if (request()->wantsJson()) {
+    //         return $value;
+    //     }
+    //     return Carbon::parse($value)->format('d-m-Y');
+    // }
+
+    // public function setBirthdayAttribute($value)
+    // {
+    //     if (request()->wantsJson()) {
+    //         return $value;
+    //     }
+    //     return Carbon::parse($value)->format('y-m-d');
+    // }
 
     // public function getGenderAttribute($value)
     // {

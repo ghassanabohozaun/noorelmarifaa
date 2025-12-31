@@ -6,6 +6,7 @@ return [
     'contact_section' => 'قسم الإعدادات الاتصال ',
     'media_section' => 'قسم الميديا ',
     'socail_section' => 'قسم التواصل الاجتماعي ',
+    'children_settings_sections'=>'قسم اعدادت برنامج الاطفال',
 
     /////////////////
     'site_name_ar' => 'اسم الموقع | عربي',
@@ -36,7 +37,7 @@ return [
     'language' => 'لغة الموقع',
     'maintenance_message' => 'رسالة الصيانة للموقع',
     'lang_front_button_status' => ' حالة زر اللغة في الواجهة',
-    'disabled_forms_button' => 'زر ايقاف الادخال في النماذج',
+    'disabled_child_register' => 'ايقاف تسجيل الاطفال',
 
     /////////////////
     'enter_site_name_ar' => 'ادخل اسم الموقع | عربي',

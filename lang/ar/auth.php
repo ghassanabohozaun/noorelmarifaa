@@ -56,5 +56,6 @@ return [
     'enter_child_pesonal_id' => 'ادخل رقم هوية الطفل',
     'enter_birthday' => 'ادخل تاريخ ميلاد الطفل',
     'register_new_orphan' => 'تسجيل يتيم جديد',
+    'disabled_child_register'=>'عذرا , لقد تم ايقاف تسجيل ايتام جديد في الوقت الحالي ',
 
 ];

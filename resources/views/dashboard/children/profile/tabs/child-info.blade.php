@@ -67,7 +67,10 @@
                                     &nbsp;{!! $child->childHealthStatus() !!}
                                 </li>
 
-
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.disease_clarification') !!}:</strong>
+                                    &nbsp;{!! $child->disease_clarification !!}
+                                </li>
 
                             </ul>
 
@@ -91,9 +94,14 @@
                             <ul class="list-group">
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm">
-                                    <strong class="text-dark">{!! __('children.disease_clarification') !!}:</strong>
-                                    &nbsp;{!! $child->disease_clarification !!}
+                                    <strong class="text-dark">{!! __('children.with_disability') !!}:</strong>
+                                    &nbsp;{!! $child->with_disability !!}
                                 </li>
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                    <strong class="text-dark">{!! __('children.kind_of_disability') !!}:</strong>
+                                    &nbsp;{!! $child->kind_of_disability !!}
+                                </li>
+
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                                     <strong class="text-dark">{!! __('children.authorized_contact_number') !!}:</strong>

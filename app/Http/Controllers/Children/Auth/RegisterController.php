@@ -22,10 +22,14 @@ class RegisterController extends Controller
     //index
     public function index()
     {
-        $title = __('auth.register');
-        $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
-        $cities = $this->cityService->getAllCitiesWithoutRelation();
-        return view('children.register', compact('title', 'governorates', 'cities'));
+        if (setting()->disabled_child_register) {
+            $title = __('auth.register');
+            $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
+            $cities = $this->cityService->getAllCitiesWithoutRelation();
+            return view('children.register', compact('title', 'governorates', 'cities'));
+        } else {
+            $title = __('auth.disabeld');
+            return view('children.disabled-register', compact('title'));
+        }
     }
-
 }

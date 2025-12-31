@@ -33,6 +33,15 @@ width: 1.0em;
 height: 1.0em;
 }
 
+  .inputs_div {
+            border: 1px solid #cecbcb;
+            padding: 20px;
+            margin: 20px 1px;
+            border-radius: 2px;
+            box-shadow: 1px 2px #ebeaea;
+        }
+
+
 #myTable td,
 #myTable th {
 vertical-align: middle

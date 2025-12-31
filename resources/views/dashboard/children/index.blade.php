@@ -81,7 +81,6 @@
 
                                     @include('dashboard.children.partials._search')
 
-                                    {{-- <input type="text" id="search" placeholder="Search items..."> --}}
                                     <div class="table-container">
                                         <div id="loading-indicator" class="loader">
                                             <!-- You can use text, an image, or CSS-only spinners -->
@@ -94,7 +93,6 @@
                                             ])
                                         </div>
                                     </div>
-
 
                                 </div><!-- end: row  -->
                         </section>

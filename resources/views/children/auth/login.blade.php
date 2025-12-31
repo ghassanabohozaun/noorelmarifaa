@@ -14,7 +14,7 @@
                                 <img src="{!! asset('uploads/settings/' . setting()->logo) !!}" style="width: 180px" class="img-fluid   round">
                             </div>
                         @endif
-                        <div class="card-content collapse show mt-2">
+                        <div class="card-content collapse show mt-1">
                             <div class="card-body">
                                 <form action="{!! route('child.post.login') !!}" method="post" class="form-horizontal"
                                     enctype="multipart/form-data" role="form">

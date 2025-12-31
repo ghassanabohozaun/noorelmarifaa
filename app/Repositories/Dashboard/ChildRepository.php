@@ -3,7 +3,9 @@
 namespace App\Repositories\Dashboard;
 
 use App\Models\Child;
+use App\Models\ChildDetail;
 use App\Models\ChildFamily;
+use App\Models\ChildFamilyMember;
 use App\Models\ChildFather;
 use App\Models\ChildFile;
 use App\Models\ChildGuardian;
@@ -212,6 +214,50 @@ class ChildRepository
         return $myChild->childFile->update($childFileData);
     }
 
-    // destroy child
+    // destroy child file
     public function destroyChildFiles($myChild) {}
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // child family members
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // create child family member
+    public function createChildFamilyMember($member)
+    {
+        return ChildFamilyMember::create($member);
+    }
+
+    // delete all child family members
+    public function deleteAllFChildFamilyMemebers($child)
+    {
+        $childMembers = ChildFamilyMember::where('child_id', $child->id)->get();
+
+        if ($childMembers->isNotEmpty()) {
+            return $child->childFamilyMembers()->forceDelete();
+        } else {
+            return false;
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // child details
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // create child details
+    public function createChildDetails($childDetailsData)
+    {
+        return ChildDetail::create($childDetailsData);
+    }
+
+    // update child family
+    public function updateChildDetails($myChild, $childDetailsData)
+    {
+        $childDetails = ChildDetail::where('child_id', $myChild->id)->get();
+
+        if ($childDetails->isEmpty()) {
+            return ChildDetail::create($childDetailsData);
+        } else {
+            return $myChild->childDetails->update($childDetailsData);
+        }
+    }
 }

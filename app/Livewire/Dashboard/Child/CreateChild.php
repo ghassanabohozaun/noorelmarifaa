@@ -10,30 +10,59 @@ use Illuminate\Validation\Rule;
 use Laravel\Prompts\FormBuilder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Mpdf\Tag\P;
 
 class CreateChild extends Component
 {
     use WithFileUploads;
     public $currentStep = 1;
     public $activeTab = 'child_info_tab';
+    // basic
     public $first_name_ar, $father_name_ar, $grand_father_name_ar, $family_name_ar;
     public $first_name_en, $father_name_en, $grand_father_name_en, $family_name_en;
-    public $password, $password_confirm, $personal_id, $birthday, $classification, $gender, $class, $health_status, $disease_clarification, $governoate_id, $city_id, $address_details;
+    public $password, $password_confirm, $personal_id, $birthday, $classification, $gender, $class, $health_status, $disease_clarification;
+    public $with_disability, $kind_of_disability, $governoate_id, $city_id, $address_details;
     public $school_name, $school_address, $school_tel, $school_type, $pay_school_fees, $fees_per_month;
     public $authorized_contact_number, $backup_contact_number, $whatsApp_number;
     public $number_of_people_including_mother, $male_number, $female_number;
     public $governorates, $cities;
-    public $father_full_name_ar, $father_full_name_en, $father_personal_id, $father_date_of_death, $father_respon_of_death;
-    public $mother_full_name_ar, $mother_full_name_en, $mother_personal_id, $is_mother_alive, $mother_date_of_death, $is_mother_the_guardian;
-    public $guardian_full_name_ar, $guardian_full_name_en, $guardian_personal_id, $guardian_birthday, $why_not_the_mother_is_guardian, $guardian_relationship_with_the_child;
+
+    // father
+    public $father_full_name_ar, $father_first_name_ar, $father_middle_name_ar, $father_surname_name_ar, $father_work_ar;
+    public $father_full_name_en, $father_first_name_en, $father_middle_name_en, $father_surname_name_en, $father_work_en;
+    public $father_personal_id, $father_date_of_death, $father_respon_of_death;
+
+    // mother
+    public $mother_full_name_ar, $mother_first_name_ar, $mother_middle_name_ar, $mother_surname_name_ar, $mother_work_ar;
+    public $mother_full_name_en, $mother_first_name_en, $mother_middle_name_en, $mother_surname_name_en, $mother_work_en;
+    public $mother_personal_id, $is_mother_alive, $mother_date_of_death, $is_mother_the_guardian;
+
+    // guardian
+    public $guardian_full_name_ar, $guardian_first_name_ar, $guardian_middle_name_ar, $guardian_surname_name_ar, $guardian_work_ar, $guardian_address_ar;
+    public $guardian_full_name_en, $guardian_first_name_en, $guardian_middle_name_en, $guardian_surname_name_en, $guardian_work_en, $guardian_address_en;
+    public $guardian_personal_id, $guardian_birthday, $why_not_the_mother_is_guardian, $guardian_relationship_with_the_child;
+
+    // photos
     public $picture_of_the_orphan_child, $orphan_child_birth_certificate, $father_death_certificate, $guardian_personal_id_photo;
     public $child_activity_photo, $child_longitudinal_photo, $child_with_family_photo;
 
-    public ?Child $child;
+    // child details
+    public $health_problem_ar, $economic_situation_ar, $child_progress_ar, $expenses_ar, $sponsorship_funds_cover_ar;
+    public $health_problem_en, $economic_situation_en, $child_progress_en, $expenses_en, $sponsorship_funds_cover_en;
 
+    // child sponsership
+    public $bortherMembersItems,
+        $sisterMembersItems,
+        $childBrotherMembers,
+        $childSisterMembers = [];
+
+    //
+    public ?Child $child;
     protected ChildService $childService;
     protected GovernorateService $governorateService;
     protected CityService $cityService;
+    ///
+
     // boot
     public function boot(ChildService $childService, GovernorateService $governorateService, CityService $cityService)
     {
@@ -49,6 +78,9 @@ class CreateChild extends Component
         $this->governorates = $governorates;
         $this->cities = $cities;
         $this->governoate_id ?? ($this->cities = []);
+
+        $this->bortherMembersItems[] = ['member_name_ar' => '', 'member_name_en' => '', 'member_age' => '', 'member_relation' => 'brother'];
+        $this->sisterMembersItems[] = ['member_name_ar' => '', 'member_name_en' => '', 'member_age' => '', 'member_relation' => 'sister'];
     }
 
     // set active tab
@@ -93,12 +125,6 @@ class CreateChild extends Component
             'classification' => ['required'],
             'gender' => ['required'],
             'class' => ['required'],
-            'school_name' => ['required'],
-            'school_address' => ['required'],
-            'school_tel' => ['required'],
-            'school_type' => ['required'],
-            'pay_school_fees' => ['required'],
-            // 'fees_per_month' => ['required','numeric','decimal:2,4'],
             'health_status' => ['required'],
             'governoate_id' => ['required', 'exists:governorates,id'],
             'city_id' => ['required', 'exists:cities,id'],
@@ -108,10 +134,25 @@ class CreateChild extends Component
             'whatsApp_number' => ['required', 'string', 'min:5', 'max:14'],
         ];
 
-        if ($this->health_status == 'sick') {
-            $data['disease_clarification'] = ['required', 'string', 'min:5'];
+        if ($this->class != 'under_school_age') {
+            $data['school_name'] = ['required', 'string', 'min:3'];
+            // $data['school_tel'] = ['required', 'string', 'min:3'];
+            $data['school_address'] = ['required', 'string', 'min:3'];
+            $data['school_type'] = ['required', 'string', 'min:3'];
+            $data['pay_school_fees'] = ['required'];
+            // $data['fees_per_month'] = ['required', 'numeric', 'decimal:2,4'];
         }
-        if ($this->pay_school_fees == '1') {
+
+        if ($this->health_status == 'sick') {
+            $data['disease_clarification'] = ['required', 'string', 'min:3'];
+            // $data['with_disability'] = ['required', 'in:0,1'];
+        }
+
+        if ($this->with_disability) {
+            $data['kind_of_disability'] = ['required', 'string', 'min:3'];
+        }
+
+        if ($this->pay_school_fees == '1' && $this->class != 'under_school_age') {
             $data['fees_per_month'] = ['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
         }
 
@@ -124,16 +165,36 @@ class CreateChild extends Component
     public function secondStepSubmit()
     {
         $data = [
+            // family
             'number_of_people_including_mother' => ['required'],
             'male_number' => ['required', 'numeric'],
             'female_number' => ['required', 'numeric'],
+            // father
             'father_full_name_ar' => ['required', 'string'],
             'father_full_name_en' => ['required', 'string'],
+            'father_first_name_ar' => ['required', 'string'],
+            'father_first_name_en' => ['required', 'string'],
+            'father_middle_name_ar' => ['required', 'string'],
+            'father_middle_name_en' => ['required', 'string'],
+            'father_surname_name_ar' => ['required', 'string'],
+            'father_surname_name_en' => ['required', 'string'],
+            'father_work_ar' => ['required', 'string'],
+            'father_work_en' => ['required', 'string'],
             'father_personal_id' => ['required', 'numeric', 'digits:9'],
             'father_date_of_death' => ['required', 'date'],
             'father_respon_of_death' => ['required', 'in:illness,martyr'],
+
+            // mother
             'mother_full_name_ar' => ['required', 'string'],
             'mother_full_name_en' => ['required', 'string'],
+            'mother_first_name_ar' => ['required', 'string'],
+            'mother_first_name_en' => ['required', 'string'],
+            'mother_middle_name_ar' => ['required', 'string'],
+            'mother_middle_name_en' => ['required', 'string'],
+            'mother_surname_name_ar' => ['required', 'string'],
+            'mother_surname_name_en' => ['required', 'string'],
+            'mother_work_ar' => ['required', 'string'],
+            'mother_work_en' => ['required', 'string'],
             'mother_personal_id' => ['required', 'numeric', 'digits:9'],
             'is_mother_alive' => ['required', 'in:0,1'],
             'is_mother_the_guardian' => ['required', 'in:0,1'],
@@ -148,6 +209,17 @@ class CreateChild extends Component
         if ($this->is_mother_the_guardian == 1) {
             $this->guardian_full_name_ar = $this->mother_full_name_ar;
             $this->guardian_full_name_en = $this->mother_full_name_en;
+            $this->guardian_first_name_ar = $this->mother_first_name_ar;
+            $this->guardian_first_name_en = $this->mother_first_name_en;
+            $this->guardian_middle_name_ar = $this->mother_middle_name_ar;
+            $this->guardian_middle_name_en = $this->mother_middle_name_en;
+            $this->guardian_surname_name_ar = $this->mother_surname_name_ar;
+            $this->guardian_surname_name_en = $this->mother_surname_name_en;
+            $this->guardian_work_ar = $this->mother_work_ar;
+            $this->guardian_work_en = $this->mother_work_en;
+            $this->guardian_address_ar = null;
+            $this->guardian_address_en = null;
+
             $this->guardian_personal_id = $this->mother_personal_id;
             $this->guardian_relationship_with_the_child = 'mother';
             $this->guardian_birthday = null;
@@ -155,6 +227,17 @@ class CreateChild extends Component
         } else {
             $this->guardian_full_name_ar = null;
             $this->guardian_full_name_en = null;
+            $this->guardian_first_name_ar = null;
+            $this->guardian_first_name_en = null;
+            $this->guardian_middle_name_ar = null;
+            $this->guardian_middle_name_en = null;
+            $this->guardian_surname_name_ar = null;
+            $this->guardian_surname_name_en = null;
+            $this->guardian_work_ar = null;
+            $this->guardian_work_en = null;
+            $this->guardian_address_ar = null;
+            $this->guardian_address_en = null;
+
             $this->guardian_personal_id = null;
             $this->guardian_relationship_with_the_child = null;
             $this->guardian_birthday = null;
@@ -170,6 +253,16 @@ class CreateChild extends Component
         $data = [
             'guardian_full_name_ar' => ['required', 'string'],
             'guardian_full_name_en' => ['required', 'string'],
+            'guardian_first_name_ar' => ['required', 'string'],
+            'guardian_first_name_en' => ['required', 'string'],
+            'guardian_middle_name_ar' => ['required', 'string'],
+            'guardian_middle_name_en' => ['required', 'string'],
+            'guardian_surname_name_ar' => ['required', 'string'],
+            'guardian_surname_name_en' => ['required', 'string'],
+            'guardian_work_ar' => ['required', 'string'],
+            'guardian_work_en' => ['required', 'string'],
+            // 'guardian_address_ar' => ['required', 'string'],
+            // 'guardian_address_en' => ['required', 'string'],
             'guardian_personal_id' => ['required', 'numeric', 'digits:9'],
             'guardian_birthday' => ['required', 'date'],
             'guardian_relationship_with_the_child' => ['required', 'in:mother,uncle,aunt,grandfather,grandmother,brother,sister,uncle2,aunt2'],
@@ -184,7 +277,30 @@ class CreateChild extends Component
         $this->currentStep = 4;
     }
 
-    public function forthStep()
+    public function fourthStepSubmit()
+    {
+        $data = [
+            'health_problem_ar' => ['required', 'string'],
+            'economic_situation_ar' => ['required', 'string'],
+            'child_progress_ar' => ['required', 'string'],
+            'expenses_ar' => ['required', 'string'],
+            'sponsorship_funds_cover_ar' => ['required', 'string'],
+        ];
+
+        if (admin()->check()) {
+            $data['health_problem_en'] = ['required', 'string'];
+            $data['economic_situation_en'] = ['required', 'string'];
+            $data['child_progress_en'] = ['required', 'string'];
+            $data['expenses_en'] = ['required', 'string'];
+            $data['sponsorship_funds_cover_en'] = ['required', 'string'];
+        }
+
+        $this->validate($data);
+
+        $this->currentStep = 5;
+    }
+
+    public function fifthStepSubmit()
     {
         $this->validate([
             'picture_of_the_orphan_child' => ['required', 'mimes:png,jpg,jpeg'],
@@ -195,9 +311,8 @@ class CreateChild extends Component
             'child_longitudinal_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
             'child_with_family_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
         ]);
-        $this->currentStep = 5;
+        $this->currentStep = 6;
     }
-
     // back setp
     public function backStep($step)
     {
@@ -216,17 +331,17 @@ class CreateChild extends Component
             'birthday' => $this->birthday,
             'classification' => $this->classification,
             'gender' => $this->gender,
-
             'class' => $this->class,
-            'school_name' => $this->school_name,
-            'school_address' => $this->school_address,
-            'school_tel' => $this->school_tel,
-            'school_type' => $this->school_type,
-            'pay_school_fees' => $this->pay_school_fees,
-            'fees_per_month' => $this->pay_school_fees == 0 ? null : $this->fees_per_month,
-
+            'school_name' => $this->class != 'under_school_age' ? $this->school_name : null,
+            'school_address' => $this->class != 'under_school_age' ? $this->school_address : null,
+            'school_tel' => $this->class != 'under_school_age' ? $this->school_tel : null,
+            'school_type' => $this->class != 'under_school_age' ? $this->school_type : null,
+            'pay_school_fees' => $this->class != 'under_school_age' ? $this->pay_school_fees : null,
+            'fees_per_month' => $this->class != 'under_school_age' && $this->pay_school_fees == 1 ? $this->fees_per_month : null,
             'health_status' => $this->health_status,
             'disease_clarification' => $this->health_status == 'sick' ? $this->disease_clarification : null,
+            'with_disability' => $this->health_status == 'sick' ? $this->with_disability : null,
+            'kind_of_disability' => $this->health_status == 'sick' && $this->with_disability ? $this->kind_of_disability : null,
             'governoate_id' => $this->governoate_id,
             'city_id' => $this->city_id,
             'address_details' => $this->address_details,
@@ -243,6 +358,10 @@ class CreateChild extends Component
 
         $childFatherData = [
             'father_full_name' => ['ar' => $this->father_full_name_ar, 'en' => $this->father_full_name_en],
+            'father_first_name' => ['ar' => $this->father_first_name_ar, 'en' => $this->father_first_name_en],
+            'father_middle_name' => ['ar' => $this->father_middle_name_ar, 'en' => $this->father_middle_name_en],
+            'father_surname_name' => ['ar' => $this->father_surname_name_ar, 'en' => $this->father_surname_name_en],
+            'father_work' => ['ar' => $this->father_work_ar, 'en' => $this->father_work_en],
             'father_personal_id' => $this->father_personal_id,
             'father_date_of_death' => $this->father_date_of_death,
             'father_respon_of_death' => $this->father_respon_of_death,
@@ -250,6 +369,10 @@ class CreateChild extends Component
 
         $childMotherData = [
             'mother_full_name' => ['ar' => $this->mother_full_name_ar, 'en' => $this->mother_full_name_en],
+            'mother_first_name' => ['ar' => $this->mother_first_name_ar, 'en' => $this->mother_first_name_en],
+            'mother_middle_name' => ['ar' => $this->mother_middle_name_ar, 'en' => $this->mother_middle_name_en],
+            'mother_surname_name' => ['ar' => $this->mother_surname_name_ar, 'en' => $this->mother_surname_name_en],
+            'mother_work' => ['ar' => $this->mother_work_ar, 'en' => $this->mother_work_en],
             'mother_personal_id' => $this->mother_personal_id,
             'mother_date_of_death' => $this->mother_date_of_death,
             'is_mother_alive' => $this->is_mother_alive,
@@ -258,6 +381,11 @@ class CreateChild extends Component
 
         $childGuaridanData = [
             'guardian_full_name' => ['ar' => $this->guardian_full_name_ar, 'en' => $this->guardian_full_name_en],
+            'guardian_first_name' => ['ar' => $this->guardian_first_name_ar, 'en' => $this->guardian_first_name_en],
+            'guardian_middle_name' => ['ar' => $this->guardian_middle_name_ar, 'en' => $this->guardian_middle_name_en],
+            'guardian_surname_name' => ['ar' => $this->guardian_surname_name_ar, 'en' => $this->guardian_surname_name_en],
+            'guardian_work' => ['ar' => $this->guardian_work_ar, 'en' => $this->guardian_work_en],
+            'guardian_address' => ['ar' => $this->guardian_address_ar, 'en' => $this->guardian_address_en],
             'guardian_personal_id' => $this->guardian_personal_id,
             'guardian_birthday' => $this->guardian_birthday,
             'why_not_the_mother_is_guardian' => $this->is_mother_the_guardian == 1 ? null : $this->why_not_the_mother_is_guardian,
@@ -274,7 +402,37 @@ class CreateChild extends Component
             'child_with_family_photo' => $this->child_with_family_photo,
         ];
 
-        $childCreated = $this->childService->createChild($childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData);
+        $childDetailsData = [
+            'health_problem' => ['ar' => $this->health_problem_ar, 'en' => $this->health_problem_en],
+            'economic_situation' => ['ar' => $this->economic_situation_ar, 'en' => $this->economic_situation_en],
+            'child_progress' => ['ar' => $this->child_progress_ar, 'en' => $this->child_progress_en],
+            'expenses' => ['ar' => $this->expenses_ar, 'en' => $this->expenses_en],
+            'sponsorship_funds_cover' => ['ar' => $this->sponsorship_funds_cover_ar, 'en' => $this->sponsorship_funds_cover_en],
+        ];
+
+        //child brother Member data
+        $childBrotherMemberData = [];
+        foreach ($this->bortherMembersItems as $index => $name) {
+            $childBrotherMemberData[] = [
+                'child_id' => null,
+                'member_name' => ['ar' => $this->bortherMembersItems[$index]['member_name_ar'], 'en' => $this->bortherMembersItems[$index]['member_name_en']] ?? null,
+                'member_age' => $this->bortherMembersItems[$index]['member_age'] ?? null,
+                'member_relation' => 'brother',
+            ];
+        }
+
+        //child sister Member data
+        $childSisterMemberData = [];
+        foreach ($this->sisterMembersItems as $index => $name) {
+            $childSisterMemberData[] = [
+                'child_id' => null,
+                'member_name' => ['ar' => $this->sisterMembersItems[$index]['member_name_ar'], 'en' => $this->sisterMembersItems[$index]['member_name_en']] ?? null,
+                'member_age' => $this->sisterMembersItems[$index]['member_age'] ?? null,
+                'member_relation' => 'sister',
+            ];
+        }
+
+        $childCreated = $this->childService->createChild($childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData, $childBrotherMemberData, $childSisterMemberData, $childDetailsData);
 
         if (!$childCreated) {
             flash()->error(message: __('general.add_error_message'));
@@ -282,6 +440,8 @@ class CreateChild extends Component
         } else {
             flash()->success(message: __('general.add_success_message'));
             $this->resetExcept(['governorates', 'cities', 'child']);
+            $this->addNewBrotherMember();
+            $this->addNewSisterMember();
             $this->currentStep = 1;
         }
     }
@@ -298,11 +458,33 @@ class CreateChild extends Component
         }
     }
 
+    //  change changeClass
+    public function changeClass($value)
+    {
+        if ($value == 'under_school_age') {
+            $this->school_name = null;
+            $this->school_tel = null;
+            $this->school_address = null;
+            $this->school_type = null;
+            $this->pay_school_fees = null;
+            $this->fees_per_month = null;
+        }
+    }
     //  change health status
     public function changeHealthStatus($value)
     {
-        if ($value == 'good') {
+        if ($value != 'sick') {
             $this->disease_clarification = null;
+            $this->with_disability = null;
+            $this->kind_of_disability = null;
+        }
+    }
+
+    // change with disability
+    public function changeWithDisability($value)
+    {
+        if ($value == 1) {
+            $this->kind_of_disability = null;
         }
     }
 
@@ -342,6 +524,43 @@ class CreateChild extends Component
             $this->is_mother_alive = null;
         }
     }
+
+    // add new brother member
+    public function addNewBrotherMember()
+    {
+        $this->bortherMembersItems[] = ['member_name_ar' => '', 'member_name_en' => '', 'member_age' => '', 'member_relation' => 'brother'];
+    }
+
+    // remove bother member
+    public function removeBrotherMember($index)
+    {
+        if (count($this->bortherMembersItems) == 1) {
+            $this->bortherMembersItems[$index] = ['member_name_ar' => '', 'member_name_en' => '', 'member_age' => '', 'member_relation' => 'brother'];
+        }
+
+        if (count($this->bortherMembersItems) > 1) {
+            unset($this->bortherMembersItems[$index]);
+        }
+    }
+
+    // add new sister member
+    public function addNewSisterMember()
+    {
+        $this->sisterMembersItems[] = ['member_name_ar' => '', 'member_name_en' => '', 'member_age' => '', 'member_relation' => 'sister'];
+    }
+
+    // remove sister member
+    public function removeSisterMember($index)
+    {
+        if (count($this->sisterMembersItems) == 1) {
+            $this->sisterMembersItems[$index] = ['member_name_ar' => '', 'member_name_en' => '', 'member_age' => '', 'member_relation' => 'sister'];
+        }
+
+        if (count($this->sisterMembersItems) > 1) {
+            unset($this->sisterMembersItems[$index]);
+        }
+    }
+
     // render
     public function render()
     {

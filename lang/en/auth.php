@@ -56,4 +56,6 @@ return [
     'enter_child_pesonal_id' => 'Enter Child Personal ID',
     'enter_birthday' => 'Enter Child Birthday',
     'register_new_orphan'=>'Register New Orphan',
+        'disabled_child_register'=>'Sorry  , We disabled Rgister New Children Now',
+
 ];

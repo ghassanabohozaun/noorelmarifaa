@@ -26,7 +26,7 @@
                             <div class="container">
 
                                 <!-- begin: row -->
-                                <div class="row mt-5 mb-2">
+                                <div class="row mt-2 mb-2">
 
                                     <div class="col-12">
                                         <a href="{!! route('child.get.register') !!}"

@@ -1,4 +1,3 @@
-<hr class="horizontal gray-light my-2">
 <ul class="list-group">
 
     <div class="row">
@@ -27,7 +26,6 @@
                 </div>
             </li>
         </div>
-
 
         {{-- orphan_child_birth_certificate --}}
         <div class="col-lg-3">
@@ -103,7 +101,6 @@
                 </div>
             </li>
         </div>
-
 
 
         {{-- child_activity_photo --}}

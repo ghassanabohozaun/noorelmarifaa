@@ -180,18 +180,7 @@
                     <button type="submit" class="btn btn-sm btn-light-dark mr-1" id="children_reset_btn">
                         <i class="la la-close"></i> {!! __('general.reset') !!}
                     </button>
-
-                    {{-- <a href="{!! route('dashboard.children.export') !!}" type="button" class="btn btn-sm btn-light mr-1">
-                        <i class="la la-file-excel-o"></i> {!! __('general.excel') !!}
-                    </a> --}}
-
-                    {{--
-                    <a href="javascript:void(0)" class="btn btn-sm btn-warning btn-glow mr-1">
-                        <span class="la la-file-pdf-o"></span> {!! __('general.pdf') !!}
-                    </a>
-                    --}}
                 </div>
-
 
             </form>
 
