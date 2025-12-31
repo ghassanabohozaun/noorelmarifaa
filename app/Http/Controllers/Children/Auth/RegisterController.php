@@ -22,7 +22,7 @@ class RegisterController extends Controller
     //index
     public function index()
     {
-        if (setting()->disabled_child_register) {
+        if (!setting()->disabled_child_register) {
             $title = __('auth.register');
             $governorates = $this->governorateService->getAllGovernoratesWithoutRelations();
             $cities = $this->cityService->getAllCitiesWithoutRelation();
