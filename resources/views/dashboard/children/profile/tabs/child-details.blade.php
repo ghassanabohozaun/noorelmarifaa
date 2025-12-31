@@ -12,28 +12,28 @@
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                                     <strong class="text-dark">{!! __('children.health_problem') !!}:</strong>
-                                    &nbsp;{!! $child->childDetails->health_problem !!}
+                                    &nbsp;{!! $child->childDetails->health_problem ?? '' !!}
                                 </li>
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                                     <strong class="text-dark">{!! __('children.economic_situation') !!}:</strong>
-                                    &nbsp;{!! $child->childDetails->economic_situation !!}
+                                    &nbsp;{!! $child->childDetails->economic_situation ?? '' !!}
                                 </li>
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                                     <strong class="text-dark">{!! __('children.child_progress') !!}:</strong>
-                                    &nbsp;{!! $child->childDetails->child_progress !!}
+                                    &nbsp;{!! $child->childDetails->child_progress ?? '' !!}
                                 </li>
 
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                                     <strong class="text-dark">{!! __('children.expenses') !!}:</strong>
-                                    &nbsp;{!! $child->childDetails->expenses !!}
+                                    &nbsp;{!! $child->childDetails->expenses ?? '' !!}
                                 </li>
 
                                 <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                                     <strong class="text-dark">{!! __('children.sponsorship_funds_cover') !!}:</strong>
-                                    &nbsp;{!! $child->childDetails->sponsorship_funds_cover !!}
+                                    &nbsp;{!! $child->childDetails->sponsorship_funds_cover ?? '' !!}
                                 </li>
                             </ul>
                         </div>
