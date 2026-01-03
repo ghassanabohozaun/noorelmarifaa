@@ -47,7 +47,6 @@ transform: translateX(-50%);
 z-index: -10;
 }
 
-
 .progress-count {
 content: "";
 height: 40px;

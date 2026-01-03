@@ -88,19 +88,3 @@
      <link rel="stylesheet" href="{!! asset('assets/dashbaord/css/child-wizard.css') !!}" rel="stylesheet">
      <link rel="stylesheet" type="text/css" href="{!! asset('assets/dashbaord/css/my-style.css') !!}">
  @endif
-
- <style>
-     .step-wizard-item {
-         padding: 0 20px;
-         flex-basis: 0;
-         -webkit-box-flex: 1;
-         -ms-flex-positive: 1;
-         flex-grow: 1;
-         max-width: 100%;
-         display: flex;
-         flex-direction: column;
-         text-align: center;
-         min-width: 2%;
-         position: relative;
-     }
- </style>
