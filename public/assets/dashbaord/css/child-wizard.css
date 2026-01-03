@@ -2,7 +2,6 @@
 display: none;
 }
 
-
 .step-wizard {
 height: 7vh;
 justify-content: center;
@@ -35,7 +34,6 @@ text-align: center;
 min-width: 5%;
 position: relative;
 }
-
 
 .step-wizard-item+.step-wizard-item:after {
 content: "";
