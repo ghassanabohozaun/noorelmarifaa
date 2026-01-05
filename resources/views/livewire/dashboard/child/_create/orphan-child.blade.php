@@ -1,15 +1,11 @@
-<h4>{!! __('children.child_info') !!}</h4>
-<hr>
-
-
-<div class="inputs_div">
+<div class="inputs_div mt-1">
     <!-- end: personal_id , birthday , classification , gender ,password,password_confirm -->
     <div class="row mt-1">
         <!-- begin: input -->
         <div class="col-md-3">
             <div class="form-group">
                 <label for="personal_id">{!! __('children.personal_id') !!}</label>
-                <input type="text" wire:model.live="personal_id" class="form-control" autocomplete="off"
+                <input type="text" wire:model.live="personal_id" class="form-control" autocomplete="off" maxlength="9"
                     placeholder="{!! __('children.enter_personal_id') !!}"
                     @error('personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 @error('personal_id')
@@ -591,7 +587,8 @@
                 <label for="authorized_contact_number">{!! __('children.authorized_contact_number') !!}</label>
                 <div class="input-group">
                     <input type="text" wire:model.live="authorized_contact_number" class="form-control"
-                        autocomplete="off" placeholder="{!! __('children.enter_authorized_contact_number') !!}" aria-describedby="basic-addon3"
+                        maxlength="10" autocomplete="off" placeholder="{!! __('children.enter_authorized_contact_number') !!}"
+                        aria-describedby="basic-addon3"
                         @error('authorized_contact_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 </div>
                 @error('authorized_contact_number')
@@ -609,7 +606,8 @@
                 <label for="backup_contact_number">{!! __('children.backup_contact_number') !!}</label>
                 <div class="input-group">
                     <input type="text" wire:model.live="backup_contact_number" class="form-control"
-                        autocomplete="off" placeholder="{!! __('children.enter_backup_contact_number') !!}" aria-describedby="basic-addon3"
+                        maxlength="10" autocomplete="off" placeholder="{!! __('children.enter_backup_contact_number') !!}"
+                        aria-describedby="basic-addon3"
                         @error('backup_contact_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 </div>
                 @error('backup_contact_number')
@@ -628,8 +626,8 @@
             <div class="form-group">
                 <label for="whatsApp_number">{!! __('children.whatsApp_number') !!}</label>
                 <div class="input-group">
-                    <input type="text" wire:model.live="whatsApp_number" class="form-control" autocomplete="off"
-                        placeholder="{!! __('children.enter_whatsApp_number') !!}" aria-describedby="basic-addon3"
+                    <input type="text" wire:model.live="whatsApp_number" class="form-control" maxlength="13"
+                        autocomplete="off" placeholder="{!! __('children.enter_whatsApp_number') !!}" aria-describedby="basic-addon3"
                         @error('whatsApp_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 </div>
                 @error('whatsApp_number')
@@ -652,41 +650,17 @@
 <div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!} mt-2">
     <div class="col-md-12">
 
-        <button type="button" wire:click ="firstStepSubmit" class="btn btn-primary  btn-glow">
-            {!! __('children.next') !!}
-            <span wire:loading wire:target="firstStepSubmit">
+        <button type="button" wire:click ="childInfoSubmit" class="btn btn-primary  btn-glow">
+            {!! __('children.save') !!}
+            <span wire:loading wire:target="childInfoSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>
         </button>
 
-        {{-- <button type="button" wire:click ="submitForm" class="btn btn-primary  btn-glow">
-            {!! __('children.save') !!}
-        </button> --}}
+        {{-- x-on:click="window.scrollTo({top: 0, behavior: 'smooth'})" --}}
+
     </div>
 </div>
 <div class="clearfix"></div>
 <!-- end: button -->
-
-
-
-{{-- @push('scripts')
-    <script>
-        var lang = '{{ Lang() }}';
-        $(document).ready(function() {
-            $('#birthday').datepicker({
-                format: lang === 'ar' ? "yyyy/dd/mm" : "mm/dd/yyyy",
-                showOtherMonths: true,
-                selectOtherMonths: true,
-                autoclose: true,
-                todayHighlight: true,
-                changeMonth: true,
-                changeYear: true,
-                //gotoCurrent: true,
-                orientation: "bottom",
-                language: lang,
-                rtl: true,
-            });
-        });
-    </script>
-@endpush --}}

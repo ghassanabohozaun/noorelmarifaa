@@ -10,6 +10,8 @@ return [
     'columns' => 'الأعمدة',
     'details' => 'تفاصيل اخري',
     'profile' => 'الملف الشخصي',
+    'add_child_before'=>'الرجاء قم باضافة البيانات الاساسية للطفل اولاًً',
+    'child_not_found'=>'الطفل غير موجود',
 
     'orphan_child' => 'بيانات الطفل',
     'child_family' => 'بيانات  عائلة الطفل',
@@ -26,6 +28,7 @@ return [
     'father_info' => 'بيانات الأب',
     'mother_info' => 'بيانات الأم',
     'guardian_info' => 'بيانات الوصي',
+    'details_info' => 'بيانات تفصيلة',
     'files' => 'الملفات',
     'parents_info' => 'بيانات الوالدين',
     'family_members_info' => 'بيانات افراد الاسرة',

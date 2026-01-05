@@ -1,12 +1,8 @@
-<h4>{!! __('children.parents_info') !!}</h4>
-<hr>
-
-
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 <!-------------------------------------------------------- Father ----------------------------------------------------------------------------------------->
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-<h4 class="text-info mb-2"> {!! __('children.child_father') !!}</h4>
+<h4 class="text-info mb-2 mt-1"> {!! __('children.child_father') !!}</h4>
 
 <div class="inputs_div">
     <!-- begin: father_full_name_ar  -->
@@ -195,8 +191,8 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="father_personal_id">{!! __('children.father_personal_id') !!}</label>
-                <input type="text" wire:model.live="father_personal_id" class="form-control" autocomplete="off"
-                    placeholder="{!! __('children.enter_father_personal_id') !!}"
+                <input type="text" wire:model.live="father_personal_id" class="form-control" maxlength="9"
+                    autocomplete="off" placeholder="{!! __('children.enter_father_personal_id') !!}"
                     @error('father_personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 @error('father_personal_id')
                     <span class="text text-danger">
@@ -438,8 +434,8 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label for="mother_personal_id">{!! __('children.mother_personal_id') !!}</label>
-                <input type="text" wire:model.live="mother_personal_id" class="form-control" autocomplete="off"
-                    placeholder="{!! __('children.enter_mother_personal_id') !!}"
+                <input type="text" wire:model.live="mother_personal_id" class="form-control" maxlength="9"
+                    autocomplete="off" placeholder="{!! __('children.enter_mother_personal_id') !!}"
                     @error('mother_personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 @error('mother_personal_id')
                     <span class="text text-danger">
@@ -517,189 +513,13 @@
 </div>
 
 
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-<!-------------------------------------------------------- Family ----------------------------------------------------------------------------------------->
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-<h4 class="text-info mt-3 mb-2"> {!! __('children.child_family') !!}</h4>
-<div class="inputs_div">
-    <!-- begin: number_of_people_including_mother , male_number , female_number -->
-    <div class="row">
-        <!-- begin: input -->
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="number_of_people_including_mother">{!! __('children.number_of_people_including_mother') !!}</label>
-                <input type="number" wire:model.live="number_of_people_including_mother" class="form-control"
-                    autocomplete="off" placeholder="{!! __('children.enter_number_of_people_including_mother') !!}"
-                    @error('number_of_people_including_mother')  style="border-color: rgb(246, 78, 96)"  @enderror>
-                @error('number_of_people_including_mother')
-                    <span class="text text-danger">
-                        <strong>{!! $message !!}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        <!-- end: input -->
-
-
-        <!-- begin: input -->
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="male_number">{!! __('children.male_number') !!}</label>
-                <input type="number" wire:model.live="male_number" class="form-control" autocomplete="off"
-                    placeholder="{!! __('children.enter_male_number') !!}"
-                    @error('male_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
-                @error('male_number')
-                    <span class="text text-danger">
-                        <strong>{!! $message !!}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        <!-- end: input -->
-
-
-        <!-- begin: input -->
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="female_number">{!! __('children.female_number') !!}</label>
-                <input type="number" wire:model.live="female_number" class="form-control" autocomplete="off"
-                    placeholder="{!! __('children.enter_female_number') !!}"
-                    @error('female_number')  style="border-color: rgb(246, 78, 96)"  @enderror>
-                @error('female_number')
-                    <span class="text text-danger">
-                        <strong>{!! $message !!}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        <!-- end: input -->
-
-    </div>
-    <!-- end: number_of_people_including_mother , male_number , female_number -->
-
-</div>
-
-
-
-
-<h4 class="text-info mb-2">{!! __('children.brothers_info') !!}</h4>
-<!-- begin: brothers-->
-<div class="inputs_div">
-
-    @foreach ($bortherMembersItems as $index => $row)
-        <div class="row" wire:key="row-{{ $index }}">
-
-            <div class="col-md-5 col-12">
-                <div class="form-group">
-                    <input type="text" wire:model="bortherMembersItems.{!! $index !!}.member_name_ar"
-                        class="form-control" placeholder="{!! __('children.enter_member_name_ar') !!}">
-                </div>
-
-            </div>
-
-            <div class="col-md-5 col-sm-12">
-                <div class="form-group">
-                    <input type="text" wire:model="bortherMembersItems.{!! $index !!}.member_name_en"
-                        class="form-control" placeholder="{!! __('children.enter_member_name_en') !!}" />
-                </div>
-            </div>
-
-            <div class="col-md-1 col-sm-12">
-                <div class="form-group">
-                    <input type="number" wire:model="bortherMembersItems.{!! $index !!}.member_age"
-                        class="form-control" placeholder="{!! __('children.enter_member_age') !!}" />
-                </div>
-            </div>
-
-            <div class="col-lg-1 col-md-1 col-sm-1 " style="margin-top: 5px">
-                <div class="form-group">
-                    <a href="#" wire:click.prevent ="removeBrotherMember({{ $index }})"
-                        class="text-white  badge badge-danger">
-                        <li class="la la-trash"></li>
-                    </a>
-                </div>
-            </div>
-        </div>
-    @endforeach
-
-    <div class="row">
-        <div class="col-lg-12">
-            <a href="#" wire:click.prevent="addNewBrotherMember" class="text-white badge badge-info">
-                <li class="la la-plus"></li>
-            </a>
-        </div>
-    </div>
-
-
-
-
-</div>
-<!-- end: brothers-->
-
-<!-- begin: sisters-->
-<h4 class="text-info mt-3 mb-2">{!! __('children.sisters_info') !!}</h4>
-<div class="inputs_div">
-
-    @foreach ($sisterMembersItems as $index => $row)
-        <div class="row" wire:key="row-{{ $index }}">
-
-            <div class="col-md-5 col-12">
-                <div class="form-group">
-                    <input type="text" wire:model="sisterMembersItems.{!! $index !!}.member_name_ar"
-                        class="form-control" placeholder="{!! __('children.enter_member_name_ar') !!}">
-                </div>
-
-            </div>
-
-            <div class="col-md-5 col-sm-12">
-                <div class="form-group">
-                    <input type="text" wire:model="sisterMembersItems.{!! $index !!}.member_name_en"
-                        class="form-control" placeholder="{!! __('children.enter_member_name_en') !!}" />
-                </div>
-            </div>
-
-            <div class="col-md-1 col-sm-12">
-                <div class="form-group">
-                    <input type="number" wire:model="sisterMembersItems.{!! $index !!}.member_age"
-                        class="form-control" placeholder="{!! __('children.enter_member_age') !!}" />
-                </div>
-            </div>
-
-            <div class="col-lg-1 col-md-1 col-sm-1 " style="margin-top: 5px">
-                <div class="form-group">
-                    <a href="#" wire:click.prevent ="removeSisterMember({{ $index }})"
-                        class="text-white  badge badge-danger">
-                        <li class="la la-trash"></li>
-                    </a>
-                </div>
-            </div>
-        </div>
-    @endforeach
-
-    <div class="row">
-        <div class="col-lg-12">
-            <a href="#" wire:click.prevent="addNewSisterMember" class="text-white badge badge-info">
-                <li class="la la-plus"></li>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- end: sisters-->
-
 
 <!-- begin: button -->
 <div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!}">
     <div class="col-md-12 ">
-        <button type="button" wire:click ="backStep(1)" class="btn btn-info btn-glow">
-            {!! __('children.back') !!}
-            <span wire:loading wire:target="backStep(1)">
-                <i class="la la-refresh spinner"></i>
-            </span>
-        </button>
-        <button type="button" wire:click="secondStepSubmit" class="btn btn-primary btn-glow">
-            {!! __('children.next') !!}
-            <span wire:loading wire:target="secondStepSubmit">
+        <button type="button" wire:click="parentsInfoSubmit" class="btn btn-primary btn-glow">
+            {!! __('children.save') !!}
+            <span wire:loading wire:target="parentsInfoSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

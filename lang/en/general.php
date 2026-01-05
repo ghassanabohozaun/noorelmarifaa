@@ -107,6 +107,9 @@ return [
     'delete_image_success_message' => 'Image Deleted Successfully',
     'delete_image_error_message' => 'Image Deleted Failed',
 
+    'save_success_message' => 'Saved Successfully',
+    'save_error_message' => 'Saved Failed',
+
     'internal_server_error_message' => 'Sorry, Internal server Error ',
     'try_catch_error_message' => 'Sorry, There is an error, please try again later',
     'error_message' => 'Sorry, There is an error',

@@ -1,7 +1,4 @@
-<h4>{!! __('children.files') !!}</h4>
-<hr>
 <div class="row mt-3">
-
 
     <!-- begin: input -->
     <div class="col-md-2">
@@ -202,7 +199,6 @@
         </fieldset>
     </div>
     <!-- end: input -->
-
 </div>
 
 
@@ -210,15 +206,9 @@
 <!-- begin: button -->
 <div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!}">
     <div class="col-md-12">
-        <button type="button" wire:click ="backStep(4)" class="btn btn-info btn-glow">
-            {!! __('children.back') !!}
-            <span wire:loading wire:target="backStep(4)">
-                <i class="la la-refresh spinner"></i>
-            </span>
-        </button>
-        <button type="button" wire:click="fifthStepSubmit" class="btn btn-primary btn-glow">
-            {!! __('children.next') !!}
-            <span wire:loading wire:target="fifthStepSubmit">
+        <button type="button" wire:click="filesSubmit" class="btn btn-primary btn-glow">
+            {!! __('children.save') !!}
+            <span wire:loading wire:target="filesSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

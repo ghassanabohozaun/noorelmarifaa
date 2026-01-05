@@ -10,6 +10,9 @@ return [
     'columns' => 'Columns',
     'details' => 'Other Details',
     'profile' => 'Profile',
+    'add_child_before'=>'Please Add  Child Info Firstly',
+    'child_not_found'=>'Child Not Found',
+
 
     'orphan_child' => 'Child',
     'child_family' => 'Child Family',
@@ -27,6 +30,7 @@ return [
     'father_info' => 'Father Informations',
     'mother_info' => 'Mother Informations',
     'guardian_info' => 'Guardian Informations',
+    'details_info' =>'Details Info',
     'files' => 'Files',
     'family_members_info' => 'Family Members Info',
     'brothers_info' => 'Brothers Info',

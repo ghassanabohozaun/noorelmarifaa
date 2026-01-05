@@ -11,11 +11,13 @@ use Laravel\Prompts\FormBuilder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Mpdf\Tag\P;
-
+use Illuminate\Validation\Validator;
 class CreateChild extends Component
 {
     use WithFileUploads;
     public $currentStep = 1;
+    public $childCreatedID;
+    public $wariningMessage = '';
     public $activeTab = 'child_info_tab';
     // basic
     public $first_name_ar, $father_name_ar, $grand_father_name_ar, $family_name_ar;
@@ -83,12 +85,6 @@ class CreateChild extends Component
         $this->sisterMembersItems[] = ['member_name_ar' => '', 'member_name_en' => '', 'member_age' => '', 'member_relation' => 'sister'];
     }
 
-    // set active tab
-    public function setActiveTab($tab)
-    {
-        $this->activeTab = $tab;
-    }
-
     protected function rules()
     {
         return [
@@ -106,9 +102,26 @@ class CreateChild extends Component
         //$this->validateOnly('personal_id'); // use when you need to validate specific input
     }
 
-    // first step
-    public function firstStepSubmit()
+    // set active tab
+    public function setActiveTab($tab)
     {
+        $this->activeTab = $tab;
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //  child info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    // child Info Click
+    public function childInfoClick()
+    {
+        $this->currentStep = 1;
+    }
+
+    // child info submit
+    public function childInfoSubmit()
+    {
+        // validation
         $data = [
             'first_name_ar' => ['required', 'string', 'min:3'],
             'father_name_ar' => ['required', 'string', 'min:3'],
@@ -156,19 +169,74 @@ class CreateChild extends Component
             $data['fees_per_month'] = ['required', 'numeric', 'regex:/^\d{1,5}(\.\d{1,3})?$/'];
         }
 
-        $this->validate($data);
+        $this->withValidator(function (Validator $validator) {
+            if ($validator->fails()) {
+                $this->dispatch('scroll-to-top');
+            }
+        })->validate($data);
 
-        $this->currentStep = 2;
+        // data
+        $childData = [
+            'first_name' => ['ar' => $this->first_name_ar, 'en' => $this->first_name_en],
+            'father_name' => ['ar' => $this->father_name_ar, 'en' => $this->father_name_en],
+            'grand_father_name' => ['ar' => $this->grand_father_name_ar, 'en' => $this->grand_father_name_en],
+            'family_name' => ['ar' => $this->family_name_ar, 'en' => $this->family_name_en],
+            'password' => $this->password,
+            'personal_id' => $this->personal_id,
+            'birthday' => $this->birthday,
+            'classification' => $this->classification,
+            'gender' => $this->gender,
+            'class' => $this->class,
+            'school_name' => $this->class != 'under_school_age' ? $this->school_name : null,
+            'school_address' => $this->class != 'under_school_age' ? $this->school_address : null,
+            'school_tel' => $this->class != 'under_school_age' ? $this->school_tel : null,
+            'school_type' => $this->class != 'under_school_age' ? $this->school_type : null,
+            'pay_school_fees' => $this->class != 'under_school_age' ? $this->pay_school_fees : null,
+            'fees_per_month' => $this->class != 'under_school_age' && $this->pay_school_fees == 1 ? $this->fees_per_month : null,
+            'health_status' => $this->health_status,
+            'disease_clarification' => $this->health_status == 'sick' ? $this->disease_clarification : null,
+            'with_disability' => $this->health_status == 'sick' ? $this->with_disability : null,
+            'kind_of_disability' => $this->health_status == 'sick' && $this->with_disability ? $this->kind_of_disability : null,
+            'governoate_id' => $this->governoate_id,
+            'city_id' => $this->city_id,
+            'address_details' => $this->address_details,
+            'authorized_contact_number' => $this->authorized_contact_number,
+            'backup_contact_number' => $this->backup_contact_number,
+            'whatsApp_number' => $this->whatsApp_number,
+        ];
+
+        $recoredCreated = $this->childService->childInfoSave($childData);
+
+        $this->childCreatedID = $recoredCreated->id;
+
+        if (!$recoredCreated) {
+            flash()->error(message: __('general.save_error_message'));
+        } else {
+            flash()->success(message: __('general.save_success_message'));
+            $this->wariningMessage = '';
+            $this->dispatch('scroll-to-top');
+        }
     }
 
-    // second step
-    public function secondStepSubmit()
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // parents info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    // parents info click
+    public function parentsInfoClick()
+    {
+        if ($this->childCreatedID == null) {
+            flash()->warning(message: __('children.add_child_before'));
+            $this->wariningMessage = __('children.add_child_before');
+        } else {
+            $this->currentStep = 2;
+        }
+    }
+
+    // parents info submit
+    public function parentsInfoSubmit()
     {
         $data = [
-            // family
-            'number_of_people_including_mother' => ['required'],
-            'male_number' => ['required', 'numeric'],
-            'female_number' => ['required', 'numeric'],
             // father
             'father_full_name_ar' => ['required', 'string'],
             'father_full_name_en' => ['required', 'string'],
@@ -219,7 +287,6 @@ class CreateChild extends Component
             $this->guardian_work_en = $this->mother_work_en;
             $this->guardian_address_ar = null;
             $this->guardian_address_en = null;
-
             $this->guardian_personal_id = $this->mother_personal_id;
             $this->guardian_relationship_with_the_child = 'mother';
             $this->guardian_birthday = null;
@@ -237,15 +304,290 @@ class CreateChild extends Component
             $this->guardian_work_en = null;
             $this->guardian_address_ar = null;
             $this->guardian_address_en = null;
-
             $this->guardian_personal_id = null;
             $this->guardian_relationship_with_the_child = null;
             $this->guardian_birthday = null;
             $this->why_not_the_mother_is_guardian = null;
         }
 
-        $this->currentStep = 3;
+        // data
+        $childFatherData = [
+            'child_id' => $this->childCreatedID,
+            'father_full_name' => ['ar' => $this->father_full_name_ar, 'en' => $this->father_full_name_en],
+            'father_first_name' => ['ar' => $this->father_first_name_ar, 'en' => $this->father_first_name_en],
+            'father_middle_name' => ['ar' => $this->father_middle_name_ar, 'en' => $this->father_middle_name_en],
+            'father_surname_name' => ['ar' => $this->father_surname_name_ar, 'en' => $this->father_surname_name_en],
+            'father_work' => ['ar' => $this->father_work_ar, 'en' => $this->father_work_en],
+            'father_personal_id' => $this->father_personal_id,
+            'father_date_of_death' => $this->father_date_of_death,
+            'father_respon_of_death' => $this->father_respon_of_death,
+        ];
+
+        $childMotherData = [
+            'child_id' => $this->childCreatedID,
+            'mother_full_name' => ['ar' => $this->mother_full_name_ar, 'en' => $this->mother_full_name_en],
+            'mother_first_name' => ['ar' => $this->mother_first_name_ar, 'en' => $this->mother_first_name_en],
+            'mother_middle_name' => ['ar' => $this->mother_middle_name_ar, 'en' => $this->mother_middle_name_en],
+            'mother_surname_name' => ['ar' => $this->mother_surname_name_ar, 'en' => $this->mother_surname_name_en],
+            'mother_work' => ['ar' => $this->mother_work_ar, 'en' => $this->mother_work_en],
+            'mother_personal_id' => $this->mother_personal_id,
+            'mother_date_of_death' => $this->mother_date_of_death,
+            'is_mother_alive' => $this->is_mother_alive,
+            'is_mother_the_guardian' => $this->is_mother_the_guardian,
+        ];
+
+        $recoredCreated = $this->childService->parentsInfoSave($this->childCreatedID, $childFatherData, $childMotherData);
+
+        if ($recoredCreated == 'child_not_found') {
+            flash()->error(message: __('children.child_not_found'));
+        } elseif ($recoredCreated == 'save_error') {
+            flash()->error(message: __('general.save_error_message'));
+        } elseif ($recoredCreated == 'save_success') {
+            flash()->success(message: __('general.save_success_message'));
+        }
     }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // family info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    // family info click
+    public function familyInfoClick()
+    {
+        if ($this->childCreatedID == null) {
+            flash()->warning(message: __('children.add_child_before'));
+            $this->wariningMessage = __('children.add_child_before');
+        } else {
+            $this->currentStep = 3;
+        }
+    }
+
+    // family info submit
+    public function familyInfoSubmit()
+    {
+        $data = [
+            'number_of_people_including_mother' => ['required'],
+            'male_number' => ['required', 'numeric'],
+            'female_number' => ['required', 'numeric'],
+        ];
+
+        $this->validate($data);
+
+        $childFamilyData = [
+            'child_id' => $this->childCreatedID,
+            'number_of_people_including_mother' => $this->number_of_people_including_mother,
+            'male_number' => $this->male_number,
+            'female_number' => $this->female_number,
+        ];
+
+        //child brother Member data
+        $childBrotherMemberData = [];
+        foreach ($this->bortherMembersItems as $index => $name) {
+            $childBrotherMemberData[] = [
+                'child_id' => $this->childCreatedID,
+                'member_name' => ['ar' => $this->bortherMembersItems[$index]['member_name_ar'], 'en' => $this->bortherMembersItems[$index]['member_name_en']] ?? null,
+                'member_age' => $this->bortherMembersItems[$index]['member_age'] ?? null,
+                'member_relation' => 'brother',
+            ];
+        }
+
+        //child sister Member data
+        $childSisterMemberData = [];
+        foreach ($this->sisterMembersItems as $index => $name) {
+            $childSisterMemberData[] = [
+                'child_id' => $this->childCreatedID,
+                'member_name' => ['ar' => $this->sisterMembersItems[$index]['member_name_ar'], 'en' => $this->sisterMembersItems[$index]['member_name_en']] ?? null,
+                'member_age' => $this->sisterMembersItems[$index]['member_age'] ?? null,
+                'member_relation' => 'sister',
+            ];
+        }
+
+        $recoredCreated = $this->childService->familyInfoSave($this->childCreatedID, $childFamilyData, $childBrotherMemberData, $childSisterMemberData);
+
+        if ($recoredCreated == 'child_not_found') {
+            flash()->error(message: __('children.child_not_found'));
+        } elseif ($recoredCreated == 'save_error') {
+            flash()->error(message: __('general.save_error_message'));
+        } elseif ($recoredCreated == 'save_success') {
+            flash()->success(message: __('general.save_success_message'));
+        }
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // guardian  info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    // guardian info click
+    public function guardianInfoClick()
+    {
+        if ($this->childCreatedID == null) {
+            flash()->warning(message: __('children.add_child_before'));
+        } else {
+            $this->currentStep = 4;
+        }
+    }
+
+    // guardian info submit
+    public function guardianInfoSubmit()
+    {
+        $data = [
+            'guardian_full_name_ar' => ['required', 'string'],
+            'guardian_full_name_en' => ['required', 'string'],
+            'guardian_first_name_ar' => ['required', 'string'],
+            'guardian_first_name_en' => ['required', 'string'],
+            'guardian_middle_name_ar' => ['required', 'string'],
+            'guardian_middle_name_en' => ['required', 'string'],
+            'guardian_surname_name_ar' => ['required', 'string'],
+            'guardian_surname_name_en' => ['required', 'string'],
+            'guardian_work_ar' => ['required', 'string'],
+            'guardian_work_en' => ['required', 'string'],
+            // 'guardian_address_ar' => ['required', 'string'],
+            // 'guardian_address_en' => ['required', 'string'],
+            'guardian_personal_id' => ['required', 'numeric', 'digits:9'],
+            'guardian_birthday' => ['required', 'date'],
+            'guardian_relationship_with_the_child' => ['required', 'in:mother,uncle,aunt,grandfather,grandmother,brother,sister,uncle2,aunt2'],
+        ];
+
+        if ($this->is_mother_the_guardian == 0) {
+            $data['why_not_the_mother_is_guardian'] = ['required', 'in:divorced,abandoned,sick,etc'];
+        }
+
+        $this->validate($data);
+
+        $childGuardianData = [
+            'child_id' => $this->childCreatedID,
+            'guardian_full_name' => ['ar' => $this->guardian_full_name_ar, 'en' => $this->guardian_full_name_en],
+            'guardian_first_name' => ['ar' => $this->guardian_first_name_ar, 'en' => $this->guardian_first_name_en],
+            'guardian_middle_name' => ['ar' => $this->guardian_middle_name_ar, 'en' => $this->guardian_middle_name_en],
+            'guardian_surname_name' => ['ar' => $this->guardian_surname_name_ar, 'en' => $this->guardian_surname_name_en],
+            'guardian_work' => ['ar' => $this->guardian_work_ar, 'en' => $this->guardian_work_en],
+            'guardian_address' => ['ar' => $this->guardian_address_ar, 'en' => $this->guardian_address_en],
+            'guardian_personal_id' => $this->guardian_personal_id,
+            'guardian_birthday' => $this->guardian_birthday,
+            'why_not_the_mother_is_guardian' => $this->is_mother_the_guardian == 1 ? null : $this->why_not_the_mother_is_guardian,
+            'guardian_relationship_with_the_child' => $this->guardian_relationship_with_the_child,
+        ];
+
+        $recoredCreated = $this->childService->guardianInfoSave($this->childCreatedID, $childGuardianData);
+
+        if ($recoredCreated == 'child_not_found') {
+            flash()->error(message: __('children.child_not_found'));
+        } elseif ($recoredCreated == 'save_error') {
+            flash()->error(message: __('general.save_error_message'));
+        } elseif ($recoredCreated == 'save_success') {
+            flash()->success(message: __('general.save_success_message'));
+        }
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // details  info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // details info Click
+    public function detailsInfoClick()
+    {
+        if ($this->childCreatedID == null) {
+            flash()->warning(message: __('children.add_child_before'));
+        } else {
+            $this->currentStep = 5;
+        }
+    }
+
+    // details info submit
+    public function detailsInfoSubmit()
+    {
+        $data = [
+            // 'health_problem_ar' => ['required', 'string'],
+            // 'economic_situation_ar' => ['required', 'string'],
+            // 'child_progress_ar' => ['required', 'string'],
+            // 'expenses_ar' => ['required', 'string'],
+            // 'sponsorship_funds_cover_ar' => ['required', 'string'],
+        ];
+
+        if (admin()->check()) {
+            // $data['health_problem_en'] = ['required', 'string'];
+            // $data['economic_situation_en'] = ['required', 'string'];
+            // $data['child_progress_en'] = ['required', 'string'];
+            // $data['expenses_en'] = ['required', 'string'];
+            // $data['sponsorship_funds_cover_en'] = ['required', 'string'];
+        }
+
+        // $this->validate($data);
+
+        $childDetailsData = [
+            'child_id' => $this->childCreatedID,
+            'health_problem' => ['ar' => $this->health_problem_ar ?? '', 'en' => $this->health_problem_en ?? ''],
+            'economic_situation' => ['ar' => $this->economic_situation_ar ?? '', 'en' => $this->economic_situation_en ?? ''],
+            'child_progress' => ['ar' => $this->child_progress_ar ?? '', 'en' => $this->child_progress_en ?? ''],
+            'expenses' => ['ar' => $this->expenses_ar ?? '', 'en' => $this->expenses_en ?? ''],
+            'sponsorship_funds_cover' => ['ar' => $this->sponsorship_funds_cover_ar ?? '', 'en' => $this->sponsorship_funds_cover_en ?? ''],
+        ];
+
+        $recoredCreated = $this->childService->detailsInfoSave($this->childCreatedID, $childDetailsData);
+
+        if ($recoredCreated == 'child_not_found') {
+            flash()->error(message: __('children.child_not_found'));
+        } elseif ($recoredCreated == 'save_error') {
+            flash()->error(message: __('general.save_error_message'));
+        } elseif ($recoredCreated == 'save_success') {
+            flash()->success(message: __('general.save_success_message'));
+        }
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // files info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    // files Click
+    public function filesClick()
+    {
+        if ($this->childCreatedID == null) {
+            flash()->warning(message: __('children.add_child_before'));
+        } else {
+            $this->currentStep = 6;
+        }
+    }
+
+    // files submit
+    public function filesSubmit()
+    {
+        // validation
+        $this->validate([
+            'picture_of_the_orphan_child' => ['required', 'mimes:png,jpg,jpeg'],
+            'orphan_child_birth_certificate' => ['required', 'mimes:png,jpg,jpeg'],
+            'father_death_certificate' => ['required', 'mimes:png,jpg,jpeg,gif'],
+            'guardian_personal_id_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
+            'child_activity_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
+            'child_longitudinal_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
+            'child_with_family_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
+        ]);
+
+        // data
+        $childFileData = [
+            'child_id' => $this->childCreatedID,
+            'picture_of_the_orphan_child' => $this->picture_of_the_orphan_child,
+            'orphan_child_birth_certificate' => $this->orphan_child_birth_certificate,
+            'father_death_certificate' => $this->father_death_certificate,
+            'guardian_personal_id_photo' => $this->guardian_personal_id_photo,
+            'child_activity_photo' => $this->child_activity_photo,
+            'child_longitudinal_photo' => $this->child_longitudinal_photo,
+            'child_with_family_photo' => $this->child_with_family_photo,
+        ];
+
+        $recoredCreated = $this->childService->filesInfoSave($this->childCreatedID, $childFileData);
+
+        if ($recoredCreated == 'child_not_found') {
+            flash()->error(message: __('children.child_not_found'));
+        } elseif ($recoredCreated == 'save_error') {
+            flash()->error(message: __('general.save_error_message'));
+        } elseif ($recoredCreated == 'save_success') {
+            flash()->success(message: __('general.save_success_message'));
+        }
+    }
+
+    // first step
+    public function firstStepSubmit() {}
+
+    // second step
+    public function secondStepSubmit() {}
 
     // third step
     public function thirdStepSubmit()
@@ -302,15 +644,6 @@ class CreateChild extends Component
 
     public function fifthStepSubmit()
     {
-        $this->validate([
-            'picture_of_the_orphan_child' => ['required', 'mimes:png,jpg,jpeg'],
-            'orphan_child_birth_certificate' => ['required', 'mimes:png,jpg,jpeg'],
-            'father_death_certificate' => ['required', 'mimes:png,jpg,jpeg,gif'],
-            'guardian_personal_id_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
-            'child_activity_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
-            'child_longitudinal_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
-            'child_with_family_photo' => ['required', 'mimes:png,jpg,jpeg,gif'],
-        ]);
         $this->currentStep = 6;
     }
     // back setp
@@ -321,62 +654,10 @@ class CreateChild extends Component
 
     public function submitForm()
     {
-        $childData = [
-            'first_name' => ['ar' => $this->first_name_ar, 'en' => $this->first_name_en],
-            'father_name' => ['ar' => $this->father_name_ar, 'en' => $this->father_name_en],
-            'grand_father_name' => ['ar' => $this->grand_father_name_ar, 'en' => $this->grand_father_name_en],
-            'family_name' => ['ar' => $this->family_name_ar, 'en' => $this->family_name_en],
-            'password' => $this->password,
-            'personal_id' => $this->personal_id,
-            'birthday' => $this->birthday,
-            'classification' => $this->classification,
-            'gender' => $this->gender,
-            'class' => $this->class,
-            'school_name' => $this->class != 'under_school_age' ? $this->school_name : null,
-            'school_address' => $this->class != 'under_school_age' ? $this->school_address : null,
-            'school_tel' => $this->class != 'under_school_age' ? $this->school_tel : null,
-            'school_type' => $this->class != 'under_school_age' ? $this->school_type : null,
-            'pay_school_fees' => $this->class != 'under_school_age' ? $this->pay_school_fees : null,
-            'fees_per_month' => $this->class != 'under_school_age' && $this->pay_school_fees == 1 ? $this->fees_per_month : null,
-            'health_status' => $this->health_status,
-            'disease_clarification' => $this->health_status == 'sick' ? $this->disease_clarification : null,
-            'with_disability' => $this->health_status == 'sick' ? $this->with_disability : null,
-            'kind_of_disability' => $this->health_status == 'sick' && $this->with_disability ? $this->kind_of_disability : null,
-            'governoate_id' => $this->governoate_id,
-            'city_id' => $this->city_id,
-            'address_details' => $this->address_details,
-            'authorized_contact_number' => $this->authorized_contact_number,
-            'backup_contact_number' => $this->backup_contact_number,
-            'whatsApp_number' => $this->whatsApp_number,
-        ];
-
         $childFamilyData = [
             'number_of_people_including_mother' => $this->number_of_people_including_mother,
             'male_number' => $this->male_number,
             'female_number' => $this->female_number,
-        ];
-
-        $childFatherData = [
-            'father_full_name' => ['ar' => $this->father_full_name_ar, 'en' => $this->father_full_name_en],
-            'father_first_name' => ['ar' => $this->father_first_name_ar, 'en' => $this->father_first_name_en],
-            'father_middle_name' => ['ar' => $this->father_middle_name_ar, 'en' => $this->father_middle_name_en],
-            'father_surname_name' => ['ar' => $this->father_surname_name_ar, 'en' => $this->father_surname_name_en],
-            'father_work' => ['ar' => $this->father_work_ar, 'en' => $this->father_work_en],
-            'father_personal_id' => $this->father_personal_id,
-            'father_date_of_death' => $this->father_date_of_death,
-            'father_respon_of_death' => $this->father_respon_of_death,
-        ];
-
-        $childMotherData = [
-            'mother_full_name' => ['ar' => $this->mother_full_name_ar, 'en' => $this->mother_full_name_en],
-            'mother_first_name' => ['ar' => $this->mother_first_name_ar, 'en' => $this->mother_first_name_en],
-            'mother_middle_name' => ['ar' => $this->mother_middle_name_ar, 'en' => $this->mother_middle_name_en],
-            'mother_surname_name' => ['ar' => $this->mother_surname_name_ar, 'en' => $this->mother_surname_name_en],
-            'mother_work' => ['ar' => $this->mother_work_ar, 'en' => $this->mother_work_en],
-            'mother_personal_id' => $this->mother_personal_id,
-            'mother_date_of_death' => $this->mother_date_of_death,
-            'is_mother_alive' => $this->is_mother_alive,
-            'is_mother_the_guardian' => $this->is_mother_the_guardian,
         ];
 
         $childGuaridanData = [
@@ -390,16 +671,6 @@ class CreateChild extends Component
             'guardian_birthday' => $this->guardian_birthday,
             'why_not_the_mother_is_guardian' => $this->is_mother_the_guardian == 1 ? null : $this->why_not_the_mother_is_guardian,
             'guardian_relationship_with_the_child' => $this->guardian_relationship_with_the_child,
-        ];
-
-        $childFileData = [
-            'picture_of_the_orphan_child' => $this->picture_of_the_orphan_child,
-            'orphan_child_birth_certificate' => $this->orphan_child_birth_certificate,
-            'father_death_certificate' => $this->father_death_certificate,
-            'guardian_personal_id_photo' => $this->guardian_personal_id_photo,
-            'child_activity_photo' => $this->child_activity_photo,
-            'child_longitudinal_photo' => $this->child_longitudinal_photo,
-            'child_with_family_photo' => $this->child_with_family_photo,
         ];
 
         $childDetailsData = [

@@ -7,10 +7,10 @@ return [
     'no_photo' => 'لا يوجد صورة',
     'no_image' => 'لا يوجد صورة',
     'no_logo' => 'لا يوجد شعار',
-    'loading'=>'تحميل ...',
-    'view'=>'عرض',
+    'loading' => 'تحميل ...',
+    'view' => 'عرض',
 
-    'link'=>'الرابط',
+    'link' => 'الرابط',
     'first' => 'الأول',
     'prev' => 'السابق',
     'next' => 'التالي',
@@ -51,7 +51,7 @@ return [
     'send' => 'إرسال',
     'write_here' => 'اكتب هنا ....',
     'filters' => 'الفلترة حسب المعايير',
-    'full_screen'=>'عرض شاشة كاملة',
+    'full_screen' => 'عرض شاشة كاملة',
 
     'not_found' => 'غير متاحة',
     'example' => 'مثال',
@@ -105,6 +105,9 @@ return [
     'restore_error_message' => 'لم تتم عملية الاسترجاع',
     'delete_image_success_message' => 'تمت عملية حذف الصورة بنجاح',
     'delete_image_error_message' => 'لم تتم عملية حذف الصورة',
+
+    'save_success_message' => 'تمت عملية الحفظ بنجاح',
+    'save_error_message' => 'لم تتم عملية الحفظ',
 
     'upload_success_message' => 'تمت عملية الرفع بنجاح',
     'upload_error_message' => 'لم تتم عملية الرفع ',

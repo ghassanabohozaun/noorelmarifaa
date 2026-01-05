@@ -24,20 +24,12 @@ class ChildRepository
     {
         return Child::where('personal_id', $personal_id)->firstOrFail();
     }
+
     // get child with relation
     public function getChildWithRelations($id)
     {
         return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])->find($id);
     }
-
-    // get child with relation
-    // public function getChildWithRelations2()
-    // {
-    //     return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])
-    //         ->latest()
-    //         ->limit(10)
-    //         ->get();
-    // }
 
     // get children by pagination
     public function getChildrenByPagination()
@@ -63,7 +55,6 @@ class ChildRepository
             ->when(!empty(request()->family_name_ar), function ($query) {
                 $query->where('family_name->ar', 'like', '%' . request()->family_name_ar . '%');
             })
-
             ->when(!empty(request()->first_name_en), function ($query) {
                 $query->where('first_name->en', 'like', '%' . request()->first_name_en . '%');
             })
@@ -76,7 +67,6 @@ class ChildRepository
             ->when(!empty(request()->family_name_en), function ($query) {
                 $query->where('family_name->en', 'like', '%' . request()->family_name_en . '%');
             })
-
             ->when(!empty(request()->personal_id), function ($query) {
                 $query->where('personal_id', request()->personal_id);
             })
@@ -98,7 +88,6 @@ class ChildRepository
             ->when(!empty(request()->guardian_personal_id), function ($query) {
                 $query->whereRelation('childGuardian', 'guardian_personal_id', request()->guardian_personal_id);
             })
-
             ->latest()
             ->paginate(10)
             ->withQueryString();
@@ -111,6 +100,7 @@ class ChildRepository
             ->latest()
             ->paginate(10);
     }
+
     // create child
     public function createChild($data)
     {
@@ -139,6 +129,12 @@ class ChildRepository
     // child family
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // create get one child family by child id
+    public function getOnechildFamilyByChildID($child_id)
+    {
+        return ChildFamily::where('child_id', $child_id)->first();
+    }
+
     // create child family
     public function createChildFamily($childFamilyData)
     {
@@ -155,6 +151,12 @@ class ChildRepository
     // child father
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // get one child father by chid id
+    public function getOneChildFatherByChildID($child_id)
+    {
+        return ChildFather::where('child_id', $child_id)->first();
+    }
+
     // create child father
     public function createChildFather($childFatherData)
     {
@@ -170,6 +172,11 @@ class ChildRepository
     // child mother
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // get one child mother by child id
+    public function getOneChildMotherByChildID($child_id)
+    {
+        return ChildMother::where('child_id', $child_id)->first();
+    }
     //  create child mother
     public function createChildMother($childMotherData)
     {
@@ -186,6 +193,12 @@ class ChildRepository
     // child guardian
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    // get one child guardian by child id
+    public function getOneChildGuardianByChildID($child_id)
+    {
+        return ChildGuardian::where('child_id', $child_id)->first();
+    }
+
     // create child guardian
     public function createChildGuardian($childGuaridanData)
     {
@@ -199,8 +212,14 @@ class ChildRepository
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // child guardian
+    // child files
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // get one child files by child id
+    public function getOneChildFilesByChildID($child_id)
+    {
+        return ChildFile::where('child_id', $child_id)->first();
+    }
 
     // create child Files
     public function createChildFiles($childFileData)
@@ -213,9 +232,6 @@ class ChildRepository
     {
         return $myChild->childFile->update($childFileData);
     }
-
-    // destroy child file
-    public function destroyChildFiles($myChild) {}
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // child family members
@@ -242,6 +258,12 @@ class ChildRepository
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // child details
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // get one child details by child id
+    public function getOneChildDetailsByChildID($child_id)
+    {
+        return ChildDetail::where('child_id', $child_id)->first();
+    }
 
     // create child details
     public function createChildDetails($childDetailsData)

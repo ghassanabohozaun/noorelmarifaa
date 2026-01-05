@@ -1,6 +1,4 @@
-<h4>{!! __('children.child_details') !!}</h4>
-<hr>
-<div class="inputs_div">
+<div class="inputs_div mt-1">
 
     <div class="row mt-1">
         <!-- begin: input -->
@@ -181,18 +179,9 @@
 <!-- begin: button -->
 <div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!}">
     <div class="col-md-12">
-
-        <button type="button" wire:click ="backStep(3)" class="btn btn-info btn-glow">
-            {!! __('children.back') !!}
-            <span wire:loading wire:target="backStep(3)">
-                <i class="la la-refresh spinner"></i>
-            </span>
-        </button>
-
-
-        <button type="button" wire:click="fourthStepSubmit" class="btn btn-primary btn-glow">
-            {!! __('children.next') !!}
-            <span wire:loading wire:target="fourthStepSubmit">
+        <button type="button" wire:click="detailsInfoSubmit" class="btn btn-primary btn-glow">
+            {!! __('children.save') !!}
+            <span wire:loading wire:target="detailsInfoSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

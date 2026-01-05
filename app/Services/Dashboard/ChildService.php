@@ -7,7 +7,6 @@ use App\Utils\ImageManagerUtils;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Yajra\DataTables\Facades\DataTables;
 class ChildService
 {
     protected $childRepository, $imageManagerUtils;
@@ -66,196 +65,223 @@ class ChildService
         return $this->childRepository->getChildren($request);
     }
 
-    // create child
-    public function createChild($childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData, $childBrotherMemberData, $childSisterMemberData, $childDetailsData)
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //  child info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    public function childInfoSave($childData)
     {
-        try {
-            DB::beginTransaction();
+        $child = $this->childRepository->createChild($childData);
+        if (!$child) {
+            return false;
+        }
+        return $child;
+    }
 
-            // child
-            $child = $this->childRepository->createChild($childData);
-            if (!$child) {
-                return false;
-            }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //  parents info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    public function parentsInfoSave($childID, $childFatherData, $childMotherData)
+    {
+        $child = self::getChild($childID);
 
-            // child family
-            $childFamilyData['child_id'] = $child->id;
-            $childFamily = $this->childRepository->createChildFamily($childFamilyData);
-            if (!$childFamily) {
-                return false;
-            }
+        if (!$child) {
+            return 'child_not_found';
+        }
 
-            // child father
-            $childFatherData['child_id'] = $child->id;
+        //~~~ child father ~~~//
+        $childFather = $this->childRepository->getOneChildFatherByChildID($childID);
+
+        if (!$childFather) {
+            // store
             $childFather = $this->childRepository->createChildFather($childFatherData);
             if (!$childFather) {
-                return false;
+                return 'save_error';
             }
+        } else {
+            // update
+            $childFather = $this->childRepository->updateChildFather($child, $childFatherData);
+            if (!$childFather) {
+                return 'save_error';
+            }
+        }
 
-            // child mother
-            $childMotherData['child_id'] = $child->id;
+        //~~~ child mother ~~~//
+        $childMother = $this->childRepository->getOneChildMotherByChildID($childID);
+
+        if (!$childMother) {
+            //store
             $childMother = $this->childRepository->createChildMother($childMotherData);
             if (!$childMother) {
-                return false;
+                return 'save_error';
             }
-
-            // child guardian
-            $childGuaridanData['child_id'] = $child->id;
-            $childGuaridan = $this->childRepository->createChildGuardian($childGuaridanData);
-            if (!$childGuaridan) {
-                return false;
+        } else {
+            //update
+            $childMother = $this->childRepository->updateChildMother($child, $childMotherData);
+            if (!$childMother) {
+                return 'save_error';
             }
+        }
 
+        return 'save_success';
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //  family  info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    public function familyInfoSave($childID, $childFamilyData, $childBrotherMemberData, $childSisterMemberData)
+    {
+        $child = self::getChild($childID);
+        if (!$child) {
+            return 'child_not_found';
+        }
+
+        //~~~ child family ~~~//
+
+        $childFamily = $this->childRepository->getOnechildFamilyByChildID($childID);
+        if (!$childFamily) {
+            //store
+            $childFamily = $this->childRepository->createChildFamily($childFamilyData);
+            if (!$childFamily) {
+                return 'save_error';
+            }
+        } else {
+            //update
+            $childFamily = $this->childRepository->updateChildFamily($child, $childFamilyData);
+            if (!$childFamily) {
+                return 'save_error';
+            }
+        }
+
+        //~~~ child members ~~~//
+
+        // delete all child family members
+        $this->childRepository->deleteAllFChildFamilyMemebers($child);
+
+        // child brother members data
+        foreach ($childBrotherMemberData as $memberItem) {
+            if ($memberItem['member_name']['ar'] != '') {
+                $member = $this->childRepository->createChildFamilyMember($memberItem);
+                if (!$member) {
+                    return 'save_error';
+                }
+            }
+        }
+
+        // child sister members data
+        foreach ($childSisterMemberData as $memberItem) {
+            if ($memberItem['member_name']['ar'] != '') {
+                $member = $this->childRepository->createChildFamilyMember($memberItem);
+                if (!$member) {
+                    return 'save_error';
+                }
+            }
+        }
+
+        return 'save_success';
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //  guardian  info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    public function guardianInfoSave($childID, $childGuardianData)
+    {
+        $child = self::getChild($childID);
+        if (!$child) {
+            return 'child_not_found';
+        }
+
+        $childGuardian = $this->childRepository->getOneChildGuardianByChildID($childID);
+
+        if (!$childGuardian) {
+            // store
+            $childGuardian = $this->childRepository->createChildGuardian($childGuardianData);
+            if (!$childGuardian) {
+                return 'save_error';
+            }
+        } else {
+            // update
+            $childGuardian = $this->childRepository->updateChildGuardian($child, $childGuardianData);
+            if (!$childGuardian) {
+                return 'save_error';
+            }
+        }
+
+        return 'save_success';
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //  details info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    public function detailsInfoSave($childID, $childDetailsData)
+    {
+        $child = self::getChild($childID);
+        if (!$child) {
+            return 'child_not_found';
+        }
+
+        $childDetails = $this->childRepository->getOneChildDetailsByChildID($childID);
+
+        if (!$childDetails) {
+            // store
+            $childDetails = $this->childRepository->createChildDetails($childDetailsData);
+            if (!$childDetails) {
+                return 'save_error';
+            }
+        } else {
+            // update
+            $childDetails = $this->childRepository->updateChildDetails($child, $childDetailsData);
+            if (!$childDetails) {
+                return 'save_error';
+            }
+        }
+
+        return 'save_success';
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    //  files info
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    public function filesInfoSave($childID, $childFileData)
+    {
+        $child = self::getChild($childID);
+        if (!$child) {
+            return 'child_not_found';
+        }
+
+        $childfile = $this->childRepository->getOneChildFilesByChildID($childID);
+        if (!$childfile) {
+            // store
             $childFileData['picture_of_the_orphan_child'] = $this->createChildFile('picture_of_the_orphan_child', $childFileData);
             $childFileData['orphan_child_birth_certificate'] = $this->createChildFile('orphan_child_birth_certificate', $childFileData);
             $childFileData['father_death_certificate'] = $this->createChildFile('father_death_certificate', $childFileData);
             $childFileData['guardian_personal_id_photo'] = $this->createChildFile('guardian_personal_id_photo', $childFileData);
-
             $childFileData['child_activity_photo'] = $this->createChildFile('child_activity_photo', $childFileData);
             $childFileData['child_longitudinal_photo'] = $this->createChildFile('child_longitudinal_photo', $childFileData);
             $childFileData['child_with_family_photo'] = $this->createChildFile('child_with_family_photo', $childFileData);
 
-            $childFileData['child_id'] = $child->id;
             $childFile = $this->childRepository->createChildFiles($childFileData);
             if (!$childFile) {
-                return false;
+                return 'save_error';
             }
+        } else {
+            // update
+            $childFileData['picture_of_the_orphan_child'] = $this->updateChildFile('picture_of_the_orphan_child', $child, $childFileData);
+            $childFileData['orphan_child_birth_certificate'] = $this->updateChildFile('orphan_child_birth_certificate', $child, $childFileData);
+            $childFileData['father_death_certificate'] = $this->updateChildFile('father_death_certificate', $child, $childFileData);
+            $childFileData['guardian_personal_id_photo'] = $this->updateChildFile('guardian_personal_id_photo', $child, $childFileData);
+            $childFileData['child_activity_photo'] = $this->updateChildFile('child_activity_photo', $child, $childFileData);
+            $childFileData['child_longitudinal_photo'] = $this->updateChildFile('child_longitudinal_photo', $child, $childFileData);
+            $childFileData['child_with_family_photo'] = $this->updateChildFile('child_with_family_photo', $child, $childFileData);
 
-            // child brother members data
-            foreach ($childBrotherMemberData as $memberItem) {
-                if ($memberItem['member_name']['ar'] != '') {
-                    $memberItem['child_id'] = $child->id;
-                    $member = $this->childRepository->createChildFamilyMember($memberItem);
-                    if (!$member) {
-                        return false;
-                    }
-                }
-            }
-
-            // child sister members data
-            foreach ($childSisterMemberData as $memberItem) {
-                if ($memberItem['member_name']['ar'] != '') {
-                    $memberItem['child_id'] = $child->id;
-                    $member = $this->childRepository->createChildFamilyMember($memberItem);
-                    if (!$member) {
-                        return false;
-                    }
-                }
-            }
-
-            // child details
-            $childDetailsData['child_id'] = $child->id;
-            $childDetails = $this->childRepository->createChildDetails($childDetailsData);
-            if (!$childDetails) {
-                return false;
-            }
-
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-            DB::rollBack();
-            Log::error('Error Creating Child  : ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
-            return false;
-        }
-    }
-
-    // update child
-    public function updateChild($ChildID, $myChild, $childData, $childFamilyData, $childFatherData, $childMotherData, $childGuaridanData, $childFileData, $childBrotherMemberData,$childSisterMemberData, $childDetailsData)
-    {
-        try {
-            DB::beginTransaction();
-
-            // child
-            $child = $this->childRepository->updateChild($myChild, $childData);
-            if (!$child) {
-                return false;
-            }
-
-            // child family
-            $childFamilyData['child_id'] = $ChildID;
-            $childFamily = $this->childRepository->updateChildFamily($myChild, $childFamilyData);
-            if (!$childFamily) {
-                return false;
-            }
-
-            // child father
-            $childFatherData['child_id'] = $ChildID;
-            $childFather = $this->childRepository->updateChildFather($myChild, $childFatherData);
-            if (!$childFather) {
-                return false;
-            }
-
-            // child mother
-            $childMotherData['child_id'] = $ChildID;
-            $childMother = $this->childRepository->updateChildMother($myChild, $childMotherData);
-            if (!$childMother) {
-                return false;
-            }
-
-            // child guardian
-            $childGuaridanData['child_id'] = $ChildID;
-            $childGuaridan = $this->childRepository->updateChildGuardian($myChild, $childGuaridanData);
-            if (!$childGuaridan) {
-                return false;
-            }
-
-            // child files
-            $childFileData['picture_of_the_orphan_child'] = $this->updateChildFile('picture_of_the_orphan_child', $myChild, $childFileData);
-            $childFileData['orphan_child_birth_certificate'] = $this->updateChildFile('orphan_child_birth_certificate', $myChild, $childFileData);
-            $childFileData['father_death_certificate'] = $this->updateChildFile('father_death_certificate', $myChild, $childFileData);
-            $childFileData['guardian_personal_id_photo'] = $this->updateChildFile('guardian_personal_id_photo', $myChild, $childFileData);
-
-            $childFileData['child_activity_photo'] = $this->updateChildFile('child_activity_photo', $myChild, $childFileData);
-            $childFileData['child_longitudinal_photo'] = $this->updateChildFile('child_longitudinal_photo', $myChild, $childFileData);
-            $childFileData['child_with_family_photo'] = $this->updateChildFile('child_with_family_photo', $myChild, $childFileData);
-
-            $childFileData['child_id'] = $ChildID;
-            $childFile = $this->childRepository->updateChildFiles($myChild, $childFileData);
+            $childFile = $this->childRepository->updateChildFiles($child, $childFileData);
             if (!$childFile) {
-                return false;
+                return 'save_error';
             }
-
-            // delete all child family members
-            $this->childRepository->deleteAllFChildFamilyMemebers($myChild);
-
-            // child brother members data
-            foreach ($childBrotherMemberData as $memberItem) {
-                if ($memberItem['member_name']['ar'] != '') {
-                    $memberItem['child_id'] = $ChildID;
-                    $member = $this->childRepository->createChildFamilyMember($memberItem);
-                    if (!$member) {
-                        return false;
-                    }
-                }
-            }
-
-             // child sister members data
-            foreach ($childSisterMemberData as $memberItem) {
-                if ($memberItem['member_name']['ar'] != '') {
-                    $memberItem['child_id'] = $ChildID;
-                    $member = $this->childRepository->createChildFamilyMember($memberItem);
-                    if (!$member) {
-                        return false;
-                    }
-                }
-            }
-
-            // child details
-            $childDetailsData['child_id'] = $ChildID;
-            $childDetails = $this->childRepository->updateChildDetails($myChild, $childDetailsData);
-            if (!$childDetails) {
-                return false;
-            }
-
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e->getMessage());
-            Log::error('Error Creating Child  : ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
-            return false;
         }
+        return 'save_success';
     }
 
     // destory child
@@ -266,9 +292,17 @@ class ChildService
             return false;
         }
 
-        $this->removeChildFile('child_activity_photo', $child);
-        $this->removeChildFile('child_longitudinal_photo', $child);
-        $this->removeChildFile('child_with_family_photo', $child);
+        // remove child files
+        $childfile = $this->childRepository->getOneChildFilesByChildID($id);
+        if ($childfile) {
+            $this->removeChildFile($childfile->picture_of_the_orphan_child);
+            $this->removeChildFile($childfile->orphan_child_birth_certificate);
+            $this->removeChildFile($childfile->father_death_certificate);
+            $this->removeChildFile($childfile->guardian_personal_id_photo);
+            $this->removeChildFile($childfile->child_activity_photo);
+            $this->removeChildFile($childfile->child_longitudinal_photo);
+            $this->removeChildFile($childfile->child_with_family_photo);
+        }
 
         $child = $this->childRepository->destoryChild($child);
 
@@ -305,29 +339,29 @@ class ChildService
     }
 
     // upload child file
-    public function updateChildFile($file, $myChild, $childFileData)
+    public function updateChildFile($file, $child, $childFileData)
     {
         // child files
         if (array_key_exists($file, $childFileData) && $childFileData[$file] != null) {
             // remove old photo
-            if ($myChild->childFile->$file != null) {
-                $this->imageManagerUtils->removeImageFromLocal($myChild->childFile->$file, 'children');
+            if ($child->childFile->$file != null) {
+                $this->imageManagerUtils->removeImageFromLocal($child->childFile->$file, 'children');
             }
             // upload new photo
             $file_name = $this->imageManagerUtils->saveResizeImage($childFileData[$file], 'children', 1000, 800);
 
             return $file_name;
         } else {
-            $file_name = $myChild->childFile->$file;
+            $file_name = $child->childFile->$file;
             return $file_name;
         }
     }
 
     // remove child file
-    public function removeChildFile($file, $child)
+    public function removeChildFile($file)
     {
-        if ($child->childFile->$file != null) {
-            $this->imageManagerUtils->removeImageFromLocal($child->childFile->$file, 'children');
+        if ($file != null) {
+            $this->imageManagerUtils->removeImageFromLocal($file, 'children');
         }
     }
 }
