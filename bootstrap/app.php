@@ -27,6 +27,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
             // child
             Route::middleware('web')->group(base_path('routes/child.php'));
+
+            // sponser
+            Route::middleware('web')->group(base_path('routes/sponser.php'));
+
+
         },
     )
     ->withMiddleware(function (Middleware $middleware) {

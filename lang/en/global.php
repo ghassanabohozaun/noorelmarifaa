@@ -10,5 +10,6 @@ return [
     'sponsershipOrganizations' => 'Sponsership Organizations Management',
     'sponsershipTypes' => 'Sponsership Types Management',
     'website' => 'Website Management',
-    'reports' => 'Reports Managments',
+    'reports' => 'Reports Managment',
+    'sponsers'=>'Sponsers Managment',
 ];
