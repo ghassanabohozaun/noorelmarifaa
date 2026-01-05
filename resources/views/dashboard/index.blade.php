@@ -209,7 +209,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">#</th>
-                                                                <th scope="col">{!! __('children.picture_of_the_orphan_child') !!}</th>
+                                                                {{-- <th scope="col">{!! __('children.picture_of_the_orphan_child') !!}</th> --}}
                                                                 <th scope="col">{!! __('children.full_name') !!}</th>
                                                                 <th scope="col">{!! __('children.personal_id') !!}</th>
                                                                 <th scope="col">{!! __('children.birthday') !!}</th>
@@ -225,7 +225,7 @@
                                                                     <td class="text-center" style="vertical-align:middle">
                                                                         {!! $loop->iteration !!}
                                                                     </td>
-                                                                    <td class="text-center" style="vertical-align:middle">
+                                                                    {{-- <td class="text-center" style="vertical-align:middle">
                                                                         @if ($child->childFile->picture_of_the_orphan_child)
                                                                             <img src="{{ asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) }}"
                                                                                 class="img-fluid img-thumbnail table-image" />
@@ -233,7 +233,7 @@
                                                                             <img src="{{ asset('adminBoard/images/images-empty.png/') }}"
                                                                                 class="img-fluid img-thumbnail table-image " />
                                                                         @endif
-                                                                    </td>
+                                                                    </td> --}}
                                                                     <td class="text-center" style="vertical-align:middle">
                                                                         {!! $child->childFullName() !!}
                                                                     </td>
