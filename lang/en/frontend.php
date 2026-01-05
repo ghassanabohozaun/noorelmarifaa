@@ -93,6 +93,30 @@ return [
     'health_program_details' => 'This program aims to provide health care services to the local community, early detection of speech & hearing problems during the early childhood stage in kindergartens and primary school through the Speech and Hearing therapy Clinic, in addition to Palestine Health Center, which provides health services at very low prices commensurate with the economic situation of the local community. Followed by laboratory medicine services.',
     'women_and_youth_program' => 'Women and Youth Program',
     'women_and_youth_program_details' => 'It aims to build youth and women capacities, and empower them economically, cognitively and socially to contribute in the creation of youth energies capable of contributing to the rebuilding process of the society and building a better tomorrow for Palestinians.',
+
+
+    'program_title_1' => 'Student & Quality Education',
+    'program_details_1' => 'Supporting education through “Palestine Al-Ghad School” and learning improvement programs, including educational supplies and individualized follow-up.',
+
+    'program_title_2' => 'Inclusive Education & Protection',
+    'program_details_2' => 'Creating safe, inclusive learning environments for children with disabilities and learning difficulties, promoting non-discrimination and protective practices.',
+
+    'program_title_3' => 'Psychosocial Support & Counseling',
+    'program_details_3' => 'Individual and group PSS sessions, educational and family counseling, and awareness activities to cope with stress and trauma and improve wellbeing/behavior.',
+
+    'program_title_4' => 'Sponsorships & Social Case Management',
+    'program_details_4' => 'Student sponsorships to prevent dropout; structured social assessment and family database; medical screening and referrals where needed.',
+
+    'program_title_5' => 'Protection for Marginalized Groups (Orphans & Women)',
+    'program_details_5' => 'Orphan sponsorships via “Aman Center” and partner coordination for regular cash support; support to survivors of violence through counseling, emergency assistance, and safe referrals.',
+
+    'program_title_6' => 'Humanitarian Relief & Emergency Response',
+    'program_details_6' => 'Seasonal assistance (Ramadan, Eid al-Adha) and emergency response (conflict and winterization) based on needs assessments.',
+
+    'program_title_7' => 'Safe Water & Health',
+    'program_details_7' => 'Safe drinking water through Noor Al-Ma’rifa Desalination Station and health support via “Palestine Health Center” (basic services, screenings, awareness, and referrals).',
+
+
     'our_latest' => 'Our Latest',
     'news' => 'News',
     'support' => 'Support',

@@ -84,12 +84,12 @@
                                         <span class="icon icon-plus fa fa-plus"></span>
                                         <span class="icon icon-minus fa fa-minus"></span>
                                     </div>
-                                    {!! trans('frontend.educational_program') !!}
+                                    {!! trans('frontend.program_title_1') !!}
                                 </div>
                                 <div class="acc-content current">
                                     <div class="content">
                                         <div class="text my_lead">
-                                            {!! trans('frontend.educational_program_details') !!}
+                                            {!! trans('frontend.program_details_1') !!}
                                         </div>
                                     </div>
                                 </div>
@@ -102,12 +102,12 @@
                                         <span class="icon icon-plus fa fa-plus"></span>
                                         <span class="icon icon-minus fa fa-minus"></span>
                                     </div>
-                                    {!! trans('frontend.relief_program') !!}
+                                    {!! trans('frontend.program_title_2') !!}
                                 </div>
                                 <div class="acc-content">
                                     <div class="content">
                                         <div class="text my_lead">
-                                            {!! trans('frontend.relief_program_details') !!}
+                                            {!! trans('frontend.program_details_2') !!}
                                         </div>
                                     </div>
                                 </div>
@@ -119,12 +119,12 @@
                                     <div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span>
                                         <span class="icon icon-minus fa fa-minus"></span>
                                     </div>
-                                    {!! trans('frontend.health_program') !!}
+                                    {!! trans('frontend.program_title_3') !!}
                                 </div>
                                 <div class="acc-content">
                                     <div class="content">
                                         <div class="text my_lead">
-                                            {!! trans('frontend.health_program_details') !!}
+                                            {!! trans('frontend.program_details_3') !!}
                                         </div>
                                     </div>
                                 </div>
@@ -136,16 +136,67 @@
                                     <div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span>
                                         <span class="icon icon-minus fa fa-minus"></span>
                                     </div>
-                                    {!! trans('frontend.women_and_youth_program') !!}
+                                    {!! trans('frontend.program_title_4') !!}
                                 </div>
                                 <div class="acc-content">
                                     <div class="content">
                                         <div class="text my_lead">
-                                            {!! trans('frontend.women_and_youth_program_details') !!}
+                                            {!! trans('frontend.program_details_4') !!}
                                         </div>
                                     </div>
                                 </div>
                             </li>
+
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">
+                                    <div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span>
+                                        <span class="icon icon-minus fa fa-minus"></span>
+                                    </div>
+                                    {!! trans('frontend.program_title_5') !!}
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text my_lead">
+                                            {!! trans('frontend.program_details_5') !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">
+                                    <div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span>
+                                        <span class="icon icon-minus fa fa-minus"></span>
+                                    </div>
+                                    {!! trans('frontend.program_title_6') !!}
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text my_lead">
+                                            {!! trans('frontend.program_details_6') !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--Block-->
+                            <li class="accordion block">
+                                <div class="acc-btn">
+                                    <div class="icon-outer"><span class="icon icon-plus fa fa-plus"></span>
+                                        <span class="icon icon-minus fa fa-minus"></span>
+                                    </div>
+                                    {!! trans('frontend.program_title_7') !!}
+                                </div>
+                                <div class="acc-content">
+                                    <div class="content">
+                                        <div class="text my_lead">
+                                            {!! trans('frontend.program_details_7') !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
 
                         </ul>
 
