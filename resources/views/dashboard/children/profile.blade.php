@@ -105,7 +105,7 @@
                                             <!-- begin: basic info div -->
                                             <div class="row">
                                                 <div class="col-lg-12">
-
+                                                    {{--
                                                     @if ($child->childFile->picture_of_the_orphan_child)
                                                         <div class="media mt-2 mx-2">
                                                             <div class="media-left pr-1">
@@ -126,7 +126,7 @@
 
                                                             </div>
                                                         </div>
-                                                    @endif
+                                                    @endif --}}
 
                                                     @include('dashboard.children.profile.tabs')
 
