@@ -22,7 +22,7 @@ class ChildRepository
     // get child by personal id
     public function getChildByPersonalID($personal_id)
     {
-        return Child::where('personal_id', $personal_id)->firstOrFail();
+        return Child::where('personal_id', $personal_id)->first();
     }
 
     // get child with relation

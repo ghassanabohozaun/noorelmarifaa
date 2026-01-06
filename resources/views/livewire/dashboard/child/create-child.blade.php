@@ -2,10 +2,10 @@
     @csrf
     <div class="form-body">
 
-        @if (!empty($wariningMessage))
+        @if (!empty($statusAlert))
             <div class="container-fluid mt-1 mb-1 ">
-                <div class="alert alert-warning">
-                    {!! $wariningMessage !!}
+                <div class="alert {!! $statusAlert['type'] !!}">
+                    {!! $statusAlert['message'] !!}
                 </div>
             </div>
         @endif
@@ -55,10 +55,6 @@
             </div>
 
         </div>
-
-
-
-
 
 
     </div>

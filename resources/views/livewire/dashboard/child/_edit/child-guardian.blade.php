@@ -1,8 +1,4 @@
-<h4>{!! __('children.guardian_info') !!}</h4>
-<hr>
-
-
-<div class="inputs_div">
+<div class="inputs_div mt-1">
 
     <!-- begin: guardian_full_name_ar -->
     <div class="row">
@@ -152,8 +148,8 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="guardian_personal_id">{!! __('children.guardian_personal_id') !!}</label>
-                <input type="text" wire:model.live="guardian_personal_id" class="form-control" autocomplete="off"
-                    {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_personal_id') !!}"
+                <input type="text" wire:model.live="guardian_personal_id" class="form-control" maxlength="9"
+                    autocomplete="off" {!! $is_mother_the_guardian == 1 ? 'disabled' : '' !!} placeholder="{!! __('children.enter_guardian_personal_id') !!}"
                     @error('guardian_personal_id')  style="border-color: rgb(246, 78, 96)"  @enderror>
                 @error('guardian_personal_id')
                     <span class="text text-danger">
@@ -304,21 +300,14 @@
 
     </div>
     <!-- end: guardian_work_ar ,guardian_work_en ,guardian_address_ar , guardian_address_en  -->
-
-
 </div>
+
 <!-- begin: button -->
 <div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!}">
     <div class="col-md-12">
-        <button type="button" wire:click ="backStep(2)" class="btn btn-info btn-glow">
-            {!! __('children.back') !!}
-            <span wire:loading wire:target="backStep(2)">
-                <i class="la la-refresh spinner"></i>
-            </span>
-        </button>
-        <button type="button" wire:click="thirdStepSubmit" class="btn btn-primary btn-glow">
-            {!! __('children.next') !!}
-            <span wire:loading wire:target="thirdStepSubmit">
+        <button type="button" wire:click="guardianInfoSubmit" class="btn btn-primary btn-glow">
+            {!! __('children.save') !!}
+            <span wire:loading wire:target="guardianInfoSubmit">
                 <i class="la la-refresh spinner">
                 </i>
             </span>

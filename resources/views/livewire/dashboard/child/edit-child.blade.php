@@ -2,88 +2,60 @@
     @csrf
     <div class="form-body">
 
-        @if (!empty($successMessage))
-            <div class="container-fluid">
-                <div class="alert alert-success">
-                    {!! $successMessage !!}
+        @if (!empty($statusAlert))
+            <div class="container-fluid mt-1 mb-1 ">
+                <div class="alert {!! $statusAlert['type'] !!}">
+                    {!! $statusAlert['message'] !!}
                 </div>
             </div>
         @endif
 
-        <!-- begin: steps row -->
-        <div class="container-fluid">
-            <div class="col-md-12 col-sm-12">
-                <div class="step-wizard ">
-                    <ul class="step-wizard-list">
-                        <li class="step-wizard-item  {!! $currentStep == 1 ? 'current-item' : '' !!}">
-                            <span class="progress-count">1</span>
-                            {{-- <span class="progress-label">{!! __('children.child_info') !!}</span> --}}
-                        </li>
-                        <li class="step-wizard-item {!! $currentStep == 2 ? 'current-item' : '' !!}">
-                            <span class="progress-count">2</span>
-                        </li>
-                        <li class="step-wizard-item {!! $currentStep == 3 ? 'current-item' : '' !!}">
-                            <span class="progress-count">3</span>
-                        </li>
-                        <li class="step-wizard-item {!! $currentStep == 4 ? 'current-item' : '' !!}">
-                            <span class="progress-count">4</span>
-                        </li>
-                        <li class="step-wizard-item {!! $currentStep == 5 ? 'current-item' : '' !!}">
-                            <span class="progress-count">5</span>
-                        </li>
 
-                        <li class="step-wizard-item {!! $currentStep == 6 ? 'current-item' : '' !!}">
-                            <span class="progress-count">6</span>
-                        </li>
-                    </ul>
+        <div>
+            <ul class="nav nav-tabs nav-underline no-hover-bg">
+                <li class="nav-item" wire:click ="childInfoClick">
+                    <a class="nav-link  {!! $currentStep == 1 ? 'active' : '' !!}">{!! __('children.child_info') !!}</a>
+                </li>
+                <li class="nav-item" wire:click ="parentsInfoClick">
+                    <a class="nav-link {!! $currentStep == 2 ? 'active' : '' !!}">{!! __('children.parents_info') !!}</a>
+                </li>
+                <li class="nav-item" wire:click ="familyInfoClick">
+                    <a class="nav-link {!! $currentStep == 3 ? 'active' : '' !!}">{!! __('children.family_info') !!}</a>
+                </li>
+                <li class="nav-item" wire:click ="guardianInfoClick">
+                    <a class="nav-link {!! $currentStep == 4 ? 'active' : '' !!}">{!! __('children.guardian_info') !!}</a>
+                </li>
+                <li class="nav-item" wire:click ="detailsInfoClick">
+                    <a class="nav-link {!! $currentStep == 5 ? 'active' : '' !!}">{!! __('children.details_info') !!}</a>
+                </li>
+                <li class="nav-item" wire:click ="filesClick">
+                    <a class="nav-link {!! $currentStep == 6 ? 'active' : '' !!}">{!! __('children.files') !!}</a>
+                </li>
+            </ul>
+
+            <div class="tab-content px-1 pt-1">
+                <div role="tabpanel" class="tab-pane {!! $currentStep == 1 ? 'active' : '' !!}">
+                    @include('livewire.dashboard.child._edit.orphan-child')
+                </div>
+                <div class="tab-pane {!! $currentStep == 2 ? 'active' : '' !!}" aria-labelledby="base-education">
+                    @include('livewire.dashboard.child._edit.child-parents')
+                </div>
+                <div class="tab-pane {!! $currentStep == 3 ? 'active' : '' !!}" aria-labelledby="base-education">
+                    @include('livewire.dashboard.child._edit.child-family')
+                </div>
+                <div class="tab-pane {!! $currentStep == 4 ? 'active' : '' !!}" aria-labelledby="base-job-details">
+                    @include('livewire.dashboard.child._edit.child-guardian')
+                </div>
+                <div class="tab-pane {!! $currentStep == 5 ? 'active' : '' !!}" aria-labelledby="base-job-details">
+                    @include('livewire.dashboard.child._edit.child-details')
                 </div>
 
+                <div class="tab-pane {!! $currentStep == 6 ? 'active' : '' !!}" aria-labelledby="base-job-details">
+                    @include('livewire.dashboard.child._edit.child-file')
+                </div>
             </div>
-        </div>
-        <!-- end: steps row -->
-
-
-        <!-- begin: first orphan child -->
-        <div class="container-fluid {!! $currentStep != 1 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.child._edit.orphan-child')
-        </div>
-        <!-- end: first orphan child  -->
-
-
-        <!-- begin: second child parents -->
-        <div class="container-fluid {!! $currentStep != 2 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.child._edit.child-parents')
-        </div>
-        <!-- end: second child parents -->
-
-
-        <!-- begin: third child guardian -->
-        <div class="container-fluid {!! $currentStep != 3 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.child._edit.child-guardian')
-        </div>
-        <!-- end: third child guardian -->
-
-
-        <!-- begin: fourth details -->
-        <div class="container-fluid {!! $currentStep != 4 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.child._edit.child-details')
-        </div>
-        <!-- end: fourth details -->
-
-
-        <!-- begin: third child file -->
-        <div class="container-fluid {!! $currentStep != 5 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.child._edit.child-file')
 
         </div>
-        <!-- end: third child file -->
-
-
-        <!-- begin: fourth confirmations -->
-        <div class="container-fluid {!! $currentStep != 6 ? 'displayNone' : '' !!}">
-            @include('livewire.dashboard.child._edit.confirmations')
-        </div>
-        <!-- end: fourth confirmations -->
 
     </div>
 </form>

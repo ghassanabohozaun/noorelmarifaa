@@ -105,28 +105,38 @@
                                             <!-- begin: basic info div -->
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    {{--
-                                                    @if ($child->childFile->picture_of_the_orphan_child)
+
+                                                    @if (!$child->childFile)
                                                         <div class="media mt-2 mx-2">
                                                             <div class="media-left pr-1">
-                                                                <span class="avatar avatar-lg">
-                                                                    <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="avatar"
-                                                                        style="border-radius: 5px;">
+                                                                <span class="avatar avatar-lg rounded-circle">
+                                                                    <img src="{!! asset('assets\dashbaord\images\avatar-male.jpg') !!}" alt="avatar"
+                                                                        style="border-radius: 10%;"><i></i>
                                                                 </span>
 
                                                             </div>
                                                         </div>
                                                     @else
-                                                        <div class="media mt-2 mx-2">
-                                                            <div class="media-left pr-1">
-                                                                <span class="avatar avatar-lg rounded-circle">
-                                                                    <img src="{!! asset('assets\dashbaord\images\avatar-male.jpg') !!}"
-                                                                        alt="avatar"><i></i>
-                                                                </span>
-
+                                                        @if ($child->childFile->picture_of_the_orphan_child)
+                                                            <div class="media mt-2 mx-2">
+                                                                <div class="media-left pr-1">
+                                                                    <span class="avatar avatar-lg">
+                                                                        <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="avatar"
+                                                                            style="border-radius: 10%;">
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    @endif --}}
+                                                        @else
+                                                            <div class="media mt-2 mx-2">
+                                                                <div class="media-left pr-1">
+                                                                    <span class="avatar avatar-lg rounded-circle">
+                                                                        <img src="{!! asset('assets\dashbaord\images\avatar-male.jpg') !!}" alt="avatar"
+                                                                            style="border-radius: 10%;"><i></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endif
 
                                                     @include('dashboard.children.profile.tabs')
 

@@ -649,7 +649,6 @@
 <!-- begin: button -->
 <div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!} mt-2">
     <div class="col-md-12">
-
         <button type="button" wire:click ="childInfoSubmit" class="btn btn-primary  btn-glow">
             {!! __('children.save') !!}
             <span wire:loading wire:target="childInfoSubmit">
@@ -657,9 +656,6 @@
                 </i>
             </span>
         </button>
-
-        {{-- x-on:click="window.scrollTo({top: 0, behavior: 'smooth'})" --}}
-
     </div>
 </div>
 <div class="clearfix"></div>

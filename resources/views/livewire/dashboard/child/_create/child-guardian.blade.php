@@ -305,9 +305,8 @@
     </div>
     <!-- end: guardian_work_ar ,guardian_work_en ,guardian_address_ar , guardian_address_en  -->
 
-
-
 </div>
+
 <!-- begin: button -->
 <div class="row {!! Lang() == 'ar' ? 'pull-left' : 'pull-right' !!}">
     <div class="col-md-12">

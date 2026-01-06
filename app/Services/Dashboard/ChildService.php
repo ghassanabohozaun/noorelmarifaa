@@ -68,13 +68,29 @@ class ChildService
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     //  child info
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-    public function childInfoSave($childData)
+
+    public function childInfoCreate($childData)
     {
         $child = $this->childRepository->createChild($childData);
-        if (!$child) {
-            return false;
+         if (!$child) {
+            return 'save_error';
         }
         return $child;
+    }
+
+    public function childInfoUpdate($childID, $childData)
+    {
+
+        $child = self::getChild($childID);
+        if (!$child) {
+            return 'child_not_found';
+        }
+        //update
+        $child = $this->childRepository->updateChild($child, $childData);
+        if (!$child) {
+            return 'save_error';
+        }
+        return 'save_success';
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -83,7 +99,6 @@ class ChildService
     public function parentsInfoSave($childID, $childFatherData, $childMotherData)
     {
         $child = self::getChild($childID);
-
         if (!$child) {
             return 'child_not_found';
         }

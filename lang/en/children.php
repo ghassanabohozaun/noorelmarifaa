@@ -10,9 +10,16 @@ return [
     'columns' => 'Columns',
     'details' => 'Other Details',
     'profile' => 'Profile',
-    'add_child_before'=>'Please Add  Child Info Firstly',
-    'child_not_found'=>'Child Not Found',
-
+    'add_child_before' => 'Please Add  Child Info Firstly',
+    'child_not_found' => 'Child Not Found',
+    'no_files_added_yet' => 'No Files Or Photos For This Child',
+    'child_personal_id_exists' => 'There is child registered with entered personal id',
+    'please_insert_child_info' => 'Please Insert Basic Child Info',
+    'please_insert_parents_info' => 'Please Insert Child Parents Info',
+    'please_insert_family_info' => 'Please Insert Child Family Info',
+    'please_insert_guardian_info' => 'Please Insert Child Guardian Info',
+    'please_insert_details_info' => 'Please Insert Child Details Info',
+    'please_insert_files' => 'Please Insert All Required Photos Or Files',
 
     'orphan_child' => 'Child',
     'child_family' => 'Child Family',
@@ -30,12 +37,11 @@ return [
     'father_info' => 'Father Informations',
     'mother_info' => 'Mother Informations',
     'guardian_info' => 'Guardian Informations',
-    'details_info' =>'Details Info',
+    'details_info' => 'Details Info',
     'files' => 'Files',
     'family_members_info' => 'Family Members Info',
     'brothers_info' => 'Brothers Info',
     'sisters_info' => 'Sister Info',
-
 
     'select_gender' => 'Select Gender',
     'select_classfication' => 'Select Classfication',

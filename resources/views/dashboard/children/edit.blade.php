@@ -2,19 +2,13 @@
 @section('title')
     {!! $title !!}
 @endsection
-
 @push('style')
     <style>
-        .inputs_div {
-            border: 1px solid #cecbcb;
-            padding: 20px;
-            margin: 20px 1px;
-            border-radius: 2px;
-            box-shadow: 1px 2px #ebeaea;
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 @endpush
-
 @section('content')
     <div class="app-content content">
 
@@ -106,3 +100,13 @@
 
     </div><!-- end: content app  -->
 @endsection
+@push('scripts')
+    <script>
+        window.addEventListener('scroll-to-top', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+@endpush
