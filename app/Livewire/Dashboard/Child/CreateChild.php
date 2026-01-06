@@ -98,7 +98,7 @@ class CreateChild extends Component
     // updated hock
     public function updated()
     {
-        // $this->validate();
+        $this->validate();
         //$this->validateOnly('personal_id'); // use when you need to validate specific input
     }
 

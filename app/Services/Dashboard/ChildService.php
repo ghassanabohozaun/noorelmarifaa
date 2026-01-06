@@ -72,7 +72,7 @@ class ChildService
     public function childInfoCreate($childData)
     {
         $child = $this->childRepository->createChild($childData);
-         if (!$child) {
+        if (!$child) {
             return 'save_error';
         }
         return $child;
@@ -80,12 +80,10 @@ class ChildService
 
     public function childInfoUpdate($childID, $childData)
     {
-
         $child = self::getChild($childID);
         if (!$child) {
             return 'child_not_found';
         }
-        //update
         $child = $this->childRepository->updateChild($child, $childData);
         if (!$child) {
             return 'save_error';
