@@ -56,6 +56,12 @@
                                 <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf3', $child->id) !!}" target="_blank">
                                     <i class="la la-file-pdf-o text-warning"></i>&nbsp; UK Form
                                 </a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.downloadWordProfile', $child->id) !!}" target="_blank">
+                                    <i class="la la-file-pdf-o text-warning"></i>&nbsp; UK Donor Form word
+                                </a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.downloadWordInformationForm', $child->id) !!}" target="_blank">
+                                    <i class="la la-file-pdf-o text-warning"></i>&nbsp; UK Information Form word
+                                </a>
                             </div>
                         </div>
 

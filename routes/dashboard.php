@@ -127,6 +127,8 @@ Route::group(
                 Route::get('/children-all', [ChildernController::class, 'getAll'])->name('children.get.all');
                 Route::post('/childrem/change-status', [ChildernController::class, 'changeStatus'])->name('children.change.status');
                 Route::get('download-pdf/{id?}', [ChildernController::class, 'downloadPDF'])->name('children.download.pdf');
+                Route::get('downloadWordProfile/{id?}', [ChildernController::class, 'downloadWordProfile'])->name('children.downloadWordProfile');
+                Route::get('downloadWordInformationForm/{id?}', [ChildernController::class, 'downloadWordInformationForm'])->name('children.downloadWordInformationForm');
                 Route::get('download-pdf2/{id?}', [ChildernController::class, 'downloadPDF2'])->name('children.download.pdf2');
                 Route::get('download-pdf3/{id?}', [ChildernController::class, 'downloadPDF3'])->name('children.download.pdf3');
 
