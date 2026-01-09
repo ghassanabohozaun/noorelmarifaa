@@ -11,7 +11,8 @@ class ChildFather extends Model
     use SoftDeletes, HasTranslations;
 
     protected $table = 'child_fathers';
-    protected $fillable = ['father_full_name', 'father_first_name','father_middle_name','father_surname_name','father_work', 'father_personal_id', 'father_date_of_death', 'father_respon_of_death', 'child_id'];
+    protected $fillable = ['father_full_name', 'father_first_name','father_middle_name','father_surname_name','father_work', 'father_personal_id', 'father_date_of_death',
+     'father_respon_of_death', 'child_id'];
     //public $timestamps = false;
 
     public array $translatable = ['father_full_name','father_first_name','father_middle_name','father_surname_name','father_work'];

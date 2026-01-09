@@ -11,7 +11,8 @@ class ChildMother extends Model
     use SoftDeletes, HasTranslations;
 
     protected $table = 'child_mothers';
-    protected $fillable = ['mother_full_name', 'mother_first_name', 'mother_middle_name', 'mother_surname_name', 'mother_work', 'mother_personal_id', 'is_mother_alive', 'mother_date_of_death', 'is_mother_the_guardian', 'child_id'];
+    protected $fillable = ['mother_full_name', 'mother_first_name', 'mother_middle_name', 'mother_surname_name', 'mother_work', 'mother_personal_id', 'is_mother_alive',
+     'mother_date_of_death', 'is_mother_the_guardian', 'child_id'];
     //public $timestamps = false;
 
     public array $translatable = ['mother_full_name', 'mother_first_name', 'mother_middle_name', 'mother_surname_name', 'mother_work'];

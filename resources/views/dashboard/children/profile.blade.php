@@ -47,21 +47,22 @@
                                 aria-expanded="false">{!! __('general.export') !!}</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton" style="width: 200px;"
                                 x-placement="bottom-start">
+                                <a class="dropdown-item" href="{!! route('dashboard.children.downloadWordInformationForm', $child->id) !!}" target="_blank">
+                                    <i class="la la-file-word-o text-primary"></i>&nbsp; UK Form
+                                </a>
+                                <a class="dropdown-item" href="{!! route('dashboard.children.downloadWordProfile', $child->id) !!}" target="_blank">
+                                    <i class="la la-file-word-o text-primary"></i>&nbsp; UK Donor Form
+                                </a>
                                 <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf', $child->id) !!}" target="_blank">
                                     <i class="la la-file-pdf-o text-warning "></i>&nbsp; Association Form
                                 </a>
-                                <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank">
+                                {{-- <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf2', $child->id) !!}" target="_blank">
                                     <i class="la la-file-pdf-o text-warning"></i>&nbsp; Donar Form
                                 </a>
                                 <a class="dropdown-item" href="{!! route('dashboard.children.download.pdf3', $child->id) !!}" target="_blank">
                                     <i class="la la-file-pdf-o text-warning"></i>&nbsp; UK Form
-                                </a>
-                                <a class="dropdown-item" href="{!! route('dashboard.children.downloadWordProfile', $child->id) !!}" target="_blank">
-                                    <i class="la la-file-pdf-o text-warning"></i>&nbsp; UK Donor Form word
-                                </a>
-                                <a class="dropdown-item" href="{!! route('dashboard.children.downloadWordInformationForm', $child->id) !!}" target="_blank">
-                                    <i class="la la-file-pdf-o text-warning"></i>&nbsp; UK Information Form word
-                                </a>
+                                </a> --}}
+
                             </div>
                         </div>
 

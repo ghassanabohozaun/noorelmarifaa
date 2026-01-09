@@ -58,6 +58,18 @@ class Child extends Authenticatable
         }
     }
 
+    // child school type function
+    public function childSchoolType()
+    {
+        if ($this->school_type == 'unrwa') {
+            return __('children.unrwa');
+        } elseif ($this->school_type == 'goverment') {
+            return __('children.goverment');
+        } elseif ($this->school_type == 'private') {
+            return __('children.private');
+        }
+    }
+
     // child class function
     public function childClass()
     {
