@@ -117,12 +117,12 @@
                                  <span class="mr-1">{!! __('dashboard.hello') !!}
                                      <span class="user-name text-bold-700">{!! child()->user()->getTranslation('first_name', Lang()) !!}</span>
                                  </span>
-                                 @if (!$child->childFile()->exists())
-                                     <span class="avatar avatar-online">
-                                         <img src="{!! asset('uploads/children/' . child()->user()->childFile->picture_of_the_orphan_child) !!}" alt="avatar">
-                                         <i></i>
-                                     </span>
-                                 @endif
+
+                                 <span class="avatar avatar-online">
+                                     <img src="{!! asset('uploads/children/' . optional($child->childFile)->picture_of_the_orphan_child) !!}" alt="avatar">
+                                     <i></i>
+                                 </span>
+
                              </a>
 
                              <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item"
