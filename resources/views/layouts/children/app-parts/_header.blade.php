@@ -117,7 +117,7 @@
                                  <span class="mr-1">{!! __('dashboard.hello') !!}
                                      <span class="user-name text-bold-700">{!! child()->user()->getTranslation('first_name', Lang()) !!}</span>
                                  </span>
-                                 @if (child()->user()->childFile->picture_of_the_orphan_child != null)
+                                 @if ($child->childFile === null)
                                      <span class="avatar avatar-online">
                                          <img src="{!! asset('uploads/children/' . child()->user()->childFile->picture_of_the_orphan_child) !!}" alt="avatar">
                                          <i></i>

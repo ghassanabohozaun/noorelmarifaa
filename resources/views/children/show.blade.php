@@ -26,7 +26,7 @@
 
                                 <div class="col-auto">
                                     <div class="mb-2">
-                                        @if (!empty(child()->user()->childFile))
+                                        @if ($child->childFile === null)
                                             <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="profile_image"
                                                 class="border-radius-lg shadow-sm rounded" style="width: 150px">
                                         @endif
