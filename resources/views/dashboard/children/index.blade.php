@@ -278,11 +278,12 @@
                             dataType: 'json',
                             success: function(data) {
 
-                                $tr.fadeOut(700, function() {
-                                    $tr.remove();
-                                });
+
 
                                 if (data.status == true) {
+                                    $tr.fadeOut(700, function() {
+                                        $tr.remove();
+                                    });
                                     swal({
                                         title: "{!! __('general.deleted') !!} ",
                                         text: "{!! __('general.delete_success_message') !!} ",

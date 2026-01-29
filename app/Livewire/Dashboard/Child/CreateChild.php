@@ -216,7 +216,7 @@ class CreateChild extends Component
             // create
             $recoredCreated = $this->childService->childInfoCreate($childData);
             if ($recoredCreated == 'save_error') {
-                flash()->error(message: __('children.add_error_message'));
+                flash()->error(message: __('general.add_error_message'));
             } else {
                 flash()->success(message: __('general.add_success_message'));
                 $this->childCreatedID = $recoredCreated->id;

@@ -346,15 +346,7 @@ class ChildernController extends Controller
         $template->setValue('expenses', $child->childDetails->expenses ? $child->childGuardian->expenses : 'N/A');
         $template->setValue('sponsorship_funds_cover', $child->childDetails->sponsorship_funds_cover ? $child->childGuardian->sponsorship_funds_cover : 'N/A');
 
-        // $products = [
-        // ['itemName' => 'Laptop', 'quantity' => 1, 'price' => 1200.00],
-        // ['itemName' => 'Mouse', 'quantity' => 5, 'price' => 25.00],
-        // ['itemName' => 'Keyboard', 'quantity' => 2, 'price' => 75.00],
-        // ];
 
-        // dd($products);
-
-        // $template->cloneRowAndSetValues('itemName', $products);
 
         $template->setValue('date_now', date('Y-m-d'));
 

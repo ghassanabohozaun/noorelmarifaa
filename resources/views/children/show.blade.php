@@ -26,8 +26,10 @@
 
                                 <div class="col-auto">
                                     <div class="mb-2">
-                                        <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="profile_image"
-                                            class="border-radius-lg shadow-sm rounded" style="width: 150px">
+                                        @if ($child->childFile->picture_of_the_orphan_child != null)
+                                            <img src="{!! asset('uploads/children/' . $child->childFile->picture_of_the_orphan_child) !!}" alt="profile_image"
+                                                class="border-radius-lg shadow-sm rounded" style="width: 150px">
+                                        @endif
                                     </div>
                                 </div>
 
