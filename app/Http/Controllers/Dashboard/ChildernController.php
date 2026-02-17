@@ -143,7 +143,7 @@ class ChildernController extends Controller
         $child = $this->childService->getChildWithRelations($id);
 
         $data = [
-            'picture_of_the_orphan_child' => public_path('uploads/children/' . $child->childFile->picture_of_the_orphan_child),
+            'picture_of_the_orphan_child' => $child->childFile?->picture_of_the_orphan_child ? public_path('uploads/children/' . $child->childFile->picture_of_the_orphan_child) : null,
             'image' => public_path('assets/dashbaord/images/pdf-logo.png'),
             'child' => $child,
         ];
@@ -159,7 +159,7 @@ class ChildernController extends Controller
         $child = $this->childService->getChildWithRelations($id);
 
         $data = [
-            'picture_of_the_orphan_child' => public_path('uploads/children/' . $child->childFile->picture_of_the_orphan_child),
+            'picture_of_the_orphan_child' => $child->childFile?->picture_of_the_orphan_child ? public_path('uploads/children/' . $child->childFile->picture_of_the_orphan_child) : null,
             'image' => public_path('assets/dashbaord/images/pdf-uk.png'),
             'child' => $child,
         ];
@@ -175,7 +175,7 @@ class ChildernController extends Controller
         $child = $this->childService->getChildWithRelations($id);
 
         $data = [
-            'picture_of_the_orphan_child' => public_path('uploads/children/' . $child->childFile->picture_of_the_orphan_child),
+            'picture_of_the_orphan_child' => $child->childFile?->picture_of_the_orphan_child ? public_path('uploads/children/' . $child->childFile->picture_of_the_orphan_child) : null,
             'image' => public_path('assets/dashbaord/images/pdf-uk.png'),
             'child' => $child,
         ];
@@ -210,12 +210,12 @@ class ChildernController extends Controller
         $template->setValue('child_school', $child->school_name ? $child->school_name : 'N/A');
         $template->setValue('overall_acadmic_progress', $child->school_name ? $child->school_name : 'N/A');
 
-        $template->setValue('father_name', $child->childFather->father_full_name ? $child->childFather->father_full_name : 'N/A');
-        $template->setValue('mother_name', $child->childMother->mother_full_name ? $child->childMother->mother_full_name : 'N/A');
-        $template->setValue('gurdian_name', $child->childGuardian->guardian_full_name ? $child->childGuardian->guardian_full_name : 'N/A');
-        $template->setValue('gurdian_relation', $child->childGuardian->guardian_relationship_with_the_child ? $child->childGuardian->guardian_relationship_with_the_child : 'N/A');
+        $template->setValue('father_name', $child->childFather?->father_full_name ? $child->childFather->father_full_name : 'N/A');
+        $template->setValue('mother_name', $child->childMother?->mother_full_name ? $child->childMother->mother_full_name : 'N/A');
+        $template->setValue('gurdian_name', $child->childGuardian?->guardian_full_name ? $child->childGuardian->guardian_full_name : 'N/A');
+        $template->setValue('gurdian_relation', $child->childGuardian?->guardian_relationship_with_the_child ? $child->childGuardian->guardian_relationship_with_the_child : 'N/A');
         $template->setValue('gurdian_address', $child->address_details ? $child->address_details : 'N/A');
-        $template->setValue('child_family_members', $child->childFamily->number_of_people_including_mother ? $child->childFamily->number_of_people_including_mother : 'N/A');
+        $template->setValue('child_family_members', $child->childFamily?->number_of_people_including_mother ? $child->childFamily->number_of_people_including_mother : 'N/A');
 
         if ($child->childFile?->picture_of_the_orphan_child) {
             $template->setImageValue('child_image', [
@@ -296,55 +296,55 @@ class ChildernController extends Controller
         $template->setValue('fees_per_month', $child->fees_per_month ? $child->fees_per_month : 'N/A');
 
         // father
-        $template->setValue('father_name', $child->childFather->father_full_name ? $child->childFather->father_full_name : 'N/A');
-        $template->setValue('father_first_name', $child->childFather->father_first_name ? $child->childFather->father_first_name : 'N/A');
-        $template->setValue('father_middle_name', $child->childFather->father_middle_name ? $child->childFather->father_middle_name : 'N/A');
-        $template->setValue('father_surname_name', $child->childFather->father_surname_name ? $child->childFather->father_surname_name : 'N/A');
-        $template->setValue('father_work', $child->childFather->father_date_of_death == null ? $child->childFather->father_work : $child->childFather->father_work);
-        $template->setValue('father_date_of_death', $child->childFather->father_date_of_death ? $child->childFather->father_date_of_death : 'N/A');
-        $template->setValue('father_respon_of_death', $child->childFather->father_respon_of_death ? $child->childFather->childFatherResponOfDeath() : 'N/A');
+        $template->setValue('father_name', $child->childFather?->father_full_name ? $child->childFather->father_full_name : 'N/A');
+        $template->setValue('father_first_name', $child->childFather?->father_first_name ? $child->childFather->father_first_name : 'N/A');
+        $template->setValue('father_middle_name', $child->childFather?->father_middle_name ? $child->childFather->father_middle_name : 'N/A');
+        $template->setValue('father_surname_name', $child->childFather?->father_surname_name ? $child->childFather->father_surname_name : 'N/A');
+        $template->setValue('father_work', $child->childFather?->father_date_of_death == null ? $child->childFather?->father_work : $child->childFather?->father_work);
+        $template->setValue('father_date_of_death', $child->childFather?->father_date_of_death ? $child->childFather->father_date_of_death : 'N/A');
+        $template->setValue('father_respon_of_death', $child->childFather?->father_respon_of_death ? $child->childFather->childFatherResponOfDeath() : 'N/A');
 
         // mother
-        $template->setValue('mother_name', $child->childMother->mother_full_name ? $child->childMother->mother_full_name : 'N/A');
-        $template->setValue('mother_first_name', $child->childMother->mother_first_name ? $child->childMother->mother_first_name : 'N/A');
-        $template->setValue('mother_middle_name', $child->childMother->mother_middle_name ? $child->childMother->mother_middle_name : 'N/A');
-        $template->setValue('mother_surname_name', $child->childMother->mother_surname_name ? $child->childMother->mother_surname_name : 'N/A');
-        $template->setValue('mother_work', $child->childMother->mother_work ? $child->childMother->mother_work : 'N/A');
-        $template->setValue('mother_date_of_death', $child->childMother->mother_date_of_death ? $child->childMother->mother_date_of_death : 'N/A');
+        $template->setValue('mother_name', $child->childMother?->mother_full_name ? $child->childMother->mother_full_name : 'N/A');
+        $template->setValue('mother_first_name', $child->childMother?->mother_first_name ? $child->childMother->mother_first_name : 'N/A');
+        $template->setValue('mother_middle_name', $child->childMother?->mother_middle_name ? $child->childMother->mother_middle_name : 'N/A');
+        $template->setValue('mother_surname_name', $child->childMother?->mother_surname_name ? $child->childMother->mother_surname_name : 'N/A');
+        $template->setValue('mother_work', $child->childMother?->mother_work ? $child->childMother->mother_work : 'N/A');
+        $template->setValue('mother_date_of_death', $child->childMother?->mother_date_of_death ? $child->childMother->mother_date_of_death : 'N/A');
         $template->setValue('mother_guardian', $child->is_mother_the_guardian == 1 ? '☑' : '☐');
         $template->setValue('mother_not_guardian', $child->is_mother_the_guardian == 0 || $child->is_mother_the_guardian == null ? '☑' : '☐');
 
         //gurdian
-        $template->setValue('gurdian_name', $child->childGuardian->guardian_full_name ? $child->childGuardian->guardian_full_name : 'N/A');
-        $template->setValue('guardian_first_name', $child->childGuardian->guardian_first_name ? $child->childGuardian->guardian_first_name : 'N/A');
-        $template->setValue('guardian_middle_name', $child->childGuardian->guardian_middle_name ? $child->childGuardian->guardian_middle_name : 'N/A');
-        $template->setValue('guardian_surname_name', $child->childGuardian->guardian_surname_name ? $child->childGuardian->guardian_surname_name : 'N/A');
-        $template->setValue('gurdian_relation', $child->childGuardian->guardian_relationship_with_the_child ? $child->childGuardian->childGuardianRelationshipWithTheChild() : 'N/A');
-        $template->setValue('guardian_work', $child->childGuardian->guardian_work ? $child->childGuardian->guardian_work : 'N/A');
-        $template->setValue('guardian_address', $child->childGuardian->guardian_address ? $child->childGuardian->guardian_address : 'N/A');
+        $template->setValue('gurdian_name', $child->childGuardian?->guardian_full_name ? $child->childGuardian->guardian_full_name : 'N/A');
+        $template->setValue('guardian_first_name', $child->childGuardian?->guardian_first_name ? $child->childGuardian->guardian_first_name : 'N/A');
+        $template->setValue('guardian_middle_name', $child->childGuardian?->guardian_middle_name ? $child->childGuardian->guardian_middle_name : 'N/A');
+        $template->setValue('guardian_surname_name', $child->childGuardian?->guardian_surname_name ? $child->childGuardian->guardian_surname_name : 'N/A');
+        $template->setValue('gurdian_relation', $child->childGuardian?->guardian_relationship_with_the_child ? $child->childGuardian->childGuardianRelationshipWithTheChild() : 'N/A');
+        $template->setValue('guardian_work', $child->childGuardian?->guardian_work ? $child->childGuardian->guardian_work : 'N/A');
+        $template->setValue('guardian_address', $child->childGuardian?->guardian_address ? $child->childGuardian->guardian_address : 'N/A');
 
         // family
-        $brothers = $child->childFamily->male_number ? $child->childFamily->male_number : 0;
-        $sisters = $child->childFamily->female_number ? $child->childFamily->female_number : 0;
+        $brothers = $child->childFamily?->male_number ? $child->childFamily->male_number : 0;
+        $sisters = $child->childFamily?->female_number ? $child->childFamily->female_number : 0;
         $brotherAndSisterCount = $brothers + $sisters;
         $template->setValue('brotherAndSisterCount', $brotherAndSisterCount);
 
         // brothers
-        $template->setValue('brothers_count', $child->childBrotherMembers->count() > 0 ? $child->childBrotherMembers : 0);
-        $brotherArray = $child->childBrotherMembers->select('member_name', 'member_age')->toArray();
+        $template->setValue('brothers_count', $child->childBrotherMembers?->count() > 0 ? $child->childBrotherMembers->count() : 0);
+        $brotherArray = $child->childBrotherMembers?->select('member_name', 'member_age')->toArray() ?? [];
         $template->cloneRowAndSetValues('member_name', $brotherArray);
 
         // sisters
-        $template->setValue('sisters_count', $child->childSisterMembers->count() > 0 ? $child->childSisterMembers : 0);
-        $sistersArray = $child->childSisterMembers->select('member_name', 'member_age')->toArray();
+        $template->setValue('sisters_count', $child->childSisterMembers?->count() > 0 ? $child->childSisterMembers->count() : 0);
+        $sistersArray = $child->childSisterMembers?->select('member_name', 'member_age')->toArray() ?? [];
         $template->cloneRowAndSetValues('member_name', $sistersArray);
 
         // details
-        $template->setValue('health_problem', $child->childDetails->health_problem ? $child->childGuardian->health_problem : 'N/A');
-        $template->setValue('economic_situation', $child->childDetails->economic_situation ? $child->childGuardian->economic_situation : 'N/A');
-        $template->setValue('child_progress', $child->childDetails->child_progress ? $child->childGuardian->child_progress : 'N/A');
-        $template->setValue('expenses', $child->childDetails->expenses ? $child->childGuardian->expenses : 'N/A');
-        $template->setValue('sponsorship_funds_cover', $child->childDetails->sponsorship_funds_cover ? $child->childGuardian->sponsorship_funds_cover : 'N/A');
+        $template->setValue('health_problem', $child->childDetails?->health_problem ? $child->childDetails->health_problem : 'N/A');
+        $template->setValue('economic_situation', $child->childDetails?->economic_situation ? $child->childDetails->economic_situation : 'N/A');
+        $template->setValue('child_progress', $child->childDetails?->child_progress ? $child->childDetails->child_progress : 'N/A');
+        $template->setValue('expenses', $child->childDetails?->expenses ? $child->childDetails->expenses : 'N/A');
+        $template->setValue('sponsorship_funds_cover', $child->childDetails?->sponsorship_funds_cover ? $child->childDetails->sponsorship_funds_cover : 'N/A');
 
 
 

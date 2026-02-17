@@ -28,13 +28,13 @@ class ChildRepository
     // get child with relation
     public function getChildWithRelations($id)
     {
-        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])->find($id);
+        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childDetails', 'childFile', 'governorate', 'city'])->find($id);
     }
 
     // get children by pagination
     public function getChildrenByPagination()
     {
-        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])
+        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childDetails', 'childFile', 'governorate', 'city'])
             ->latest()
             ->paginate(10);
     }
@@ -42,7 +42,7 @@ class ChildRepository
     // get children
     public function getChildren($request)
     {
-        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])
+        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childDetails', 'childFile', 'governorate', 'city'])
             ->when(!empty(request()->first_name_ar), function ($query) {
                 $query->where('first_name->ar', 'like', '%' . request()->first_name_ar . '%');
             })
@@ -96,7 +96,7 @@ class ChildRepository
     // get children
     public function getChildrenWithRelations()
     {
-        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childFile', 'governorate', 'city'])
+        return Child::with(['childFile', 'childFamily', 'childFather', 'childMother', 'childGuardian', 'childDetails', 'childFile', 'governorate', 'city'])
             ->latest()
             ->paginate(10);
     }
