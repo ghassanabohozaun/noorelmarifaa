@@ -151,7 +151,6 @@ class ChildernController extends Controller
         $pdf = PDF::loadView('dashboard.children.pdf', $data);
 
         return $pdf->stream($child->childFullName() . '.pdf');
-        //  return $pdf->stream($child->childFullName().'.pdf');
     }
 
     public function downloadPDF2($id)
