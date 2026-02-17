@@ -374,7 +374,7 @@
     <br /><br /><br /><br />
     <h3 class="black" style="margin-top: 200px"><u>Section II: Family Section</u> </h3>
     {{-- Father --}}
-    <p>Father’s Name: <span class="highlight">{!! $child->childFather->father_full_name !!}</span> </p>
+    <p>Father’s Name: <span class="highlight">{!! $child->childFather?->father_full_name !!}</span> </p>
     <div class="row">
         <div class="column3 border-bottom">&nbsp;</div>
         <div class="column3 border-bottom">&nbsp;</div>
@@ -403,7 +403,7 @@
 
     {{-- Mother --}}
     <br /> <br />
-    <p>Mother’s Name: <span class="highlight">{!! $child->childFather->father_full_name !!}</span> </p>
+    <p>Mother’s Name: <span class="highlight">{!! $child->childMother?->mother_full_name !!}</span> </p>
     <div class="row">
         <div class="column3 border-bottom">&nbsp;</div>
         <div class="column3 border-bottom">&nbsp;</div>
@@ -437,10 +437,10 @@
     </p>
 
 
-    {{-- Mother --}}
+    {{-- Guardian --}}
     <br /> <br />
     <p>If Guardian, </p>
-    <p>Guardian’s Name: <span class="highlight">{!! $child->childFather->father_full_name !!}</span> </p>
+    <p>Guardian’s Name: <span class="highlight">{!! $child->childGuardian?->guardian_full_name !!}</span> </p>
     <div class="row">
         <div class="column3 border-bottom">&nbsp;</div>
         <div class="column3 border-bottom">&nbsp;</div>
@@ -483,14 +483,14 @@
 
 
 
-    <p>Number of brothers and sisters: {!! $child->childFamily->number_of_people_including_mother !!}</p>
+    <p>Number of brothers and sisters: {!! $child->childFamily?->number_of_people_including_mother !!}</p>
 
     <div class="row font-0">
         <div class="column2">Names and ages of brothers:
-            <span class="highlight">{!! $child->childFamily->male_number !!}</span>
+            <span class="highlight">{!! $child->childFamily?->male_number !!}</span>
         </div>
         <div class="column2 "> Names and ages of sisters:
-            <span class="highlight">{!! $child->childFamily->female_number !!}</span>
+            <span class="highlight">{!! $child->childFamily?->female_number !!}</span>
         </div>
     </div>
     <div style="clear: both;"></div>

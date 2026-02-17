@@ -178,38 +178,38 @@
 
             <tr>
                 <td style=" background: #eee;">{!! __('children.number_of_people_including_mother') !!}</td>
-                <td>{!! $child->childFamily->number_of_people_including_mother !!}</td>
+                <td>{!! $child->childFamily?->number_of_people_including_mother !!}</td>
             </tr>
 
             <tr>
                 <td style=" background: #eee;">{!! __('children.father_full_name') !!}</td>
-                <td>{!! $child->childFather->father_full_name !!}</td>
+                <td>{!! $child->childFather?->father_full_name !!}</td>
                 <td style=" background: #eee;">{!! __('children.father_personal_id') !!}</td>
-                <td>{!! $child->childFather->father_personal_id !!}</td>
+                <td>{!! $child->childFather?->father_personal_id !!}</td>
             </tr>
             <tr>
                 <td style=" background: #eee;">{!! __('children.father_respon_of_death') !!}</td>
-                <td>{!! $child->childFather->childFatherResponOfDeath() !!}</td>
+                <td>{!! $child->childFather?->childFatherResponOfDeath() !!}</td>
                 <td style=" background: #eee;">{!! __('children.father_date_of_death') !!}</td>
-                <td>{!! $child->childFather->father_date_of_death !!}</td>
+                <td>{!! $child->childFather?->father_date_of_death !!}</td>
             </tr>
 
             <tr>
                 <td style=" background: #eee;">{!! __('children.mother_full_name') !!}</td>
-                <td>{!! $child->childMother->mother_full_name !!}</td>
+                <td>{!! $child->childMother?->mother_full_name !!}</td>
                 <td style=" background: #eee;">{!! __('children.mother_personal_id') !!}</td>
-                <td>{!! $child->childMother->mother_personal_id !!}</td>
+                <td>{!! $child->childMother?->mother_personal_id !!}</td>
             </tr>
 
             <tr>
                 <td style=" background: #eee;">{!! __('children.guardian_full_name') !!}</td>
-                <td>{!! $child->childGuardian->guardian_full_name !!}</td>
+                <td>{!! $child->childGuardian?->guardian_full_name !!}</td>
                 <td style=" background: #eee;">{!! __('children.guardian_personal_id') !!}</td>
-                <td>{!! $child->childGuardian->guardian_personal_id !!}</td>
+                <td>{!! $child->childGuardian?->guardian_personal_id !!}</td>
             </tr>
             <tr>
                 <td style=" background: #eee;">{!! __('children.guardian_relationship_with_the_child') !!}</td>
-                <td>{!! $child->childGuardian->childGuardianRelationshipWithTheChild() !!}</td>
+                <td>{!! $child->childGuardian?->childGuardianRelationshipWithTheChild() !!}</td>
             </tr>
 
             <tr>

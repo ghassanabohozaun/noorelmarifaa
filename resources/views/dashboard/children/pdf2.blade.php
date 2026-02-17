@@ -183,37 +183,33 @@
 
             <tr>
                 <td> Overall Academic Progress: N/A </td>
-                <td></td>
             </tr>
 
         </table>
 
-
-
-
         <h1 style="color:#4472C4">Parents Details:</h1>
         <table style="width:100% ;">
             <tr>
-                <td> Father Name: {!! $child->childFather->father_full_name !!}</td>
+                <td> Father Name: {!! $child->childFather?->father_full_name !!}</td>
             </tr>
             <tr>
-                <td> Mother Name: {!! $child->childMother->mother_full_name !!}</td>
+                <td> Mother Name: {!! $child->childMother?->mother_full_name !!}</td>
             </tr>
         </table>
 
         <h1 style="color:#4472C4">Guardian Details:</h1>
         <table style="width:100% ;">
             <tr>
-                <td> Name: {!! $child->childGuardian->guardian_full_name !!} </td>
+                <td> Name: {!! $child->childGuardian?->guardian_full_name !!} </td>
             </tr>
             <tr>
-                <td> Relationship: {!! $child->childGuardian->guardian_relationship_with_the_child !!}</td>
+                <td> Relationship: {!! $child->childGuardian?->guardian_relationship_with_the_child !!}</td>
             </tr>
             <tr>
                 <td> Address: </td>
             </tr>
             <tr>
-                <td> Total Family Members: {!! $child->childFamily->number_of_people_including_mother !!} </td>
+                <td> Total Family Members: {!! $child->childFamily?->number_of_people_including_mother !!} </td>
             </tr>
         </table>
 
