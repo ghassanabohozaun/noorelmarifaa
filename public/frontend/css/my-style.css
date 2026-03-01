@@ -39,7 +39,7 @@
 .my_lead {
     word-spacing: 0.1rem;
     line-height: 1.8rem;
-    text-align: initial;
+    text-align: justify;
 }
 
 .sticky-header .main-menu .navigation {
