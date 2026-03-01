@@ -13,7 +13,7 @@
                                     title="{!! trans('frontend.logo') !!}">
                             </a>
                         </div>
-                        <div class="text my_lead ">
+                        <div class="text  ">
                             {!! setting()->description !!}
                         </div>
                         <!--Social Box-->
